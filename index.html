@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sovereign Offline AI Fortress | 로컬 LLM 7단계 고도화 엔지니어링 기록</title>
+  <title>Sovereign Offline AI Fortress v3.0 | 로컬 LLM 11단계 고도화 엔지니어링 기록</title>
   <style>
     :root {
       --bg: #0b0f19;
@@ -360,39 +360,39 @@
 <header>
   <div class="container">
     <div class="badge-row">
-      <span class="badge green">Sovereign Offline AI Fortress v2.0</span>
-      <span class="badge purple">Stage 1~7 === 1부~7부 (1:1 직렬 아키텍처 기록)</span>
+      <span class="badge green">Sovereign Offline AI Fortress v3.0</span>
+      <span class="badge purple">Stage 1~11 === 1부~11부 (1:1 직렬 아키텍처 기록)</span>
       <span class="badge">Computer Science &amp; Engineering B.S. (KOREATECH)</span>
       <span class="badge">Engineer Information Processing (정보처리기사)</span>
       <span class="badge">HRD-Net NCS Approved Instructor (8 Categories)</span>
       <span class="badge">Linux Infra &amp; C# Industrial Control</span>
     </div>
-    <h1>소비자용 GPU(`RTX 3060 12GB`) 로컬 LLM은 어디까지 진화할 수 있는가: 7단계 아키텍처 고도화 전 기록</h1>
+    <h1>소비자용 GPU(`RTX 3060 12GB`) 로컬 LLM은 어디까지 진화할 수 있는가: 11단계 아키텍처 고도화 전 기록</h1>
     <p class="subtitle">
-      단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 추론 속도 병목 앞에서 곧바로 무너집니다.
-      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 배포 위생 분리(Stage 7)까지 1:1로 대응하는 7편의 엔지니어링 리포트</strong>로 정리했습니다.
+      단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 첫 글자 20초 대기 앞에서 곧바로 무너집니다.
+      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 Zero-VRAM 추론·시맨틱 가속, 사후 역검증기, 50문항 골든 벤치마크(Stage 11)까지 1:1로 대응하는 11편의 엔지니어링 리포트</strong>로 정리했습니다.
     </p>
 
     <div class="kpi-grid">
       <div class="kpi-card">
-        <div class="kpi-label">오프라인 5-스코프 불변 지식 카트리지</div>
-        <div class="kpi-val">458,270건</div>
-        <div class="kpi-sub">한·영 위키 38.8만 + 법령·공학·의학 표준 + 도면 OCR</div>
+        <div class="kpi-label">45.8만 건 FTS5 + CPU BGE-M3 RRF</div>
+        <div class="kpi-val">458,272건 · 0 MB</div>
+        <div class="kpi-sub">추가 GPU VRAM 0 MiB 시맨틱 리랭커(:8082) + 도면 OCR</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">L3 순수 파이썬 결정론적 기호 외골격</div>
+        <div class="kpi-label">다중 L3 외골격 &amp; 사후 역검증기</div>
         <div class="kpi-val">오차 0.0% (139종)</div>
-        <div class="kpi-sub">2-Pass 변수 정형화 + @dataclass 보정 + AST 검증</div>
+        <div class="kpi-sub">복합 도메인 배치(5.9ms) + 10배 자릿수·환각 조문 차단</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">RTX 3060 (12GB) 100% VRAM 4-슬롯 금고</div>
-        <div class="kpi-val">13.90 GB 고정</div>
-        <div class="kpi-sub">주력 14B(31~33 TPS) · 폴백 4B(71+ TPS) · OOM 가드</div>
+        <div class="kpi-label">SSE 스트리밍 &amp; KV 프리픽스 가속</div>
+        <div class="kpi-val">TTFT 0.037초</div>
+        <div class="kpi-sub">첫 글자 8.83s→0.037s(240x 단축) · 14B 35 TPS(100% VRAM)</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">Zero-Leak 보안 &amp; 구어체 응답 최적화</div>
-        <div class="kpi-val">41.5ms · 22.6s</div>
-        <div class="kpi-sub">64KB 헤더 제자리 잠금(0B) · 큐 병목 89.7s→22.6s 단축</div>
+        <div class="kpi-label">50문항 5대 축 오프라인 골든 벤치마크</div>
+        <div class="kpi-val">92.0% (46/50)</div>
+        <div class="kpi-sub">Vanilla 0% · v2.0 70.0%(35/50) → v3.0 92.0%(+22%p)</div>
       </div>
     </div>
   </div>
@@ -400,9 +400,9 @@
 
 <main class="container">
 
-  <!-- SECTION 1: 7-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..7) -->
+  <!-- SECTION 1: 11-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..11) -->
   <section id="evolution-timeline">
-    <h2>1. 로컬 LLM 7단계 고도화 타임라인 (`STAGE 1 ~ 7` ↔ 본문 `1부 ~ 7부` 1:1 대응)</h2>
+    <h2>1. 로컬 LLM 11단계 고도화 타임라인 (`STAGE 1 ~ 11` ↔ 본문 `1부 ~ 11부` 1:1 대응)</h2>
     <p class="section-lead">
       각 진화 단계(`STAGE k`)는 하단 본문(`k부`)과 번호·순서가 정확히 1:1로 일치합니다. 우측 버튼을 클릭하면 해당 단계의 설계 원리와 실행 가능한 순수 파이썬 검증 코드로 바로 이동합니다.
     </p>
@@ -566,7 +566,7 @@
       </div>
 
       <!-- STAGE 7 -> POST 7 -->
-      <div class="stage-card latest">
+      <div class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
@@ -587,6 +587,110 @@
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
             클라이언트 에디션 빌드 시 개인 문서·개인 캐시 시드 유출 <strong>0건 (100% 물리 소거 자동 검증)</strong>.
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 8 -> POST 8 -->
+      <div class="stage-card">
+        <div class="stage-dot"></div>
+        <div class="stage-head">
+          <div class="stage-title-wrap">
+            <span class="stage-num">STAGE 8 === 8부</span>
+            <span class="stage-title">'SSE 실시간 토큰 스트리밍' &amp; 추가 VRAM 0MB 'Draftless N-gram 투기적 디코딩 + KV 재사용'</span>
+          </div>
+          <button class="stage-jump-btn" onclick="jumpToPost(8)">8부 본문 보기 →</button>
+        </div>
+        <div class="stage-body-grid">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
+            일괄 대기(<code>await resp.json()</code>) 구조라 첫 글자가 뜰 때까지 <code>8.8~22.6초</code> 빈 화면이 지속되었고, 별도 4B 드래프트 모델 동시 로드는 <code>12GB VRAM</code>을 초과했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
+            <strong><code>ReadableStream SSE</code> + 중단 버튼(<code>AbortController</code>) + 무모델 <code>LLAMA_ARG_SPEC_TYPE=ngram-mod</code> + KV 프리픽스 재사용(<code>cache_reuse=256</code>)</strong>을 결합했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
+            첫 글자 도달(<code>TTFT</code>) <strong>8,833ms → 36.8ms (240.1배 단축)</strong> · Prefill <strong>34.3배 단축</strong>(<code>1,100 tok</code> KV 재사용) · 노출 플래그 <strong>0개</strong>.
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 9 -> POST 9 -->
+      <div class="stage-card">
+        <div class="stage-dot"></div>
+        <div class="stage-head">
+          <div class="stage-title-wrap">
+            <span class="stage-num">STAGE 9 === 9부</span>
+            <span class="stage-title">GPU VRAM을 0바이트 쓰는 CPU 'BGE-M3(:8082)' 사이드카 &amp; 'SQLite FTS5' 2단계 가중 RRF</span>
+          </div>
+          <button class="stage-jump-btn" onclick="jumpToPost(9)">9부 본문 보기 →</button>
+        </div>
+        <div class="stage-body-grid">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
+            전문 용어가 단 한 글자도 없는 순수 비유·개념 질문에서는 어휘 검색이 빗나갔고, 무거운 외부 벡터 DB 데몬은 시스템 가상메모리를 2~4GB 잠식했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
+            <code>SLOT_0(bge-m3-q8_0)</code>를 <strong>순수 CPU(<code>LLAMA_ARG_DEVICE=none</code>)</strong>로 구동하고, <strong><code>207종 Int8 코어 캐시(1KB/문서)</code> 구제 + 레짐 분리형 가중 <code>RRF(k=60)</code></strong>를 결합했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
+            추가 GPU VRAM <strong>0 MiB</strong> · 단일 질의 임베딩 <strong>73.0ms</strong> · LLM 쿼리 번역 없이 순수 비유 검색 적중률 <strong>50% → 70% 상승</strong>.
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 10 -> POST 10 -->
+      <div class="stage-card">
+        <div class="stage-dot"></div>
+        <div class="stage-head">
+          <div class="stage-title-wrap">
+            <span class="stage-num">STAGE 10 === 10부</span>
+            <span class="stage-title">'다중 L3 함수 배치 체이닝' &amp; 생성 직후 숫자·조문·10배 자릿수 오기를 잡는 '사후 역검증기'</span>
+          </div>
+          <button class="stage-jump-btn" onclick="jumpToPost(10)">10부 본문 보기 →</button>
+        </div>
+        <div class="stage-body-grid">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
+            복합 사건 질문에서 1개 도구만 실행되었고, LLM이 문장 작성 중 <code>9억(900,000,000)</code>을 <code>90,000,000</code>으로 쓰거나 없는 조문(<code>제999조</code>)을 붙일 위험이 있었습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
+            <strong>최대 3개 도메인 L3 연쇄 실행(<code>/api/l3-run-batch</code>)</strong>과 <strong>인용 범위·원문 조문·L3 수치·<code>ZERO_DIGIT_SHIFT_10X</code>를 대조하는 폐루프 사후 검증기</strong>를 탑재했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
+            복합 수식 배치 계산 <strong>5.94ms (10/10 통과)</strong> · 오염 답안 5종 적발 및 정상 답안 5종 통과 <strong>10/10 (오탐·미탐 0%)</strong>.
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 11 -> POST 11 -->
+      <div class="stage-card latest">
+        <div class="stage-dot"></div>
+        <div class="stage-head">
+          <div class="stage-title-wrap">
+            <span class="stage-num">STAGE 11 === 11부</span>
+            <span class="stage-title">주관적 체감을 배제하는 '50문항 · 5대 축 오프라인 골든 벤치마크(<code>--benchmark-fortress-v3</code>)' 완결</span>
+          </div>
+          <button class="stage-jump-btn" onclick="jumpToPost(11)">11부 본문 보기 →</button>
+        </div>
+        <div class="stage-body-grid">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
+            단계별 고도화가 실제 정밀도와 속도를 얼마나 올렸는지, 또 기존 방어선에 회귀 버그를 만들지 않았는지 명령어 한 줄로 재현·검증할 표준 척도가 필요했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
+            보편 지식(<code>Layer-A</code>) 기반 <strong>비유 검색·거짓 전제·복합 L3·한영 규격·사후 무결성 5대 축(각 10문항, 총 50문항) + 라이브 GPU 성적표 생성기</strong>를 구축했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
+            종합 정확도 <strong>Vanilla 0% → v2.0 70.0%(35/50) → v3.0 92.0%(46/50, +22.0%p 향상)</strong> · <code>TTFT 127.9배</code> 가속 실증.
           </div>
         </div>
       </div>
@@ -694,9 +798,9 @@
     </div>
   </section>
 
-  <!-- SECTION 4: 7-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..7) -->
+  <!-- SECTION 4: 11-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..11) -->
   <section id="series-articles">
-    <h2>4. 로컬 LLM 고도화 본편 7부작 전문 (`STAGE 1 ~ 7` === `1부 ~ 7부` 1:1 직렬 구성)</h2>
+    <h2>4. 로컬 LLM 고도화 본편 11부작 전문 (`STAGE 1 ~ 11` === `1부 ~ 11부` 1:1 직렬 구성)</h2>
     <div class="tabs">
       <button class="tab-btn active" onclick="showPost(1)">1부 (Stage 1): 기초 검증 골격</button>
       <button class="tab-btn" onclick="showPost(2)">2부 (Stage 2): 13.9GB VRAM &amp; OOM 가드</button>
@@ -705,6 +809,10 @@
       <button class="tab-btn" onclick="showPost(5)">5부 (Stage 5): 3-Tier 구어체 번역 &amp; 큐 격리</button>
       <button class="tab-btn" onclick="showPost(6)">6부 (Stage 6): Adaptive Thinking &amp; 139종 L3</button>
       <button class="tab-btn" onclick="showPost(7)">7부 (Stage 7): Edition 배포 위생 분리</button>
+      <button class="tab-btn" onclick="showPost(8)">8부 (Stage 8): SSE 스트리밍 &amp; N-gram 가속</button>
+      <button class="tab-btn" onclick="showPost(9)">9부 (Stage 9): CPU BGE-M3 0MB RRF</button>
+      <button class="tab-btn" onclick="showPost(10)">10부 (Stage 10): 다중 L3 &amp; 사후 역검증기</button>
+      <button class="tab-btn" onclick="showPost(11)">11부 (Stage 11): 50문항 골든 벤치마크</button>
     </div>
 
     <!-- POST 1 === STAGE 1 -->
@@ -924,13 +1032,126 @@ $ python sovereign_offline_drm_provisioner.py --export-dashboard dist.html --edi
 # -> 개인 문서(LAYER_B_PERSONAL) 및 personal_only 시드 유출 0건 자동 검증 통과</code></pre>
     </article>
 
+    <!-- POST 8 === STAGE 8 -->
+    <article id="post-8" class="post-card">
+      <h3>[8부 · Stage 8] 12GB VRAM을 1MB도 더 쓰지 않고 첫 글자 대기 시간(TTFT)을 240배 줄이는 법: SSE 스트리밍, KV 프리픽스 재사용, 무모델(Draftless) N-gram 투기적 디코딩</h3>
+      <div class="post-meta">
+        <span>진화 단계: <strong>STAGE 8 (실시간 스트리밍 &amp; Zero-VRAM 추론 가속)</strong></span> ·
+        <span>원문 마크다운: <a href="posts/08-stage8-sse-streaming-and-zero-vram-ngram-speculative.md">08-stage8-sse-streaming-and-zero-vram-ngram-speculative.md</a></span>
+      </div>
+      <blockquote>
+        <strong>발전 이유와 해법:</strong> <code>12GB VRAM</code> 환경에서 별도 <code>4B</code> 드래프트 모델을 동시 상주시키면 VRAM 한계를 초과합니다. 이에 추가 VRAM을 <code>0 Byte</code> 쓰는 <strong>① <code>ReadableStream</code> SSE 실시간 토큰 렌더링 &amp; 즉시 중단 버튼(<code>AbortController</code>), ② 무모델 <code>LLAMA_ARG_SPEC_TYPE=ngram-mod</code> + <code>FLASH_ATTN=on</code>, ③ 공통 프리픽스 KV 캐시 재사용(<code>CACHE_REUSE=256</code> &amp; 슬롯 스냅샷)</strong>을 결합해 작업 관리자 노출 인자 <code>0개</code>를 유지한 채 첫 글자 대기 시간을 <strong><code>8.83초 → 0.037초(240.1배 단축)</code></strong>로 줄였습니다.
+      </blockquote>
+      <pre><code># Zero-Argv 가속 환경변수 (작업 관리자 노출 CLI 플래그 0개 유지)
+hidden_env = {
+    "LLAMA_ARG_FLASH_ATTN": "on",
+    "LLAMA_ARG_CACHE_REUSE": "256",          # Pass 1 -> Pass 2 공통 프리픽스 1,100 tok 즉시 재사용 (Prefill 34.3x 단축)
+    "LLAMA_ARG_SPEC_TYPE": "ngram-mod",      # 추가 드래프트 모델(0 MB VRAM) 없이 오픈북 조문·수치 투기적 디코딩
+    "LLAMA_ARG_SLOT_SAVE_PATH": str(kv_dir), # 기동 직후 시스템 프롬프트 KV 슬롯 스냅샷 자동 복원
+}</code></pre>
+    </article>
+
+    <!-- POST 9 === STAGE 9 -->
+    <article id="post-9" class="post-card">
+      <h3>[9부 · Stage 9] 외부 벡터 DB 없이 45.8만 건 의미 검색 완성하기: GPU VRAM을 0바이트 쓰는 CPU `BGE-M3` 사이드카와 `SQLite FTS5`의 2단계 가중 RRF 결합</h3>
+      <div class="post-meta">
+        <span>진화 단계: <strong>STAGE 9 (Zero-VRAM 시맨틱 리랭커 &amp; Int8 코어 캐시)</strong></span> ·
+        <span>원문 마크다운: <a href="posts/09-stage9-cpu-bgem3-hybrid-rrf-zero-vram-reranker.md">09-stage9-cpu-bgem3-hybrid-rrf-zero-vram-reranker.md</a></span>
+      </div>
+      <blockquote>
+        <strong>발전 이유와 해법:</strong> 전문 용어가 전혀 없는 순수 비유·개념 질문(예: <em>"비밀은 안 알려주고 정답을 안다는 사실만 증명"</em> → <code>영지식 증명</code>)을 외부 벡터 DB 없이 해결하기 위해, <code>SLOT_0(bge-m3-q8_0.gguf)</code>를 <strong>순수 CPU(<code>LLAMA_ARG_DEVICE=none</code>, 추가 GPU VRAM <code>0 MiB</code>) 사이드카(<code>:8082</code>)</strong>로 구동했습니다. 평문을 저장하지 않는 <strong><code>Int8</code> 양자화 코어 캐시(<code>1 KB/문서</code>, 코사인 충실도 <code>&gt;0.9995</code>)</strong>와 <strong>레짐 분리형 가중 <code>RRF(k=60)</code></strong>로 어휘 0% 일치 문서를 구제하면서도 기존 법령 조문 정확도를 100% 보존했습니다.
+      </blockquote>
+      <pre><code># 어휘 신뢰도(lex_sc)와 BGE-M3 코사인(cos_val) 레짐에 따라 가중치를 분리하는 2-Stage RRF (k=60)
+w_lex = 1.38 if lex_sc >= 28.0 else 0.65
+w_sem = 1.18 if cos_val >= 0.50 else (1.02 if cos_val >= 0.43 else 0.0)
+rrf_score = (w_lex / (60.0 + r_lex)) + (w_sem / (60.0 + r_sem)) + min(0.0040, lex_sc / 25000.0)</code></pre>
+    </article>
+
+    <!-- POST 10 === STAGE 10 -->
+    <article id="post-10" class="post-card">
+      <h3>[10부 · Stage 10] LLM이 마지막 문장에서 숫자와 조문을 바꾸는 것까지 잡는다: 다중 L3 함수 체이닝과 사후 답변 역검증기(Post-Verifier)</h3>
+      <div class="post-meta">
+        <span>진화 단계: <strong>STAGE 10 (사전·실행·사후 3중 결정론적 폐루프)</strong></span> ·
+        <span>원문 마크다운: <a href="posts/10-stage10-post-generation-verifier-and-multitool-l3.md">10-stage10-post-generation-verifier-and-multitool-l3.md</a></span>
+      </div>
+      <blockquote>
+        <strong>발전 이유와 실제 포착 사례:</strong> 복합 사건 질문에서 최대 3개의 직교 도메인 계산기를 단일 패스로 연쇄 실행(<code>/api/l3-run-batch</code>, 파이썬 배치 <code>5.94ms</code>)하도록 확장했습니다. 특히 라이브 테스트 중 로컬 LLM이 <code>9억 원(900,000,000)</code>을 쉼표로 표기하다가 <code>0</code> 하나를 빠뜨리는 <strong>한국어 억↔쉼표 10배 자릿수 누락(<code>90,000,000원</code>)</strong> 현상을 발견하여, <strong>인용 범위·원문 조문·수치 보존·<code>ZERO_DIGIT_SHIFT_10X</code>를 전수 검문하고 위반 시 1회 자동 재작성하는 사후 역검증기</strong>를 완성했습니다.
+      </blockquote>
+      <pre><code># 사후 생성 답변 결정론적 4중 검문: (1) #k 인용 경계, (2) 원문 조문, (3) 반올림 왜곡, (4) 한국어 억<->쉼표 10배 자릿수 누락
+is_zero_shift = abs(ans_val * 10.0 - auth_val) &lt;= 1.0 or abs(ans_val / 10.0 - auth_val) &lt;= 1.0
+if is_zero_shift:
+    violations.append(f"ZERO_DIGIT_SHIFT_10X: '{raw_surface}' != {auth_val:,.0f}")</code></pre>
+    </article>
+
+    <!-- POST 11 === STAGE 11 -->
+    <article id="post-11" class="post-card">
+      <h3>[11부 · Stage 11] 감(感)이 아닌 숫자로 증명하는 아키텍처 진화: '50문항 5대 축 오프라인 골든 벤치마크(<code>--benchmark-fortress-v3</code>)' 구축 및 종합 성적표</h3>
+      <div class="post-meta">
+        <span>진화 단계: <strong>STAGE 11 (50문항 표준 정량 평가 하네스)</strong></span> ·
+        <span>원문 마크다운: <a href="posts/11-stage11-golden-50-benchmark-and-v3-architecture.md">11-stage11-golden-50-benchmark-and-v3-architecture.md</a></span>
+      </div>
+      <blockquote>
+        <strong>발전 이유와 실측 결론:</strong> 주관적 체감 평가를 배제하고 회귀 버그를 즉시 잡아내기 위해, 보편 지식(<code>Layer-A</code>) 기반 <strong>5대 평가축 × 각 10문항 = 총 50문항 자동 채점 하네스(<code>--benchmark-fortress-v3</code>)</strong>를 구축해 실제 <code>458,272건</code> 카트리지와 <code>RTX 3060(Qwen3-14B)</code> 위에서 구동했습니다.
+      </blockquote>
+      <div class="table-wrap" style="margin:16px 0;">
+        <table>
+          <thead>
+            <tr>
+              <th>평가 축 (각 10문항 · 총 50문항)</th>
+              <th>Vanilla <code>14B</code> (No-RAG)</th>
+              <th>Fortress <code>v2.0</code> (Stage 7)</th>
+              <th>Fortress <code>v3.0</code> (Stage 11)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>① 전문용어 0개 순수 비유·개념 검색 (<code>:8080</code> 번역 OFF)</td>
+              <td class="col-bad">카트리지 없음</td>
+              <td>5 / 10</td>
+              <td class="col-good">7 / 10 (CPU BGE-M3 RRF)</td>
+            </tr>
+            <tr>
+              <td>② 적대적 거짓 숫자·법령 전제 함정 방어</td>
+              <td class="col-bad">0% (라이브 동조)</td>
+              <td>10 / 10</td>
+              <td class="col-good">9 / 10 (4-Layer 전제 가드)</td>
+            </tr>
+            <tr>
+              <td>③ 단일·복합 도메인 수리 다중 L3 자율 계산</td>
+              <td class="col-bad">0% (암산 오답)</td>
+              <td>5 / 10 (복합 미지원)</td>
+              <td class="col-good">10 / 10 (다중 배치 체이닝)</td>
+            </tr>
+            <tr>
+              <td>④ 한-영 교차 학술·공학 불변 규격 인출</td>
+              <td>부분 환각</td>
+              <td>10 / 10</td>
+              <td class="col-good">10 / 10 (한·영 사전 + RRF)</td>
+            </tr>
+            <tr>
+              <td>⑤ 사후 인용·조문·<code>10배 자릿수</code> 무결성 역검증</td>
+              <td class="col-bad">검문 없음</td>
+              <td>5 / 10 (오염 미적발)</td>
+              <td class="col-good">10 / 10 (오탐 0% · 미탐 0%)</td>
+            </tr>
+            <tr>
+              <td><strong>종합 점수 (50문항) &amp; 체감 TTFT</strong></td>
+              <td class="col-bad"><strong>라이브 0/5 통과</strong></td>
+              <td><strong>35 / 50 (70.0%) · 4.13초</strong></td>
+              <td class="col-good"><strong>46 / 50 (92.0%) · 0.032초 (127.9x 가속)</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
   </section>
 
   <!-- SECTION 5: APPENDIX / SIDE-TRACK AGENT RESEARCH NOTES -->
   <section id="appendix-research">
     <h2>5. 별첨 연구 노트: 에이전트 하네스 &amp; 벤치마크 실험 (로컬 LLM 외전 2편)</h2>
     <p class="section-lead">
-      위 로컬 LLM 본체의 1~7단계 직렬 진화와 별도로, 멀티에이전트 프롬프트 방어력 검증 및 세션 간 동시성 제어·수집 자동화를 위해 수행한 연구 기록입니다.
+      위 로컬 LLM 본체의 1~11단계 직렬 진화와 별도로, 멀티에이전트 프롬프트 방어력 검증 및 세션 간 동시성 제어·수집 자동화를 위해 수행한 연구 기록입니다.
     </p>
 
     <div class="tabs">
@@ -966,8 +1187,8 @@ $ python sovereign_offline_drm_provisioner.py --export-dashboard dist.html --edi
 <footer>
   <div class="container">
     <p>
-      <strong>Sovereign Offline AI Fortress &amp; Deterministic Agent Engineering Portfolio</strong> ·
-      1:1 Stage-Aligned Local LLM Evolution (Stages 1–7) + Agent Engineering Appendix ·
+      <strong>Sovereign Offline AI Fortress v3.0 &amp; Deterministic Agent Engineering Portfolio</strong> ·
+      1:1 Stage-Aligned Local LLM Evolution (Stages 1–11) + Agent Engineering Appendix ·
       <a href="https://github.com/tejo1990/tejo1990.github.io" target="_blank">GitHub Repository</a>
     </p>
   </div>
