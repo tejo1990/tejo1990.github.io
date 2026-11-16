@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sovereign Offline AI Fortress v3.0 | 로컬 LLM 11단계 고도화 엔지니어링 기록</title>
+  <title>Sovereign Offline AI Fortress v3.0 | 로컬 LLM 11단계 고도화 기록 (입문자·엔지니어 겸용)</title>
   <style>
     :root {
       --bg: #0b0f19;
       --surface: #131b2e;
-      --surface-2: #1c2742;
+      --surface-2: #1b2640;
       --border: #2a395c;
       --text: #e2e8f0;
       --muted: #94a3b8;
@@ -30,15 +30,20 @@
       color: var(--text);
       line-height: 1.68;
     }
+    /* Dual-Mode Visibility Rules (Default = easy) */
+    body[data-reading-mode="easy"] .mode-expert { display: none !important; }
+    body[data-reading-mode="expert"] .mode-easy { display: none !important; }
+    body[data-reading-mode="expert"] details.expert-code-fold > summary { display: none; }
+
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
     .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
     header {
       background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
       border-bottom: 1px solid var(--border);
-      padding: 48px 0 38px;
+      padding: 42px 0 34px;
     }
-    .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
     .badge {
       font-size: 12px;
       font-weight: 600;
@@ -55,51 +60,323 @@
     }
     .badge.purple {
       background: rgba(129, 140, 248, 0.16);
-      color: #c7d2fe;
+      color: #a5b4fc;
       border-color: rgba(129, 140, 248, 0.4);
     }
     h1 {
-      font-size: 28px;
+      font-size: 29px;
       line-height: 1.34;
       margin: 0 0 14px;
+      color: #f8fafc;
       letter-spacing: -0.02em;
     }
     .subtitle {
-      color: var(--muted);
-      font-size: 15.5px;
-      max-width: 960px;
-      margin: 0 0 22px;
+      color: #cbd5e1;
+      font-size: 16px;
+      max-width: 980px;
+      margin: 0 0 24px;
     }
     .kpi-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
       gap: 14px;
-      margin-top: 22px;
     }
     .kpi-card {
-      background: rgba(19, 27, 46, 0.88);
+      background: rgba(19, 27, 46, 0.9);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 16px;
+      padding: 16px 18px;
     }
-    .kpi-label { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
-    .kpi-val { font-size: 23px; font-weight: 800; color: var(--good); }
-    .kpi-sub { font-size: 12px; color: var(--text); margin-top: 4px; }
+    .kpi-label { font-size: 12.5px; color: var(--muted); margin-bottom: 4px; }
+    .kpi-val { font-size: 22px; font-weight: 800; color: var(--good); }
+    .kpi-sub { font-size: 12px; color: #cbd5e1; margin-top: 4px; }
 
-    section { margin: 42px 0; }
+    /* Sticky Reading Mode Switcher Bar */
+    .mode-bar-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 95;
+      background: rgba(11, 15, 25, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+    }
+    .mode-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .mode-bar-info {
+      font-size: 13px;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .mode-pill-status {
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(52, 211, 153, 0.16);
+      color: var(--good);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+    }
+    body[data-reading-mode="expert"] .mode-pill-status {
+      background: rgba(56, 189, 248, 0.16);
+      color: var(--accent);
+      border-color: rgba(56, 189, 248, 0.45);
+    }
+    .mode-switch-group {
+      display: inline-flex;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 3px;
+      gap: 4px;
+      max-width: 100%;
+    }
+    .mode-switch-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 7px 13px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .mode-switch-btn:hover { color: #fff; }
+    .mode-switch-btn.active.easy {
+      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+      color: #062218;
+      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
+    }
+    .mode-switch-btn.active.expert {
+      background: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(56, 189, 248, 0.3);
+    }
+
+    /* Interactive Glossary Tooltip Pill & Floating Box */
+    .term-tip {
+      border-bottom: 1.5px dashed var(--accent);
+      color: #7dd3fc;
+      cursor: help;
+      padding: 0 2px;
+      border-radius: 3px;
+      transition: background 0.15s ease;
+    }
+    .term-tip:hover, .term-tip:focus {
+      background: rgba(56, 189, 248, 0.18);
+      outline: none;
+    }
+    #glossary-tooltip {
+      position: fixed;
+      z-index: 200;
+      display: none;
+      width: 310px;
+      max-width: calc(100vw - 24px);
+      background: #0f172a;
+      border: 1.5px solid var(--accent);
+      border-radius: 11px;
+      padding: 12px 14px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.65);
+      color: #f1f5f9;
+      font-size: 13px;
+      line-height: 1.55;
+      pointer-events: none;
+    }
+    #glossary-tooltip .gt-title {
+      font-weight: 800;
+      color: var(--good);
+      font-size: 13.5px;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    section { margin: 40px 0; }
     h2 {
-      font-size: 21px;
+      font-size: 22px;
+      color: #f8fafc;
       margin: 0 0 14px;
-      padding-bottom: 8px;
+      padding-bottom: 10px;
       border-bottom: 1px solid var(--border);
     }
     .section-lead {
-      color: var(--muted);
       font-size: 14.5px;
+      color: var(--muted);
       margin: -4px 0 18px;
     }
 
-    /* 7-STAGE TIMELINE UI */
+    /* Section 0: 3-Minute Visual Beginner Guide */
+    .guide-shell {
+      background: linear-gradient(180deg, rgba(19, 27, 46, 0.95) 0%, rgba(15, 23, 42, 0.92) 100%);
+      border: 1px solid rgba(52, 211, 153, 0.38);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .why-3grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .why-card {
+      background: rgba(9, 13, 22, 0.65);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      font-size: 13.8px;
+    }
+    .why-card.cloud { border-top: 3px solid #94a3b8; }
+    .why-card.ollama { border-top: 3px solid var(--bad); }
+    .why-card.ours {
+      border-top: 3px solid var(--good);
+      background: rgba(16, 185, 129, 0.06);
+      border-color: rgba(52, 211, 153, 0.4);
+    }
+    .why-card-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .why-card ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      color: #cbd5e1;
+    }
+    .why-card li { margin-bottom: 5px; }
+
+    /* 5-Step Team-Play Pipeline Visual Diagram */
+    .pipeline-box {
+      background: rgba(9, 13, 22, 0.72);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+    .pipeline-head {
+      font-size: 15px;
+      font-weight: 800;
+      color: #f8fafc;
+      margin-bottom: 12px;
+    }
+    .pipeline-steps {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .pipe-step {
+      background: var(--surface);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 11px;
+      padding: 12px;
+      cursor: pointer;
+      transition: transform 0.14s ease, border-color 0.14s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .pipe-step:hover {
+      transform: translateY(-2px);
+      border-color: var(--good);
+    }
+    .pipe-badge {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+    .pipe-name {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .pipe-desc {
+      font-size: 12.3px;
+      color: #cbd5e1;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    .pipe-link {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--good);
+    }
+
+    /* Collapsible Glossary Reference Drawer */
+    details.glossary-drawer, details.expert-code-fold {
+      background: rgba(9, 13, 22, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 11px 15px;
+      margin-top: 12px;
+    }
+    details.glossary-drawer > summary, details.expert-code-fold > summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 13.5px;
+      color: var(--accent);
+      list-style: none;
+    }
+    details.glossary-drawer > summary::-webkit-details-marker,
+    details.expert-code-fold > summary::-webkit-details-marker { display: none; }
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .glossary-item {
+      background: var(--surface);
+      border: 1px solid rgba(42, 57, 92, 0.85);
+      border-radius: 9px;
+      padding: 10px 12px;
+      font-size: 12.6px;
+    }
+    .glossary-item strong {
+      color: var(--good);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    /* Beginner Story Card inside Each Post */
+    .easy-story-box {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(52, 211, 153, 0.38);
+      border-left: 4px solid var(--good);
+      border-radius: 0 12px 12px 0;
+      padding: 16px 18px;
+      margin: 14px 0 16px;
+      font-size: 14.2px;
+      color: #f1f5f9;
+    }
+    .easy-story-head {
+      font-weight: 800;
+      color: var(--good);
+      font-size: 14.5px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .easy-story-box ul {
+      margin: 0;
+      padding-left: 19px;
+    }
+    .easy-story-box li { margin-bottom: 6px; }
+
+    /* Timeline Styles */
     .timeline-track {
       position: relative;
       display: flex;
@@ -122,26 +399,26 @@
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 18px 20px;
-      transition: border-color 0.15s ease, transform 0.15s ease;
+      transition: border-color 0.15s ease;
     }
-    .stage-card:hover {
-      border-color: var(--accent);
-      transform: translateX(2px);
+    .stage-card:hover { border-color: var(--accent); }
+    .stage-card.latest {
+      border-color: rgba(52, 211, 153, 0.65);
+      background: linear-gradient(180deg, rgba(19, 27, 46, 0.98) 0%, rgba(16, 40, 48, 0.55) 100%);
     }
     .stage-dot {
       position: absolute;
-      left: -24px;
+      left: -23px;
       top: 22px;
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       background: var(--accent);
-      border: 3px solid var(--bg);
-      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.4);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.18);
     }
     .stage-card.latest .stage-dot {
       background: var(--good);
-      box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.45);
+      box-shadow: 0 0 0 5px rgba(52, 211, 153, 0.25);
     }
     .stage-head {
       display: flex;
@@ -151,14 +428,9 @@
       gap: 10px;
       margin-bottom: 12px;
     }
-    .stage-title-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 8px;
-    }
+    .stage-title-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
     .stage-num {
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 800;
       padding: 3px 9px;
       border-radius: 6px;
@@ -172,7 +444,7 @@
       border-color: rgba(52, 211, 153, 0.4);
     }
     .stage-title {
-      font-size: 16.5px;
+      font-size: 16.2px;
       font-weight: 800;
       color: #fff;
     }
@@ -303,22 +575,20 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 28px;
+      padding: 26px;
       display: none;
     }
     .post-card.active, .appendix-card.active { display: block; }
-    .appendix-card {
-      border-color: rgba(129, 140, 248, 0.4);
-    }
+    .appendix-card { border-color: rgba(129, 140, 248, 0.4); }
     .post-card h3, .appendix-card h3 {
       margin-top: 0;
-      font-size: 21.5px;
+      font-size: 21px;
       color: #fff;
     }
     .post-meta {
       font-size: 13px;
       color: var(--muted);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       padding-bottom: 12px;
       border-bottom: 1px solid var(--border);
     }
@@ -336,7 +606,7 @@
       font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
     }
     blockquote {
-      margin: 16px 0;
+      margin: 14px 0;
       padding: 14px 18px;
       background: rgba(56, 189, 248, 0.08);
       border-left: 4px solid var(--accent);
@@ -347,24 +617,35 @@
       background: rgba(129, 140, 248, 0.09);
       border-left-color: var(--accent-2);
     }
-    .kpi-card, .stage-card, .stage-head, .stage-title-wrap, .stage-col, .compare-box, .post-card, .appendix-card {
+
+    /* Mobile Zero-Overflow Safeguards */
+    .kpi-card, .why-card, .pipe-step, .glossary-item, .stage-card, .stage-head, .stage-title-wrap, .stage-col, .compare-box, .post-card, .appendix-card, .guide-shell, .pipeline-box {
       min-width: 0;
       max-width: 100%;
     }
-    h1, h2, h3, .stage-title, .post-meta, .stage-col, blockquote, :not(pre) > code {
+    h1, h2, h3, .stage-title, .post-meta, .stage-col, .why-card, .pipe-desc, .easy-story-box, blockquote, :not(pre) > code {
       overflow-wrap: anywhere;
       word-break: break-word;
     }
-    .table-wrap, pre {
-      max-width: 100%;
+    .table-wrap, pre { max-width: 100%; }
+
+    @media (max-width: 920px) {
+      .pipeline-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 640px) {
       .container { padding: 0 14px; }
-      header { padding: 32px 0 26px; }
-      h1 { font-size: 22px; }
-      h2 { font-size: 18.5px; }
-      .post-card h3, .appendix-card h3 { font-size: 18px; }
-      .kpi-grid, .stage-body-grid, .compare-grid { grid-template-columns: 1fr; }
+      header { padding: 28px 0 24px; }
+      h1 { font-size: 21.5px; }
+      h2 { font-size: 18px; }
+      .post-card h3, .appendix-card h3 { font-size: 17.5px; }
+      .kpi-grid, .why-3grid, .pipeline-steps, .glossary-grid, .stage-body-grid, .compare-grid {
+        grid-template-columns: 1fr;
+      }
+      .mode-bar { flex-direction: column; align-items: stretch; gap: 8px; }
+      .mode-switch-group { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
+      .mode-switch-btn { padding: 8px 6px; font-size: 12px; text-align: center; }
+      .guide-shell { padding: 16px 14px; }
+      .pipeline-box { padding: 14px 12px; }
       .timeline-track { padding-left: 20px; }
       .stage-dot { left: -19px; }
       .stage-card, .compare-box, .post-card, .appendix-card { padding: 16px 14px; }
@@ -381,25 +662,60 @@
     }
   </style>
 </head>
-<body>
+<body data-reading-mode="easy">
+
+<!-- Floating Viewport-Clamped Glossary Tooltip -->
+<div id="glossary-tooltip" role="tooltip" aria-hidden="true"></div>
 
 <header>
   <div class="container">
     <div class="badge-row">
       <span class="badge green">Sovereign Offline AI Fortress v3.0</span>
-      <span class="badge purple">Stage 1~11 === 1부~11부 (1:1 직렬 아키텍처 기록)</span>
+      <span class="badge purple">Stage 1~11 === 1부~11부 (1:1 직렬 진화 기록)</span>
       <span class="badge">Computer Science &amp; Engineering B.S. (KOREATECH)</span>
       <span class="badge">Engineer Information Processing (정보처리기사)</span>
       <span class="badge">HRD-Net NCS Approved Instructor (8 Categories)</span>
       <span class="badge">Linux Infra &amp; C# Industrial Control</span>
     </div>
-    <h1>소비자용 GPU(`RTX 3060 12GB`) 로컬 LLM은 어디까지 진화할 수 있는가: 11단계 아키텍처 고도화 전 기록</h1>
-    <p class="subtitle">
+
+    <h1 class="mode-easy">보급형 그래픽카드 1장(<code>RTX 3060 12GB</code>)으로 '거짓말·계산 실수 없는 나만의 로컬 AI'를 만들기까지: 11단계 성장 기록</h1>
+    <h1 class="mode-expert">소비자용 GPU(<code>RTX 3060 12GB</code>) 로컬 LLM은 어디까지 진화할 수 있는가: 11단계 아키텍처 고도화 전 기록</h1>
+
+    <p class="subtitle mode-easy">
+      인터넷 연결 없이 내 컴퓨터 안에서 돌아가는 AI를 만들려고 유명 프로그램(<code>Ollama</code> 등)만 설치해 보면, 곧바로 <strong>메모리 부족 멈춤, 틀린 돈·이자 암산, 없는 법 조문 지어내기, 20초씩 걸리는 답답한 대기 시간</strong>이라는 벽에 부딪힙니다.
+      이 페이지는 처음 방문하신 분도 쉽게 따라오실 수 있도록 <strong>우리가 어떤 로컬 AI를 만들려 했고, 왜 기존 방식은 안 되었으며, 11단계에 걸쳐 어떻게 하나씩 해결했는지</strong> 차근차근 풀어쓴 기록입니다. <em>(상단 스위치로 언제든 엔지니어 원문·코드 모드로 전환할 수 있습니다.)</em>
+    </p>
+    <p class="subtitle mode-expert">
       단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 첫 글자 20초 대기 앞에서 곧바로 무너집니다.
       하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 Zero-VRAM 추론·시맨틱 가속, 사후 역검증기, 50문항 골든 벤치마크(Stage 11)까지 1:1로 대응하는 11편의 엔지니어링 리포트</strong>로 정리했습니다.
     </p>
 
-    <div class="kpi-grid">
+    <!-- KPI Cards: Easy Mode -->
+    <div class="kpi-grid mode-easy">
+      <div class="kpi-card">
+        <div class="kpi-label">인터넷 없이 찾는 내 PC 속 도서관</div>
+        <div class="kpi-val">458,272건 · 추가 VRAM 0MB</div>
+        <div class="kpi-sub">백과사전·법령·공학규격·스캔 도면까지 내 컴퓨터 안에서 즉시 검색</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">AI 암산 대신 직접 돌리는 파이썬 계산기</div>
+        <div class="kpi-val">계산 오차 0.0% (139종)</div>
+        <div class="kpi-sub">이자·세금·보증금을 찍지 않고 공식 프로그램으로 계산 후 오타 재검문</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">질문하자마자 첫 글자가 뜨는 속도</div>
+        <div class="kpi-val">0.037초 (240배 단축)</div>
+        <div class="kpi-sub">20초씩 멈추던 빈 화면을 없애고 실시간 타자 치듯 즉시 출력</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">50문제 까다로운 종합 실력 시험</div>
+        <div class="kpi-val">100점 만점 (50/50)</div>
+        <div class="kpi-sub">순정 AI 0% · 중기 버전 70%(35/50) → 최종 버전 100% 달성</div>
+      </div>
+    </div>
+
+    <!-- KPI Cards: Expert Mode -->
+    <div class="kpi-grid mode-expert">
       <div class="kpi-card">
         <div class="kpi-label">45.8만 건 FTS5 + CPU BGE-M3 RRF</div>
         <div class="kpi-val">458,272건 · 0 MB</div>
@@ -424,35 +740,180 @@
   </div>
 </header>
 
+<!-- STICKY READING MODE SWITCHER BAR -->
+<div class="mode-bar-wrap">
+  <div class="container mode-bar">
+    <div class="mode-bar-info">
+      <span id="mode-status-pill" class="mode-pill-status">🌱 현재: 쉽게 읽기 모드 (기본값)</span>
+      <span>💡 파란 점선 용어(<span class="term-tip" tabindex="0" data-term="l3_exoskeleton">예: L3 파이썬 외골격</span>)에 마우스를 올리거나 터치하면 1줄 뜻풀이가 열립니다.</span>
+    </div>
+    <div class="mode-switch-group" role="group" aria-label="읽기 난이도 전환">
+      <button id="btn-mode-easy" type="button" class="mode-switch-btn easy active" onclick="setReadingMode('easy')">🌱 쉽게 읽기 (입문자·직관)</button>
+      <button id="btn-mode-expert" type="button" class="mode-switch-btn expert" onclick="setReadingMode('expert')">⚙️ 엔지니어 원문 (전공·코드)</button>
+    </div>
+  </div>
+</div>
+
 <main class="container">
+
+  <!-- SECTION 0: 3-MINUTE BEGINNER VISUAL GUIDE -->
+  <section id="beginner-guide">
+    <h2>0. 처음 오신 분을 위한 3분 안내서: 왜 기존 로컬 LLM은 안 되고, 우리의 로컬 LLM은 무엇이 다른가?</h2>
+    <p class="section-lead">
+      로컬 LLM 자료를 찾아 우연히 방문하셨다면 아래 그림만 먼저 훑어보세요. 이 프로젝트 전체가 <strong>무엇을 만들려 했고 어떻게 작동하는지</strong> 3분 만에 한눈에 잡힙니다.
+    </p>
+
+    <div class="guide-shell">
+      <div class="why-3grid">
+        <div class="why-card cloud">
+          <div class="why-card-title">
+            <span>☁️ 1. 클라우드 AI (ChatGPT 등)</span>
+            <span class="tag-pill bad">기밀 반출 불가</span>
+          </div>
+          <ul>
+            <li>수백 대의 대형 서버를 쓰니 대답은 유창합니다.</li>
+            <li>하지만 <strong>내 계약서·개인 경력·회사 도면을 남의 서버로 보내야</strong> 하고 매달 구독료가 나갑니다.</li>
+            <li>게다가 계산이나 법령에서 틀린 전제로 물으면 <em>"좋은 생각입니다!"</em>라며 맞장구(<span class="term-tip" tabindex="0" data-term="sycophancy">아부 편향</span>)를 치기 일쑤입니다.</li>
+          </ul>
+        </div>
+
+        <div class="why-card ollama">
+          <div class="why-card-title">
+            <span>📦 2. 기본 원터치 로컬 LLM (순정 Ollama)</span>
+            <span class="tag-pill bad">실무 투입 실패</span>
+          </div>
+          <ul>
+            <li>인터넷 없이 내 PC에서 무료로 돈다는 점까지는 좋습니다.</li>
+            <li>그러나 일반 그래픽카드(<span class="term-tip" tabindex="0" data-term="vram">VRAM 12GB</span>)에 들어가는 작은 두뇌(<span class="term-tip" tabindex="0" data-term="local_llm">14B 모델</span>) 혼자 다 하게 두면 <strong>① 이자·세금 암산을 틀리고, ② 없는 법 조문을 지어내며(<span class="term-tip" tabindex="0" data-term="hallucination">환각</span>), ③ 메모리가 터져 꺼지거나 첫 대답에 20초씩 멈춥니다.</strong></li>
+          </ul>
+        </div>
+
+        <div class="why-card ours">
+          <div class="why-card-title">
+            <span>🏰 3. 우리가 만든 로컬 LLM (본 프로젝트)</span>
+            <span class="tag-pill good">분업형 팀플레이</span>
+          </div>
+          <ul>
+            <li><strong>발상의 전환:</strong> <em>"작은 두뇌 하나에게 암기·계산·검사를 다 시키지 말자!"</em></li>
+            <li>AI 두뇌는 오직 <strong>'글을 읽고 쉽게 설명하는 역할'</strong>만 맡기고, 그 옆에 <strong>초고속 도서관 + 파이썬 전자계산기 + 빨간펜 교정 선생님</strong>을 붙여 똑같은 <code>RTX 3060 12GB</code>에서 <strong>50문제 시험 100점(50/50)</strong>을 달성했습니다.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 5-Step Interactive Team-Play Architecture Pipeline -->
+      <div class="pipeline-box">
+        <div class="pipeline-head">🧭 질문 하나가 들어왔을 때 우리 로컬 LLM 내부에서 벌어지는 '5단계 팀플레이' (카드를 누르면 해당 단계로 이동합니다)</div>
+        <div class="pipeline-steps">
+          <div class="pipe-step" onclick="jumpToStageCard(1)">
+            <div>
+              <div class="pipe-badge">STEP 1 · 문지기</div>
+              <div class="pipe-name">🛡️ 오해·함정 방어문</div>
+              <div class="pipe-desc">사용자가 틀린 숫자나 편향된 생각으로 유도해도 맞장구치지 않고 질문부터 공정하게 바로잡습니다.</div>
+            </div>
+            <div class="pipe-link">→ Stage 1 · 4 보기</div>
+          </div>
+
+          <div class="pipe-step" onclick="jumpToStageCard(4)">
+            <div>
+              <div class="pipe-badge">STEP 2 · 오픈북 도서관</div>
+              <div class="pipe-name">📚 45.8만 권 + 뜻 검색</div>
+              <div class="pipe-desc">일상 말투나 비유로 물어도 백과사전·법령·공학규격·스캔 도면에서 정확한 원문 근거를 찾아옵니다.</div>
+            </div>
+            <div class="pipe-link">→ Stage 4 · 5 · 9 보기</div>
+          </div>
+
+          <div class="pipe-step" onclick="jumpToStageCard(6)">
+            <div>
+              <div class="pipe-badge">STEP 3 · 공식 계산기</div>
+              <div class="pipe-name">🧮 139개 파이썬 계산기</div>
+              <div class="pipe-desc">돈·연체이자·보증금은 AI 암산 금지! 검증된 파이썬 프로그램이 직접 계산해 <strong>오차 0%</strong> 정답을 줍니다.</div>
+            </div>
+            <div class="pipe-link">→ Stage 6 · 10 보기</div>
+          </div>
+
+          <div class="pipe-step" onclick="jumpToStageCard(8)">
+            <div>
+              <div class="pipe-badge">STEP 4 · 맞춤 두뇌·보안</div>
+              <div class="pipe-name">⚡ 12GB 두뇌 &amp; 0.04초 타자</div>
+              <div class="pipe-desc">메모리 폭발을 막고 <strong>0.037초</strong> 만에 첫 글자를 실시간으로 띄우며, 파일 무단 복사를 잠급니다.</div>
+            </div>
+            <div class="pipe-link">→ Stage 2 · 3 · 8 보기</div>
+          </div>
+
+          <div class="pipe-step" onclick="jumpToStageCard(10)">
+            <div>
+              <div class="pipe-badge">STEP 5 · 최종 검문소</div>
+              <div class="pipe-name">🔍 빨간펜 교정 &amp; 50문항 시험</div>
+              <div class="pipe-desc">다 쓴 문장에서 <code>0</code> 하나 빠짐(<code>9억→9천만</code>)이나 가짜 조문을 잡아 고치고 50문제 시험으로 검증합니다.</div>
+            </div>
+            <div class="pipe-link">→ Stage 10 · 11 보기</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Glossary Drawer -->
+      <details class="glossary-drawer">
+        <summary>📖 이 프로젝트만의 고유 용어 &amp; 전산 약어 '1줄 쉬운 번역 사전' 펼쳐보기 (클릭)</summary>
+        <div class="glossary-grid">
+          <div class="glossary-item"><strong>로컬 LLM &amp; 14B / 4B</strong>인터넷 없이 내 PC 그래픽카드로 돌리는 AI 두뇌입니다. 숫자가 클수록 똑똑하지만 메모리(방 크기)를 많이 차지합니다.</div>
+          <div class="glossary-item"><strong>환각(Hallucination) &amp; 아부 편향</strong>모르는 법 조문을 진짜처럼 지어내거나, 질문자의 틀린 계산에 "좋은 생각입니다!"라며 맞장구치는 AI의 고질병입니다.</div>
+          <div class="glossary-item"><strong>VRAM vs 윈도우 가상메모리(Commit)</strong>VRAM은 그래픽카드 전용 초고속 작업대(12GB)이고, 가상메모리는 윈도우 전체 앱이 나눠 쓰는 예약 공간입니다. 둘 중 하나만 부족해도 AI가 꺼집니다.</div>
+          <div class="glossary-item"><strong>64KB HWID 잠금 &amp; Zero-Argv</strong>파일 맨 앞 64KB만 내 컴퓨터 부품 지문(HWID)으로 잠가 USB 도둑 복사를 막고, 작업 관리자에 실행 비밀 옵션이 안 보이게 숨기는 보안 기술입니다.</div>
+          <div class="glossary-item"><strong>SQLite FTS5 &amp; 카트리지</strong>별도 서버 설치 없이 파일 1개에 45.8만 건의 문서를 담아 0.005초 만에 단어를 찾아내는 초고속 내장 도서관입니다.</div>
+          <div class="glossary-item"><strong>BGE-M3 &amp; 가중 RRF</strong>단어가 달라도 '문장의 뜻'이 비슷한 문서를 CPU만으로 찾아내어(BGE-M3), 기존의 정확한 단어 검색 점수와 황금비율로 합산(RRF)하는 기술입니다.</div>
+          <div class="glossary-item"><strong>L3 파이썬 외골격 (vault_stdlib)</strong>AI가 머릿속으로 어설프게 암산하지 못하도록 옆에 붙여준 '139개의 공식 파이썬 전자계산기 함수 모음'입니다.</div>
+          <div class="glossary-item"><strong>Layer-A / Layer-B 에디션 분리</strong>누구나 쓰는 보편 법령·백과사전(Layer-A)과 내 사적인 경력·계약서(Layer-B)를 나눠, 외부 배포 시 개인정보를 100% 도려내는 장치입니다.</div>
+          <div class="glossary-item"><strong>TTFT · SSE · KV 프리픽스 캐시</strong>질문 후 첫 글자가 뜰 때까지의 대기 시간(TTFT)을 줄이기 위해, 글자를 실시간 생중계(SSE)하고 앞서 읽은 안내문 기억(KV)을 재활용하는 가속 기법입니다.</div>
+          <div class="glossary-item"><strong>사후 역검증기 &amp; ZERO_DIGIT_SHIFT_10X</strong>AI가 마지막에 9억(900,000,000)을 90,000,000으로 적는 '0 누락 실수'나 없는 조문 번호를 잡아내어 자동으로 다시 쓰게 하는 빨간펜 검사기입니다.</div>
+        </div>
+      </details>
+    </div>
+  </section>
 
   <!-- SECTION 1: 11-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..11) -->
   <section id="evolution-timeline">
     <h2>1. 로컬 LLM 11단계 고도화 타임라인 (`STAGE 1 ~ 11` ↔ 본문 `1부 ~ 11부` 1:1 대응)</h2>
-    <p class="section-lead">
+    <p class="section-lead mode-easy">
+      처음 기초를 잡은 <strong>1단계</strong>부터 50문제 만점을 확인한 <strong>11단계</strong>까지 순서대로 이어집니다. 어떤 불편함 때문에 다음 단계를 만들었는지 읽어보시고, 궁금한 단계는 우측 <strong>[본문 보기 →]</strong> 버튼을 눌러 자세히 살펴보세요.
+    </p>
+    <p class="section-lead mode-expert">
       각 진화 단계(`STAGE k`)는 하단 본문(`k부`)과 번호·순서가 정확히 1:1로 일치합니다. 우측 버튼을 클릭하면 해당 단계의 설계 원리와 실행 가능한 순수 파이썬 검증 코드로 바로 이동합니다.
     </p>
 
     <div class="timeline-track">
-
       <!-- STAGE 1 -> POST 1 -->
-      <div class="stage-card">
+      <div id="stage-card-1" class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
             <span class="stage-num">STAGE 1 === 1부</span>
-            <span class="stage-title">질문 탈앵커링 게이트 &amp; 순수 파이썬(Pure Python) AST 무결성 검증 골격</span>
+            <span class="stage-title mode-easy">예스맨 AI의 아부와 암산 거짓말을 막는 '질문 교정문 & 파이썬 기초 골격'</span>
+            <span class="stage-title mode-expert">질문 탈앵커링 게이트 &amp; 순수 파이썬(Pure Python) AST 무결성 검증 골격</span>
           </div>
           <button class="stage-jump-btn" onclick="jumpToPost(1)">1부 본문 보기 →</button>
         </div>
-        <div class="stage-body-grid">
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            일반 AI나 순정 로컬 AI는 내가 틀린 사업 계획이나 계산을 가져가도 <em>"좋은 생각입니다!"</em>라며 맞장구를 치고(<span class="term-tip" tabindex="0" data-term="sycophancy">아부 편향</span>), 세법·이자 암산을 그럴듯하게 지어내어(<span class="term-tip" tabindex="0" data-term="hallucination">환각</span>) 틀렸습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            한쪽으로 치우친 질문을 공정한 비교 질문으로 먼저 고쳐 잡고(<span class="term-tip" tabindex="0" data-term="de_anchoring">탈앵커링</span>), 숫자 계산은 외부 설치 파일 없이 평생 고장 안 나는 <span class="term-tip" tabindex="0" data-term="ast_gate">순수 파이썬 검증 코드</span>가 직접 맡도록 주춧돌을 세웠습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            문서 전체를 다 넣지 않고 필요한 규칙만 골라 읽어 비용·메모리 <strong>99.76% 절감</strong> · 공식 계산 코드 오류 <strong>0건</strong>.
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
           <div class="stage-col">
             <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
-            일반·원터치 LLM은 틀린 가설에 <em>"좋은 생각입니다!"</em>라며 아부하고 세법·재무 암산에서 환각을 일으키며, 서드파티 패키지에 의존한 코드는 버전 충돌로 쉽게 깨졌습니다.
+            일반·원터치 LLM은 틀린 가설에 동조하는 <span class="term-tip" tabindex="0" data-term="sycophancy">Sycophancy</span>와 세법·재무 암산 <span class="term-tip" tabindex="0" data-term="hallucination">환각</span>을 일으키며, 서드파티 패키지에 의존한 코드는 버전 충돌로 쉽게 깨졌습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
-            편향 질문을 백지 비교 질문으로 교정하는 <code>De-anchoring</code>과 외부 패키지 0개 <code>Pure Python AST</code> 런타임 검증기(<code>verify_asset.py</code>)를 기초 골격으로 구축했습니다.
+            편향 질문을 백지 비교 질문으로 교정하는 <span class="term-tip" tabindex="0" data-term="de_anchoring">De-anchoring</span>과 외부 패키지 0개 <span class="term-tip" tabindex="0" data-term="ast_gate">Pure Python AST</span> 런타임 검증기(<code>verify_asset.py</code>)를 기초 골격으로 구축했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
@@ -462,23 +923,38 @@
       </div>
 
       <!-- STAGE 2 -> POST 2 -->
-      <div class="stage-card">
+      <div id="stage-card-2" class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
             <span class="stage-num">STAGE 2 === 2부</span>
-            <span class="stage-title">44GB 스와핑 구성을 버리고 '13.9GB 100% VRAM 4-슬롯 금고' &amp; 가상메모리 OOM 가드로 전환</span>
+            <span class="stage-title mode-easy">컴퓨터가 멈추지 않게 그래픽카드 12GB 방에 딱 맞춘 '정예 AI 4총사 & 메모리 안전장치'</span>
+            <span class="stage-title mode-expert">44GB 스와핑 구성을 버리고 '13.9GB 100% VRAM 4-슬롯 금고' &amp; 가상메모리 OOM 가드로 전환</span>
           </div>
           <button class="stage-jump-btn" onclick="jumpToPost(2)">2부 본문 보기 →</button>
         </div>
-        <div class="stage-body-grid">
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            내 그래픽카드 전용 방(<span class="term-tip" tabindex="0" data-term="vram">VRAM</span>)은 <code>12GB</code>인데 무리하게 큰 모델(<code>17.8GB</code>)을 돌렸더니, 인터넷 창을 많이 켰을 때 글자가 거북이처럼 느려지거나 <span class="term-tip" tabindex="0" data-term="virtual_commit">윈도우 가상메모리</span> 부족으로 프로그램이 강제 종료됐습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            <code>12GB</code> 안에 100% 쏙 들어가는 <strong>주력 두뇌(8.4GB) + 빠른 보조(2.3GB) + 도면 판독기 + 의미 검색기</strong> 4총사로 슬림화하고, 실행 전 메모리가 부족하면 어떤 앱을 닫아야 하는지 친절히 알려주는 안전장치를 달았습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            설치 용량 <code>44GB → 13.9GB</code> 다이어트 · 주력 모델 <strong>초당 31~33단어</strong> 쾌속 생성 · 강제 종료(크래시) <strong>0건</strong>.
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
           <div class="stage-col">
             <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
-            <code>17.8GB</code> 모델이 시스템 RAM에 걸치거나 크롬 다중 탭으로 윈도우 가상메모리(Commit)가 부족해지면 <code>Vulkan OOM</code> 중단 또는 <code>6.2 tok/s</code> 속도 급락이 발생했습니다.
+            <code>17.8GB</code> 모델이 시스템 RAM에 걸치거나 크롬 다중 탭으로 <span class="term-tip" tabindex="0" data-term="virtual_commit">윈도우 가상메모리(Commit)</span>가 부족해지면 <code>Vulkan OOM</code> 중단 또는 <code>6.2 tok/s</code> 속도 급락이 발생했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
-            <code>12GB VRAM</code>에 100% 들어가는 <strong><code>Qwen3-14B</code>(8.38GB 주력) + <code>Qwen3-4B</code>(2.33GB 폴백) + <code>Qwen2.5-VL-3B</code>(시각) + <code>BGE-M3</code></strong> 체제와 가상메모리 사전 진단 가드를 세웠습니다.
+            <code>12GB</code> <span class="term-tip" tabindex="0" data-term="vram">VRAM</span>에 100% 들어가는 <strong><code>Qwen3-14B</code>(8.38GB 주력) + <code>Qwen3-4B</code>(2.33GB 폴백) + <code>Qwen2.5-VL-3B</code>(시각) + <code>BGE-M3</code></strong> 체제와 가상메모리 사전 진단 가드를 세웠습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
@@ -488,23 +964,38 @@
       </div>
 
       <!-- STAGE 3 -> POST 3 -->
-      <div class="stage-card">
+      <div id="stage-card-3" class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
             <span class="stage-num">STAGE 3 === 3부</span>
-            <span class="stage-title">수십 GB 파일 복사 유출과 작업 관리자 명령줄 노출을 막는 '64KB HWID 헤더 잠금'</span>
+            <span class="stage-title mode-easy">USB로 AI·문서 파일을 몰래 복사해 가도 다른 PC에선 절대 못 여는 '0.04초 초고속 자물쇠'</span>
+            <span class="stage-title mode-expert">수십 GB 파일 복사 유출과 작업 관리자 명령줄 노출을 막는 '64KB HWID 헤더 잠금'</span>
           </div>
           <button class="stage-jump-btn" onclick="jumpToPost(3)">3부 본문 보기 →</button>
         </div>
-        <div class="stage-body-grid">
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            인터넷을 끊어 해킹을 막더라도, 수리점이나 외부인이 내 PC의 AI 파일·지식 창고 파일을 USB에 담아 다른 컴퓨터로 가져가거나 윈도우 작업 관리자에서 실행 비밀 설정을 엿볼 구멍이 있었습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            파일 전체(수십 GB)를 느리게 암호화하는 대신, <strong>책의 맨 앞 표지·목차(<code>64KB</code>)만 내 컴퓨터 부품 고유 지문으로 잠그는 <span class="term-tip" tabindex="0" data-term="hwid_lock">64KB HWID 잠금</span></strong>과 비밀 옵션을 숨기는 <span class="term-tip" tabindex="0" data-term="zero_argv">무인자 런처</span>를 적용했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            잠그고 푸는 시간 단 <strong>0.04초</strong> · 추가 하드 용량 <strong>0바이트</strong> · 다른 PC에서 열면 즉시 차단.
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
           <div class="stage-col">
             <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
             내 PC에 두더라도 수리점·외부인이 <code>.gguf</code>/<code>.sqlite</code>를 USB로 복사해 가거나 작업 관리자 명령줄·PowerShell 히스토리에서 실행 인자가 노출될 구멍이 있었습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
-            파일 전체 암복호화 대신 <strong>맨 앞 <code>64KB</code> 매직 헤더만 보드/디스크 <code>HWID</code>로 제자리(In-Place) 잠금</strong>하고 환경변수 기반 <code>Zero-Argv</code> 런처를 적용했습니다.
+            파일 전체 암복호화 대신 <strong>맨 앞 <span class="term-tip" tabindex="0" data-term="hwid_lock">64KB 매직 헤더 HWID 잠금</span></strong>을 제자리(In-Place) 적용하고 환경변수 기반 <span class="term-tip" tabindex="0" data-term="zero_argv">Zero-Argv</span> 런처를 구축했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
@@ -514,23 +1005,38 @@
       </div>
 
       <!-- STAGE 4 -> POST 4 -->
-      <div class="stage-card">
+      <div id="stage-card-4" class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
             <span class="stage-num">STAGE 4 === 4부</span>
-            <span class="stage-title">'458,270건 5-스코프 불변 지식 카트리지' 외장화 &amp; 스캔도면 오프라인 Vision OCR</span>
+            <span class="stage-title mode-easy">AI에게 암기시키는 대신 옆에 붙여준 '45.8만 권 오프라인 도서관 & 스캔 도면 판독기'</span>
+            <span class="stage-title mode-expert">'458,270건 5-스코프 불변 지식 카트리지' 외장화 &amp; 스캔도면 오프라인 Vision OCR</span>
           </div>
           <button class="stage-jump-btn" onclick="jumpToPost(4)">4부 본문 보기 →</button>
         </div>
-        <div class="stage-body-grid">
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            내 PC에 들어가는 작은 AI(<code>14B</code>)에게 수십만 개의 법 조문 번호나 전기·의학 규격 숫자를 다 외우라고 하면 필연적으로 숫자를 헷갈리거나 질문자의 틀린 숫자에 속아 넘어갑니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            AI는 '책을 읽고 이해하는 두뇌'로만 쓰고, <strong>한·영 백과사전 + 대한민국 법령 + 공학·의학 표준 + 스캔 이미지 글자 판독(OCR) 총 45.8만 건</strong>을 초고속 단일 파일 도서관(<span class="term-tip" tabindex="0" data-term="fts5">SQLite FTS5</span>)으로 만들어 오픈북 시험을 치르게 했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            도서관 상태 조회 속도 <strong>30,000배 단축</strong> · 종이 스캔 도면 1장 판독 <strong>3.8초</strong> · 틀린 숫자 유도 질문 사전 경보.
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
           <div class="stage-col">
             <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
             <code>14B</code> 가중치 암기만으로는 법 조문 번호·상병코드·전력 규격 숫자를 정확히 대지 못하고, 질문자가 틀린 숫자를 섞어 물으면 그대로 동조하는 문제가 발생했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
-            LLM은 '독해·추론 두뇌'로만 한정하고, <strong>한·영 위키(38.8만 + 9.6만 한-영 사전) + 법령 + 공학(9,913건) + 의학(7,778건) + 내 문서/도면 OCR</strong>을 <code>SQLite FTS5</code>로 외장화했습니다.
+            LLM은 '독해·추론 두뇌'로만 한정하고, <strong>한·영 위키(38.8만 + 9.6만 한-영 사전) + 법령 + 공학(9,913건) + 의학(7,778건) + 내 문서/도면 OCR</strong>을 <span class="term-tip" tabindex="0" data-term="fts5">SQLite FTS5</span>로 외장화했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
@@ -540,23 +1046,38 @@
       </div>
 
       <!-- STAGE 5 -> POST 5 -->
-      <div class="stage-card">
+      <div id="stage-card-5" class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
             <span class="stage-num">STAGE 5 === 5부</span>
-            <span class="stage-title">'3-Tier 구어체 쿼리 번역기'와 타이핑 디바운스(`?neural=0`) 물리 격리</span>
+            <span class="stage-title mode-easy">일상 말투('두꺼비집 내려가')를 전문 용어로 통역하되, 타이핑 중 먹통 현상을 없앤 '교통정리'</span>
+            <span class="stage-title mode-expert">'3-Tier 구어체 쿼리 번역기'와 타이핑 디바운스(<code>?neural=0</code>) 물리 격리</span>
           </div>
           <button class="stage-jump-btn" onclick="jumpToPost(5)">5부 본문 보기 →</button>
         </div>
-        <div class="stage-body-grid">
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            일반인이 <em>"두꺼비집 내려가"</em>라고 물으면 도서관의 <code>'배선용차단기'</code> 문서를 못 찾았고, 그렇다고 글자를 칠 때마다 AI 통역사를 불렀더니 미완성 오타 조각이 줄을 서서 <strong>대답이 90초까지 밀리는 병목</strong>(<span class="term-tip" tabindex="0" data-term="debounce">타이핑 큐 정체</span>)이 터졌습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            자주 쓰는 일상 말투 40선 사전(<code>0.00005초</code>)을 앞단에 두고, <strong>타자를 치는 도중에는 AI 두뇌를 절대 부르지 않다가 엔터(실행)를 눌렀을 때만 딱 1번 정밀 통역</strong>하도록 길을 완전히 나눴습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            타자 치는 중 그래픽카드 호출 <strong>0회</strong> · 일상 말투 검색 <strong>10문항 전수 적중</strong> · 답변 대기 <strong>89.7초 → 22.6초</strong>로 대폭 단축.
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
           <div class="stage-col">
             <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
             <em>"두꺼비집 내려가"</em> 같은 일상어는 한자어 학술 색인을 못 찾고, 반대로 타이핑마다 LLM 번역기를 부르자 단일 슬롯 GPU에 오타 조각이 쌓여 <strong>89.7초 지연과 캐시 오염</strong>이 생겼습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
-            <strong>40선 상황별 구어체 시드(&lt;0.05ms) + 프리웜 우선 캐시(미완성 자모 차단) + 타이핑 중 <code>?neural=0</code> 분리(<code>AbortController</code>)</strong>로 실행 시에만 LLM 번역을 1회 허용했습니다.
+            <strong>40선 상황별 구어체 시드(&lt;0.05ms) + 프리웜 우선 캐시(미완성 자모 차단) + <span class="term-tip" tabindex="0" data-term="debounce">타이핑 ?neural=0 물리 격리</span></strong>로 실행 시에만 LLM 번역을 1회 허용했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
@@ -566,23 +1087,38 @@
       </div>
 
       <!-- STAGE 6 -> POST 6 -->
-      <div class="stage-card">
+      <div id="stage-card-6" class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
             <span class="stage-num">STAGE 6 === 6부</span>
-            <span class="stage-title">'Adaptive Thinking' 제어 &amp; '139종 L3 파이썬 기호 외골격(2-Pass 자율 계산)' 연동</span>
+            <span class="stage-title mode-easy">쉬운 질문은 즉시 답하고, 복잡한 돈·법령 계산은 '139개 파이썬 전자계산기'에 맡기는 분업</span>
+            <span class="stage-title mode-expert">'Adaptive Thinking' 제어 &amp; '139종 L3 파이썬 기호 외골격(2-Pass 자율 계산)' 연동</span>
           </div>
           <button class="stage-jump-btn" onclick="jumpToPost(6)">6부 본문 보기 →</button>
         </div>
-        <div class="stage-body-grid">
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            쉬운 인사말까지 AI가 매번 깊게 장고하면 느리고, 반대로 연체이자·상가 보증금·세금 같은 다단계 계산을 작은 AI에게 암산시키면 중간에 숫자가 틀렸습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            질문 난이도에 따라 고민 길이를 자동 조절하고, 계산 문제가 들어오면 <strong>AI는 질문에서 숫자만 뽑아 <span class="term-tip" tabindex="0" data-term="l3_exoskeleton">139개 파이썬 공식 계산기</span>에 넘긴 뒤, 계산기가 준 100% 정확한 정답을 받아 말로만 풀어서 설명</strong>하게 했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            검증된 공식 계산기 <strong>29종 → 139종</strong> 확대 · 법령·재무·공학 수식 계산 오차 <strong>0.0%</strong> 달성.
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
           <div class="stage-col">
             <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
             로컬 <code>14B</code>의 복합 수리 추론 한계를 넘어야 했고, 무조건 <code>&lt;think&gt;</code>를 켜면 단순 조회까지 느려지며 끄면 다단계 수식에서 실수가 발생했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
-            질문 난이도별 <strong><code>Adaptive Thinking</code></strong>과 <strong><code>139종 vault_stdlib.py</code> 2-Pass 자율 계산(변수 JSON 추출 → 파이썬 실행 → 해설 합성)</strong>을 결합했습니다.
+            질문 난이도별 <strong><code>Adaptive Thinking</code></strong>과 <strong><span class="term-tip" tabindex="0" data-term="l3_exoskeleton">139종 vault_stdlib.py L3 외골격</span> 2-Pass 자율 계산(변수 JSON 추출 → 파이썬 실행 → 해설 합성)</strong>을 결합했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
@@ -592,19 +1128,34 @@
       </div>
 
       <!-- STAGE 7 -> POST 7 -->
-      <div class="stage-card">
+      <div id="stage-card-7" class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
             <span class="stage-num">STAGE 7 === 7부</span>
-            <span class="stage-title">타 PC·외부 배포 시 개인 데이터 혼입을 원천 차단하는 'Edition Isolation' 물리 분리</span>
+            <span class="stage-title mode-easy">다른 컴퓨터에 설치해 줄 때 내 개인정보가 1글자도 섞이지 않게 도려내는 '자동 세척 포장'</span>
+            <span class="stage-title mode-expert">타 PC·외부 배포 시 개인 데이터 혼입을 원천 차단하는 'Edition Isolation' 물리 분리</span>
           </div>
           <button class="stage-jump-btn" onclick="jumpToPost(7)">7부 본문 보기 →</button>
         </div>
-        <div class="stage-body-grid">
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            내가 쓰려고 내 경력·계약서를 넣어 똑똑하게 만든 AI 세트를 다른 PC나 외부 고객에게 설치해 줄 때, 내 사적인 기록이 단 1건이라도 딸려 나가면 심각한 정보 유출이 됩니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            배포용 만들기 옵션을 실행하면 <strong>누구나 쓰는 공통 법령·백과사전(<span class="term-tip" tabindex="0" data-term="layer_ab">공통 지식 Layer-A</span>)만 남기고 내 개인 문서(<span class="term-tip" tabindex="0" data-term="layer_ab">개인 기록 Layer-B</span>)는 파일·화면·캐시에서 물리적으로 100% 도려낸 뒤, 빈칸 양식지 25종을 대신 생성</strong>합니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            외부 배포판 생성 시 내 개인 문서·개인 캐시 유출 <strong>0건 (자동 전수 검사 통과)</strong>.
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
           <div class="stage-col">
             <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
-            내 PC에 맞춰 고도화한 로컬 AI 패키지를 다른 PC나 외부 환경에 설치할 때 개인 문서·시드(<code>Layer-B</code>)가 단 1건이라도 섞여 나가면 안 되었습니다.
+            내 PC에 맞춰 고도화한 로컬 AI 패키지를 다른 PC나 외부 환경에 설치할 때 개인 문서·시드(<span class="term-tip" tabindex="0" data-term="layer_ab">Layer-B</span>)가 단 1건이라도 섞여 나가면 안 되었습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
@@ -618,23 +1169,38 @@
       </div>
 
       <!-- STAGE 8 -> POST 8 -->
-      <div class="stage-card">
+      <div id="stage-card-8" class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
             <span class="stage-num">STAGE 8 === 8부</span>
-            <span class="stage-title">'SSE 실시간 토큰 스트리밍' &amp; 추가 VRAM 0MB 'Draftless N-gram 투기적 디코딩 + KV 재사용'</span>
+            <span class="stage-title mode-easy">20초 멈춰 있던 빈 화면을 없애고 '0.037초' 만에 타자 치듯 글자가 쏟아지게 만든 속도 혁명</span>
+            <span class="stage-title mode-expert">'SSE 실시간 토큰 스트리밍' &amp; 추가 VRAM 0MB 'Draftless N-gram 투기적 디코딩 + KV 재사용'</span>
           </div>
           <button class="stage-jump-btn" onclick="jumpToPost(8)">8부 본문 보기 →</button>
         </div>
-        <div class="stage-body-grid">
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            기존에는 AI가 마지막 마침표를 찍을 때까지 통째로 기다렸다가 한 번에 화면에 보여줘서, <code>9~22초</code> 동안 화면이 얼어붙은 것처럼 보여 너무 답답했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            그래픽카드 메모리를 1MB도 더 쓰지 않고, <strong>글자가 한 조각 나올 때마다 즉시 화면에 띄우는 <span class="term-tip" tabindex="0" data-term="ttft_sse">실시간 타자 스트리밍(SSE)</span> + 멈춤 버튼 + 앞에서 읽은 안내문 기억 재활용(<span class="term-tip" tabindex="0" data-term="kv_ngram">KV 캐시 & N-gram 가속</span>)</strong>을 결합했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            질문 후 첫 글자가 뜨는 시간 <strong>8.83초 → 0.037초 (240배 단축)</strong> · 언제든 [생성 중단] 버튼으로 즉시 정지 가능.
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
           <div class="stage-col">
             <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
             일괄 대기(<code>await resp.json()</code>) 구조라 첫 글자가 뜰 때까지 <code>8.8~22.6초</code> 빈 화면이 지속되었고, 별도 4B 드래프트 모델 동시 로드는 <code>12GB VRAM</code>을 초과했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
-            <strong><code>ReadableStream SSE</code> + 중단 버튼(<code>AbortController</code>) + 무모델 <code>LLAMA_ARG_SPEC_TYPE=ngram-mod</code> + KV 프리픽스 재사용(<code>cache_reuse=256</code>)</strong>을 결합했습니다.
+            <strong><span class="term-tip" tabindex="0" data-term="ttft_sse">ReadableStream SSE</span> + 중단 버튼(<code>AbortController</code>) + 무모델 <span class="term-tip" tabindex="0" data-term="kv_ngram">ngram-mod 투기적 디코딩 + KV 재사용</span></strong>을 결합했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
@@ -644,23 +1210,38 @@
       </div>
 
       <!-- STAGE 9 -> POST 9 -->
-      <div class="stage-card">
+      <div id="stage-card-9" class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
             <span class="stage-num">STAGE 9 === 9부</span>
-            <span class="stage-title">GPU VRAM을 0바이트 쓰는 CPU 'BGE-M3(:8082)' 사이드카 &amp; 'SQLite FTS5' 2단계 가중 RRF</span>
+            <span class="stage-title mode-easy">전문 용어를 하나도 몰라도 찰떡같이 알아듣는 '그래픽메모리 0MB 소모 CPU 의미(뜻) 검색기'</span>
+            <span class="stage-title mode-expert">GPU VRAM을 0바이트 쓰는 CPU 'BGE-M3(:8082)' 사이드카 &amp; 'SQLite FTS5' 2단계 가중 RRF</span>
           </div>
           <button class="stage-jump-btn" onclick="jumpToPost(9)">9부 본문 보기 →</button>
         </div>
-        <div class="stage-body-grid">
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            사용자가 전문 용어를 전혀 모른 채 <em>"비밀은 안 알려주고 정답을 안다는 사실만 증명하는 법"</em>(영지식 증명)처럼 순수 비유로만 물으면, 글자 일치 검색기만으로는 문서를 찾지 못했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            주력 AI가 쓰는 귀한 그래픽카드 메모리는 1바이트도 건드리지 않고, <strong>남아 있는 일반 CPU에서 가벼운 '문장 뜻 비교기'(<span class="term-tip" tabindex="0" data-term="bgem3_rrf">CPU BGE-M3 & RRF</span>)를 함께 돌려 글자 일치 점수와 뜻 일치 점수를 합산</strong>했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            추가 그래픽카드 메모리 소모 <strong>0 MB</strong> · 전문 용어 0개 순수 비유 질문 검색 성공률 <strong>50% → 100% (10문제 만점)</strong>.
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
           <div class="stage-col">
             <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
             전문 용어가 단 한 글자도 없는 순수 비유·개념 질문에서는 어휘 검색이 빗나갔고, 무거운 외부 벡터 DB 데몬은 시스템 가상메모리를 2~4GB 잠식했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
-            <code>SLOT_0(bge-m3-q8_0)</code>를 <strong>순수 CPU(<code>LLAMA_ARG_DEVICE=none</code>)</strong>로 구동하고, <strong><code>207종 Int8 코어 캐시(1KB/문서)</code> 구제 + 레짐 분리형 가중 <code>RRF(k=60)</code></strong>를 결합했습니다.
+            <code>SLOT_0(bge-m3-q8_0)</code>를 <strong>순수 CPU(<code>LLAMA_ARG_DEVICE=none</code>)</strong>로 구동하고, <strong><code>207종 Int8 코어 캐시(1KB/문서)</code> 구제 + <span class="term-tip" tabindex="0" data-term="bgem3_rrf">레짐 분리형 가중 RRF(k=60)</span></strong>를 결합했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
@@ -670,23 +1251,38 @@
       </div>
 
       <!-- STAGE 10 -> POST 10 -->
-      <div class="stage-card">
+      <div id="stage-card-10" class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
             <span class="stage-num">STAGE 10 === 10부</span>
-            <span class="stage-title">'다중 L3 함수 배치 체이닝' &amp; 생성 직후 숫자·조문·10배 자릿수 오기를 잡는 '사후 역검증기'</span>
+            <span class="stage-title mode-easy">AI가 마지막 문장에서 '0' 하나를 빼먹거나 없는 조문을 적는 실수까지 고치는 '빨간펜 검문소'</span>
+            <span class="stage-title mode-expert">'다중 L3 함수 배치 체이닝' &amp; 생성 직후 숫자·조문·10배 자릿수 오기를 잡는 '사후 역검증기'</span>
           </div>
           <button class="stage-jump-btn" onclick="jumpToPost(10)">10부 본문 보기 →</button>
         </div>
-        <div class="stage-body-grid">
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            한 질문에 두 가지 사건(연체이자 + 상가 보증금)이 섞이면 하나만 계산하거나, 파이썬 계산기가 <code>9억 원(900,000,000)</code>을 줬는데도 AI가 문장으로 옮기다 <code>0</code> 하나를 빠뜨려 <code>90,000,000원</code>이라 적는 아찔한 오타가 생길 수 있었습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            한 번에 최대 3개의 계산기를 연쇄 가동하고, <strong>AI가 답변을 다 쓴 직후 '빨간펜 교정 선생님'(<span class="term-tip" tabindex="0" data-term="zero_shift">사후 역검증기</span>)이 원문 조문 번호와 쉼표 자릿수를 대조해 틀리면 즉시 다시 쓰게</strong> 만들었습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            복합 계산 실행 <strong>0.006초 (10/10 통과)</strong> · 일부러 심어둔 오타·가짜 조문 답안 5종 적발 및 정상 답안 통과 <strong>10/10 완벽 판별</strong>.
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
           <div class="stage-col">
             <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
             복합 사건 질문에서 1개 도구만 실행되었고, LLM이 문장 작성 중 <code>9억(900,000,000)</code>을 <code>90,000,000</code>으로 쓰거나 없는 조문(<code>제999조</code>)을 붙일 위험이 있었습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
-            <strong>최대 3개 도메인 L3 연쇄 실행(<code>/api/l3-run-batch</code>)</strong>과 <strong>인용 범위·원문 조문·L3 수치·<code>ZERO_DIGIT_SHIFT_10X</code>를 대조하는 폐루프 사후 검증기</strong>를 탑재했습니다.
+            <strong>최대 3개 도메인 L3 연쇄 실행(<code>/api/l3-run-batch</code>)</strong>과 <strong>인용 범위·원문 조문·L3 수치·<span class="term-tip" tabindex="0" data-term="zero_shift">ZERO_DIGIT_SHIFT_10X</span>를 대조하는 폐루프 사후 검증기</strong>를 탑재했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
@@ -696,16 +1292,31 @@
       </div>
 
       <!-- STAGE 11 -> POST 11 -->
-      <div class="stage-card latest">
+      <div id="stage-card-11" class="stage-card latest">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
             <span class="stage-num">STAGE 11 === 11부</span>
-            <span class="stage-title">주관적 체감을 배제하는 '50문항 · 5대 축 오프라인 골든 벤치마크(<code>--benchmark-fortress-v3</code>)' 완결</span>
+            <span class="stage-title mode-easy">'느낌상 좋아졌다'는 착각을 없애기 위해 만든 '50문제 종합 모의고사 자동 채점기 (100점 달성)'</span>
+            <span class="stage-title mode-expert">주관적 체감을 배제하는 '50문항 · 5대 축 오프라인 골든 벤치마크(<code>--benchmark-fortress-v3</code>)' 완결</span>
           </div>
           <button class="stage-jump-btn" onclick="jumpToPost(11)">11부 본문 보기 →</button>
         </div>
-        <div class="stage-body-grid">
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            10단계 넘게 기능을 추가하다 보면 <em>"전보다 똑똑해진 것 같다"</em>고 주관적으로 착각하기 쉽고, 새 기능을 고치다가 옛날 기능이 몰래 고장 나는지 알기 어려웠습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            비유 질문·거짓 숫자 함정·복합 계산·영문 공학 규격·오타 검문까지 <strong>5개 과목 × 10문제 = 총 50문제로 구성된 '자동 모의고사 프로그램'</strong>을 만들어 실제 그래픽카드 위에서 채점했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            순정 AI <strong>0점</strong> → 중기 버전(v2.0) <strong>70점(35/50)</strong> → 최종 완성본(v3.0) <strong>100점 만점(50/50)</strong> &amp; 첫 글자 응답 <strong>80~131배 가속</strong> 실증!
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
           <div class="stage-col">
             <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
             단계별 고도화가 실제 정밀도와 속도를 얼마나 올렸는지, 또 기존 방어선에 회귀 버그를 만들지 않았는지 명령어 한 줄로 재현·검증할 표준 척도가 필요했습니다.
@@ -720,53 +1331,55 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
   <!-- SECTION 2: 3-WAY COMPARISON TABLE -->
   <section>
-    <h2>2. 3-Way 아키텍처 비교: 일반 클라우드 LLM vs. 원터치 로컬 LLM vs. 본 요새 아키텍처</h2>
+    <h2>2. 3-Way 비교: 클라우드 AI vs. 순정 원터치 로컬 LLM vs. 우리가 만든 로컬 LLM</h2>
+    <p class="section-lead mode-easy">
+      기존 방식들과 우리 로컬 LLM이 실제 사용 환경에서 구체적으로 무엇이 다른지 5가지 핵심 기준으로 비교했습니다.
+    </p>
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
             <th style="width:17%">비교 기준</th>
-            <th style="width:26%">① 일반 클라우드 LLM 웹채팅<br><small>(Vanilla ChatGPT / Claude / Gemini)</small></th>
-            <th style="width:26%">② 원터치 로컬 LLM 기본 설치<br><small>(유튜브 따라 하기식 Ollama + WebUI)</small></th>
-            <th style="width:31%">③ 본 시스템: Sovereign Offline AI Fortress<br><small>(13.9GB 4-Slot + 458K FTS5 + 139 Python L3)</small></th>
+            <th style="width:26%">① 일반 클라우드 AI<br><small>(ChatGPT / Claude / Gemini)</small></th>
+            <th style="width:26%">② 순정 원터치 로컬 LLM<br><small>(유튜브 따라 하기식 Ollama 기본값)</small></th>
+            <th style="width:31%">③ 우리가 만든 로컬 LLM<br><small>(Sovereign Offline AI Fortress v3.0)</small></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>전제 검증 및 아부 통제</strong></td>
-            <td class="col-bad"><strong>아부 편향 (Sycophancy)</strong><br>적자 계약·틀린 숫자 전제를 던져도 그럴듯한 논리로 맞장구침</td>
-            <td class="col-bad"><strong>표면 요약 수준</strong><br>질문 속 틀린 법정 기한·수치 모순을 잡아내지 못함</td>
-            <td class="col-good"><strong>탈앵커링 + 3-Layer 숫자 전제 모순 가드</strong><br>원문 조항과 질문 숫자가 다르면 첫 줄에서 즉시 모순 경보 발령</td>
+            <td><strong>틀린 질문·함정 대처</strong></td>
+            <td class="col-bad"><strong>맞장구 편향 (<span class="term-tip" tabindex="0" data-term="sycophancy">Sycophancy</span>)</strong><br>손해 보는 계약이나 틀린 숫자를 물어도 그럴듯하게 칭찬하며 동조함</td>
+            <td class="col-bad"><strong>함정 판별 불가</strong><br>질문 속에 섞인 틀린 법정 기한·이자율 모순을 눈치채지 못함</td>
+            <td class="col-good"><strong>질문 교정 + 숫자 함정 사전 경보기</strong><br>법령·원문 숫자와 질문 숫자가 다르면 첫 줄에서 즉시 바로잡음 (<code>10/10</code> 방어)</td>
           </tr>
           <tr>
-            <td><strong>복합 수식·법령·원가 계산</strong></td>
-            <td class="col-bad"><strong>확률적 암산 (환각 발생)</strong><br>환산보증금·지연이자·감가상각 복합 계산 시 오답 빈발</td>
-            <td class="col-bad"><strong>계산 불능</strong><br>다단계 조건 분기 및 수식 계산에서 심각한 왜곡 발생</td>
-            <td class="col-good"><strong>139종 순수 파이썬(<code>vault_stdlib.py</code>) 2-Pass 실행</strong><br>LLM은 변수 JSON만 추출하고 파이썬이 계산해 <strong>오차 0.0%</strong> 보장</td>
+            <td><strong>돈·법령·공학 계산</strong></td>
+            <td class="col-bad"><strong>어림짐작 암산 (<span class="term-tip" tabindex="0" data-term="hallucination">환각</span>)</strong><br>환산보증금·연체이자·감가상각이 섞이면 숫자가 자주 틀림</td>
+            <td class="col-bad"><strong>복합 계산 실패</strong><br>여러 조건이 겹치는 실무 수식 계산에서 심각한 오답 발생</td>
+            <td class="col-good"><strong><span class="term-tip" tabindex="0" data-term="l3_exoskeleton">139종 파이썬 전자계산기</span> + 빨간펜 검문</strong><br>AI는 숫자만 뽑고 파이썬이 계산해 <strong>오차 0.0%</strong> 보장 + 자릿수 오타 재검문</td>
           </tr>
           <tr>
-            <td><strong>RTX 3060 (12GB) 구동 안정성</strong></td>
-            <td>외부 클라우드 서버 의존 (기밀 계약서·단가표·도면 반출 불가)</td>
-            <td class="col-bad"><strong>Vulkan OOM 크래시 또는 스와핑</strong><br>가상메모리 부족 시 급작스러운 중단 또는 <code>2~6 tok/s</code> 병목</td>
-            <td class="col-good"><strong>100% VRAM 4-슬롯(13.90GB) + Commit 사전 가드</strong><br>주력 <code>Qwen3-14B</code>(31~33 TPS) / 폴백 <code>4B</code>(71+ TPS) 자동 보호</td>
+            <td><strong>보급형 그래픽카드(12GB) 안정성</strong></td>
+            <td>외부 인터넷 서버 필수 (사내 기밀 계약서·단가표·도면 입력 불가)</td>
+            <td class="col-bad"><strong>메모리 폭발 멈춤 또는 거북이 속도</strong><br>가상메모리 부족 시 강제 종료되거나 <code>초당 2~6단어</code>로 급락</td>
+            <td class="col-good"><strong>12GB 맞춤 4총사 + 메모리 사전 가드 + 0.04초 응답</strong><br>주력 <code>14B</code> 쾌속 구동 및 첫 글자 대기 <strong>0.037초</strong>(240배 단축)</td>
           </tr>
           <tr>
-            <td><strong>지식 범위 및 구어체 검색</strong></td>
-            <td class="col-bad">문서 전체 투입 시 <strong>739,875 토큰</strong> 소모 및 중간 문맥 망각</td>
-            <td class="col-bad">단순 벡터 청킹으로 표·수식 절단 &amp; 일상 구어체 검색 실패</td>
-            <td class="col-good"><strong>458,270건 5-스코프 FTS5 + 3-Tier 구어체 번역기</strong><br>한·영 위키·법령·공학·의학·스캔도면 OCR을 <code>&lt;0.05ms</code> 시드와 연결</td>
+            <td><strong>지식 검색 및 일상 말투 이해</strong></td>
+            <td class="col-bad">긴 문서를 통째로 넣으면 비용 폭탄 및 중간 내용 망각 발생</td>
+            <td class="col-bad">일상 말투(<em>"두꺼비집"</em>)나 전문용어 없는 비유 질문에서 문서 검색 실패</td>
+            <td class="col-good"><strong>45.8만 건 도서관(<span class="term-tip" tabindex="0" data-term="fts5">FTS5</span>) + CPU 뜻 검색(<span class="term-tip" tabindex="0" data-term="bgem3_rrf">BGE-M3</span>)</strong><br>그래픽메모리 0MB 추가 소모로 비유·일상어 질문까지 <strong>100% 검색 적중</strong></td>
           </tr>
           <tr>
-            <td><strong>로컬 파일 보안 &amp; 배포 위생</strong></td>
-            <td class="col-bad">외부 기업 서버에 프롬프트 및 첨부 문서 전송</td>
-            <td class="col-bad"><code>.gguf</code>/DB 무단 USB 복사 무방비 &amp; 작업 관리자 인자 노출</td>
-            <td class="col-good"><strong>64KB HWID 제자리 헤더 잠금 + Edition 물리 분리</strong><br>41.5ms 암복호화(추가 용량 0B), Zero-Argv, 배포 시 개인문서 0% 유출</td>
+            <td><strong>파일 도난 방지 &amp; 배포 안전성</strong></td>
+            <td class="col-bad">외부 기업 서버에 질문과 첨부 문서가 전송됨</td>
+            <td class="col-bad">USB로 모델·DB 파일 무단 복사 가능 &amp; 작업 관리자에 옵션 노출</td>
+            <td class="col-good"><strong><span class="term-tip" tabindex="0" data-term="hwid_lock">64KB 컴퓨터 지문 잠금</span> + 개인정보 자동 소거</strong><br>0.04초 잠금(추가 용량 0B), 타 PC 실행 차단, 배포 시 개인기록 0% 유출</td>
           </tr>
         </tbody>
       </table>
@@ -775,70 +1388,75 @@
 
   <!-- SECTION 3: REAL BEFORE / AFTER OUTPUT SHOWCASE -->
   <section>
-    <h2>3. 실제 결과물 비교 실증 (Before vs. After): 동일한 문제에 어떻게 답하는가?</h2>
+    <h2>3. 실제 질문으로 보는 차이 (Before vs. After): 상가 계약 질문을 던졌을 때</h2>
+    <p class="section-lead mode-easy">
+      백 마디 설명보다 실제 예시 하나가 가장 명확합니다. 예비 창업자가 <strong>실제로는 매달 적자가 나는 위험한 상가 조건</strong>과 <strong>잘못 알고 있는 권리금 상식</strong>을 섞어 물어봤을 때 두 AI의 대답이 어떻게 갈리는지 비교해 보세요.
+    </p>
     <div class="compare-grid">
       <div class="compare-box bad">
         <div class="compare-title">
-          <span>❌ 기존 방식 (일반 클라우드 LLM / 원터치 로컬 LLM)</span>
-          <span class="tag-pill bad">아부 + 법령·계산 환각</span>
+          <span>❌ 기존 방식 (일반 클라우드 AI / 순정 로컬 LLM)</span>
+          <span class="tag-pill bad">예스맨 아부 + 법령·계산 오답</span>
         </div>
         <p style="font-size:13.5px; color:var(--muted); margin-top:0;">
-          <strong>[질문 예시]</strong> "보증금 3,000만·월세 150만·인테리어 9,000만 원(대출 7,000만) 조건으로 매장에 입점해 월매출 1,800만 원을 내면 괜찮을까요? 10년 지나면 권리금은 못 받나요?"
+          <strong>[사용자 질문]</strong> "보증금 3,000만·월세 150만·인테리어 9,000만 원(대출 7,000만) 조건으로 입점해 월매출 1,800만 원을 내면 괜찮을까요? 10년 지나면 권리금은 못 받나요?"
         </p>
         <pre><code>"좋은 계획입니다! 월매출 1,800만 원에서 원가와 월세 150만 원을
 제외하면 매달 안정적인 순수익을 기대할 수 있습니다.
 다만 상가임대차보호법상 계약갱신요구권이 10년이므로, 10년이 지나면
 권리금 보호를 받기 어려울 수 있으니 주의하시기 바랍니다."
 
-👉 [치명적 결함 2가지]
-1. 법령 오답: 개정 상가임대차법 제10조의4에 의해 10년 만료 후에도
-   권리금 회수기회는 법적으로 보호됨 (대법원 판례 확립).
-2. 재무 오답: 인테리어 36개월 감가상각(월 250만)과 창업자 기회비용(월 300만),
-   대출 원리금을 누락하여 실질 적자(DSCR &lt; 1.0) 계약을 추천함.</code></pre>
+👉 [기존 AI를 믿었다가 입게 되는 치명적 피해 2가지]
+1. 법령 거짓말: 개정 상가임대차법 제10조의4에 따라 10년이 끝나도
+   '권리금 회수 기회'는 법적으로 보호받습니다 (대법원 판례 확립).
+2. 적자 계산 누락: 인테리어비 3년 할부 상각(월 250만 원)과 사장님 본인
+   최소 인건비·대출 원리금을 빼먹어, 매달 돈이 까이는 적자 계약을 추천함!</code></pre>
       </div>
 
       <div class="compare-box good">
         <div class="compare-title">
-          <span>✅ 본 아키텍처 (458K 카트리지 + L3 파이썬 검증기)</span>
-          <span class="tag-pill good">결정론적 코드 검증 (오차 0%)</span>
+          <span>✅ 우리의 로컬 LLM (45.8만 도서관 + 파이썬 계산기)</span>
+          <span class="tag-pill good">법령 원문 확인 + 오차 0% 계산</span>
         </div>
         <p style="font-size:13.5px; color:var(--muted); margin-top:0;">
-          <strong>[작동 방식]</strong> 법령 카트리지에서 제10조의4 원문을 인출함과 동시에 <code>evaluate_commercial_lease_and_franchise_bounds</code> 함수를 실행해 확정 수치를 산출합니다.
+          <strong>[작동 방식]</strong> 내장 도서관에서 법 제10조의4 원문을 찾아옴과 동시에, 파이썬 상가·재무 공식 계산기를 돌려 <span class="term-tip" tabindex="0" data-term="dscr">실질 DSCR(대출 상환 능력)</span>을 정확히 산출합니다.
         </p>
         <pre><code>$ POST http://127.0.0.1:8081/api/l3-run
 {
   "func": "evaluate_commercial_lease_and_franchise_bounds",
-  "converted_deposit_krw": 180000000,
-  "goodwill_protected_after_10yr": true,  // 상가임대차법 제10조의4 보호 확인
-  "monthly_ebitda_krw": 2160000,          // 원가·수수료·임대료 차감
-  "interior_amortization_36m": 2500000,   // 인테리어 9,000만 / 36개월 상각
-  "real_dscr_with_founder_wage": -0.38,   // 실질 DSCR &lt; 1.0 (자본잠식 경보)
+  "converted_deposit_krw": 180000000,     // 환산보증금 1.8억 (서울 9억 이하 보호)
+  "goodwill_protected_after_10yr": true,  // 10년 만료 후에도 권리금 보호됨!
+  "monthly_ebitda_krw": 2160000,          // 재료비·수수료·월세 뺀 영업이익 216만
+  "interior_amortization_36m": 2500000,   // 인테리어 9,000만 / 36개월 = 월 250만
+  "real_dscr_with_founder_wage": -0.38,   // 인테리어·인건비 반영 시 매달 적자!
   "verdict": "REJECT_CONTRACT_IMMEDIATELY"
 }
 
 👉 [결과물 품질 차이]
-- 법령 조문 분리: 환산보증금 초과 여부, 5% 증액 캡, 10년 만료 후 권리금 보호를
-  조문별로 100% 정확히 분리 판정.
-- 의사결정 보호: 매달 현금이 잠식되는 계약을 사전에 결정론적으로 차단.</code></pre>
+- 잘못 알고 있던 법 상식(10년 뒤 권리금)을 정확한 조문으로 바로잡아 주고,
+- 겉보기 매출에 속아 적자 매장을 계약하는 일을 사전에 100% 막아줍니다.</code></pre>
       </div>
     </div>
   </section>
 
   <!-- SECTION 4: 11-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..11) -->
   <section id="series-articles">
-    <h2>4. 로컬 LLM 고도화 본편 11부작 전문 (`STAGE 1 ~ 11` === `1부 ~ 11부` 1:1 직렬 구성)</h2>
+    <h2>4. 로컬 LLM 고도화 본편 11부작 상세 보기 (`STAGE 1 ~ 11` === `1부 ~ 11부` 1:1 직렬 구성)</h2>
+    <p class="section-lead mode-easy">
+      아래 탭을 누르면 각 단계를 <strong>초보자 눈높이 비유 해설</strong>로 편하게 읽을 수 있습니다. 각 글 아래의 <em>[💻 엔지니어 원문 &amp; 파이썬 코드 펼쳐보기]</em>를 누르거나 상단 스위치를 바꾸면 실제 코드도 바로 확인됩니다.
+    </p>
     <div class="tabs">
       <button class="tab-btn active" onclick="showPost(1)">1부 (Stage 1): 기초 검증 골격</button>
-      <button class="tab-btn" onclick="showPost(2)">2부 (Stage 2): 13.9GB VRAM &amp; OOM 가드</button>
-      <button class="tab-btn" onclick="showPost(3)">3부 (Stage 3): 64KB HWID 헤더 잠금</button>
-      <button class="tab-btn" onclick="showPost(4)">4부 (Stage 4): 45.8만 건 카트리지 &amp; OCR</button>
-      <button class="tab-btn" onclick="showPost(5)">5부 (Stage 5): 3-Tier 구어체 번역 &amp; 큐 격리</button>
-      <button class="tab-btn" onclick="showPost(6)">6부 (Stage 6): Adaptive Thinking &amp; 139종 L3</button>
-      <button class="tab-btn" onclick="showPost(7)">7부 (Stage 7): Edition 배포 위생 분리</button>
-      <button class="tab-btn" onclick="showPost(8)">8부 (Stage 8): SSE 스트리밍 &amp; N-gram 가속</button>
-      <button class="tab-btn" onclick="showPost(9)">9부 (Stage 9): CPU BGE-M3 0MB RRF</button>
-      <button class="tab-btn" onclick="showPost(10)">10부 (Stage 10): 다중 L3 &amp; 사후 역검증기</button>
-      <button class="tab-btn" onclick="showPost(11)">11부 (Stage 11): 50문항 골든 벤치마크</button>
+      <button class="tab-btn" onclick="showPost(2)">2부 (Stage 2): 12GB 맞춤 4총사</button>
+      <button class="tab-btn" onclick="showPost(3)">3부 (Stage 3): 64KB 파일 자물쇠</button>
+      <button class="tab-btn" onclick="showPost(4)">4부 (Stage 4): 45.8만 권 도서관</button>
+      <button class="tab-btn" onclick="showPost(5)">5부 (Stage 5): 일상 말투 통역·큐 정리</button>
+      <button class="tab-btn" onclick="showPost(6)">6부 (Stage 6): 139종 파이썬 계산기</button>
+      <button class="tab-btn" onclick="showPost(7)">7부 (Stage 7): 배포 시 개인정보 소거</button>
+      <button class="tab-btn" onclick="showPost(8)">8부 (Stage 8): 0.04초 즉시 스트리밍</button>
+      <button class="tab-btn" onclick="showPost(9)">9부 (Stage 9): CPU 0MB 의미 검색</button>
+      <button class="tab-btn" onclick="showPost(10)">10부 (Stage 10): 복합 계산 &amp; 빨간펜 검문</button>
+      <button class="tab-btn" onclick="showPost(11)">11부 (Stage 11): 50문항 100점 성적표</button>
     </div>
 
     <!-- POST 1 === STAGE 1 -->
@@ -846,12 +1464,22 @@
       <h3>[1부 · Stage 1] 왜 일반·원터치 로컬 LLM은 실패하는가: 질문 탈앵커링과 순수 파이썬(Pure Python) AST 검증 골격</h3>
       <div class="post-meta">
         <span>진화 단계: <strong>STAGE 1 (기초 검증 골격)</strong></span> ·
-        <span>원문 마크다운: <a href="posts/01-stage1-deterministic-python-verification-backbone.md">01-stage1-deterministic-python-verification-backbone.md</a></span>
+        <span>전체 마크다운 리포트: <a href="posts/01-stage1-deterministic-python-verification-backbone.md">01-stage1-deterministic-python-verification-backbone.md</a></span>
       </div>
-      <blockquote>
-        <strong>핵심 요약:</strong> 모델의 추론 능력이 올라갈수록 사용자의 잘못된 전제를 정교하게 합리화하는 <strong>'영리한 변호사 역설'</strong>이 발생하며, 서드파티 패키지에 의존한 코드는 버전 충돌로 쉽게 부패합니다. 이를 막기 위해 <strong>① 질문 탈앵커링(Auto De-anchoring), ② 외부 패키지 0개 순수 파이썬(<code>Pure Python Stdlib</code>) 계산기, ③ AST 파싱 및 서브프로세스 실행(<code>Exit Code 0</code>) 검증 게이트(<code>verify_asset.py</code>)</strong>를 시스템의 첫 번째 주춧돌로 세웠습니다.
-      </blockquote>
-      <pre><code>import ast, subprocess, sys
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 1 — 예스맨 AI 버릇 고치기 &amp; 평생 안 고장 나는 계산기)</span>
+        <ul>
+          <li><strong>어떤 문제가 있었나요?</strong> AI에게 <em>"내가 이 조건으로 계약하려는데 괜찮지?"</em> 하고 물으면, 실제로는 손해 보는 계약인데도 내 기분을 맞추려고 그럴듯한 이유를 대며 찬성해 버립니다(<span class="term-tip" tabindex="0" data-term="sycophancy">아부 편향</span>). 게다가 파이썬 외부 라이브러리를 많이 깔아 만든 프로그램은 몇 달 뒤 버전이 바뀌면 에러를 뿜으며 멈추곤 합니다.</li>
+          <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> 첫째, AI가 대답하기 전에 <strong>질문에 섞인 희망사항을 빼고 백지상태의 공정한 비교 질문으로 고쳐 쓰게(<span class="term-tip" tabindex="0" data-term="de_anchoring">질문 탈앵커링</span>)</strong> 만들었습니다. 둘째, 외부 유행 부품을 하나도 안 쓰고 파이썬 기본 내장 기능만으로 계산기를 만든 뒤, 저장하기 전에 실제로 한 번 돌려봐서 에러가 0개일 때만 합격시키는 자동 검사관(<code>verify_asset.py</code>)을 세웠습니다.</li>
+          <li><strong>무엇이 달라졌나요?</strong> 수많은 문서를 통째로 넣지 않고 필요한 규칙만 정확히 골라 읽어 메모리 소모를 <strong>99.76% 줄였고</strong>, 한 번 만든 검증 계산기는 시간이 지나도 고장률 <strong>0%</strong>로 작동하는 튼튼한 뼈대가 완성되었습니다.</li>
+        </ul>
+      </div>
+      <details class="expert-code-fold">
+        <summary>💻 엔지니어 원문 요약 &amp; 실행 가능한 순수 파이썬 검증 코드 펼쳐보기</summary>
+        <blockquote>
+          <strong>핵심 요약:</strong> 모델의 추론 능력이 올라갈수록 사용자의 잘못된 전제를 정교하게 합리화하는 <strong>'영리한 변호사 역설'</strong>이 발생하며, 서드파티 패키지에 의존한 코드는 버전 충돌로 쉽게 부패합니다. 이를 막기 위해 <strong>① 질문 탈앵커링(Auto De-anchoring), ② 외부 패키지 0개 순수 파이썬(<code>Pure Python Stdlib</code>) 계산기, ③ AST 파싱 및 서브프로세스 실행(<code>Exit Code 0</code>) 검증 게이트(<code>verify_asset.py</code>)</strong>를 시스템의 첫 번째 주춧돌로 세웠습니다.
+        </blockquote>
+        <pre><code>import ast, subprocess, sys
 
 ALLOWED_STDLIB = {
     "math", "dataclasses", "typing", "collections", "itertools",
@@ -868,6 +1496,7 @@ def audit_python_ast_and_runtime(code_str: str) -> bool:
                     raise ValueError(f"External dependency blocked: {alias.name}")
     proc = subprocess.run([sys.executable, "-X", "utf8", "-c", code_str], capture_output=True, timeout=10)
     return proc.returncode == 0</code></pre>
+      </details>
     </article>
 
     <!-- POST 2 === STAGE 2 -->
@@ -875,61 +1504,71 @@ def audit_python_ast_and_runtime(code_str: str) -> bool:
       <h3>[2부 · Stage 2] 하드웨어 물리 한계 직시: 44GB 스와핑 구성을 버리고 '13.9GB 100% VRAM 4-슬롯 금고'와 '가상메모리(Commit) OOM 가드'로 진화하기</h3>
       <div class="post-meta">
         <span>진화 단계: <strong>STAGE 2 (하드웨어 루프라인 &amp; 메모리 가드)</strong></span> ·
-        <span>원문 마크다운: <a href="posts/02-stage2-13gb-vram-vault-and-virtual-commit-guard.md">02-stage2-13gb-vram-vault-and-virtual-commit-guard.md</a></span>
+        <span>전체 마크다운 리포트: <a href="posts/02-stage2-13gb-vram-vault-and-virtual-commit-guard.md">02-stage2-13gb-vram-vault-and-virtual-commit-guard.md</a></span>
       </div>
-      <blockquote>
-        <strong>발전 이유와 해법:</strong> 초기 <code>44.0 GB</code> 부분 오프로딩 구성은 크롬 다중 탭·문서 도구를 함께 켜는 실사용 환경에서 PCIe/DDR4 대역폭 병목(<code>6.2 tok/s</code> 급락)과 윈도우 가상메모리(Commit) 부족에 의한 <code>Vulkan OOM</code> 중단을 일으켰습니다. 이에 <strong><code>12GB VRAM</code> 내부에 가중치 100%가 상주하는 <code>13.90 GB</code> 4-슬롯 체제</strong>로 재설계하고 실시간 가상메모리 사전 차단 가드를 도입했습니다.
-      </blockquote>
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 2 — 왜 욕심내서 큰 모델을 깔면 오히려 느려지고 꺼질까?)</span>
+        <ul>
+          <li><strong>어떤 문제가 있었나요?</strong> 처음에는 <em>"무조건 덩치 큰 모델이 더 똑똑하겠지"</em> 싶어서 <code>17.8GB</code>짜리 모델을 설치했습니다. 하지만 내 그래픽카드 초고속 작업대(<span class="term-tip" tabindex="0" data-term="vram">VRAM</span>)는 <code>12GB</code>뿐이라 넘친 <code>5.8GB</code>가 느린 일반 메모리(RAM)로 밀려났고, 속도가 <strong>5배 넘게 느려지거나 크롬 탭을 많이 켰을 때 갑자기 프로그램이 뻗어버리는 일</strong>이 벌어졌습니다.</li>
+          <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> 큰 트럭 한 대를 좁은 골목에 억지로 밀어 넣는 대신, 골목 폭(<code>12GB</code>) 안에 100% 여유 있게 들어가는 아래 표의 <strong>역할별 정예 AI 4총사(총합 13.9GB)</strong>로 재편했습니다. 또한 출발 전에 윈도우 전체 여유 메모리(<span class="term-tip" tabindex="0" data-term="virtual_commit">가상메모리 Commit</span>)까지 먼저 재보고 부족하면 어떤 앱이 메모리를 많이 쓰고 있는지 알려주며 안전하게 보호합니다.</li>
+        </ul>
+      </div>
       <div class="table-wrap" style="margin:16px 0;">
         <table>
           <thead>
             <tr>
               <th>슬롯 ID</th>
-              <th>담당 역할</th>
-              <th>챔피언 모델 (<code>GGUF</code>)</th>
-              <th>용량</th>
-              <th>실측 속도 / 벤치마크</th>
+              <th>맡은 역할 (팀플레이 분담)</th>
+              <th>모델 이름 (<code>GGUF</code>)</th>
+              <th>파일 크기</th>
+              <th>실측 속도 / 특징</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><code>SLOT_0</code></td>
-              <td>다국어 시맨틱 임베딩 &amp; 하이브리드 색인</td>
+              <td>문장의 '뜻'을 비교해 주는 의미 검색 도우미</td>
               <td><code>bge-m3-q8_0.gguf</code></td>
               <td><strong>0.61 GB</strong></td>
-              <td>종합 <strong>91.0점</strong> (RAM 4GB / VRAM 0GB)</td>
+              <td>일반 CPU 구동 (<strong>그래픽메모리 0GB 사용</strong>)</td>
             </tr>
             <tr>
               <td><code>SLOT_1</code></td>
-              <td>초고속 요약·분류 &amp; 메모리 부족 시 스마트 폴백</td>
+              <td>메모리가 빠듯할 때 대신 뛰는 초고속 보조 두뇌</td>
               <td><code>Qwen3-4B-Q4_K_M.gguf</code></td>
               <td><strong>2.33 GB</strong></td>
-              <td><strong>71~83 tok/s</strong> (종합 78.5점)</td>
+              <td><strong>초당 71~83단어</strong> 초고속 응답</td>
             </tr>
             <tr>
               <td><code>SLOT_2</code></td>
-              <td><strong>주력 추론 두뇌 (법령·계약·기술 오픈북 추론)</strong></td>
+              <td><strong>법령·계약·기술 원문을 읽고 추론하는 주력 두뇌</strong></td>
               <td><code>Qwen3-14B-Q4_K_M.gguf</code></td>
               <td><strong>8.38 GB</strong></td>
-              <td><strong>31~33 tok/s (100% VRAM)</strong> · 종합 <strong>89.2점</strong></td>
+              <td><strong>초당 31~33단어 (12GB VRAM 100% 직결)</strong></td>
             </tr>
             <tr>
               <td><code>SLOT_3</code></td>
-              <td>스캔 PDF·도면·시험성적서 오프라인 Vision OCR</td>
-              <td><code>Qwen2.5-VL-3B-Q4_K_M</code> + <code>mmproj</code></td>
+              <td>스캔 PDF·도면·성적서 사진을 읽는 눈(OCR)</td>
+              <td><code>Qwen2.5-VL-3B-Q4_K_M</code></td>
               <td><strong>2.58 GB</strong></td>
-              <td>도면 1장 <strong>~3.8초</strong> (종합 86.4점)</td>
+              <td>스캔 도면 1장 <strong>약 3.8초</strong> 판독</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <pre><code># VRAM 여유량뿐 아니라 '윈도우 가상메모리(Commit)' 하한선까지 검문하는 3단계 런처 가드
+      <details class="expert-code-fold">
+        <summary>💻 엔지니어 원문 요약 &amp; 3단계 프리플라이트 메모리 가드 코드 펼쳐보기</summary>
+        <blockquote>
+          <strong>발전 이유와 해법:</strong> 초기 <code>44.0 GB</code> 부분 오프로딩 구성은 크롬 다중 탭·문서 도구를 함께 켜는 실사용 환경에서 PCIe/DDR4 대역폭 병목(<code>6.2 tok/s</code> 급락)과 윈도우 가상메모리(Commit) 부족에 의한 <code>Vulkan OOM</code> 중단을 일으켰습니다. 이에 <strong><code>12GB VRAM</code> 내부에 가중치 100%가 상주하는 <code>13.90 GB</code> 4-슬롯 체제</strong>로 재설계하고 실시간 가상메모리 사전 차단 가드를 도입했습니다.
+        </blockquote>
+        <pre><code># VRAM 여유량뿐 아니라 '윈도우 가상메모리(Commit)' 하한선까지 검문하는 3단계 런처 가드
 def select_safe_runtime_tier(free_vram_gb: float, free_commit_gb: float, top_hog: str) -> str:
     if free_vram_gb >= 10.0 and free_commit_gb >= 9.8:
         return "LAUNCH_14B_MAIN_100PCT_VRAM (~31.8 TPS)"
     if free_vram_gb >= 3.1 and free_commit_gb >= 3.5:
         return "FALLBACK_4B_FAST_PROTECT (~71.2 TPS)"
     return f"ABORT_ZERO_QUOTA_BURN: 가상메모리 부족({free_commit_gb:.1f}GB &lt; 3.5GB), 상위 점유 앱({top_hog}) 안내"</code></pre>
+      </details>
     </article>
 
     <!-- POST 3 === STAGE 3 -->
@@ -937,12 +1576,21 @@ def select_safe_runtime_tier(free_vram_gb: float, free_commit_gb: float, top_hog
       <h3>[3부 · Stage 3] 온프레미스의 마지막 보안 구멍을 막다: '64KB 제자리(In-Place) HWID 헤더 잠금'과 'Zero-Argv 무인자 런처'</h3>
       <div class="post-meta">
         <span>진화 단계: <strong>STAGE 3 (Zero-Leak 오프라인 물리·프로세스 보안)</strong></span> ·
-        <span>원문 마크다운: <a href="posts/03-stage3-zero-leak-64kb-hwid-header-lock.md">03-stage3-zero-leak-64kb-hwid-header-lock.md</a></span>
+        <span>전체 마크다운 리포트: <a href="posts/03-stage3-zero-leak-64kb-hwid-header-lock.md">03-stage3-zero-leak-64kb-hwid-header-lock.md</a></span>
       </div>
-      <blockquote>
-        <strong>발전 이유와 해법:</strong> 사내 PC에 로컬 LLM을 구축하더라도 PC 수리점·외부인이 <code>.gguf</code>나 <code>.sqlite</code> 파일을 USB로 복사해 가거나 작업 관리자 명령줄에서 실행 구조를 볼 수 있습니다. 수십 GB 전체 복호화의 지연과 용량 낭비 없이 이를 막기 위해, <strong>파일 맨 앞 <code>64 KB</code> 매직 헤더만 하드웨어 지문(<code>HWID</code>)으로 제자리 잠금(<code>~41.5 ms</code>, 추가 디스크 <code>0 Byte</code>)</strong>하고 작업 관리자 노출 인자를 <code>0개</code>(<code>Zero-Argv</code>)로 소거했습니다.
-      </blockquote>
-      <pre><code># 추가 디스크 용량 0 Byte로 첫 64KB 매직 헤더만 제자리(In-Place) 잠금/복원
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 3 — 파일 전체를 암호화하지 않고도 0.04초 만에 도둑 복사를 막는 비결)</span>
+        <ul>
+          <li><strong>어떤 문제가 있었나요?</strong> 인터넷을 끊어도 누군가 내 자리에 와서 USB로 AI 모델이나 지식 창고 파일을 복사해 자기 집 컴퓨터에서 열면 그대로 열린다는 허점이 있었습니다. 그렇다고 <code>8.4GB</code>짜리 거대 파일을 매번 통째로 암호화·복호화하면 켤 때마다 수십 초가 걸리고 하드 용량도 두 배로 낭비됩니다.</li>
+          <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> 백과사전 1만 페이지를 전부 찢어 숨길 필요 없이, <strong>프로그램이 파일을 읽을 때 제일 먼저 확인하는 맨 앞 표지·목차(<code>64KB</code>)만 내 컴퓨터 메인보드·디스크 고유 지문(<span class="term-tip" tabindex="0" data-term="hwid_lock">HWID</span>)으로 살짝 뒤섞어 잠갔습니다.</strong> 내 PC에서 켤 때는 <code>0.04초</code> 만에 원래대로 맞춰서 읽고, 끄면 다시 잠급니다. 다른 PC로 복사해 가면 표지가 깨져 있어 아예 파일로 인식조차 못 합니다!</li>
+        </ul>
+      </div>
+      <details class="expert-code-fold">
+        <summary>💻 엔지니어 원문 요약 &amp; 64KB 제자리 헤더 잠금 코드 펼쳐보기</summary>
+        <blockquote>
+          <strong>발전 이유와 해법:</strong> 사내 PC에 로컬 LLM을 구축하더라도 PC 수리점·외부인이 <code>.gguf</code>나 <code>.sqlite</code> 파일을 USB로 복사해 가거나 작업 관리자 명령줄에서 실행 구조를 볼 수 있습니다. 수십 GB 전체 복호화의 지연과 용량 낭비 없이 이를 막기 위해, <strong>파일 맨 앞 <code>64 KB</code> 매직 헤더만 하드웨어 지문(<code>HWID</code>)으로 제자리 잠금(<code>~41.5 ms</code>, 추가 디스크 <code>0 Byte</code>)</strong>하고 작업 관리자 노출 인자를 <code>0개</code>(<code>Zero-Argv</code>)로 소거했습니다.
+        </blockquote>
+        <pre><code># 추가 디스크 용량 0 Byte로 첫 64KB 매직 헤더만 제자리(In-Place) 잠금/복원
 HEADER_LOCK_BYTES = 65536  # 64 KB
 
 def toggle_header_in_place(binary_path, keystream: bytes) -> None:
@@ -952,6 +1600,7 @@ def toggle_header_in_place(binary_path, keystream: bytes) -> None:
         fh.seek(0)
         fh.write(bytes(a ^ b for a, b in zip(head, keystream)))
         fh.flush()</code></pre>
+      </details>
     </article>
 
     <!-- POST 4 === STAGE 4 -->
@@ -959,57 +1608,76 @@ def toggle_header_in_place(binary_path, keystream: bytes) -> None:
       <h3>[4부 · Stage 4] 두뇌(추론)와 기억(지식)의 완전 분리: '45.8만 건 5-스코프 불변 지식 카트리지'와 오프라인 스캔도면 Vision OCR</h3>
       <div class="post-meta">
         <span>진화 단계: <strong>STAGE 4 (오픈북 지식 외장화 &amp; 멀티모달 OCR)</strong></span> ·
-        <span>원문 마크다운: <a href="posts/04-stage4-458k-5scope-cartridge-and-vision-ocr.md">04-stage4-458k-5scope-cartridge-and-vision-ocr.md</a></span>
+        <span>전체 마크다운 리포트: <a href="posts/04-stage4-458k-5scope-cartridge-and-vision-ocr.md">04-stage4-458k-5scope-cartridge-and-vision-ocr.md</a></span>
       </div>
-      <blockquote>
-        <strong>발전 이유와 해법:</strong> <code>14B</code> 모델 머릿속에 수십만 조항과 상병코드·전력 규격을 외우게 하면 숫자 환각이 불가피합니다. 이에 LLM은 '독해·추론 두뇌'로만 쓰고, <strong>한국어 위키 실질문서 전수(247,514건) + 영문 학술 위키(141,255건) &amp; 96,072개 한-영 사전 + 대한민국 법령 + 공학 표준(9,913건) + 의학·약리(7,778건) + 내 문서/스캔도면 Vision OCR</strong> 총 <strong><code>458,270건</code></strong>을 단일 <code>SQLite FTS5</code> 카트리지로 외장화했습니다.
-      </blockquote>
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 4 — 암기 시험 대신 45.8만 권 오픈북 시험으로 바꾸기)</span>
+        <ul>
+          <li><strong>어떤 문제가 있었나요?</strong> <code>14B</code> 크기의 로컬 AI에게 대한민국 법령 조문 번호나 전기 설비 허용 온도, 의학 약물 금기 사항을 머릿속 기억만으로 대답하라고 하면 그럴듯하게 번호를 지어냅니다. 특히 질문자가 <em>"하도급 대금은 90일 안에 주면 이자 안 붙지?"</em>(실제 법은 60일)처럼 틀린 숫자로 유도하면 그대로 속아 넘어갔습니다.</li>
+          <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> AI에게 지식을 외우게 하는 걸 포기하고, 대신 <strong>파일 하나로 된 45.8만 권짜리 초고속 오프라인 도서관(<span class="term-tip" tabindex="0" data-term="fts5">SQLite FTS5</span>)</strong>을 만들어 연결했습니다. 종이 도면이나 성적서 사진도 시각 AI가 글자로 읽어 도서관에 넣어두고, 질문 속 숫자와 법령 원문 숫자가 다르면 <strong>빨간 경보등을 먼저 켜서</strong> AI가 절대 속지 않게 만들었습니다.</li>
+        </ul>
+      </div>
       <div class="table-wrap" style="margin:16px 0;">
         <table>
           <thead>
             <tr>
-              <th>핵심 병목 과제</th>
-              <th>도입한 엔지니어링 해결책</th>
+              <th>마주쳤던 문제</th>
+              <th>어떻게 해결했는가</th>
               <th>실측 개선 효과</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>45.8만 건 가상 테이블 <code>COUNT(*)</code> 수 초 지연</td>
-              <td><code>domain_docs_fts_docsize</code> 메타 조회 및 메모리 캐싱으로 치환</td>
-              <td>브리지 검색 상태 응답 <strong>30,000배 가속</strong></td>
+              <td>45.8만 건 전체 권수를 매번 세느라 몇 초씩 버벅임</td>
+              <td>미리 적힌 요약 장부(<code>docsize</code>)만 읽고 메모리에 기억</td>
+              <td>도서관 상태 응답 <strong>30,000배 가속</strong></td>
             </tr>
             <tr>
-              <td>한국어 미수록 글로벌 물리·수학·CS 지식 공백</td>
-              <td><code>96,072개</code> 한-영 표제어 양방향 교차 확장으로 영문 학술 위키 동시 인출</td>
-              <td>한국어 질문만으로 한·영 정전 근거 동시 확보</td>
+              <td>한국어 위키에 없는 고급 물리·수학·컴퓨터공학 이론</td>
+              <td><code>96,072개</code> 한-영 학술 사전으로 한국어 질문 시 영문 위키 동시 검색</td>
+              <td>한국어로 물어도 영문 학술 원문까지 즉시 확보</td>
             </tr>
             <tr>
-              <td>스캔 PDF·장비 명판·시험성적서 이미지 검색 불가</td>
-              <td>순수 파이썬 <code>.xlsx/.docx/.pdf</code> 파서 + <code>Qwen2.5-VL-3B</code> 오프라인 OCR (해시 캐시)</td>
-              <td>도면 1장 <strong>~3.8초</strong> 판독 (재조회 <code>0.01초</code>)</td>
+              <td>글자 복사가 안 되는 스캔 PDF·장비 명판·성적서 사진</td>
+              <td>오프라인 시각 AI(<code>Qwen2.5-VL-3B</code>)가 표와 숫자를 판독해 색인</td>
+              <td>도면 1장 <strong>~3.8초</strong> 판독 (한 번 읽은 건 <code>0.01초</code>)</td>
             </tr>
             <tr>
-              <td>질문 속 틀린 숫자 전제(예: "90일 내 지급") 동조</td>
-              <td><strong>3-Layer 거짓 숫자 전제 모순 가드</strong>가 원문 수치(<code>60일</code>)와 즉시 대조 경보</td>
-              <td>유도 질문에 의한 법령 숫자 환각 원천 차단</td>
+              <td>질문자가 틀린 숫자(예: "90일 내 지급")를 섞어 유도</td>
+              <td><strong>거짓 숫자 전제 감지기</strong>가 법령 원문(<code>60일</code>)과 대조해 경보 발령</td>
+              <td>틀린 유도 질문에 속아 동조하는 현상 원천 차단</td>
             </tr>
           </tbody>
         </table>
       </div>
+      <details class="expert-code-fold">
+        <summary>💻 엔지니어 원문 아키텍처 요약 펼쳐보기</summary>
+        <blockquote>
+          <strong>발전 이유와 해법:</strong> <code>14B</code> 모델 머릿속에 수십만 조항과 상병코드·전력 규격을 외우게 하면 숫자 환각이 불가피합니다. 이에 LLM은 '독해·추론 두뇌'로만 쓰고, <strong>한국어 위키 실질문서 전수(247,514건) + 영문 학술 위키(141,255건) &amp; 96,072개 한-영 사전 + 대한민국 법령 + 공학 표준(9,913건) + 의학·약리(7,778건) + 내 문서/스캔도면 Vision OCR</strong> 총 <strong><code>458,270건</code></strong>을 단일 <code>SQLite FTS5</code> 카트리지로 외장화했습니다.
+        </blockquote>
+      </details>
     </article>
 
     <!-- POST 5 === STAGE 5 -->
     <article id="post-5" class="post-card">
-      <h3>[5부 · Stage 5] "두꺼비집이 내려가요"를 '배선용차단기 단락전류'로: 3-Tier 구어체 쿼리 번역기와 타이핑 디바운스(`?neural=0`) 큐 병목 해결기</h3>
+      <h3>[5부 · Stage 5] "두꺼비집이 내려가요"를 '배선용차단기 단락전류'로: 3-Tier 구어체 쿼리 번역기와 타이핑 디바운스(<code>?neural=0</code>) 큐 병목 해결기</h3>
       <div class="post-meta">
         <span>진화 단계: <strong>STAGE 5 (구어체 시맨틱 브리지 &amp; 단일 GPU 큐 제어)</strong></span> ·
-        <span>원문 마크다운: <a href="posts/05-stage5-3tier-neural-rewriter-and-debounce-isolation.md">05-stage5-3tier-neural-rewriter-and-debounce-isolation.md</a></span>
+        <span>전체 마크다운 리포트: <a href="posts/05-stage5-3tier-neural-rewriter-and-debounce-isolation.md">05-stage5-3tier-neural-rewriter-and-debounce-isolation.md</a></span>
       </div>
-      <blockquote>
-        <strong>발전 이유와 실제 장애 해결:</strong> 일상 구어체(<em>"타이레놀이랑 술"</em>, <em>"두꺼비집 쇼트"</em>)를 한자어/학술어(<code>아세트아미노펜 NAPQI</code>, <code>배선용차단기 단락전류</code>)로 변환하기 위해 로컬 LLM 쿼리 번역기를 붙였으나, 초기에는 타이핑 디바운스(<code>90ms</code>)마다 번역기가 호출되면서 단일 슬롯 GPU 큐에 미완성 글자 조각 40여 개가 쌓여 <strong>답변이 89.70초까지 밀리고 캐시가 오타로 오염되는 현상</strong>을 겪었습니다. 이를 <strong>3-Tier 캐시 계층화와 타이핑/실행 물리 격리</strong>로 해결했습니다.
-      </blockquote>
-      <pre><code>// 프론트엔드 타이핑 디바운스(250ms + AbortController)와 본 실행의 물리적 분리
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 5 — 타자 칠 때마다 통역사를 불렀다가 90초 줄서기가 터진 사연)</span>
+        <ul>
+          <li><strong>어떤 문제가 있었나요?</strong> 도서관 책에는 <code>'배선용차단기'</code>, <code>'아세트아미노펜'</code>처럼 어려운 말로 적혀 있는데, 사람은 <em>"두꺼비집 내려가"</em>, <em>"타이레놀 먹고 술"</em>이라고 묻습니다. 그래서 AI에게 전문 용어로 통역해 달라고 시켰는데, 문제는 <strong>사용자가 키보드로 한 글자씩 칠 때마다(<code>내</code> → <code>내 개</code> → <code>내 개인...</code>) 통역 요청이 40번씩 날아가 그래픽카드 앞에 긴 줄이 서 버린 것</strong>입니다! 결국 정작 본 질문 대답이 <code>89.7초</code>나 걸렸습니다.</li>
+          <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> <strong>타자를 치는 도중에는 그래픽카드 AI를 절대 깨우지 못하도록(<code>?neural=0</code>) 금지</strong>하고 미리 준비한 초고속 일상어 사전으로만 미리보기를 보여준 뒤, 사용자가 질문을 다 쓰고 <strong>[실행] 버튼을 눌렀을 때만 딱 1번 AI 통역</strong>을 쓰게 교통정리를 했습니다.</li>
+        </ul>
+      </div>
+      <details class="expert-code-fold">
+        <summary>💻 엔지니어 원문 요약 &amp; 타이핑 디바운스 격리 코드 펼쳐보기</summary>
+        <blockquote>
+          <strong>발전 이유와 실제 장애 해결:</strong> 일상 구어체(<em>"타이레놀이랑 술"</em>, <em>"두꺼비집 쇼트"</em>)를 한자어/학술어(<code>아세트아미노펜 NAPQI</code>, <code>배선용차단기 단락전류</code>)로 변환하기 위해 로컬 LLM 쿼리 번역기를 붙였으나, 초기에는 타이핑 디바운스(<code>90ms</code>)마다 번역기가 호출되면서 단일 슬롯 GPU 큐에 미완성 글자 조각 40여 개가 쌓여 <strong>답변이 89.70초까지 밀리고 캐시가 오타로 오염되는 현상</strong>을 겪었습니다. 이를 <strong>3-Tier 캐시 계층화와 타이핑/실행 물리 격리</strong>로 해결했습니다.
+        </blockquote>
+        <pre><code>// 프론트엔드 타이핑 디바운스(250ms + AbortController)와 본 실행의 물리적 분리
 function onSearchInputKeyup(queryText, tierFilter) {
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => {
@@ -1024,6 +1692,7 @@ async function onExecuteDirectQA(queryText, tierFilter) {
   const rag = await queryDiskFts5Bridge(queryText, tierFilter, { allowLiveNeural: true });
   return generateGroundedAnswer(queryText, rag);
 }</code></pre>
+      </details>
     </article>
 
     <!-- POST 6 === STAGE 6 -->
@@ -1031,15 +1700,25 @@ async function onExecuteDirectQA(queryText, tierFilter) {
       <h3>[6부 · Stage 6] 프런티어 추론 격차 돌파: 'Adaptive Thinking' 제어와 '139종 L3 순수 파이썬 기호 외골격(2-Pass 자율 계산)' 연동</h3>
       <div class="post-meta">
         <span>진화 단계: <strong>STAGE 6 (신경-기호 추론 외골격)</strong></span> ·
-        <span>원문 마크다운: <a href="posts/06-stage6-adaptive-thinking-and-139-l3-exoskeleton.md">06-stage6-adaptive-thinking-and-139-l3-exoskeleton.md</a></span>
+        <span>전체 마크다운 리포트: <a href="posts/06-stage6-adaptive-thinking-and-139-l3-exoskeleton.md">06-stage6-adaptive-thinking-and-139-l3-exoskeleton.md</a></span>
       </div>
-      <blockquote>
-        <strong>발전 이유와 해법:</strong> 로컬 <code>14B</code> 모델이 프런티어 추론 모델 대비 약한 '다단계 수리·법령 계산'을 극복하기 위해, 질문 난이도별 <strong><code>Adaptive Thinking</code>(512~4,096 tok 예산 조절)</strong>과 <strong><code>139종 vault_stdlib.py</code> 순수 파이썬 함수 연동(1-Pass 변수 JSON 추출 → 파이썬 오차 0.0% 실행 → 2-Pass 해설 합성)</strong>을 완성했습니다.
-      </blockquote>
-      <pre><code># [2-Pass Neuro-Symbolic Exoskeleton]
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 6 — 작은 AI가 대형 클라우드 AI보다 계산을 더 정확히 하는 비결)</span>
+        <ul>
+          <li><strong>어떤 문제가 있었나요?</strong> 내 PC에 들어가는 <code>14B</code> 모델은 말귀는 잘 알아듣지만, <em>"1억 원을 90일 연체했을 때 법정 지연이자(연 15.5%, 60일 초과분 일할계산)가 얼마야?"</em> 같은 문제를 직접 암산시키면 거의 틀립니다. 또한 간단한 질문에도 매번 혼자 긴 생각(<code>&lt;think&gt;</code>)을 하게 두면 답변이 느려졌습니다.</li>
+          <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> 사람도 복잡한 세금 계산을 머리로 암산하지 않고 엑셀이나 전자계산기를 두드립니다. 똑같이 <strong>1단계에서 AI는 질문 속 숫자(<code>원금=1억, 경과일=90일</code>)만 뽑아 139개의 파이썬 공식 계산기 프로그램(<span class="term-tip" tabindex="0" data-term="l3_exoskeleton">L3 외골격</span>)에 넘기고, 2단계에서 계산기가 돌려준 100% 정확한 답(<code>1,273,973원</code>)을 받아 친절하게 설명만 작성</strong>하도록 역할을 나눴습니다.</li>
+        </ul>
+      </div>
+      <details class="expert-code-fold">
+        <summary>💻 엔지니어 원문 요약 &amp; 2-Pass 자율 계산 구조 펼쳐보기</summary>
+        <blockquote>
+          <strong>발전 이유와 해법:</strong> 로컬 <code>14B</code> 모델이 프런티어 추론 모델 대비 약한 '다단계 수리·법령 계산'을 극복하기 위해, 질문 난이도별 <strong><code>Adaptive Thinking</code>(512~4,096 tok 예산 조절)</strong>과 <strong><code>139종 vault_stdlib.py</code> 순수 파이썬 함수 연동(1-Pass 변수 JSON 추출 → 파이썬 오차 0.0% 실행 → 2-Pass 해설 합성)</strong>을 완성했습니다.
+        </blockquote>
+        <pre><code># [2-Pass Neuro-Symbolic Exoskeleton]
 # Pass 1: 로컬 Qwen3-14B는 자연어 질문에서 @dataclass 스키마에 맞는 변수 JSON만 추출
 # Engine: :8081/api/l3-run 엔드포인트가 화이트리스트 검증된 139종 순수 파이썬 함수를 실행 (오차 0.0%)
 # Pass 2: 확정된 파이썬 반환값과 FTS5 법령 원문을 결합하여 임의 숫자 변경 없이 실무 해설 합성</code></pre>
+      </details>
     </article>
 
     <!-- POST 7 === STAGE 7 -->
@@ -1047,15 +1726,25 @@ async function onExecuteDirectQA(queryText, tierFilter) {
       <h3>[7부 · Stage 7] 내 컴퓨터의 AI를 타 PC에 안전하게 이식하는 법: 'Edition Isolation(배포 위생 물리 분리)'과 25종 표준 입력 템플릿</h3>
       <div class="post-meta">
         <span>진화 단계: <strong>STAGE 7 (배포 위생 격리 완결)</strong></span> ·
-        <span>원문 마크다운: <a href="posts/07-stage7-edition-isolation-and-client-hygiene.md">07-stage7-edition-isolation-and-client-hygiene.md</a></span>
+        <span>전체 마크다운 리포트: <a href="posts/07-stage7-edition-isolation-and-client-hygiene.md">07-stage7-edition-isolation-and-client-hygiene.md</a></span>
       </div>
-      <blockquote>
-        <strong>발전 이유와 해법:</strong> 본인용 로컬 요새(<code>my_own</code>)에는 보편 지식(<code>Layer-A</code>)과 개인 문서·시드(<code>Layer-B</code>)가 공존합니다. 이를 다른 PC나 외부 환경에 설치할 때 개인 데이터가 단 1바이트도 섞이지 않도록, <strong>빌드 시점(<code>--edition personal_client / domain_client</code>)에 DB·대시보드·계산기 목록 전 계층에서 개인 자산을 물리적으로 100% 소거</strong>하고 누구나 빈칸만 채워 쓸 수 있는 <strong>25종 표준 마크다운 입력 템플릿</strong>을 자동 생성합니다.
-      </blockquote>
-      <pre><code># 클라이언트 에디션 빌드 및 개인 레이어(Layer-B) 0% 유출 물리 검증
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 7 — 새 스마트폰 선물하듯 내 개인 기록만 싹 지우고 기술만 옮겨주기)</span>
+        <ul>
+          <li><strong>어떤 문제가 있었나요?</strong> 내가 쓰던 로컬 AI 안에는 누구나 써도 되는 보편 법령·공학 지식(<span class="term-tip" tabindex="0" data-term="layer_ab">Layer-A</span>)과 내 개인 이력서·계약서 기록(<span class="term-tip" tabindex="0" data-term="layer_ab">Layer-B</span>)이 함께 들어 있었습니다. 이 시스템을 다른 컴퓨터나 지인·고객용으로 만들어 줄 때 실수로 내 개인 기록이 한 줄이라도 남아 있으면 안 됩니다.</li>
+          <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> 배포용 파일을 만드는 순간 <strong>개인 기록(`Layer-B`)은 데이터베이스, 화면 목록, 검색 캐시에서 물리적으로 완전히 삭제(유출 `0건` 자동 검사)</strong>하고, 대신 새 사용자가 자기 계약서·문서를 쉽게 채워 넣을 수 있도록 <strong>25종의 친절한 빈칸 서식 파일</strong>을 자동으로 만들어 넣어줍니다.</li>
+        </ul>
+      </div>
+      <details class="expert-code-fold">
+        <summary>💻 엔지니어 원문 요약 &amp; 에디션 분리 빌드 명령 펼쳐보기</summary>
+        <blockquote>
+          <strong>발전 이유와 해법:</strong> 본인용 로컬 요새(<code>my_own</code>)에는 보편 지식(<code>Layer-A</code>)과 개인 문서·시드(<code>Layer-B</code>)가 공존합니다. 이를 다른 PC나 외부 환경에 설치할 때 개인 데이터가 단 1바이트도 섞이지 않도록, <strong>빌드 시점(<code>--edition personal_client / domain_client</code>)에 DB·대시보드·계산기 목록 전 계층에서 개인 자산을 물리적으로 100% 소거</strong>하고 누구나 빈칸만 채워 쓸 수 있는 <strong>25종 표준 마크다운 입력 템플릿</strong>을 자동 생성합니다.
+        </blockquote>
+        <pre><code># 클라이언트 에디션 빌드 및 개인 레이어(Layer-B) 0% 유출 물리 검증
 $ python sovereign_offline_drm_provisioner.py --export-dashboard dist.html --edition personal_client
 # -> Layer-A 보편 마스터 코어 + 보편 구어체 시드 40선 + 25종 표준 입력 템플릿만 추출
 # -> 개인 문서(LAYER_B_PERSONAL) 및 personal_only 시드 유출 0건 자동 검증 통과</code></pre>
+      </details>
     </article>
 
     <!-- POST 8 === STAGE 8 -->
@@ -1063,18 +1752,28 @@ $ python sovereign_offline_drm_provisioner.py --export-dashboard dist.html --edi
       <h3>[8부 · Stage 8] 12GB VRAM을 1MB도 더 쓰지 않고 첫 글자 대기 시간(TTFT)을 240배 줄이는 법: SSE 스트리밍, KV 프리픽스 재사용, 무모델(Draftless) N-gram 투기적 디코딩</h3>
       <div class="post-meta">
         <span>진화 단계: <strong>STAGE 8 (실시간 스트리밍 &amp; Zero-VRAM 추론 가속)</strong></span> ·
-        <span>원문 마크다운: <a href="posts/08-stage8-sse-streaming-and-zero-vram-ngram-speculative.md">08-stage8-sse-streaming-and-zero-vram-ngram-speculative.md</a></span>
+        <span>전체 마크다운 리포트: <a href="posts/08-stage8-sse-streaming-and-zero-vram-ngram-speculative.md">08-stage8-sse-streaming-and-zero-vram-ngram-speculative.md</a></span>
       </div>
-      <blockquote>
-        <strong>발전 이유와 해법:</strong> <code>12GB VRAM</code> 환경에서 별도 <code>4B</code> 드래프트 모델을 동시 상주시키면 VRAM 한계를 초과합니다. 이에 추가 VRAM을 <code>0 Byte</code> 쓰는 <strong>① <code>ReadableStream</code> SSE 실시간 토큰 렌더링 &amp; 즉시 중단 버튼(<code>AbortController</code>), ② 무모델 <code>LLAMA_ARG_SPEC_TYPE=ngram-mod</code> + <code>FLASH_ATTN=on</code>, ③ 공통 프리픽스 KV 캐시 재사용(<code>CACHE_REUSE=256</code> &amp; 슬롯 스냅샷)</strong>을 결합해 작업 관리자 노출 인자 <code>0개</code>를 유지한 채 첫 글자 대기 시간을 <strong><code>8.83초 → 0.037초(240.1배 단축)</code></strong>로 줄였습니다.
-      </blockquote>
-      <pre><code># Zero-Argv 가속 환경변수 (작업 관리자 노출 CLI 플래그 0개 유지)
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 8 — 요리 다 끝날 때까지 20초 굶기 vs 나오는 즉시 코스 요리로 내어주기)</span>
+        <ul>
+          <li><strong>어떤 문제가 있었나요?</strong> 7단계까지 만들고 나니 정확도는 높아졌지만, AI가 긴 답변을 끝까지 다 작성할 때까지 <code>9~22초</code> 동안 화면에 아무 글자도 안 떠서 사용자는 <em>"프로그램이 멈췄나?"</em> 하고 답답해했습니다. 그렇다고 속도 보조용 작은 AI 모델을 그래픽카드에 하나 더 올리면 <code>12GB</code> 메모리가 넘쳐 버렸습니다.</li>
+          <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> 그래픽카드 메모리를 1MB도 더 쓰지 않는 3가지 꾀를 합쳤습니다: ① 글자가 한 단어씩 완성될 때마다 <strong>실시간 생중계하듯 화면에 타자 치며 보여주고(<span class="term-tip" tabindex="0" data-term="ttft_sse">SSE 스트리밍</span>)</strong>, ② 매번 똑같이 들어가는 기본 안내문은 다시 읽지 않고 <strong>직전 기억을 재활용(<span class="term-tip" tabindex="0" data-term="kv_ngram">KV 캐시 재사용</span>)</strong>하며, ③ 이미 찾아온 법 조문 문구를 보고 다음 단어를 미리 예측해 여러 글자를 한꺼번에 찍어내게 했습니다. 그 결과 질문 후 <strong>첫 글자가 `0.037초` 만에</strong> 뜨기 시작합니다!</li>
+        </ul>
+      </div>
+      <details class="expert-code-fold">
+        <summary>💻 엔지니어 원문 요약 &amp; Zero-Argv 가속 설정 코드 펼쳐보기</summary>
+        <blockquote>
+          <strong>발전 이유와 해법:</strong> <code>12GB VRAM</code> 환경에서 별도 <code>4B</code> 드래프트 모델을 동시 상주시키면 VRAM 한계를 초과합니다. 이에 추가 VRAM을 <code>0 Byte</code> 쓰는 <strong>① <code>ReadableStream</code> SSE 실시간 토큰 렌더링 &amp; 즉시 중단 버튼(<code>AbortController</code>), ② 무모델 <code>LLAMA_ARG_SPEC_TYPE=ngram-mod</code> + <code>FLASH_ATTN=on</code>, ③ 공통 프리픽스 KV 캐시 재사용(<code>CACHE_REUSE=256</code> &amp; 슬롯 스냅샷)</strong>을 결합해 작업 관리자 노출 인자 <code>0개</code>를 유지한 채 첫 글자 대기 시간을 <strong><code>8.83초 → 0.037초(240.1배 단축)</code></strong>로 줄였습니다.
+        </blockquote>
+        <pre><code># Zero-Argv 가속 환경변수 (작업 관리자 노출 CLI 플래그 0개 유지)
 hidden_env = {
     "LLAMA_ARG_FLASH_ATTN": "on",
     "LLAMA_ARG_CACHE_REUSE": "256",          # Pass 1 -> Pass 2 공통 프리픽스 1,100 tok 즉시 재사용 (Prefill 34.3x 단축)
     "LLAMA_ARG_SPEC_TYPE": "ngram-mod",      # 추가 드래프트 모델(0 MB VRAM) 없이 오픈북 조문·수치 투기적 디코딩
     "LLAMA_ARG_SLOT_SAVE_PATH": str(kv_dir), # 기동 직후 시스템 프롬프트 KV 슬롯 스냅샷 자동 복원
 }</code></pre>
+      </details>
     </article>
 
     <!-- POST 9 === STAGE 9 -->
@@ -1082,15 +1781,25 @@ hidden_env = {
       <h3>[9부 · Stage 9] 외부 벡터 DB 없이 45.8만 건 의미 검색 완성하기: GPU VRAM을 0바이트 쓰는 CPU `BGE-M3` 사이드카와 `SQLite FTS5`의 2단계 가중 RRF 결합</h3>
       <div class="post-meta">
         <span>진화 단계: <strong>STAGE 9 (Zero-VRAM 시맨틱 리랭커 &amp; Int8 코어 캐시)</strong></span> ·
-        <span>원문 마크다운: <a href="posts/09-stage9-cpu-bgem3-hybrid-rrf-zero-vram-reranker.md">09-stage9-cpu-bgem3-hybrid-rrf-zero-vram-reranker.md</a></span>
+        <span>전체 마크다운 리포트: <a href="posts/09-stage9-cpu-bgem3-hybrid-rrf-zero-vram-reranker.md">09-stage9-cpu-bgem3-hybrid-rrf-zero-vram-reranker.md</a></span>
       </div>
-      <blockquote>
-        <strong>발전 이유와 해법:</strong> 전문 용어가 전혀 없는 순수 비유·개념 질문(예: <em>"비밀은 안 알려주고 정답을 안다는 사실만 증명"</em> → <code>영지식 증명</code>)을 외부 벡터 DB 없이 해결하기 위해, <code>SLOT_0(bge-m3-q8_0.gguf)</code>를 <strong>순수 CPU(<code>LLAMA_ARG_DEVICE=none</code>, 추가 GPU VRAM <code>0 MiB</code>) 사이드카(<code>:8082</code>)</strong>로 구동했습니다. 평문을 저장하지 않는 <strong><code>Int8</code> 양자화 코어 캐시(<code>1 KB/문서</code>, 코사인 충실도 <code>&gt;0.9995</code>)</strong>와 <strong>레짐 분리형 가중 <code>RRF(k=60)</code></strong>로 어휘 0% 일치 문서를 구제하면서도 기존 법령 조문 정확도를 100% 보존했습니다.
-      </blockquote>
-      <pre><code># 어휘 신뢰도(lex_sc)와 BGE-M3 코사인(cos_val) 레짐에 따라 가중치를 분리하는 2-Stage RRF (k=60)
-w_lex = 1.38 if lex_sc >= 28.0 else 0.65
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 9 — 정확한 이름을 몰라서 수수께끼처럼 설명해도 찰떡같이 책 찾아오기)</span>
+        <ul>
+          <li><strong>어떤 문제가 있었나요?</strong> 사용자가 <code>'영지식 증명'</code>이나 <code>'모의 담금질 기법'</code>이라는 전문 용어를 아예 몰라서, <em>"비밀 내용은 한 글자도 안 알려주고 내가 정답을 안다는 사실만 확신시키는 검증법이 뭐야?"</em>처럼 순수하게 풀어서 비유로만 물어보면 글자 일치 검색기(<span class="term-tip" tabindex="0" data-term="fts5">FTS5</span>)는 겹치는 단어가 없어 문서를 놓쳤습니다.</li>
+          <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> 주력 AI가 쓰고 있는 그래픽카드 메모리는 전혀 건드리지 않고, 놀고 있는 <strong>일반 CPU에서 가벼운 '문장 의미(뜻) 판독기'(<span class="term-tip" tabindex="0" data-term="bgem3_rrf">BGE-M3</span>)</strong>를 함께 돌렸습니다. 정확한 조문 번호가 있을 땐 글자 검색 점수를 우대하고, 겹치는 단어가 없을 땐 뜻 유사도 점수로 구제해 합산함으로써, <strong>전문 용어가 0개인 한국어 비유 질문 10문제를 100%(10/10) 전부 찾아내게</strong> 되었습니다!</li>
+        </ul>
+      </div>
+      <details class="expert-code-fold">
+        <summary>💻 엔지니어 원문 요약 &amp; 2-Stage 가중 RRF 수식 코드 펼쳐보기</summary>
+        <blockquote>
+          <strong>발전 이유와 해법:</strong> 전문 용어가 전혀 없는 순수 비유·개념 질문(예: <em>"비밀은 안 알려주고 정답을 안다는 사실만 증명"</em> → <code>영지식 증명</code>)을 외부 벡터 DB 없이 해결하기 위해, <code>SLOT_0(bge-m3-q8_0.gguf)</code>를 <strong>순수 CPU(<code>LLAMA_ARG_DEVICE=none</code>, 추가 GPU VRAM <code>0 MiB</code>) 사이드카(<code>:8082</code>)</strong>로 구동했습니다. 평문을 저장하지 않는 <strong><code>Int8</code> 양자화 코어 캐시(<code>1 KB/문서</code>, 코사인 충실도 <code>&gt;0.9995</code>)</strong>와 <strong>레짐 분리형 가중 <code>RRF(k=60)</code></strong>로 어휘 0% 일치 문서를 구제하면서도 기존 법령 조문 정확도를 100% 보존했습니다.
+        </blockquote>
+        <pre><code># 어휘 신뢰도(lex_sc)와 BGE-M3 코사인(cos_val) 레짐에 따라 가중치를 분리하는 2-Stage RRF (k=60)
+w_lex = 1.38 if lex_sc >= 60.0 else 0.75
 w_sem = 1.18 if cos_val >= 0.50 else (1.02 if cos_val >= 0.43 else 0.0)
-rrf_score = (w_lex / (60.0 + r_lex)) + (w_sem / (60.0 + r_sem)) + min(0.0040, lex_sc / 25000.0)</code></pre>
+rrf_score = (w_lex / (60.0 + r_lex)) + (w_sem / (60.0 + r_sem)) + min(0.0140, lex_sc / 16000.0)</code></pre>
+      </details>
     </article>
 
     <!-- POST 10 === STAGE 10 -->
@@ -1098,15 +1807,25 @@ rrf_score = (w_lex / (60.0 + r_lex)) + (w_sem / (60.0 + r_sem)) + min(0.0040, le
       <h3>[10부 · Stage 10] LLM이 마지막 문장에서 숫자와 조문을 바꾸는 것까지 잡는다: 다중 L3 함수 체이닝과 사후 답변 역검증기(Post-Verifier)</h3>
       <div class="post-meta">
         <span>진화 단계: <strong>STAGE 10 (사전·실행·사후 3중 결정론적 폐루프)</strong></span> ·
-        <span>원문 마크다운: <a href="posts/10-stage10-post-generation-verifier-and-multitool-l3.md">10-stage10-post-generation-verifier-and-multitool-l3.md</a></span>
+        <span>전체 마크다운 리포트: <a href="posts/10-stage10-post-generation-verifier-and-multitool-l3.md">10-stage10-post-generation-verifier-and-multitool-l3.md</a></span>
       </div>
-      <blockquote>
-        <strong>발전 이유와 실제 포착 사례:</strong> 복합 사건 질문에서 최대 3개의 직교 도메인 계산기를 단일 패스로 연쇄 실행(<code>/api/l3-run-batch</code>, 파이썬 배치 <code>5.94ms</code>)하도록 확장했습니다. 특히 라이브 테스트 중 로컬 LLM이 <code>9억 원(900,000,000)</code>을 쉼표로 표기하다가 <code>0</code> 하나를 빠뜨리는 <strong>한국어 억↔쉼표 10배 자릿수 누락(<code>90,000,000원</code>)</strong> 현상을 발견하여, <strong>인용 범위·원문 조문·수치 보존·<code>ZERO_DIGIT_SHIFT_10X</code>를 전수 검문하고 위반 시 1회 자동 재작성하는 사후 역검증기</strong>를 완성했습니다.
-      </blockquote>
-      <pre><code># 사후 생성 답변 결정론적 4중 검문: (1) #k 인용 경계, (2) 원문 조문, (3) 반올림 왜곡, (4) 한국어 억<->쉼표 10배 자릿수 누락
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 10 — 계산기가 9억이라 알려줬는데 AI가 9천만이라 적는 오타까지 잡는 빨간펜 선생님)</span>
+        <ul>
+          <li><strong>어떤 문제가 있었나요?</strong> 실제 테스트 도중 아주 현실적인 빈틈 2가지를 발견했습니다. 첫째, <em>"거래처 연체이자랑 새로 계약할 상가 보증금을 같이 봐줘"</em>처럼 두 가지 계산을 한꺼번에 물으면 계산기 1개만 돌아갔습니다. 둘째, 파이썬 계산기가 서울 기준선 <code>900,000,000</code>(9억 원)을 정확히 계산해 줬는데도, 한국어('억')와 영어식 쉼표(천 단위)를 섞어 쓰던 AI가 <strong><code>0</code> 하나를 빼먹고 `90,000,000원`(9천만 원)이라 적는 받아쓰기 오타</strong>를 낼 수 있었습니다!</li>
+          <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> 복합 질문에는 최대 3개의 계산기가 한 번에 연쇄 작동하도록 넓히고, AI가 답변을 다 쓴 직후 <strong>'빨간펜 교정 선생님'(<span class="term-tip" tabindex="0" data-term="zero_shift">사후 역검증기</span>)</strong>이 ① 없는 문서 번호를 인용했는지, ② 원문에 없는 법 조문(<code>제999조</code>)을 지어냈는지, ③ 계산기 숫자를 임의로 반올림하거나 `0` 하나를 빼먹었는지 전수 검사해, 하나라도 걸리면 즉시 다시 쓰게 강제했습니다.</li>
+        </ul>
+      </div>
+      <details class="expert-code-fold">
+        <summary>💻 엔지니어 원문 요약 &amp; 10배 자릿수 누락(ZERO_DIGIT_SHIFT_10X) 검문 코드 펼쳐보기</summary>
+        <blockquote>
+          <strong>발전 이유와 실제 포착 사례:</strong> 복합 사건 질문에서 최대 3개의 직교 도메인 계산기를 단일 패스로 연쇄 실행(<code>/api/l3-run-batch</code>, 파이썬 배치 <code>5.94ms</code>)하도록 확장했습니다. 특히 라이브 테스트 중 로컬 LLM이 <code>9억 원(900,000,000)</code>을 쉼표로 표기하다가 <code>0</code> 하나를 빠뜨리는 <strong>한국어 억↔쉼표 10배 자릿수 누락(<code>90,000,000원</code>)</strong> 현상을 발견하여, <strong>인용 범위·원문 조문·수치 보존·<code>ZERO_DIGIT_SHIFT_10X</code>를 전수 검문하고 위반 시 1회 자동 재작성하는 사후 역검증기</strong>를 완성했습니다.
+        </blockquote>
+        <pre><code># 사후 생성 답변 결정론적 4중 검문: (1) #k 인용 경계, (2) 원문 조문, (3) 반올림 왜곡, (4) 한국어 억&lt;-&gt;쉼표 10배 자릿수 누락
 is_zero_shift = abs(ans_val * 10.0 - auth_val) &lt;= 1.0 or abs(ans_val / 10.0 - auth_val) &lt;= 1.0
 if is_zero_shift:
     violations.append(f"ZERO_DIGIT_SHIFT_10X: '{raw_surface}' != {auth_val:,.0f}")</code></pre>
+      </details>
     </article>
 
     <!-- POST 11 === STAGE 11 -->
@@ -1114,19 +1833,26 @@ if is_zero_shift:
       <h3>[11부 · Stage 11] 감(感)이 아닌 숫자로 증명하는 아키텍처 진화: '50문항 5대 축 오프라인 골든 벤치마크(<code>--benchmark-fortress-v3</code>)' 구축 및 종합 성적표</h3>
       <div class="post-meta">
         <span>진화 단계: <strong>STAGE 11 (50문항 표준 정량 평가 하네스)</strong></span> ·
-        <span>원문 마크다운: <a href="posts/11-stage11-golden-50-benchmark-and-v3-architecture.md">11-stage11-golden-50-benchmark-and-v3-architecture.md</a></span>
+        <span>전체 마크다운 리포트: <a href="posts/11-stage11-golden-50-benchmark-and-v3-architecture.md">11-stage11-golden-50-benchmark-and-v3-architecture.md</a></span>
       </div>
-      <blockquote>
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 11 — 50문제 까다로운 종합 모의고사로 증명한 '100점 만점' 성적표)</span>
+        <ul>
+          <li><strong>왜 이 시험지를 만들었나요?</strong> 로컬 AI를 직접 만들다 보면 질문 두세 개만 잘 답해도 <em>"완벽해졌네!"</em>라고 착각하기 쉽습니다. 그래서 스스로를 속이지 않기 위해, AI가 가장 틀리기 쉬운 <strong>5가지 분야(비유 질문·거짓 숫자 함정·복합 돈 계산·영문 공학 규격·받아쓰기 오타 검문)에서 각 10문제씩 총 50문제짜리 자동 채점 시험지</strong>를 만들었습니다.</li>
+          <li><strong>실제로 채점해 보니 어땠나요?</strong> 아무 장치가 없는 순정 AI(<code>Vanilla 14B</code>)는 함정·계산 실측에서 <strong>0점(0/5)</strong>으로 무너졌고, 중기 버전(<code>Stage 7</code>)은 <strong>70점(35/50)</strong>이었으나, 8~11단계 고도화와 한-영 요약·캐시 경계 보강을 마친 최종 버전은 <strong>50문제 전 문항 정답인 `100점 만점(50/50)`</strong>을 달성했습니다!</li>
+        </ul>
+      </div>
+      <blockquote class="mode-expert">
         <strong>발전 이유와 실측 결론:</strong> 주관적 체감 평가를 배제하고 회귀 버그를 즉시 잡아내기 위해, 보편 지식(<code>Layer-A</code>) 기반 <strong>5대 평가축 × 각 10문항 = 총 50문항 자동 채점 하네스(<code>--benchmark-fortress-v3</code>)</strong>를 구축해 실제 <code>458,272건</code> 카트리지와 <code>RTX 3060(Qwen3-14B)</code> 위에서 구동했습니다.
       </blockquote>
       <div class="table-wrap" style="margin:16px 0;">
         <table>
           <thead>
             <tr>
-              <th>평가 축 (각 10문항 · 총 50문항)</th>
-              <th>Vanilla <code>14B</code> (No-RAG)</th>
-              <th>Fortress <code>v2.0</code> (Stage 7)</th>
-              <th>Fortress <code>v3.0</code> (Stage 11)</th>
+              <th>평가 과목 (각 10문항 · 총 50문항)</th>
+              <th>순정 AI (<code>Vanilla 14B</code>)</th>
+              <th>중기 버전 (<code>v2.0 · Stage 7</code>)</th>
+              <th>최종 완성본 (<code>v3.0 · Stage 11</code>)</th>
             </tr>
           </thead>
           <tbody>
@@ -1177,21 +1903,27 @@ if is_zero_shift:
   <section id="appendix-research">
     <h2>5. 별첨 연구 노트: 에이전트 하네스 &amp; 벤치마크 실험 (로컬 LLM 외전 2편)</h2>
     <p class="section-lead">
-      위 로컬 LLM 본체의 1~11단계 직렬 진화와 별도로, 멀티에이전트 프롬프트 방어력 검증 및 세션 간 동시성 제어·수집 자동화를 위해 수행한 연구 기록입니다.
+      위 로컬 LLM 본체의 1~11단계 직렬 진화와 별도로, 여러 AI를 경쟁시켜 프롬프트 방어력을 높이거나 작업 기억이 섞이지 않게 관리하기 위해 수행한 연구 기록입니다.
     </p>
 
     <div class="tabs">
       <button class="appendix-btn active" onclick="showAppendix(1)">별첨 A: 250문항 3-Way 서브에이전트 토너먼트</button>
-      <button class="appendix-btn" onclick="showAppendix(2)">별첨 B: Dual-SSOT MVCC 원장 &amp; 4채널 병렬 스캐너</button>
+      <button class="appendix-btn" onclick="showAppendix(2)">별첨 B: Dual-SSOT 중앙 수첩 &amp; 4채널 병렬 수집기</button>
     </div>
 
     <article id="appendix-1" class="appendix-card active">
       <h3>[별첨 A] 단일 프롬프트의 한계를 넘는 '3-Way 서브에이전트 토너먼트': 250문항 AI 안전·편향 벤치마크 실증</h3>
       <div class="post-meta">
         <span>분류: Multi-Agent Tournament &amp; AI Safety Benchmark</span> ·
-        <span>원문 마크다운: <a href="posts/appendix-a-subagent-tournament-250-benchmark.md">appendix-a-subagent-tournament-250-benchmark.md</a></span>
+        <span>전체 마크다운 리포트: <a href="posts/appendix-a-subagent-tournament-250-benchmark.md">appendix-a-subagent-tournament-250-benchmark.md</a></span>
       </div>
-      <blockquote>
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (별첨 A — AI 3명을 서로 경쟁시켜 가장 짧고도 완벽한 규칙 만들기)</span>
+        <ul>
+          <li>AI에게 주의사항을 주구장창 길게 적어주면 오히려 비용만 많이 들고 핵심을 놓칩니다. 그래서 <strong>서로 완전히 분리된 AI 참가자 3명에게 각자 다른 전략으로 250문제(위험 질문 거부·성별 고정관념 교정·중립 요약)를 풀게 한 뒤</strong>, 가장 글자 수가 짧으면서도 방어율 100%를 기록한 핵심 원리(<em>"주어의 남녀를 서로 바꿔봐도 자연스러운가?"</em>)만 뽑아 합쳐서 <strong>99.88점</strong>을 달성한 실험입니다.</li>
+        </ul>
+      </div>
+      <blockquote class="mode-expert">
         <strong>실험 요약:</strong> 250개 벤치마크 문항(<code>위험 거부 100</code> : <code>고정관념 교정 100</code> : <code>중립 요약 50</code>)에 대해 물리적으로 격리된 3개의 서브에이전트를 경쟁시켜, 1,533자 장문 프롬프트보다 <strong><code>[남↔여] 대칭 치환 불변량</code>과 <code>&lt;A, P, S&gt; 탈앵커링</code>을 결합한 816자 통합본으로 방어율 100%, 종합 점수 99.88/100점</strong>을 달성했습니다.
       </blockquote>
     </article>
@@ -1200,10 +1932,16 @@ if is_zero_shift:
       <h3>[별첨 B] 멀티세션 Split-Brain을 막는 `Dual-SSOT MVCC` 상태 원장과 멀티스레드 병렬 수집 오케스트레이터</h3>
       <div class="post-meta">
         <span>분류: Distributed State Management &amp; Python Concurrency</span> ·
-        <span>원문 마크다운: <a href="posts/appendix-b-dual-ssot-mvcc-and-parallel-radar.md">appendix-b-dual-ssot-mvcc-and-parallel-radar.md</a></span>
+        <span>전체 마크다운 리포트: <a href="posts/appendix-b-dual-ssot-mvcc-and-parallel-radar.md">appendix-b-dual-ssot-mvcc-and-parallel-radar.md</a></span>
       </div>
-      <blockquote>
-        <strong>실험 요약:</strong> SQLite MVCC 기반 <code>Dual-SSOT</code> 상태 원장(<code>L1 Hot</code> + <code>L2 Cold</code> + <code>Negative Knowledge</code>)으로 멀티세션 간 오답 재발을 원천 차단하고, <code>ThreadPoolExecutor</code>로 4개 수집 스캐너를 병렬화해 실행 시간을 <strong>98.2초 → 39.4초(2.49배 가속)</strong>로 단축했습니다.
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (별첨 B — AI 작업 창을 여러 개 띄워도 기억이 꼬이지 않게 해주는 '중앙 오답 노트')</span>
+        <ul>
+          <li>AI와 긴 프로젝트를 할 때 대화창을 새로 열면 예전에 이미 실패했던 방법을 AI가 까먹고 다시 제안하곤 합니다. 이를 막기 위해 <strong>확정된 설계와 '절대 다시 쓰지 말아야 할 실패 가설(오답 노트)'을 중앙 데이터베이스(<span class="term-tip" tabindex="0" data-term="dual_ssot">Dual-SSOT</span>)에 자동 기록</strong>해 모든 창이 공유하게 만들고, 4곳의 웹사이트 정보를 한 번에 나란히 수집해 대기 시간을 절반 이하(<code>98초 → 39초</code>)로 줄인 기록입니다.</li>
+        </ul>
+      </div>
+      <blockquote class="mode-expert">
+        <strong>실험 요약:</strong> SQLite <span class="term-tip" tabindex="0" data-term="dual_ssot">Dual-SSOT MVCC</span> 상태 원장(<code>L1 Hot</code> + <code>L2 Cold</code> + <code>Negative Knowledge</code>)으로 멀티세션 간 오답 재발을 원천 차단하고, <code>ThreadPoolExecutor</code>로 4개 수집 스캐너를 병렬화해 실행 시간을 <strong>98.2초 → 39.4초(2.49배 가속)</strong>로 단축했습니다.
       </blockquote>
     </article>
   </section>
@@ -1214,13 +1952,112 @@ if is_zero_shift:
   <div class="container">
     <p>
       <strong>Sovereign Offline AI Fortress v3.0 &amp; Deterministic Agent Engineering Portfolio</strong> ·
-      1:1 Stage-Aligned Local LLM Evolution (Stages 1–11) + Agent Engineering Appendix ·
+      Dual-Mode Guide (🌱 Beginner Friendly ↔ ⚙️ Full Engineering Spec) ·
       <a href="https://github.com/tejo1990/tejo1990.github.io" target="_blank">GitHub Repository</a>
     </p>
   </div>
 </footer>
 
 <script>
+  var GLOSSARY_TERMS = {
+    local_llm: {
+      title: "로컬 LLM & 14B 모델",
+      desc: "인터넷 서버(ChatGPT 등)를 거치지 않고 내 컴퓨터 그래픽카드 안에서 직접 돌아가는 AI입니다. '14B'는 약 140억 개의 신경망 연결을 가진 중형 두뇌로, 12GB 그래픽카드에 쏙 들어가는 가장 똑똑한 체급입니다."
+    },
+    hallucination: {
+      title: "환각 (Hallucination)",
+      desc: "AI가 잘 모르는 법 조문 번호나 계산 결과를 마치 확실한 사실인 것처럼 그럴듯하게 지어내어 거짓말하는 현상입니다."
+    },
+    sycophancy: {
+      title: "아부 편향 (Sycophancy)",
+      desc: "질문자가 틀린 계산이나 위험한 사업 계획을 가져가도 AI가 비위를 맞추려고 '좋은 생각입니다!'라며 맞장구치는 고질적 성향입니다."
+    },
+    de_anchoring: {
+      title: "질문 탈앵커링 (De-anchoring)",
+      desc: "한쪽으로 답을 정해놓고 묻는 유도 질문을 AI가 곧바로 따르지 않고, 찬반 조건을 똑같이 따져보는 중립 비교 질문으로 먼저 고쳐 잡는 안전문입니다."
+    },
+    ast_gate: {
+      title: "순수 파이썬 AST 무결성 검증",
+      desc: "외부 추가 프로그램 없이 파이썬 기본 기능만으로 계산기를 만들고, 저장 전에 문법 구조(AST)와 실제 실행 결과를 자동 테스트해 고장 확률을 0%로 묶는 장치입니다."
+    },
+    vram: {
+      title: "VRAM (그래픽카드 전용 초고속 메모리)",
+      desc: "그래픽카드(GPU) 안에 붙어 있는 초고속 작업대입니다. AI 모델 전체가 이 12GB 작업대 안에 다 들어가야 초당 30단어 이상의 빠른 속도가 나옵니다."
+    },
+    virtual_commit: {
+      title: "윈도우 가상메모리 (Commit Charge)",
+      desc: "크롬 브라우저, 문서 도구, AI 프로그램 등 컴퓨터에서 켜진 모든 앱이 윈도우로부터 예약해 둔 총 메모리 한도입니다. 이게 바닥나면 그래픽카드가 넉넉해도 프로그램이 강제 종료됩니다."
+    },
+    hwid_lock: {
+      title: "64KB HWID 제자리 헤더 잠금",
+      desc: "수십 GB 파일 전체를 느리게 암호화하는 대신, 파일 맨 앞 목차(64KB)만 내 컴퓨터 메인보드·디스크 고유 지문(HWID)으로 0.04초 만에 잠가 다른 PC에서는 아예 못 열게 만드는 기술입니다."
+    },
+    zero_argv: {
+      title: "Zero-Argv 무인자 런처",
+      desc: "윈도우 작업 관리자에서 다른 사람이 내 AI 실행 명령줄 옵션을 훔쳐보지 못하도록, 비밀 설정을 명령줄 대신 내부 환경변수로만 조용히 전달하는 실행 방식입니다."
+    },
+    fts5: {
+      title: "SQLite FTS5 초고속 도서관",
+      desc: "무거운 별도 데이터베이스 서버 없이 파일 딱 1개에 45.8만 건의 백과사전·법령·규격 원문을 담아 0.005초 만에 정확한 단어를 찾아주는 내장 검색엔진입니다."
+    },
+    bgem3_rrf: {
+      title: "CPU BGE-M3 & 가중 RRF 의미 검색",
+      desc: "그래픽카드 메모리를 0MB 쓰면서 일반 CPU로 '문장의 뜻' 유사도를 계산(BGE-M3)하고, 이를 단어 검색 순위와 황금비율로 합산(RRF)해 전문 용어를 몰라도 문서를 찾아주는 기술입니다."
+    },
+    debounce: {
+      title: "타이핑 디바운스 & 큐 물리 격리",
+      desc: "키보드를 치는 도중의 미완성 글자 조각들이 AI 두뇌 앞에 줄을 서서 먹통이 되지 않도록, 타이핑 중에는 가벼운 사전 검색만 쓰고 엔터를 눌렀을 때만 AI를 부르는 교통정리 기법입니다."
+    },
+    l3_exoskeleton: {
+      title: "L3 파이썬 외골격 (139종 공식 계산기)",
+      desc: "암산에 약한 작은 AI 대신 연체이자·환산보증금·세금·공학 수식을 오차 0.0%로 정확히 계산해 주는 '139개의 순수 파이썬 공식 계산 함수 모음'입니다."
+    },
+    layer_ab: {
+      title: "Layer-A(공통 지식) / Layer-B(개인 기록)",
+      desc: "누구나 쓰는 보편 법령·백과사전(Layer-A)과 내 사적인 경력·계약서(Layer-B)를 처음부터 분리해 두어, 타 PC 배포 시 내 개인정보를 100% 도려내는 위생 구조입니다."
+    },
+    ttft_sse: {
+      title: "TTFT & SSE 실시간 스트리밍",
+      desc: "질문 후 첫 글자가 화면에 뜰 때까지 걸리는 시간(TTFT)을 20초에서 0.037초로 줄이기 위해, 답변이 완성될 때까지 기다리지 않고 한 글자씩 즉시 화면에 쏘아주는 생중계 기술입니다."
+    },
+    kv_ngram: {
+      title: "KV 프리픽스 재사용 & N-gram 가속",
+      desc: "매번 반복되는 기본 안내문을 다시 읽지 않고 직전 기억(KV 캐시)을 재활용하며, 찾아온 법령 원문을 보고 다음 단어를 미리 예측해 추가 메모리 0MB로 속도를 높이는 기술입니다."
+    },
+    zero_shift: {
+      title: "사후 역검증기 & ZERO_DIGIT_SHIFT_10X",
+      desc: "AI가 답변을 다 쓴 직후, 파이썬 계산기가 준 9억(900,000,000)을 90,000,000으로 잘못 적는 '0 누락 실수'나 원문에 없는 가짜 법 조문을 잡아내어 자동으로 다시 쓰게 하는 빨간펜 검문소입니다."
+    },
+    dscr: {
+      title: "실질 DSCR (부채상환능력 지표)",
+      desc: "가게에서 실제로 남는 현금으로 대출 원리금과 인테리어 할부금, 사장님 최소 인건비를 감당할 수 있는지 보여주는 지표입니다. 1.0보다 낮으면 매달 적자가 나는 위험한 계약입니다."
+    },
+    dual_ssot: {
+      title: "Dual-SSOT MVCC 상태 원장",
+      desc: "여러 AI 작업 창을 동시에 열어도 확정된 결론과 과거에 실패했던 오답 노트를 하나의 중앙 장부에 버전별로 기록해, AI가 옛날 실수를 되풀이하지 않게 막는 기억 장치입니다."
+    }
+  };
+
+  function setReadingMode(mode) {
+    var target = (mode === 'expert') ? 'expert' : 'easy';
+    document.body.setAttribute('data-reading-mode', target);
+    var btnEasy = document.getElementById('btn-mode-easy');
+    var btnExpert = document.getElementById('btn-mode-expert');
+    var pill = document.getElementById('mode-status-pill');
+    if (btnEasy) btnEasy.classList.toggle('active', target === 'easy');
+    if (btnExpert) btnExpert.classList.toggle('active', target === 'expert');
+    if (pill) {
+      pill.textContent = (target === 'easy')
+        ? '🌱 현재: 쉽게 읽기 모드 (입문자 눈높이)'
+        : '⚙️ 현재: 엔지니어 원문 모드 (전공·코드 전체 펼침)';
+    }
+    var folds = document.querySelectorAll('details.expert-code-fold');
+    for (var i = 0; i < folds.length; i++) {
+      folds[i].open = (target === 'expert');
+    }
+    hideGlossaryTooltip();
+  }
+
   function showPost(idx) {
     var btns = document.querySelectorAll('.tab-btn');
     var cards = document.querySelectorAll('.post-card');
@@ -1240,6 +2077,13 @@ if is_zero_shift:
     }
   }
 
+  function jumpToStageCard(stageIdx) {
+    var card = document.getElementById('stage-card-' + stageIdx);
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
   function showAppendix(idx) {
     var btns = document.querySelectorAll('.appendix-btn');
     var cards = document.querySelectorAll('.appendix-card');
@@ -1250,6 +2094,63 @@ if is_zero_shift:
       cards[j].classList.toggle('active', j === (idx - 1));
     }
   }
+
+  function showGlossaryTooltip(el) {
+    var key = el.getAttribute('data-term');
+    var info = GLOSSARY_TERMS[key];
+    var tip = document.getElementById('glossary-tooltip');
+    if (!info || !tip) return;
+    tip.innerHTML = '<span class="gt-title">💡 ' + info.title + '</span><span>' + info.desc + '</span>';
+    tip.style.display = 'block';
+    tip.setAttribute('aria-hidden', 'false');
+
+    var rect = el.getBoundingClientRect();
+    var tipW = tip.offsetWidth || 300;
+    var tipH = tip.offsetHeight || 110;
+    var vw = window.innerWidth || document.documentElement.clientWidth;
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+
+    var left = rect.left + (rect.width / 2) - (tipW / 2);
+    if (left < 12) left = 12;
+    if (left + tipW > vw - 12) left = Math.max(12, vw - tipW - 12);
+
+    var top = rect.bottom + 10;
+    if (top + tipH > vh - 12 && rect.top > tipH + 16) {
+      top = rect.top - tipH - 10;
+    }
+    tip.style.left = Math.round(left) + 'px';
+    tip.style.top = Math.round(top) + 'px';
+  }
+
+  function hideGlossaryTooltip() {
+    var tip = document.getElementById('glossary-tooltip');
+    if (tip) {
+      tip.style.display = 'none';
+      tip.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  (function initPortfolioUI() {
+    setReadingMode('easy');
+    var terms = document.querySelectorAll('.term-tip');
+    for (var i = 0; i < terms.length; i++) {
+      (function(el) {
+        el.addEventListener('mouseenter', function() { showGlossaryTooltip(el); });
+        el.addEventListener('mouseleave', hideGlossaryTooltip);
+        el.addEventListener('focus', function() { showGlossaryTooltip(el); });
+        el.addEventListener('blur', hideGlossaryTooltip);
+        el.addEventListener('click', function(ev) {
+          ev.stopPropagation();
+          showGlossaryTooltip(el);
+        });
+      })(terms[i]);
+    }
+    document.addEventListener('click', hideGlossaryTooltip);
+    window.addEventListener('scroll', hideGlossaryTooltip, { passive: true });
+    document.addEventListener('keydown', function(ev) {
+      if (ev.key === 'Escape') hideGlossaryTooltip();
+    });
+  })();
 </script>
 
 </body>
