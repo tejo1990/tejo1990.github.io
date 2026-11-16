@@ -84,7 +84,7 @@
     .kpi-val { font-size: 23px; font-weight: 800; color: var(--good); }
     .kpi-sub { font-size: 12px; color: var(--text); margin-top: 4px; }
 
-    section { margin: 40px 0; }
+    section { margin: 42px 0; }
     h2 {
       font-size: 21px;
       margin: 0 0 14px;
@@ -273,33 +273,42 @@
       gap: 8px;
       margin-bottom: 18px;
     }
-    .tab-btn {
+    .tab-btn, .appendix-btn {
       background: var(--surface);
       color: var(--muted);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 9px 13px;
+      padding: 10px 14px;
       font-size: 13px;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.15s ease;
     }
-    .tab-btn:hover { color: #fff; border-color: var(--accent); }
+    .tab-btn:hover, .appendix-btn:hover { color: #fff; border-color: var(--accent); }
     .tab-btn.active {
       background: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
       color: #fff;
       border-color: transparent;
       box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);
     }
-    .post-card {
+    .appendix-btn.active {
+      background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(129, 140, 248, 0.25);
+    }
+    .post-card, .appendix-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 28px;
       display: none;
     }
-    .post-card.active { display: block; }
-    .post-card h3 {
+    .post-card.active, .appendix-card.active { display: block; }
+    .appendix-card {
+      border-color: rgba(129, 140, 248, 0.4);
+    }
+    .post-card h3, .appendix-card h3 {
       margin-top: 0;
       font-size: 21.5px;
       color: #fff;
@@ -332,6 +341,10 @@
       border-radius: 0 10px 10px 0;
       color: #f1f5f9;
     }
+    .appendix-card blockquote {
+      background: rgba(129, 140, 248, 0.09);
+      border-left-color: var(--accent-2);
+    }
     footer {
       margin-top: 56px;
       padding: 28px 0;
@@ -348,7 +361,7 @@
   <div class="container">
     <div class="badge-row">
       <span class="badge green">Sovereign Offline AI Fortress v2.0</span>
-      <span class="badge purple">9-Part Engineering Series</span>
+      <span class="badge purple">Stage 1~7 === 1부~7부 (1:1 직렬 아키텍처 기록)</span>
       <span class="badge">Computer Science &amp; Engineering B.S. (KOREATECH)</span>
       <span class="badge">Engineer Information Processing (정보처리기사)</span>
       <span class="badge">HRD-Net NCS Approved Instructor (8 Categories)</span>
@@ -357,7 +370,7 @@
     <h1>소비자용 GPU(`RTX 3060 12GB`) 로컬 LLM은 어디까지 진화할 수 있는가: 7단계 아키텍처 고도화 전 기록</h1>
     <p class="subtitle">
       단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 추론 속도 병목 앞에서 곧바로 무너집니다.
-      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, `13.9GB` 100% VRAM 4-슬롯 금고 · `64KB HWID` 제자리 보안 · `45.8만 건` 오픈북 카트리지 · `3-Tier` 구어체 번역기 · `139종` 순수 파이썬 기호 외골격</strong>으로 하나씩 돌파해 나간 엔지니어링 타임라인입니다.
+      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 배포 위생 분리(Stage 7)까지 1:1로 대응하는 7편의 엔지니어링 리포트</strong>로 정리했습니다.
     </p>
 
     <div class="kpi-grid">
@@ -387,76 +400,76 @@
 
 <main class="container">
 
-  <!-- SECTION 0: 7-STAGE EVOLUTION TIMELINE -->
+  <!-- SECTION 1: 7-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..7) -->
   <section id="evolution-timeline">
-    <h2>1. 한눈에 따라가는 로컬 LLM 7단계 고도화 타임라인 (문제 발생 → 해결 설계 → 정량 변화)</h2>
+    <h2>1. 로컬 LLM 7단계 고도화 타임라인 (`STAGE 1 ~ 7` ↔ 본문 `1부 ~ 7부` 1:1 대응)</h2>
     <p class="section-lead">
-      기능을 무작정 덧붙인 것이 아니라, 실제 사용 중 드러난 병목을 하나씩 해결하며 진화한 7개의 이정표입니다. 각 단계 우측 버튼을 누르면 상세 코드와 원리가 담긴 본문으로 바로 이동합니다.
+      각 진화 단계(`STAGE k`)는 하단 본문(`k부`)과 번호·순서가 정확히 1:1로 일치합니다. 우측 버튼을 클릭하면 해당 단계의 설계 원리와 실행 가능한 순수 파이썬 검증 코드로 바로 이동합니다.
     </p>
 
     <div class="timeline-track">
 
-      <!-- STAGE 1 -->
+      <!-- STAGE 1 -> POST 1 -->
       <div class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
-            <span class="stage-num">STAGE 1 · 기초 검증 골격</span>
-            <span class="stage-title">아부 편향·암산 환각·기억 증발을 막는 '결정론적 파이썬 하네스' 구축</span>
+            <span class="stage-num">STAGE 1 === 1부</span>
+            <span class="stage-title">질문 탈앵커링 게이트 &amp; 순수 파이썬(Pure Python) AST 무결성 검증 골격</span>
           </div>
-          <button class="stage-jump-btn" onclick="jumpToPost(1)">1·3·4·5부 상세 보기 →</button>
+          <button class="stage-jump-btn" onclick="jumpToPost(1)">1부 본문 보기 →</button>
         </div>
         <div class="stage-body-grid">
           <div class="stage-col">
             <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
-            일반 챗봇은 틀린 사업/계약 가설에도 <em>"좋은 생각입니다!"</em>라며 동조하고, 세법·재무 계산에서 그럴듯한 오답을 내며, 대화가 끝나면 과거 실패 기록을 잊어버렸습니다.
+            일반·원터치 LLM은 틀린 가설에 <em>"좋은 생각입니다!"</em>라며 아부하고 세법·재무 암산에서 환각을 일으키며, 서드파티 패키지에 의존한 코드는 버전 충돌로 쉽게 깨졌습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
-            질문 탈앵커링 게이트, 외부 패키지 0개 <code>Pure Python AST</code> 검증기(<code>verify_asset.py</code>), 3-Way 격리 서브에이전트 토너먼트, <code>Dual-SSOT MVCC</code> 원장을 결합했습니다.
+            편향 질문을 백지 비교 질문으로 교정하는 <code>De-anchoring</code>과 외부 패키지 0개 <code>Pure Python AST</code> 런타임 검증기(<code>verify_asset.py</code>)를 기초 골격으로 구축했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
-            컨텍스트 토큰 <strong>99.76% 절감</strong> · 250문항 안전 벤치마크 <strong>99.88 / 100점</strong> · 기각 가설 재발률 <strong>0%</strong> 달성.
+            2-Hop 태그 그래프 라우팅으로 컨텍스트 토큰 <strong>99.76% 절감</strong> · 검증 코드 런타임 에러 <strong>0건</strong> 달성.
           </div>
         </div>
       </div>
 
-      <!-- STAGE 2 -->
+      <!-- STAGE 2 -> POST 2 -->
       <div class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
-            <span class="stage-num">STAGE 2 · 하드웨어 물리 최적화</span>
-            <span class="stage-title">44GB 스와핑 모델을 버리고 '13.9GB 100% VRAM 직결 4-슬롯' &amp; 가상메모리 OOM 가드로 전환</span>
+            <span class="stage-num">STAGE 2 === 2부</span>
+            <span class="stage-title">44GB 스와핑 구성을 버리고 '13.9GB 100% VRAM 4-슬롯 금고' &amp; 가상메모리 OOM 가드로 전환</span>
           </div>
-          <button class="stage-jump-btn" onclick="jumpToPost(2)">2부 상세 보기 →</button>
+          <button class="stage-jump-btn" onclick="jumpToPost(2)">2부 본문 보기 →</button>
         </div>
         <div class="stage-body-grid">
           <div class="stage-col">
             <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
-            <code>17.8GB</code> 모델이 시스템 RAM에 걸치거나 크롬 다중 탭으로 윈도우 가상메모리(Commit)가 부족해지면 <code>Vulkan OOM</code>으로 강제 종료되거나 속도가 <code>6.2 tok/s</code>로 급감했습니다.
+            <code>17.8GB</code> 모델이 시스템 RAM에 걸치거나 크롬 다중 탭으로 윈도우 가상메모리(Commit)가 부족해지면 <code>Vulkan OOM</code> 중단 또는 <code>6.2 tok/s</code> 속도 급락이 발생했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
-            <code>12GB VRAM</code>에 100% 들어가는 <strong><code>Qwen3-14B</code>(8.38GB 주력) + <code>Qwen3-4B</code>(2.33GB 폴백) + <code>Qwen2.5-VL-3B</code>(시각) + <code>BGE-M3</code></strong> 체제로 압축하고 가상메모리 사전 진단 가드를 세웠습니다.
+            <code>12GB VRAM</code>에 100% 들어가는 <strong><code>Qwen3-14B</code>(8.38GB 주력) + <code>Qwen3-4B</code>(2.33GB 폴백) + <code>Qwen2.5-VL-3B</code>(시각) + <code>BGE-M3</code></strong> 체제와 가상메모리 사전 진단 가드를 세웠습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
-            디스크 점유 <code>44.0GB → 13.90GB</code> 감량 · 주력 <strong>31~33 TPS</strong> / 보호 폴백 <strong>71+ TPS</strong> · 메모리 부족 시 상위 점유 앱(PID) 안내 및 OOM 크래시 <strong>0건</strong>.
+            디스크 점유 <code>44.0GB → 13.90GB</code> 감량 · 주력 <strong>31~33 TPS</strong> / 보호 폴백 <strong>71+ TPS</strong> · OOM 크래시 <strong>0건</strong>.
           </div>
         </div>
       </div>
 
-      <!-- STAGE 3 -->
+      <!-- STAGE 3 -> POST 3 -->
       <div class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
-            <span class="stage-num">STAGE 3 · Zero-Leak 로컬 보안</span>
+            <span class="stage-num">STAGE 3 === 3부</span>
             <span class="stage-title">수십 GB 파일 복사 유출과 작업 관리자 명령줄 노출을 막는 '64KB HWID 헤더 잠금'</span>
           </div>
-          <button class="stage-jump-btn" onclick="jumpToPost(6)">6부 상세 보기 →</button>
+          <button class="stage-jump-btn" onclick="jumpToPost(3)">3부 본문 보기 →</button>
         </div>
         <div class="stage-body-grid">
           <div class="stage-col">
@@ -465,24 +478,24 @@
           </div>
           <div class="stage-col">
             <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
-            파일 전체 암복호화 대신 <strong>맨 앞 <code>64KB</code> 매직 헤더만 보드/디스크 <code>HWID</code>로 제자리(In-Place) 잠금</strong>하고, 환경변수 기반 <code>Zero-Argv</code> 런처와 히스토리 소거기를 적용했습니다.
+            파일 전체 암복호화 대신 <strong>맨 앞 <code>64KB</code> 매직 헤더만 보드/디스크 <code>HWID</code>로 제자리(In-Place) 잠금</strong>하고 환경변수 기반 <code>Zero-Argv</code> 런처를 적용했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
-            잠금/해제 <strong>~41.5 ms</strong> · 추가 디스크 <strong>0 Byte</strong> · 작업 관리자 노출 플래그 <strong>0개</strong> · 타 PC 열람 시 즉시 에러 차단.
+            잠금/해제 <strong>~41.5 ms</strong> · 추가 디스크 <strong>0 Byte</strong> · 작업 관리자 노출 플래그 <strong>0개</strong> · 타 PC 열람 즉시 차단.
           </div>
         </div>
       </div>
 
-      <!-- STAGE 4 -->
+      <!-- STAGE 4 -> POST 4 -->
       <div class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
-            <span class="stage-num">STAGE 4 · 두뇌와 기억의 분리</span>
+            <span class="stage-num">STAGE 4 === 4부</span>
             <span class="stage-title">'458,270건 5-스코프 불변 지식 카트리지' 외장화 &amp; 스캔도면 오프라인 Vision OCR</span>
           </div>
-          <button class="stage-jump-btn" onclick="jumpToPost(7)">7부 상세 보기 →</button>
+          <button class="stage-jump-btn" onclick="jumpToPost(4)">4부 본문 보기 →</button>
         </div>
         <div class="stage-body-grid">
           <div class="stage-col">
@@ -491,7 +504,7 @@
           </div>
           <div class="stage-col">
             <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
-            LLM은 '독해·추론 두뇌'로만 한정하고, <strong>한·영 위키(38.8만 + 9.6만 한-영 사전) + 법령 + 공학(9,913건) + 의학(7,778건) + 내 문서/도면 OCR</strong>을 <code>SQLite FTS5</code> 카트리지로 외장화했습니다.
+            LLM은 '독해·추론 두뇌'로만 한정하고, <strong>한·영 위키(38.8만 + 9.6만 한-영 사전) + 법령 + 공학(9,913건) + 의학(7,778건) + 내 문서/도면 OCR</strong>을 <code>SQLite FTS5</code>로 외장화했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
@@ -500,24 +513,24 @@
         </div>
       </div>
 
-      <!-- STAGE 5 -->
+      <!-- STAGE 5 -> POST 5 -->
       <div class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
-            <span class="stage-num">STAGE 5 · 구어체 번역 &amp; 큐 병목 제거</span>
+            <span class="stage-num">STAGE 5 === 5부</span>
             <span class="stage-title">'3-Tier 구어체 쿼리 번역기'와 타이핑 디바운스(`?neural=0`) 물리 격리</span>
           </div>
-          <button class="stage-jump-btn" onclick="jumpToPost(8)">8부 상세 보기 →</button>
+          <button class="stage-jump-btn" onclick="jumpToPost(5)">5부 본문 보기 →</button>
         </div>
         <div class="stage-body-grid">
           <div class="stage-col">
             <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
-            <em>"두꺼비집 내려가"</em> 같은 일상어는 한자어 학술 색인을 못 찾고, 반대로 타이핑마다 LLM 번역기를 부르자 단일 슬롯 GPU에 오타 조각이 쌓여 <strong>89.7초 지연과 캐시 오염</strong>이 발생했습니다.
+            <em>"두꺼비집 내려가"</em> 같은 일상어는 한자어 학술 색인을 못 찾고, 반대로 타이핑마다 LLM 번역기를 부르자 단일 슬롯 GPU에 오타 조각이 쌓여 <strong>89.7초 지연과 캐시 오염</strong>이 생겼습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
-            <strong>40선 상황별 구어체 시드(&lt;0.05ms) + 프리웜 우선 영구 캐시(미완성 자모 차단) + 타이핑 중 <code>?neural=0</code> 분리(<code>AbortController</code>)</strong>로 실행 시에만 LLM 번역을 1회 허용했습니다.
+            <strong>40선 상황별 구어체 시드(&lt;0.05ms) + 프리웜 우선 캐시(미완성 자모 차단) + 타이핑 중 <code>?neural=0</code> 분리(<code>AbortController</code>)</strong>로 실행 시에만 LLM 번역을 1회 허용했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
@@ -526,15 +539,15 @@
         </div>
       </div>
 
-      <!-- STAGE 6 -->
+      <!-- STAGE 6 -> POST 6 -->
       <div class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
-            <span class="stage-num">STAGE 6 · 신경-기호 추론 외골격</span>
+            <span class="stage-num">STAGE 6 === 6부</span>
             <span class="stage-title">'Adaptive Thinking' 제어 &amp; '139종 L3 파이썬 기호 외골격(2-Pass 자율 계산)' 연동</span>
           </div>
-          <button class="stage-jump-btn" onclick="jumpToPost(9)">9부 상세 보기 →</button>
+          <button class="stage-jump-btn" onclick="jumpToPost(6)">6부 본문 보기 →</button>
         </div>
         <div class="stage-body-grid">
           <div class="stage-col">
@@ -552,15 +565,15 @@
         </div>
       </div>
 
-      <!-- STAGE 7 -->
+      <!-- STAGE 7 -> POST 7 -->
       <div class="stage-card latest">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
-            <span class="stage-num">STAGE 7 · 배포 위생 격리 완결</span>
+            <span class="stage-num">STAGE 7 === 7부</span>
             <span class="stage-title">타 PC·외부 배포 시 개인 데이터 혼입을 원천 차단하는 'Edition Isolation' 물리 분리</span>
           </div>
-          <button class="stage-jump-btn" onclick="jumpToPost(9)">9부 상세 보기 →</button>
+          <button class="stage-jump-btn" onclick="jumpToPost(7)">7부 본문 보기 →</button>
         </div>
         <div class="stage-body-grid">
           <div class="stage-col">
@@ -573,7 +586,7 @@
           </div>
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
-            클라이언트 에디션 빌드 시 개인 문서·개인 캐시 시드 유출 <strong>0건 (100% 물리 소거 검증)</strong>.
+            클라이언트 에디션 빌드 시 개인 문서·개인 캐시 시드 유출 <strong>0건 (100% 물리 소거 자동 검증)</strong>.
           </div>
         </div>
       </div>
@@ -681,60 +694,57 @@
     </div>
   </section>
 
-  <!-- SECTION 4: 9-PART TECHNICAL BLOG SERIES TABS -->
+  <!-- SECTION 4: 7-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..7) -->
   <section id="series-articles">
-    <h2>4. 엔지니어링 진화 과정 9부작 전문 (탭을 클릭하여 열람)</h2>
+    <h2>4. 로컬 LLM 고도화 본편 7부작 전문 (`STAGE 1 ~ 7` === `1부 ~ 7부` 1:1 직렬 구성)</h2>
     <div class="tabs">
-      <button class="tab-btn active" onclick="showPost(1)">1부: 일반·원터치 LLM의 실패 원인</button>
-      <button class="tab-btn" onclick="showPost(2)">2부: 13.9GB VRAM 금고 &amp; OOM 가드</button>
-      <button class="tab-btn" onclick="showPost(3)">3부: Pure Python AST 검증 게이트</button>
-      <button class="tab-btn" onclick="showPost(4)">4부: 250문항 3-Way 에이전트 토너먼트</button>
-      <button class="tab-btn" onclick="showPost(5)">5부: Dual-SSOT MVCC &amp; 병렬 레이더</button>
-      <button class="tab-btn" onclick="showPost(6)">6부: 64KB HWID 헤더 잠금 &amp; Zero-Argv</button>
-      <button class="tab-btn" onclick="showPost(7)">7부: 45.8만 건 5-스코프 카트리지 &amp; OCR</button>
-      <button class="tab-btn" onclick="showPost(8)">8부: 3-Tier 구어체 번역 &amp; 디바운스 격리</button>
-      <button class="tab-btn" onclick="showPost(9)">9부: Adaptive Thinking &amp; 139종 L3 외골격</button>
+      <button class="tab-btn active" onclick="showPost(1)">1부 (Stage 1): 기초 검증 골격</button>
+      <button class="tab-btn" onclick="showPost(2)">2부 (Stage 2): 13.9GB VRAM &amp; OOM 가드</button>
+      <button class="tab-btn" onclick="showPost(3)">3부 (Stage 3): 64KB HWID 헤더 잠금</button>
+      <button class="tab-btn" onclick="showPost(4)">4부 (Stage 4): 45.8만 건 카트리지 &amp; OCR</button>
+      <button class="tab-btn" onclick="showPost(5)">5부 (Stage 5): 3-Tier 구어체 번역 &amp; 큐 격리</button>
+      <button class="tab-btn" onclick="showPost(6)">6부 (Stage 6): Adaptive Thinking &amp; 139종 L3</button>
+      <button class="tab-btn" onclick="showPost(7)">7부 (Stage 7): Edition 배포 위생 분리</button>
     </div>
 
-    <!-- POST 1 -->
+    <!-- POST 1 === STAGE 1 -->
     <article id="post-1" class="post-card active">
-      <h3>[1부] 왜 '그냥 쓰는 클라우드 LLM'과 '원터치 로컬 LLM(Ollama 기본 설치)'은 실무 의사결정에서 실패하는가?</h3>
+      <h3>[1부 · Stage 1] 왜 일반·원터치 로컬 LLM은 실패하는가: 질문 탈앵커링과 순수 파이썬(Pure Python) AST 검증 골격</h3>
       <div class="post-meta">
-        <span>진화 단계: Stage 1 (인식론 &amp; 검증 아키텍처)</span> ·
-        <span>원문 마크다운: <a href="posts/01-why-vanilla-llm-and-oneclick-local-fail.md">01-why-vanilla-llm-and-oneclick-local-fail.md</a></span>
+        <span>진화 단계: <strong>STAGE 1 (기초 검증 골격)</strong></span> ·
+        <span>원문 마크다운: <a href="posts/01-stage1-deterministic-python-verification-backbone.md">01-stage1-deterministic-python-verification-backbone.md</a></span>
       </div>
       <blockquote>
-        <strong>핵심 요약:</strong> 모델의 추론 능력이 올라갈수록 사용자의 잘못된 가설을 더 정교하게 합리화해 주는 <strong>'영리한 변호사 역설(Clever-Lawyer Paradox)'</strong>이 심화됩니다. 이를 막기 위해 본 시스템은 <strong>① 질문 탈앵커링(Auto De-anchoring), ② 45.8만 건 오픈북 카트리지, ③ 순수 파이썬 결정론적 계산기 강제 호출</strong>을 결합했습니다.
+        <strong>핵심 요약:</strong> 모델의 추론 능력이 올라갈수록 사용자의 잘못된 전제를 정교하게 합리화하는 <strong>'영리한 변호사 역설'</strong>이 발생하며, 서드파티 패키지에 의존한 코드는 버전 충돌로 쉽게 부패합니다. 이를 막기 위해 <strong>① 질문 탈앵커링(Auto De-anchoring), ② 외부 패키지 0개 순수 파이썬(<code>Pure Python Stdlib</code>) 계산기, ③ AST 파싱 및 서브프로세스 실행(<code>Exit Code 0</code>) 검증 게이트(<code>verify_asset.py</code>)</strong>를 시스템의 첫 번째 주춧돌로 세웠습니다.
       </blockquote>
-      <p>
-        유튜브나 블로그에 흔한 <em>"5분 만에 내 PC에 로컬 LLM 설치하기(Ollama + OpenWebUI)"</em>를 그대로 따라 하면 처음 10분은 신기하지만, 막상 실무 계약 검토나 공학·재무 계산에 쓰려고 하면 즉시 한계에 부딪힙니다.
-        무거운 모델을 무작정 올리면 시스템 RAM 스와핑이나 가상메모리 부족으로 멈추고, 가벼운 모델을 그냥 쓰면 법령·수식을 지어내며 환각을 일으킵니다.
-      </p>
-      <p>
-        본 아키텍처는 <strong>"언어 모델(LLM)에게는 절대로 지식 암기나 암산을 맡기지 않고, 검증된 원문 카트리지와 순수 파이썬 함수(Pure Python Simulator)를 연결·해석하는 추론 두뇌 역할만 맡긴다"</strong>는 철칙에서 출발했습니다.
-      </p>
-      <pre><code># [방어 루프 의사코드] 확률적 환각을 차단하는 결정론적 파이프라인
-def handle_complex_query(user_query: str) -> str:
-    # Step 1: 편향된 질문을 백지 비교 질문으로 탈앵커링 (De-anchoring)
-    neutral_query = deanchor_query_if_biased(user_query)
+      <pre><code>import ast, subprocess, sys
 
-    # Step 2: 45.8만 건 FTS5 카트리지 원문 인출 + 139종 순수 파이썬 계산기 실행
-    evidence_docs = search_fts5_cartridge(neutral_query)
-    verified_numbers = run_whitelisted_stdlib_calculator(neutral_query, evidence_docs)
+ALLOWED_STDLIB = {
+    "math", "dataclasses", "typing", "collections", "itertools",
+    "functools", "statistics", "json", "re", "datetime", "enum",
+    "hashlib", "sqlite3", "pathlib", "os", "sys", "vault_stdlib"
+}
 
-    # Step 3: 확정된 수치와 법령 조문 위에서만 최종 응답 합성
-    return synthesize_fact_grounded_response(neutral_query, evidence_docs, verified_numbers)</code></pre>
+def audit_python_ast_and_runtime(code_str: str) -> bool:
+    tree = ast.parse(code_str)
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                if alias.name.split(".")[0] not in ALLOWED_STDLIB:
+                    raise ValueError(f"External dependency blocked: {alias.name}")
+    proc = subprocess.run([sys.executable, "-X", "utf8", "-c", code_str], capture_output=True, timeout=10)
+    return proc.returncode == 0</code></pre>
     </article>
 
-    <!-- POST 2 -->
+    <!-- POST 2 === STAGE 2 -->
     <article id="post-2" class="post-card">
-      <h3>[2부] 하드웨어 물리 한계 직시: 왜 44GB 스와핑 구성을 버리고 '13.9GB 100% VRAM 직결 4-슬롯 금고'와 '가상메모리(Commit) OOM 가드'로 진화했는가?</h3>
+      <h3>[2부 · Stage 2] 하드웨어 물리 한계 직시: 44GB 스와핑 구성을 버리고 '13.9GB 100% VRAM 4-슬롯 금고'와 '가상메모리(Commit) OOM 가드'로 진화하기</h3>
       <div class="post-meta">
-        <span>진화 단계: Stage 2 (하드웨어 루프라인 &amp; 메모리 가드)</span> ·
-        <span>원문 마크다운: <a href="posts/02-rtx3060-12gb-4slot-moe-hybrid-rag.md">02-rtx3060-12gb-4slot-moe-hybrid-rag.md</a></span>
+        <span>진화 단계: <strong>STAGE 2 (하드웨어 루프라인 &amp; 메모리 가드)</strong></span> ·
+        <span>원문 마크다운: <a href="posts/02-stage2-13gb-vram-vault-and-virtual-commit-guard.md">02-stage2-13gb-vram-vault-and-virtual-commit-guard.md</a></span>
       </div>
       <blockquote>
-        <strong>발전 이유와 해법:</strong> 초기에는 <code>44.0 GB</code> 규모의 대형 MoE 부분 오프로딩 구성을 시험했으나, 크롬 다중 탭·문서 도구를 함께 켜는 실사용 환경에서는 PCIe/DDR4 대역폭 병목(<code>6.2 tok/s</code> 급락)과 윈도우 가상메모리(Commit) 부족에 의한 <code>Vulkan OOM</code> 중단이 발생했습니다. 이에 <strong><code>12GB VRAM</code> 내부에 가중치 100%가 상주하는 <code>13.90 GB</code> 4-슬롯 체제</strong>로 전면 재설계하고 실시간 가상메모리 사전 차단 가드를 도입했습니다.
+        <strong>발전 이유와 해법:</strong> 초기 <code>44.0 GB</code> 부분 오프로딩 구성은 크롬 다중 탭·문서 도구를 함께 켜는 실사용 환경에서 PCIe/DDR4 대역폭 병목(<code>6.2 tok/s</code> 급락)과 윈도우 가상메모리(Commit) 부족에 의한 <code>Vulkan OOM</code> 중단을 일으켰습니다. 이에 <strong><code>12GB VRAM</code> 내부에 가중치 100%가 상주하는 <code>13.90 GB</code> 4-슬롯 체제</strong>로 재설계하고 실시간 가상메모리 사전 차단 가드를 도입했습니다.
       </blockquote>
       <div class="table-wrap" style="margin:16px 0;">
         <table>
@@ -788,125 +798,16 @@ def select_safe_runtime_tier(free_vram_gb: float, free_commit_gb: float, top_hog
     return f"ABORT_ZERO_QUOTA_BURN: 가상메모리 부족({free_commit_gb:.1f}GB &lt; 3.5GB), 상위 점유 앱({top_hog}) 안내"</code></pre>
     </article>
 
-    <!-- POST 3 -->
+    <!-- POST 3 === STAGE 3 -->
     <article id="post-3" class="post-card">
-      <h3>[3부] 확률적 언어 모델을 '결정론적 엔지니어링 도구'로 바꾸는 순수 파이썬(Pure Python) AST 검증 게이트</h3>
+      <h3>[3부 · Stage 3] 온프레미스의 마지막 보안 구멍을 막다: '64KB 제자리(In-Place) HWID 헤더 잠금'과 'Zero-Argv 무인자 런처'</h3>
       <div class="post-meta">
-        <span>진화 단계: Stage 1 (정적 구문 분석 &amp; 무결성 검증)</span> ·
-        <span>원문 마크다운: <a href="posts/03-deterministic-python-ast-verification-gate.md">03-deterministic-python-ast-verification-gate.md</a></span>
+        <span>진화 단계: <strong>STAGE 3 (Zero-Leak 오프라인 물리·프로세스 보안)</strong></span> ·
+        <span>원문 마크다운: <a href="posts/03-stage3-zero-leak-64kb-hwid-header-lock.md">03-stage3-zero-leak-64kb-hwid-header-lock.md</a></span>
       </div>
       <blockquote>
-        <strong>핵심 요약:</strong> 외부 라이브러리(<code>npm</code>, 무거운 <code>pip</code> 패키지)에 의존하는 코드는 시간이 지나면 버전 충돌로 깨집니다. 본 시스템의 지식 금고는 오직 <strong>파이썬 표준 라이브러리(<code>Pure Python Stdlib</code>)</strong>만 허용하며, <code>verify_asset.py</code>가 AST 파싱과 서브프로세스 런타임 실행(<code>Exit Code 0</code>)을 통과한 자산만 승인합니다.
+        <strong>발전 이유와 해법:</strong> 사내 PC에 로컬 LLM을 구축하더라도 PC 수리점·외부인이 <code>.gguf</code>나 <code>.sqlite</code> 파일을 USB로 복사해 가거나 작업 관리자 명령줄에서 실행 구조를 볼 수 있습니다. 수십 GB 전체 복호화의 지연과 용량 낭비 없이 이를 막기 위해, <strong>파일 맨 앞 <code>64 KB</code> 매직 헤더만 하드웨어 지문(<code>HWID</code>)으로 제자리 잠금(<code>~41.5 ms</code>, 추가 디스크 <code>0 Byte</code>)</strong>하고 작업 관리자 노출 인자를 <code>0개</code>(<code>Zero-Argv</code>)로 소거했습니다.
       </blockquote>
-      <pre><code>import ast, subprocess, sys
-
-ALLOWED_STDLIB = {
-    "math", "dataclasses", "typing", "collections", "itertools",
-    "functools", "statistics", "json", "re", "datetime", "enum",
-    "hashlib", "sqlite3", "pathlib", "os", "sys", "vault_stdlib"
-}
-
-def audit_python_ast_and_runtime(code_str: str) -> bool:
-    tree = ast.parse(code_str)
-    for node in ast.walk(tree):
-        if isinstance(node, ast.Import):
-            for alias in node.names:
-                if alias.name.split(".")[0] not in ALLOWED_STDLIB:
-                    raise ValueError(f"External dependency blocked: {alias.name}")
-    proc = subprocess.run([sys.executable, "-X", "utf8", "-c", code_str], capture_output=True, timeout=10)
-    return proc.returncode == 0</code></pre>
-    </article>
-
-    <!-- POST 4 -->
-    <article id="post-4" class="post-card">
-      <h3>[4부] 단일 프롬프트의 한계를 넘는 '3-Way 서브에이전트 토너먼트': 250문항 AI 안전·편향 벤치마크 실증</h3>
-      <div class="post-meta">
-        <span>진화 단계: Stage 1 (멀티에이전트 격리 경쟁 검증)</span> ·
-        <span>원문 마크다운: <a href="posts/04-subagent-tournament-250-benchmark.md">04-subagent-tournament-250-benchmark.md</a></span>
-      </div>
-      <blockquote>
-        <strong>핵심 요약:</strong> 250개 벤치마크 문항(<code>위험 거부 100</code> : <code>고정관념 교정 100</code> : <code>중립 요약 50</code>)을 해결하기 위해 물리적으로 격리된 3개의 서브에이전트를 동시에 경쟁시켰습니다. 그 결과 1,533자짜리 장황한 프롬프트보다 <strong><code>[남↔여] 대칭 치환 불변량</code>과 <code>&lt;A, P, S&gt; 탈앵커링</code>을 결합한 816자 통합 프롬프트가 방어율 100%, 종합 점수 99.88/100점</strong>을 기록했습니다.
-      </blockquote>
-      <div class="table-wrap" style="margin:16px 0;">
-        <table>
-          <thead>
-            <tr>
-              <th>서브에이전트 트랙</th>
-              <th>설계 메커니즘</th>
-              <th>글자수 / 토큰수</th>
-              <th>250문항 방어율</th>
-              <th>토큰 효율 지수</th>
-              <th>결과</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Approach A</strong></td>
-              <td>의미론적 탈앵커링 필터 <code>&lt;A(행위), P(전제), S(대칭성)&gt;</code></td>
-              <td><strong>538자 (349.7 tok)</strong></td>
-              <td><strong>100.0% (250/250)</strong></td>
-              <td><strong>28.60 (1위)</strong></td>
-              <td>🏆 <strong>최고 효율 선정</strong></td>
-            </tr>
-            <tr>
-              <td><strong>Approach B</strong></td>
-              <td>다중 제어 불변량 (<code>I_harm / I_swap / I_neutral</code>)</td>
-              <td>1,511자 (982.2 tok)</td>
-              <td>100.0% (250/250)</td>
-              <td>10.18</td>
-              <td>구제기관 채널 병합</td>
-            </tr>
-            <tr>
-              <td><strong>Approach C</strong></td>
-              <td>사칭 우회(Jailbreak) 및 은폐 피해자 역방어</td>
-              <td>1,533자 (996.5 tok)</td>
-              <td>100.0% (250/250)</td>
-              <td>10.04</td>
-              <td>우회 탐지 규칙 병합</td>
-            </tr>
-            <tr>
-              <td><strong>Merged Winner</strong></td>
-              <td><strong>A의 초압축 뼈대 + B의 [남↔여] 대칭 불변량 + C의 사칭 해제</strong></td>
-              <td><strong>816자 (530.4 tok)</strong></td>
-              <td><strong>100.0% (250/250)</strong></td>
-              <td><strong>18.85</strong></td>
-              <td>👑 <strong>종합 99.88 / 100점</strong></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </article>
-
-    <!-- POST 5 -->
-    <article id="post-5" class="post-card">
-      <h3>[5부] 기억을 잃지 않는 에이전트: `Dual-SSOT MVCC` 상태 원장과 멀티스레드 일일 자동화 레이더 구축기</h3>
-      <div class="post-meta">
-        <span>진화 단계: Stage 1 (분산 상태 동시성 제어 &amp; 병렬 수집)</span> ·
-        <span>원문 마크다운: <a href="posts/05-dual-ssot-mvcc-and-parallel-automation.md">05-dual-ssot-mvcc-and-parallel-automation.md</a></span>
-      </div>
-      <blockquote>
-        <strong>핵심 요약:</strong> 세션이 바뀔 때마다 기억이 초기화되거나 문서와 DB 버전이 어긋나는 Split-Brain을 막기 위해, <strong>SQLite MVCC 기반 <code>Dual-SSOT</code> 상태 원장(<code>L1 Hot</code> + <code>L2 Cold</code> + <code>Negative Knowledge</code>)</strong>과 <strong><code>Monotonic Revision Guard</code></strong>를 구축했습니다. 또한 <code>ThreadPoolExecutor</code> 기반 병렬 수집기로 4개 채널을 2.49배 빠르게 스캔합니다.
-      </blockquote>
-      <pre><code># 4개 데이터 수집 스캐너를 ThreadPoolExecutor로 병렬 실행 (순차 98.2초 -> 병렬 39.4초, 2.49x 가속)
-with ThreadPoolExecutor(max_workers=4) as pool:
-    futures = {pool.submit(run_single_scanner, s): s for s in SCANNERS}
-    for fut in as_completed(futures):
-        script_name, exit_code, elapsed_sec = fut.result()</code></pre>
-    </article>
-
-    <!-- POST 6 -->
-    <article id="post-6" class="post-card">
-      <h3>[6부] 온프레미스의 마지막 보안 구멍을 막다: '64KB 제자리(In-Place) HWID 헤더 잠금'과 'Zero-Argv 무인자 런처'</h3>
-      <div class="post-meta">
-        <span>진화 단계: Stage 3 (Zero-Leak 오프라인 물리·프로세스 보안)</span> ·
-        <span>원문 마크다운: <a href="posts/06-zero-leak-64kb-header-lock-and-zero-argv.md">06-zero-leak-64kb-header-lock-and-zero-argv.md</a></span>
-      </div>
-      <blockquote>
-        <strong>발전 이유와 해법:</strong> 사내 PC에 로컬 LLM을 구축하더라도 PC 수리점·외부인이 <code>.gguf</code>나 <code>.sqlite</code> 파일을 USB로 복사해 가거나 작업 관리자 명령줄에서 실행 구조를 엿볼 수 있습니다. 그렇다고 수십 GB 파일 전체를 매번 복호화하면 수십 초 지연과 임시 평문 파일이 남습니다. 이를 해결하기 위해 <strong>파일의 맨 앞 <code>64 KB</code> 매직 헤더만 하드웨어 지문(<code>HWID</code>)으로 제자리 잠금(<code>~41.5 ms</code>, 추가 디스크 <code>0 Byte</code>)</strong>하고 작업 관리자 노출 인자를 <code>0개</code>(<code>Zero-Argv</code>)로 소거했습니다.
-      </blockquote>
-      <p>
-        <code>GGUF</code> 모델과 <code>SQLite</code> DB 모두 첫 <code>64 KB</code> 안에 매직 시그니처와 루트 페이지 테이블이 집약되어 있습니다. <code>EphemeralHeaderUnlockGuard</code>는 실행 구간에만 밀리초 단위로 헤더를 복원하고, 예외·강제 종료 시 Win32 콘솔 훅이 즉시 재잠금하여 외부 유출 시 <code>sqlite3.DatabaseError: file is not a database</code>로 완벽히 무력화합니다.
-      </p>
       <pre><code># 추가 디스크 용량 0 Byte로 첫 64KB 매직 헤더만 제자리(In-Place) 잠금/복원
 HEADER_LOCK_BYTES = 65536  # 64 KB
 
@@ -919,12 +820,12 @@ def toggle_header_in_place(binary_path, keystream: bytes) -> None:
         fh.flush()</code></pre>
     </article>
 
-    <!-- POST 7 -->
-    <article id="post-7" class="post-card">
-      <h3>[7부] 두뇌(추론)와 기억(지식)의 완전 분리: '45.8만 건 5-스코프 불변 지식 카트리지'와 오프라인 스캔도면 Vision OCR</h3>
+    <!-- POST 4 === STAGE 4 -->
+    <article id="post-4" class="post-card">
+      <h3>[4부 · Stage 4] 두뇌(추론)와 기억(지식)의 완전 분리: '45.8만 건 5-스코프 불변 지식 카트리지'와 오프라인 스캔도면 Vision OCR</h3>
       <div class="post-meta">
-        <span>진화 단계: Stage 4 (오픈북 지식 외장화 &amp; 멀티모달 OCR)</span> ·
-        <span>원문 마크다운: <a href="posts/07-458k-5scope-cartridge-and-vision-ocr.md">07-458k-5scope-cartridge-and-vision-ocr.md</a></span>
+        <span>진화 단계: <strong>STAGE 4 (오픈북 지식 외장화 &amp; 멀티모달 OCR)</strong></span> ·
+        <span>원문 마크다운: <a href="posts/04-stage4-458k-5scope-cartridge-and-vision-ocr.md">04-stage4-458k-5scope-cartridge-and-vision-ocr.md</a></span>
       </div>
       <blockquote>
         <strong>발전 이유와 해법:</strong> <code>14B</code> 모델 머릿속에 수십만 조항과 상병코드·전력 규격을 외우게 하면 숫자 환각이 불가피합니다. 이에 LLM은 '독해·추론 두뇌'로만 쓰고, <strong>한국어 위키 실질문서 전수(247,514건) + 영문 학술 위키(141,255건) &amp; 96,072개 한-영 사전 + 대한민국 법령 + 공학 표준(9,913건) + 의학·약리(7,778건) + 내 문서/스캔도면 Vision OCR</strong> 총 <strong><code>458,270건</code></strong>을 단일 <code>SQLite FTS5</code> 카트리지로 외장화했습니다.
@@ -964,15 +865,15 @@ def toggle_header_in_place(binary_path, keystream: bytes) -> None:
       </div>
     </article>
 
-    <!-- POST 8 -->
-    <article id="post-8" class="post-card">
-      <h3>[8부] "두꺼비집이 내려가요"를 '배선용차단기 단락전류'로: 3-Tier 구어체 쿼리 번역기와 타이핑 디바운스 큐 병목 해결기</h3>
+    <!-- POST 5 === STAGE 5 -->
+    <article id="post-5" class="post-card">
+      <h3>[5부 · Stage 5] "두꺼비집이 내려가요"를 '배선용차단기 단락전류'로: 3-Tier 구어체 쿼리 번역기와 타이핑 디바운스(`?neural=0`) 큐 병목 해결기</h3>
       <div class="post-meta">
-        <span>진화 단계: Stage 5 (구어체 시맨틱 브리지 &amp; 단일 GPU 큐 제어)</span> ·
-        <span>원문 마크다운: <a href="posts/08-3tier-neural-query-rewriter-and-debounce-isolation.md">08-3tier-neural-query-rewriter-and-debounce-isolation.md</a></span>
+        <span>진화 단계: <strong>STAGE 5 (구어체 시맨틱 브리지 &amp; 단일 GPU 큐 제어)</strong></span> ·
+        <span>원문 마크다운: <a href="posts/05-stage5-3tier-neural-rewriter-and-debounce-isolation.md">05-stage5-3tier-neural-rewriter-and-debounce-isolation.md</a></span>
       </div>
       <blockquote>
-        <strong>발전 이유와 실제 장애 해결:</strong> 일상 구어체(<em>"타이레놀이랑 술"</em>, <em>"두꺼비집 쇼트"</em>)를 한자어/학술어(<code>아세트아미노펜 NAPQI</code>, <code>배선용차단기 단락전류</code>)로 변환하기 위해 로컬 LLM 쿼리 번역기를 도입했으나, 초기에는 타이핑 디바운스(<code>90ms</code>)마다 번역기가 호출되면서 단일 슬롯 GPU 큐에 미완성 글자 조각 40여 개가 쌓여 <strong>답변이 89.70초까지 밀리고 캐시가 오타로 오염되는 현상</strong>을 겪었습니다. 이를 <strong>3-Tier 캐시 계층화와 타이핑/실행 물리 격리</strong>로 해결했습니다.
+        <strong>발전 이유와 실제 장애 해결:</strong> 일상 구어체(<em>"타이레놀이랑 술"</em>, <em>"두꺼비집 쇼트"</em>)를 한자어/학술어(<code>아세트아미노펜 NAPQI</code>, <code>배선용차단기 단락전류</code>)로 변환하기 위해 로컬 LLM 쿼리 번역기를 붙였으나, 초기에는 타이핑 디바운스(<code>90ms</code>)마다 번역기가 호출되면서 단일 슬롯 GPU 큐에 미완성 글자 조각 40여 개가 쌓여 <strong>답변이 89.70초까지 밀리고 캐시가 오타로 오염되는 현상</strong>을 겪었습니다. 이를 <strong>3-Tier 캐시 계층화와 타이핑/실행 물리 격리</strong>로 해결했습니다.
       </blockquote>
       <pre><code>// 프론트엔드 타이핑 디바운스(250ms + AbortController)와 본 실행의 물리적 분리
 function onSearchInputKeyup(queryText, tierFilter) {
@@ -991,26 +892,73 @@ async function onExecuteDirectQA(queryText, tierFilter) {
 }</code></pre>
     </article>
 
-    <!-- POST 9 -->
-    <article id="post-9" class="post-card">
-      <h3>[9부] 로컬 LLM의 추론 한계를 넘는 법: 'Adaptive Thinking' 제어, '139종 L3 파이썬 기호 외골격(2-Pass 자율 계산)', 그리고 배포 에디션 위생 분리</h3>
+    <!-- POST 6 === STAGE 6 -->
+    <article id="post-6" class="post-card">
+      <h3>[6부 · Stage 6] 프런티어 추론 격차 돌파: 'Adaptive Thinking' 제어와 '139종 L3 순수 파이썬 기호 외골격(2-Pass 자율 계산)' 연동</h3>
       <div class="post-meta">
-        <span>진화 단계: Stage 6 &amp; 7 (신경-기호 외골격 &amp; 배포 위생 격리)</span> ·
-        <span>원문 마크다운: <a href="posts/09-adaptive-thinking-l3-exoskeleton-and-edition-hygiene.md">09-adaptive-thinking-l3-exoskeleton-and-edition-hygiene.md</a></span>
+        <span>진화 단계: <strong>STAGE 6 (신경-기호 추론 외골격)</strong></span> ·
+        <span>원문 마크다운: <a href="posts/06-stage6-adaptive-thinking-and-139-l3-exoskeleton.md">06-stage6-adaptive-thinking-and-139-l3-exoskeleton.md</a></span>
       </div>
       <blockquote>
-        <strong>최종 진화 요약:</strong> 로컬 <code>14B</code> 모델이 프런티어 추론 모델 대비 약한 '다단계 수리 계산'을 극복하기 위해, 질문 난이도별 <strong><code>Adaptive Thinking</code></strong> 제어와 <strong><code>139종 vault_stdlib.py</code> 순수 파이썬 함수 연동(1-Pass 변수 JSON 추출 → 파이썬 오차 0.0% 실행 → 2-Pass 해설 합성)</strong>을 완성했습니다. 아울러 타 PC 배포 시 개인 문서(<code>Layer-B</code>)를 물리적으로 100% 제거하는 <strong><code>Edition Isolation</code></strong>으로 엔지니어링 완결성을 확보했습니다.
+        <strong>발전 이유와 해법:</strong> 로컬 <code>14B</code> 모델이 프런티어 추론 모델 대비 약한 '다단계 수리·법령 계산'을 극복하기 위해, 질문 난이도별 <strong><code>Adaptive Thinking</code>(512~4,096 tok 예산 조절)</strong>과 <strong><code>139종 vault_stdlib.py</code> 순수 파이썬 함수 연동(1-Pass 변수 JSON 추출 → 파이썬 오차 0.0% 실행 → 2-Pass 해설 합성)</strong>을 완성했습니다.
       </blockquote>
       <pre><code># [2-Pass Neuro-Symbolic Exoskeleton]
 # Pass 1: 로컬 Qwen3-14B는 자연어 질문에서 @dataclass 스키마에 맞는 변수 JSON만 추출
 # Engine: :8081/api/l3-run 엔드포인트가 화이트리스트 검증된 139종 순수 파이썬 함수를 실행 (오차 0.0%)
-# Pass 2: 확정된 파이썬 반환값과 FTS5 법령 원문을 결합하여 최종 실무 리포트 생성
-
-# [Edition Isolation] 외부 배포 빌드 시 개인 레이어(Layer-B) 물리적 0% 유출 검증
-$ python sovereign_offline_drm_provisioner.py --export-dashboard dist.html --edition personal_client
-# -> Layer-A 보편 마스터 코어 + 25종 표준 입력 템플릿만 추출 (개인 문서·개인 시드 100% 제거 확인)</code></pre>
+# Pass 2: 확정된 파이썬 반환값과 FTS5 법령 원문을 결합하여 임의 숫자 변경 없이 실무 해설 합성</code></pre>
     </article>
 
+    <!-- POST 7 === STAGE 7 -->
+    <article id="post-7" class="post-card">
+      <h3>[7부 · Stage 7] 내 컴퓨터의 AI를 타 PC에 안전하게 이식하는 법: 'Edition Isolation(배포 위생 물리 분리)'과 25종 표준 입력 템플릿</h3>
+      <div class="post-meta">
+        <span>진화 단계: <strong>STAGE 7 (배포 위생 격리 완결)</strong></span> ·
+        <span>원문 마크다운: <a href="posts/07-stage7-edition-isolation-and-client-hygiene.md">07-stage7-edition-isolation-and-client-hygiene.md</a></span>
+      </div>
+      <blockquote>
+        <strong>발전 이유와 해법:</strong> 본인용 로컬 요새(<code>my_own</code>)에는 보편 지식(<code>Layer-A</code>)과 개인 문서·시드(<code>Layer-B</code>)가 공존합니다. 이를 다른 PC나 외부 환경에 설치할 때 개인 데이터가 단 1바이트도 섞이지 않도록, <strong>빌드 시점(<code>--edition personal_client / domain_client</code>)에 DB·대시보드·계산기 목록 전 계층에서 개인 자산을 물리적으로 100% 소거</strong>하고 누구나 빈칸만 채워 쓸 수 있는 <strong>25종 표준 마크다운 입력 템플릿</strong>을 자동 생성합니다.
+      </blockquote>
+      <pre><code># 클라이언트 에디션 빌드 및 개인 레이어(Layer-B) 0% 유출 물리 검증
+$ python sovereign_offline_drm_provisioner.py --export-dashboard dist.html --edition personal_client
+# -> Layer-A 보편 마스터 코어 + 보편 구어체 시드 40선 + 25종 표준 입력 템플릿만 추출
+# -> 개인 문서(LAYER_B_PERSONAL) 및 personal_only 시드 유출 0건 자동 검증 통과</code></pre>
+    </article>
+
+  </section>
+
+  <!-- SECTION 5: APPENDIX / SIDE-TRACK AGENT RESEARCH NOTES -->
+  <section id="appendix-research">
+    <h2>5. 별첨 연구 노트: 에이전트 하네스 &amp; 벤치마크 실험 (로컬 LLM 외전 2편)</h2>
+    <p class="section-lead">
+      위 로컬 LLM 본체의 1~7단계 직렬 진화와 별도로, 멀티에이전트 프롬프트 방어력 검증 및 세션 간 동시성 제어·수집 자동화를 위해 수행한 연구 기록입니다.
+    </p>
+
+    <div class="tabs">
+      <button class="appendix-btn active" onclick="showAppendix(1)">별첨 A: 250문항 3-Way 서브에이전트 토너먼트</button>
+      <button class="appendix-btn" onclick="showAppendix(2)">별첨 B: Dual-SSOT MVCC 원장 &amp; 4채널 병렬 스캐너</button>
+    </div>
+
+    <article id="appendix-1" class="appendix-card active">
+      <h3>[별첨 A] 단일 프롬프트의 한계를 넘는 '3-Way 서브에이전트 토너먼트': 250문항 AI 안전·편향 벤치마크 실증</h3>
+      <div class="post-meta">
+        <span>분류: Multi-Agent Tournament &amp; AI Safety Benchmark</span> ·
+        <span>원문 마크다운: <a href="posts/appendix-a-subagent-tournament-250-benchmark.md">appendix-a-subagent-tournament-250-benchmark.md</a></span>
+      </div>
+      <blockquote>
+        <strong>실험 요약:</strong> 250개 벤치마크 문항(<code>위험 거부 100</code> : <code>고정관념 교정 100</code> : <code>중립 요약 50</code>)에 대해 물리적으로 격리된 3개의 서브에이전트를 경쟁시켜, 1,533자 장문 프롬프트보다 <strong><code>[남↔여] 대칭 치환 불변량</code>과 <code>&lt;A, P, S&gt; 탈앵커링</code>을 결합한 816자 통합본으로 방어율 100%, 종합 점수 99.88/100점</strong>을 달성했습니다.
+      </blockquote>
+    </article>
+
+    <article id="appendix-2" class="appendix-card">
+      <h3>[별첨 B] 멀티세션 Split-Brain을 막는 `Dual-SSOT MVCC` 상태 원장과 멀티스레드 병렬 수집 오케스트레이터</h3>
+      <div class="post-meta">
+        <span>분류: Distributed State Management &amp; Python Concurrency</span> ·
+        <span>원문 마크다운: <a href="posts/appendix-b-dual-ssot-mvcc-and-parallel-radar.md">appendix-b-dual-ssot-mvcc-and-parallel-radar.md</a></span>
+      </div>
+      <blockquote>
+        <strong>실험 요약:</strong> SQLite MVCC 기반 <code>Dual-SSOT</code> 상태 원장(<code>L1 Hot</code> + <code>L2 Cold</code> + <code>Negative Knowledge</code>)으로 멀티세션 간 오답 재발을 원천 차단하고, <code>ThreadPoolExecutor</code>로 4개 수집 스캐너를 병렬화해 실행 시간을 <strong>98.2초 → 39.4초(2.49배 가속)</strong>로 단축했습니다.
+      </blockquote>
+    </article>
   </section>
 
 </main>
@@ -1019,7 +967,7 @@ $ python sovereign_offline_drm_provisioner.py --export-dashboard dist.html --edi
   <div class="container">
     <p>
       <strong>Sovereign Offline AI Fortress &amp; Deterministic Agent Engineering Portfolio</strong> ·
-      Built with Pure Python Standard Library, 458K SQLite FTS5/MVCC &amp; 13.9GB 4-Slot Local LLM Architecture ·
+      1:1 Stage-Aligned Local LLM Evolution (Stages 1–7) + Agent Engineering Appendix ·
       <a href="https://github.com/tejo1990/tejo1990.github.io" target="_blank">GitHub Repository</a>
     </p>
   </div>
@@ -1042,6 +990,17 @@ $ python sovereign_offline_drm_provisioner.py --export-dashboard dist.html --edi
     var section = document.getElementById('series-articles');
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function showAppendix(idx) {
+    var btns = document.querySelectorAll('.appendix-btn');
+    var cards = document.querySelectorAll('.appendix-card');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].classList.toggle('active', i === (idx - 1));
+    }
+    for (var j = 0; j < cards.length; j++) {
+      cards[j].classList.toggle('active', j === (idx - 1));
     }
   }
 </script>
