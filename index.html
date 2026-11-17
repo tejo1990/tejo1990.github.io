@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sovereign Offline AI Fortress v3.0 | 로컬 LLM 13단계 고도화 기록 (입문자·엔지니어 겸용)</title>
+  <title>Sovereign Offline AI Fortress v3.0 | 로컬 LLM 14단계 고도화 기록 (입문자·엔지니어 겸용)</title>
   <style>
     :root {
       --bg: #0b0f19;
@@ -671,35 +671,35 @@
   <div class="container">
     <div class="badge-row">
       <span class="badge green">Sovereign Offline AI Fortress v3.0</span>
-      <span class="badge purple">Stage 1~13 === 1부~13부 (1:1 직렬 진화 기록)</span>
+      <span class="badge purple">Stage 1~14 === 1부~14부 (1:1 직렬 진화 기록)</span>
       <span class="badge">Computer Science &amp; Engineering B.S. (KOREATECH)</span>
       <span class="badge">Engineer Information Processing (정보처리기사)</span>
       <span class="badge">HRD-Net NCS Approved Instructor (8 Categories)</span>
       <span class="badge">Linux Infra &amp; C# Industrial Control</span>
     </div>
 
-    <h1 class="mode-easy">보급형 그래픽카드 1장(<code>RTX 3060 12GB</code>)으로 '거짓말·계산 실수 없는 나만의 로컬 AI'를 만들기까지: 13단계 성장 기록</h1>
-    <h1 class="mode-expert">소비자용 GPU(<code>RTX 3060 12GB</code>) 로컬 LLM은 어디까지 진화할 수 있는가: 13단계 아키텍처 고도화 전 기록</h1>
+    <h1 class="mode-easy">보급형 그래픽카드 1장(<code>RTX 3060 12GB</code>)으로 '거짓말·계산 실수 없는 나만의 로컬 AI'를 만들기까지: 14단계 성장 기록</h1>
+    <h1 class="mode-expert">소비자용 GPU(<code>RTX 3060 12GB</code>) 로컬 LLM은 어디까지 진화할 수 있는가: 14단계 아키텍처 고도화 전 기록</h1>
 
     <p class="subtitle mode-easy">
-      인터넷 연결 없이 내 컴퓨터 안에서 돌아가는 AI를 만들려고 유명 프로그램(<code>Ollama</code> 등)만 설치해 보면, 곧바로 <strong>메모리 부족 멈춤, 틀린 돈·이자 암산, 없는 법 조문 지어내기, 20초씩 걸리는 답답한 대기 시간, 한글(<code>.hwp</code>)·파워포인트(<code>.pptx</code>) 표 판독 불가</strong>라는 벽에 부딪힙니다.
-      이 페이지는 처음 방문하신 분도 쉽게 따라오실 수 있도록 <strong>우리가 어떤 로컬 AI를 만들려 했고, 왜 기존 방식은 안 되었으며, 13단계에 걸쳐 어떻게 하나씩 해결했는지</strong> 차근차근 풀어쓴 기록입니다. <em>(상단 스위치로 언제든 엔지니어 원문·코드 모드로 전환할 수 있습니다.)</em>
+      인터넷 연결 없이 내 컴퓨터 안에서 돌아가는 AI를 만들려고 유명 프로그램(<code>Ollama</code> 등)만 설치해 보면, 곧바로 <strong>메모리 부족 멈춤, 틀린 돈·이자 암산, 없는 법 조문 지어내기, 20초씩 걸리는 답답한 대기 시간, 한글(<code>.hwp</code>)·제안서(<code>.pptx</code>)·견적서(<code>.xlsx</code>) 병합 표 판독 불가</strong>라는 벽에 부딪힙니다.
+      이 페이지는 처음 방문하신 분도 쉽게 따라오실 수 있도록 <strong>우리가 어떤 로컬 AI를 만들려 했고, 왜 기존 방식은 안 되었으며, 14단계에 걸쳐 어떻게 하나씩 해결했는지</strong> 차근차근 풀어쓴 기록입니다. <em>(상단 스위치로 언제든 엔지니어 원문·코드 모드로 전환할 수 있습니다.)</em>
     </p>
     <p class="subtitle mode-expert">
-      단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 첫 글자 20초 대기, 폐쇄망 한글(<code>.hwpx</code>/<code>.hwp</code>)·파워포인트(<code>.pptx</code> 병합 표) 파싱 장벽 앞에서 곧바로 무너집니다.
-      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 Zero-VRAM 추론·시맨틱 가속, 사후 역검증기, 50문항 골든 벤치마크, 순수 파이썬 한글·파워포인트 구조 보존 파서(Stage 12·13)까지 1:1로 대응하는 13편의 엔지니어링 리포트</strong>로 정리했습니다.
+      단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 첫 글자 20초 대기, 폐쇄망 실무 문서 3대장(한글 <code>.hwpx</code>/<code>.hwp</code> · 파워포인트 <code>.pptx</code> · 엑셀 <code>.xlsx</code> 병합 표·수식) 파싱 장벽 앞에서 곧바로 무너집니다.
+      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 Zero-VRAM 추론·시맨틱 가속, 사후 역검증기, 50문항 골든 벤치마크, 순수 파이썬 한글·파워포인트·엑셀 구조 보존 파서(Stage 12~14)까지 1:1로 대응하는 14편의 엔지니어링 리포트</strong>로 정리했습니다.
     </p>
 
     <!-- KPI Cards: Easy Mode -->
     <div class="kpi-grid mode-easy">
       <div class="kpi-card">
         <div class="kpi-label">인터넷 없이 찾는 내 PC 속 도서관</div>
-        <div class="kpi-val">458,278건+ · 추가 VRAM 0MB</div>
-        <div class="kpi-sub">백과사전·법령·공학규격·도면·한글(.hwp/.hwpx)·파워포인트(.pptx) 즉시 검색</div>
+        <div class="kpi-val">458,279건+ · 추가 VRAM 0MB</div>
+        <div class="kpi-sub">백과사전·법령·규격·도면·한글(.hwp/.hwpx)·PPT(.pptx)·엑셀(.xlsx) 즉시 검색</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">AI 암산 대신 직접 돌리는 파이썬 계산기</div>
-        <div class="kpi-val">계산 오차 0.0% (139종)</div>
+        <div class="kpi-val">계산 오차 0.0% (140종)</div>
         <div class="kpi-sub">이자·세금·보증금을 찍지 않고 공식 프로그램으로 계산 후 오타 재검문</div>
       </div>
       <div class="kpi-card">
@@ -717,9 +717,9 @@
     <!-- KPI Cards: Expert Mode -->
     <div class="kpi-grid mode-expert">
       <div class="kpi-card">
-        <div class="kpi-label">45.8만 건 FTS5 + BGE-M3 + HWP/PPTX</div>
-        <div class="kpi-val">458,278건+ · 0 MB</div>
-        <div class="kpi-sub">추가 VRAM 0 MiB 시맨틱(:8082) + 도면 OCR + 순수 파이썬 한글·PPTX 파서</div>
+        <div class="kpi-label">45.8만 건 FTS5 + BGE-M3 + HWP/PPTX/XLSX</div>
+        <div class="kpi-val">458,279건+ · 0 MB</div>
+        <div class="kpi-sub">추가 VRAM 0 MiB 시맨틱(:8082) + 도면 OCR + 순수 파이썬 실무 3대장 파서</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">다중 L3 외골격 &amp; 사후 역검증기</div>
@@ -816,10 +816,10 @@
           <div class="pipe-step" onclick="jumpToStageCard(4)">
             <div>
               <div class="pipe-badge">STEP 2 · 오픈북 도서관</div>
-              <div class="pipe-name">📚 45.8만 권 + 뜻 검색 + 한글·PPT</div>
-              <div class="pipe-desc">일상 말투·비유 질문은 물론 관공서 한글(<code>.hwp</code>·<code>.hwpx</code>)·제안서(<code>.pptx</code>)·도면 표까지 정확한 원문을 찾아옵니다.</div>
+              <div class="pipe-name">📚 45.8만 권 + 한글·PPT·엑셀</div>
+              <div class="pipe-desc">일상 말투·비유 질문은 물론 관공서 한글(<code>.hwp</code>·<code>.hwpx</code>)·제안서(<code>.pptx</code>)·견적서(<code>.xlsx</code>) 표까지 정확히 찾아옵니다.</div>
             </div>
-            <div class="pipe-link">→ Stage 4 · 5 · 9 · 12 · 13 보기</div>
+            <div class="pipe-link">→ Stage 4 · 5 · 9 · 12 ~ 14 보기</div>
           </div>
 
           <div class="pipe-step" onclick="jumpToStageCard(6)">
@@ -867,16 +867,17 @@
           <div class="glossary-item"><strong>사후 역검증기 &amp; ZERO_DIGIT_SHIFT_10X</strong>AI가 마지막에 9억(900,000,000)을 90,000,000으로 적는 '0 누락 실수'나 없는 조문 번호를 잡아내어 자동으로 다시 쓰게 하는 빨간펜 검사기입니다.</div>
           <div class="glossary-item"><strong>OWPML(.hwpx) &amp; MS-CFB(.hwp v5.0) 순수 파이썬 파서</strong>한컴 오피스나 외부 패키지 설치 없이 파이썬 기본 내장 기능만으로 신형·구형 아래아한글 문서와 내장 단가표를 0.01~0.03초 만에 읽어내는 자체 해독기입니다.</div>
           <div class="glossary-item"><strong>OOXML(.pptx) 병합 표(gridSpan/vMerge) &amp; 발표자 노트 파서</strong>파워포인트 없이 슬라이드 실제 발표 순서, 가로·세로 병합 단가표(열 밀림 왜곡 0건), 숨겨진 발표자 노트·SmartArt까지 0.02초 만에 복원해 숫자·품목 경보기와 연결하는 해독기입니다.</div>
+          <div class="glossary-item"><strong>SpreadsheetML(.xlsx) 병합 시트(mergeCells) &amp; 안전 AST 수식 파서</strong>openpyxl·엑셀 없이 다중 시트 순서, 2단 복합 머리글, 세로 병합 분류, 수식 결과값(&lt;v&gt; 및 eval 없는 순수 ast 계산 폴백)·퍼센트·날짜를 0.03초 만에 복원해 품목코드 행 바꿔치기까지 잡아내는 해독기입니다.</div>
         </div>
       </details>
     </div>
   </section>
 
-  <!-- SECTION 1: 13-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..13) -->
+  <!-- SECTION 1: 14-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..14) -->
   <section id="evolution-timeline">
-    <h2>1. 로컬 LLM 13단계 고도화 타임라인 (`STAGE 1 ~ 13` ↔ 본문 `1부 ~ 13부` 1:1 대응)</h2>
+    <h2>1. 로컬 LLM 14단계 고도화 타임라인 (`STAGE 1 ~ 14` ↔ 본문 `1부 ~ 14부` 1:1 대응)</h2>
     <p class="section-lead mode-easy">
-      처음 기초를 잡은 <strong>1단계</strong>부터 50문제 만점과 한글(<code>.hwp</code>·<code>.hwpx</code>)·파워포인트(<code>.pptx</code> 병합 표·노트) 직결 색인을 완성한 <strong>13단계</strong>까지 순서대로 이어집니다. 어떤 불편함 때문에 다음 단계를 만들었는지 읽어보시고, 궁금한 단계는 우측 <strong>[본문 보기 →]</strong> 버튼을 눌러 자세히 살펴보세요.
+      처음 기초를 잡은 <strong>1단계</strong>부터 50문제 만점과 한국 실무 문서 3대장 — 한글(<code>.hwp</code>·<code>.hwpx</code>)·파워포인트(<code>.pptx</code>)·엑셀(<code>.xlsx</code> 병합 시트·수식) 직결 색인을 완성한 <strong>14단계</strong>까지 순서대로 이어집니다. 어떤 불편함 때문에 다음 단계를 만들었는지 읽어보시고, 궁금한 단계는 우측 <strong>[본문 보기 →]</strong> 버튼을 눌러 자세히 살펴보세요.
     </p>
     <p class="section-lead mode-expert">
       각 진화 단계(`STAGE k`)는 하단 본문(`k부`)과 번호·순서가 정확히 1:1로 일치합니다. 우측 버튼을 클릭하면 해당 단계의 설계 원리와 실행 가능한 순수 파이썬 검증 코드로 바로 이동합니다.
@@ -1376,7 +1377,7 @@
       </div>
 
       <!-- STAGE 13 -> POST 13 -->
-      <div id="stage-card-13" class="stage-card latest">
+      <div id="stage-card-13" class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
@@ -1412,6 +1413,47 @@
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
             <code>10슬라이드</code> 파싱 <strong>23.44ms</strong> · 순서 역전·중복 <code>0건</code> · <code>NUMERIC_VALUE_CONTRADICTION</code> &amp; <code>ENTITY_ATTRIBUTE_ROW_SWAP</code> <strong>14/14 테스트 PASS</strong>.
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 14 -> POST 14 -->
+      <div id="stage-card-14" class="stage-card latest">
+        <div class="stage-dot"></div>
+        <div class="stage-head">
+          <div class="stage-title-wrap">
+            <span class="stage-num">STAGE 14 === 14부</span>
+            <span class="stage-title mode-easy">엑셀 프로그램·외부 라이브러리 없이도 견적서·내역서(<code>.xlsx</code>)의 '2단 합쳐진 머리글·세로 분류·수식 결과값'을 0.03초 만에 읽는 해독기</span>
+            <span class="stage-title mode-expert">외부 패키지 0개 '순수 파이썬 <code>.xlsx</code> SpreadsheetML 다중 시트·병합 셀(<code>mergeCells</code>)·수식(<code>&lt;v&gt;</code> + <code>ast</code> 폴백) 파서 &amp; 품목코드 행 교차 방어'</span>
+          </div>
+          <button class="stage-jump-btn" onclick="jumpToPost(14)">14부 본문 보기 →</button>
+        </div>
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            건설·제조·IT 견적서와 원가내역서는 대부분 <strong>엑셀(<code>.xlsx</code>)</strong>로 오는데, 맨 윗줄 합쳐진 제목 때문에 열 이름이 다 깨지거나 세로로 묶인 품목 분류가 빈칸이 되고, 수식(<code>=SUM(...)</code>)·퍼센트·날짜가 이상한 숫자로 읽혔습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            <code>openpyxl</code>·<code>pandas</code> 없이 파이썬 기본 내장 기능만으로 <strong>여러 시트 순서·2단 병합 머리글·세로 병합 분류·수식 계산값까지 복원하는 <span class="term-tip" tabindex="0" data-term="xlsx_spreadsheetml">순수 파이썬 엑셀(.xlsx) 해독기</span></strong>를 완성해 한글·PPT·엑셀 실무 3대장을 정복했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            <code>10개 시트</code> 견적서 <strong>0.031초</strong> 해독 · 한글 품목명뿐 아니라 영문 품목코드(<code>XLSX-INV-400</code>)로 물어도 옆 행 가격 바꿔치기 함정 <strong>100% 적발</strong>!
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
+            단순 셀 순회 시 <code>&lt;rPh&gt;</code> 후리가나 오염, <code>sheet10</code> 순서 역전, 전폭 제목 배너의 헤더 덮어쓰기, 세로 병합 분류 누락, 캐시 <code>&lt;v&gt;</code> 미저장 수식 공란 문제가 발생했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
+            표준 라이브러리만으로 <code>&lt;rPh&gt;</code> 제거, <code>workbook.xml.rels</code> 탭 순서 복원, <span class="term-tip" tabindex="0" data-term="xlsx_spreadsheetml">mergeCells 배너 분리·2단 복합 헤더·순수 ast 수식 폴백</span>, <code>styles.xml</code> 퍼센트·날짜 변환기를 구현했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
+            <code>10시트×15행</code> 파싱 <strong>31.51ms</strong> · <code>eval()</code> <code>0회</code> · 전체 단위·E2E 테스트 <strong>29/29 OK</strong> &amp; 골든 벤치마크 <strong>50/50(100%)</strong> 유지.
           </div>
         </div>
       </div>
@@ -1523,9 +1565,9 @@
     </div>
   </section>
 
-  <!-- SECTION 4: 13-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..13) -->
+  <!-- SECTION 4: 14-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..14) -->
   <section id="series-articles">
-    <h2>4. 로컬 LLM 고도화 본편 13부작 상세 보기 (`STAGE 1 ~ 13` === `1부 ~ 13부` 1:1 직렬 구성)</h2>
+    <h2>4. 로컬 LLM 고도화 본편 14부작 상세 보기 (`STAGE 1 ~ 14` === `1부 ~ 14부` 1:1 직렬 구성)</h2>
     <p class="section-lead mode-easy">
       아래 탭을 누르면 각 단계를 <strong>초보자 눈높이 비유 해설</strong>로 편하게 읽을 수 있습니다. 각 글 아래의 <em>[💻 엔지니어 원문 &amp; 파이썬 코드 펼쳐보기]</em>를 누르거나 상단 스위치를 바꾸면 실제 코드도 바로 확인됩니다.
     </p>
@@ -1543,6 +1585,7 @@
       <button class="tab-btn" onclick="showPost(11)">11부 (Stage 11): 50문항 100점 성적표</button>
       <button class="tab-btn" onclick="showPost(12)">12부 (Stage 12): 한글(.hwp/.hwpx) 직결 색인</button>
       <button class="tab-btn" onclick="showPost(13)">13부 (Stage 13): PPTX 슬라이드·병합표·노트</button>
+      <button class="tab-btn" onclick="showPost(14)">14부 (Stage 14): 엑셀(.xlsx) 병합시트·수식</button>
     </div>
 
     <!-- POST 1 === STAGE 1 -->
@@ -2128,13 +2171,80 @@ for r_i, row in enumerate(raw_rows):
       </details>
     </article>
 
+    <!-- POST 14 === STAGE 14 -->
+    <article id="post-14" class="post-card">
+      <h3>[14부 · Stage 14] <code>openpyxl</code>·<code>pandas</code> 없이 엑셀 견적서·내역서(<code>.xlsx</code>) 다중 시트·병합 셀·수식 값을 0.03초 만에 뚫다: 순수 파이썬 SpreadsheetML 파서와 품목코드 행 교차 방어</h3>
+      <div class="post-meta">
+        <span>진화 단계: <strong>STAGE 14 (실무 문서 3대장 <code>.hwpx/.hwp</code> · <code>.pptx</code> · <code>.xlsx</code> 무의존성 오프라인 완전 정복)</strong></span> ·
+        <span>전체 마크다운 리포트: <a href="posts/14-stage14-pure-python-xlsx-sheets-merges-formulas-indexer.md">14-stage14-pure-python-xlsx-sheets-merges-formulas-indexer.md</a></span>
+      </div>
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 14 — 엑셀 <code>.xlsx</code> 견적서 속 '2단 합쳐진 머리글·세로 병합 분류·수식 결과값'까지 0.03초 만에 읽다)</span>
+        <ul>
+          <li><strong>어떤 문제가 있었나요?</strong> 회사에서 주고받는 견적서, 원가산출내역서, 부품 단가표는 거의 다 <strong>엑셀(<code>.xlsx</code>)</strong> 파일입니다. 그런데 인터넷이 끊긴 PC에서 <code>openpyxl</code> 같은 외부 도구 없이 엑셀 파일을 단순하게 읽으면 4가지 함정에 빠집니다: ① 맨 첫 줄에 합쳐진 큰 제목(<em>"2026년 변전설비 견적서"</em>)을 열 이름으로 착각해 표 전체 열 이름이 <code>열2, 열3</code>으로 깨지고, ② 세로로 묶어둔 설비 분류 칸이 아랫줄에서 빈칸으로 증발하며, ③ 수식 칸(<code>=수량×단가</code>, <code>=SUM(...)</code>)이나 퍼센트(<code>0.155</code>)·날짜 일련번호(<code>46343</code>)가 이상한 숫자로 읽히고, ④ 숨어 있는 일본어/한자 발음 기호(후리가나)가 품목 이름에 달라붙었습니다.</li>
+          <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> 외부 패키지 설치 <strong>0개</strong>, 파이썬 기본 내장 기능만으로 <span class="term-tip" tabindex="0" data-term="xlsx_spreadsheetml">순수 파이썬 엑셀(.xlsx) 병합 시트·수식 해독기</span>를 완성했습니다! 합쳐진 큰 제목은 <code>[시트개요]</code>로 깔끔히 떼어내고, 2줄짜리 머리글(<code>품목식별(품목코드)</code>)과 세로로 묶인 분류를 모든 행에 복원하며, 저장된 결과값이 없는 수식도 안전한 파이썬 산술 계산기로 직접 구해 줍니다. 덕분에 한글 품목명은 물론 <strong>영문 품목코드(<code>XLSX-INV-400</code>)</strong>로 물어봐도 옆 행 장비 가격과 섞인 거짓 질문을 즉시 잡아냅니다!</li>
+        </ul>
+      </div>
+      <div class="table-wrap" style="margin:16px 0;">
+        <table>
+          <thead>
+            <tr>
+              <th>엑셀 견적서 요소</th>
+              <th>단순 셀 읽기 시 터지는 문제</th>
+              <th>순수 파이썬(<code>Stdlib</code>) 해결 방식</th>
+              <th>실측 속도 및 무결성</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>다중 시트 &amp; 공유 문자열</strong></td>
+              <td><code>sheet10</code>이 <code>sheet2</code>보다 먼저 읽히고 후리가나(<code>&lt;rPh&gt;</code>)가 품목명에 섞임</td>
+              <td><code>workbook.xml.rels</code> 실제 탭 순서 복원(<code>veryHidden</code> 격리) + <code>&lt;rPh&gt;</code> 원천 제거</td>
+              <td class="col-good"><code>10개 시트</code> <strong>31.51 ms</strong> 해독 · 오염·역전 <strong>0건</strong></td>
+            </tr>
+            <tr>
+              <td><strong>병합 셀 (<code>mergeCells</code>)</strong></td>
+              <td>전폭 제목이 컬럼명을 덮어쓰고 세로 병합 분류가 하위 행에서 빈칸으로 누락</td>
+              <td>전폭 배너(<code>[시트개요]</code>) 분리 + 2단 복합 헤더 합성 + 세로·가로 병합 값 자동 전파</td>
+              <td class="col-good">품목명·<strong>품목코드(<code>XLSX-INV-400</code>)</strong> 양방향 <code>ROW_SWAP</code> 적발</td>
+            </tr>
+            <tr>
+              <td><strong>수식(<code>&lt;f&gt;/&lt;v&gt;</code>) &amp; 서식</strong></td>
+              <td><code>&lt;v&gt;</code> 생략 수식 공란, <code>0.155</code>·<code>46343</code> 원시 노출, 암호 파일 크래시</td>
+              <td>캐시 정제 + <code>eval()</code> 없는 순수 <code>ast</code> 수식 폴백 + <code>15.5%</code>·날짜 변환 + 암호 가드</td>
+              <td class="col-good">전체 테스트 <strong>29/29 OK</strong> · 벤치마크 <strong>50/50(100%)</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <details class="expert-code-fold">
+        <summary>💻 엔지니어 원문 요약 &amp; XLSX 병합 시트(전폭 배너 분리 · 2단 복합 헤더 · 세로 분류 전파) 코드 펼쳐보기</summary>
+        <blockquote>
+          <strong>발전 이유와 해법:</strong> 폐쇄망에서 <code>openpyxl</code>·<code>pandas</code> 없이 <code>ECMA-376 SpreadsheetML(.xlsx)</code> 견적서·내역서를 색인하기 위해, 표준 라이브러리(<code>zipfile</code>, <code>ET</code>, <code>posixpath</code>, <code>ast</code>, <code>datetime</code>)만으로 <code>sharedStrings.xml</code> <code>&lt;rPh&gt;</code> 스트리퍼, <code>workbook.xml.rels</code> 탭 순서 해석기, <code>mergeCells</code> 배너 분리 및 2단 복합 헤더 직렬화기, 무(無)-<code>eval()</code> 순수 <code>ast</code> 수식 폴백(<code>SUM</code>/<code>AVERAGE</code>/<code>MIN</code>/<code>MAX</code>/<code>ROUND</code>/<code>+-*/</code>), <code>styles.xml</code> 퍼센트·날짜 변환기를 구현했습니다.
+        </blockquote>
+        <pre><code># XLSX &lt;mergeCells&gt;: 전폭 제목 배너([시트개요]) 분리 vs 세로·가로 구조 병합 전파
+for r1, c1, r2, c2 in merge_ranges:
+    anchor = grid[r1][c1]
+    if not anchor:
+        continue
+    outside = any(grid[r1][k] for k in range(n_cols) if k &lt; c1 or k &gt; c2)
+    if r1 == r2 and (c2 - c1 + 1) &gt;= max(3, n_cols - 1) and not outside:
+        banner_rows.add(r1)  # 전폭 제목 배너가 컬럼 헤더를 덮어쓰지 않도록 분리
+        continue
+    for rr in range(r1, min(r2 + 1, n_rows)):
+        for cc in range(c1, min(c2 + 1, n_cols)):
+            if not grid[rr][cc]:
+                grid[rr][cc] = anchor</code></pre>
+      </details>
+    </article>
+
   </section>
 
   <!-- SECTION 5: APPENDIX / SIDE-TRACK AGENT RESEARCH NOTES -->
   <section id="appendix-research">
     <h2>5. 별첨 연구 노트: 에이전트 하네스 &amp; 벤치마크 실험 (로컬 LLM 외전 2편)</h2>
     <p class="section-lead">
-      위 로컬 LLM 본체의 1~13단계 직렬 진화와 별도로, 여러 AI를 경쟁시켜 프롬프트 방어력을 높이거나 작업 기억이 섞이지 않게 관리하기 위해 수행한 연구 기록입니다.
+      위 로컬 LLM 본체의 1~14단계 직렬 진화와 별도로, 여러 AI를 경쟁시켜 프롬프트 방어력을 높이거나 작업 기억이 섞이지 않게 관리하기 위해 수행한 연구 기록입니다.
     </p>
 
     <div class="tabs">
@@ -2274,6 +2384,10 @@ for r_i, row in enumerate(raw_rows):
     pptx_ooxml: {
       title: "순수 파이썬 파워포인트(.pptx OOXML) 병합 표·노트 해독기",
       desc: "MS 파워포인트나 python-pptx 설치 없이 파이썬 기본 내장 기능(zipfile, ET)만으로 실제 슬라이드 발표 순서, 가로·세로 병합 단가표(열 밀림 왜곡 0건), 숨겨진 발표자 노트·SmartArt까지 0.023초 만에 복원해 숫자·품목 경보기와 연결하는 파서입니다."
+    },
+    xlsx_spreadsheetml: {
+      title: "순수 파이썬 엑셀(.xlsx SpreadsheetML) 병합 시트·수식 해독기",
+      desc: "openpyxl이나 엑셀 프로그램 설치 없이 파이썬 기본 내장 기능(zipfile, ET, ast)만으로 다중 시트 순서, 전폭 배너 분리, 2단 복합 머리글, 세로 병합 분류, 수식 결과값(<v> 및 안전한 ast 계산 폴백)·퍼센트·날짜까지 0.031초 만에 복원해 품목코드 행 바꿔치기까지 잡아내는 파서입니다."
     }
   };
 
