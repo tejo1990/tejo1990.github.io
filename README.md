@@ -1,15 +1,72 @@
-# 🛡️ Sovereign Offline AI Fortress v3.0 (`tejo1990.github.io`)
+# 🛡️ Engineering Portfolio & Sovereign AI Architecture Hub (`tejo1990`)
 
-> **🌱 처음 방문하신 분을 위한 1분 요약: 우리는 어떤 로컬 LLM을 만들고 있나요?**
-> - **목표**: 인터넷 연결 없이 일반 보급형 그래픽카드 1장(`RTX 3060 12GB`)이 달린 내 PC 안에서 돌아가면서, 내 문서·법령·수식 계산에서 **거짓말 0% · 계산 오차 0% · 외부 유출 0%**를 달성하는 실무용 로컬 AI입니다.
-> - **왜 그냥 유명한 `Ollama`만 설치하면 안 될까요?**: 내 PC에 들어가는 작은 AI 모델(`14B`) 혼자서는 ① 이자·세금 암산을 틀리고, ② 모르는 법 조문을 지어내며(환각), ③ 그래픽카드 12GB 메모리가 넘쳐 멈추거나 첫 글자가 뜨는 데 20초씩 걸리기 때문입니다.
-> - **우리의 해법**: 작은 두뇌 혼자 모든 걸 외우고 암산하게 두는 대신, 옆에 **① 오해 교정문 + ② 45.8만 권 초고속 도서관(한글 `.hwp`/`.hwpx` 직결) + ③ 139개 파이썬 전자계산기 + ④ 0.04초 즉시 타자기 & 잠금장치 + ⑤ 마지막 줄 숫자·조문 검문소**를 하나씩 조립해 붙인 **12단계 진화 기록**입니다.
+[![Live Portfolio](https://img.shields.io/badge/Live%20Site-tejo1990.github.io-2563EB?logo=githubpages&logoColor=white)](https://tejo1990.github.io)
+[![Focus](https://img.shields.io/badge/Engineering-Deterministic%20Systems%20%7C%20Embedded%20%26%20SDV%20%7C%20Real--Time%20AI-0F766E)](#2-what--대표-플래그십-프로젝트-인덱스-flagship-projects)
+[![Languages](https://img.shields.io/badge/Stack-Rust%20%7C%20Python%20%7C%20Kotlin%20%7C%20C%23%20%7C%20C%2B%2B%20%7C%20TypeScript-334155)](#4-카테고리별-전체-공개-저장소-맵)
 
-🌐 **인터랙티브 웹사이트 바로가기 (`🌱 쉽게 읽기` ↔ `⚙️ 엔지니어 원문` 전환 지원)**: **[https://tejo1990.github.io](https://tejo1990.github.io)**
+> **하드웨어 센서 버스(RS485 Modbus RTU · 차량용 SDV 텔레메트리)부터 물리 법칙 제약 신경망(PINN), 온디바이스 결정론적 LLM 아키텍처, MVCC 에이전트 상태 원장까지 — 확률적 환각과 런타임 비결정성을 시스템 엔지니어링으로 제어하는 통합 기술 포트폴리오 허브입니다.**
+
+🌐 **인터랙티브 아키텍처 포트폴리오 바로가기 (`🌱 쉽게 읽기` ↔ `⚙️ 엔지니어 원문` 전환 지원)**: **[https://tejo1990.github.io](https://tejo1990.github.io)**
 
 ---
 
-## 🧭 로컬 LLM 고도화 본편 12부작 (`Stage 1 ~ Stage 12` 1:1 직렬 매칭)
+## 1. Why — 엔지니어링 철학 및 해결하려는 핵심 문제
+
+실제 물리 현장(미세기상 관측소, 주행 중인 차량, 폐쇄망 업무 PC, 멀티클라이언트 소켓 서버)에서는 클라우드 API 의존성이나 확률적 AI 모델의 암산·환각·비결정적 지연이 곧바로 안전 및 데이터 무결성 장애로 이어집니다.
+
+본 포트폴리오의 프로젝트들은 공통된 **3대 결정론적 시스템 설계 원칙(Deterministic Engineering Principles)** 위에 구축되었습니다.
+
+1. **하드웨어·프로토콜 계층의 결정론 확보**: RS485 반이중(Half-Duplex) 멀티드롭 슬레이브 충돌 해결 및 CRC-16 검증, SDV 10Hz 텔레메트리 디바운싱(`<1% CPU`), TCP 패킷 프레이밍(`NDJSON` / `<EOP>`)과 워치독으로 유실·경합 없는 수집 파이프라인을 구축합니다.
+2. **물리 법칙 및 순수 수리 검증기 결합 (`Physics & AST Guardrails`)**: 순수 데이터 기반 블랙박스 추론의 외삽 오류를 막기 위해 운동량 보존·단열 감률·Monin-Obukhov 상사 이론을 손실함수에 결합한 **PINN**과 **139종 순수 Python 표준 라이브러리 계산 외골격**으로 오차를 통제합니다.
+3. **내결함성 로컬 퍼스트 저장소 (`SQLite WAL & MVCC`)**: 전원 급차단(Ignition-Off) 및 병렬 세션 동시 쓰기 환경에서도 데이터 손상과 Split-Brain이 발생하지 않도록 SQLite WAL, 7자리 GeoHash 공간 색인, MVCC 3-Tier 스냅샷 원장을 적용합니다.
+
+---
+
+## 2. What — 대표 플래그십 프로젝트 인덱스 (Flagship Projects)
+
+| 프로젝트 저장소 | 도메인 & 핵심 스택 | 해결 문제 및 엔지니어링 핵심 요약 |
+| :--- | :--- | :--- |
+| **[`edge-pinn-weather-station`](https://github.com/tejo1990/edge-pinn-weather-station)** | **Embedded Telemetry & Real-Time Physics AI**<br/>`ESP32-S3` · `RS485 Modbus RTU` · `PyTorch PINN` · `Vertex AI` · `Cloud Run` | 5km 종관 기상 격자가 놓치는 국지 푄(Foehn)·복사냉각·돌풍을 포착하기 위해 3종 산업용 RS485 센서 멀티드롭 버스와 대기물리 지배방정식(PGF·MOST·PBL·Foehn) 기반 실시간 PINN 나우캐스팅 및 Dual-Mode 관제 대시보드 구현 |
+| **[`pleos-voicepin`](https://github.com/tejo1990/pleos-voicepin)** | **SDV In-Vehicle Safety & Actuation**<br/>`Kotlin 17` · `Android API 34` · `Hyundai Pleos SDK 5종` · `SQLite WAL` · `GeoHash-7` | 현대차그룹 Pleos 공모전 출품작. 조향각·제동·ESC 경고등 물리 거동으로 화면 터치 없이 5초 보이스 핀 및 무터치 SOS를 발송하고, 전방 추돌·연기 구간 진입 전 1-Tap IC 우회 및 창문(0%)·내기순환 역제어 수행 |
+| **[`Sovereign Offline AI Fortress v3.0`](https://tejo1990.github.io)** *(본 저장소)* | **On-Device LLM Systems Engineering**<br/>`RTX 3060 12GB` · `SQLite FTS5` · `BGE-M3` · `Pure Python AST/HWP` | 단일 보급형 GPU(12GB VRAM) 폐쇄망 환경에서 4-슬롯 VRAM 격리, 45.8만 건 FTS5 카트리지, 순수 파이썬 `.hwp`/`.hwpx` 파서, N-gram 투기적 디코딩(`TTFT 0.037s`), 사후 숫자·조문 역검증기로 골든 벤치마크 `50/50(100%)` 달성 |
+| **[`agent-dual-SSOT`](https://github.com/tejo1990/agent-dual-SSOT)** | **Deterministic Agent Memory & MCP**<br/>`Python 3.10+` · `MCP (<500 tok)` · `SQLite WAL MVCC` · `Pydantic v2` | 멀티세션 Split-Brain과 컨텍스트 부패를 막는 MVCC 3-Tier 원장. `SHY × PF-IB` 5변수 라그랑주 점수 기반 L1(`100줄/1,500토큰`) 자동 컴파일러, 리프 파일 충돌 탐지(`Strategy 3C`), `tx_id` 원자적 롤백 지원 |
+| **[`rust-ai-rules-template`](https://github.com/tejo1990/rust-ai-rules-template)** | **Rust Embedded/Systems DevOps & MCP**<br/>`Rust` · `no_std / Embassy / RTIC` · `Axum` · `Docker MCP` · `GitHub Actions` | `embedded`·`systems-cli`·`web-axum` 도메인별 메모리/비동기 불변식, 파일 소유권이 분리된 AI-TDD 멀티에이전트 규율, 화이트리스트 Cargo 샌드박스 MCP 서버(`:3008`), 주간 Rust 생태계 자동 PR 파이프라인 |
+| **[`naver-news-cleaner-pro`](https://github.com/tejo1990/naver-news-cleaner-pro)** | **Rust/WebAssembly Browser Systems**<br/>`Rust (aho-corasick)` · `wasm-bindgen` · `Chrome MV3` · `Gemini 2.5 Proxy` | 다중 키워드·언론사·감성 어휘를 단일 패스 $O(N)$ `Aho-Corasick` WASM 오토마타와 MV3 CSP-Safe 선형 메모리 로더로 실시간 차단하고, 서버리스 프록시 기반 기사 객관성·편향성 분석 모달 제공 |
+
+---
+
+## 3. How — 포트폴리오 아키텍처 맵 & 로컬 LLM 고도화 12부작
+
+### 3.1 엔지니어링 도메인 연결 아키텍처
+
+```mermaid
+flowchart TB
+    subgraph Physical_Edge["1. Physical Edge, Embedded & SDV Telemetry"]
+        W_HW["edge-pinn-weather-station<br/>ESP32-S3 + RS485 Modbus RTU Multi-Drop<br/>(CRC-16 · 30s Deterministic Polling)"]
+        SDV["pleos-voicepin<br/>Pleos Vehicle SDK 10Hz Bridge<br/>(Kinematic Trigger · Window/HVAC Actuation)"]
+    end
+
+    subgraph Deterministic_Core["2. Physics-Constrained & Systems Core (Rust / C# / Python)"]
+        PINN["Physics-Informed Neural Network<br/>(Momentum · PGF · MOST · PBL · Foehn)"]
+        RUST_SYS["Rust Systems & WASM Stack<br/>• rust-ai-rules-template (no_std/Embassy/CLI)<br/>• naver-news-cleaner-pro (Aho-Corasick WASM)<br/>• rustylibrary (Zero-Dep Rust 2024)"]
+        TCP_NET["Deterministic TCP Socket Suite<br/>RunServer (.NET 8 :7775) · servermanager · SocketClient"]
+    end
+
+    subgraph Sovereign_AI["3. Sovereign On-Device AI & MVCC Agent Ledger"]
+        FORT["Sovereign Offline AI Fortress v3.0<br/>(12GB VRAM 4-Slot · 458K FTS5 · 139 L3 Calculators<br/>TTFT 0.037s · Post-Generation Verifier)"]
+        SSOT["agent-dual-SSOT MCP Server<br/>(SQLite WAL MVCC · SHY x PF-IB L1 Compiler<br/>Strategy 3C Leaf-File Conflict Gate)"]
+    end
+
+    W_HW --> PINN
+    SDV --> Deterministic_Core
+    RUST_SYS --> Sovereign_AI
+    TCP_NET --> Deterministic_Core
+    FORT <--> SSOT
+```
+
+### 3.2 로컬 LLM 고도화 본편 12부작 (`Sovereign Offline AI Fortress v3.0`)
+
+> **1분 요약**: 인터넷 연결 없이 일반 보급형 그래픽카드 1장(`RTX 3060 12GB`)이 장착된 로컬 PC 안에서 **거짓말 0% · 수식 계산 오차 0% · 외부 유출 0%**를 달성하기 위해 `Stage 1`부터 `Stage 12`까지 실제 병목을 하나씩 격파하며 구축한 엔지니어링 기록입니다.
 
 | 단계 | 포스트 (1:1 대응) | 마주친 현실 병목 (발전 이유) | 핵심 엔지니어링 해법 및 정량 성과 |
 | :---: | :--- | :--- | :--- |
@@ -26,9 +83,56 @@
 | **Stage 11** | **[11부: 50문항 5대 축 오프라인 골든 벤치마크 구축 및 종합 성적표](posts/11-stage11-golden-50-benchmark-and-v3-architecture.md)** | 주관적 체감 평가 배제 및 회귀 버그 자동 검출 필요성 | `50문항` 자동 채점 하네스 · **`35/50(70.0%) → 50/50(100.0%)` (`+30.0%p` 실증)** |
 | **Stage 12** | **[12부: 순수 파이썬 한글(`.hwpx`·`.hwp` v5.0) 파서 및 내장 표 FTS5 색인기](posts/12-stage12-pure-python-hwp-hwpx-fts5-indexer.md)** | 폐쇄망에서 외부 패키지·한컴 없이 한글 공문서·단가표 해독 불가 | 표준 라이브러리 100% `OWPML`·`MS-CFB` 파서 · **`.hwpx 30.1ms` / `.hwp 9.6ms` 표 직결** |
 
----
-
-## 📎 별첨 연구 노트: 에이전트 하네스 & 벤치마크 실험 (외전 2편)
-
+#### 📎 별첨 연구 노트 (외전 2편)
 * **[별첨 A: 단일 프롬프트의 한계를 넘는 '3-Way 서브에이전트 토너먼트' — 250문항 안전·편향 벤치마크 실증](posts/appendix-a-subagent-tournament-250-benchmark.md)**
 * **[별첨 B: 멀티세션 Split-Brain을 막는 `Dual-SSOT MVCC` 상태 원장과 `ThreadPoolExecutor` 병렬 수집기](posts/appendix-b-dual-ssot-mvcc-and-parallel-radar.md)**
+
+---
+
+## 4. 카테고리별 전체 공개 저장소 맵
+
+### A. Embedded · SDV · Real-Time Physics AI
+- [`edge-pinn-weather-station`](https://github.com/tejo1990/edge-pinn-weather-station) — ESP32-S3 + RS485 Modbus RTU 3종 센서 멀티드롭 텔레메트리 & 대기물리 제약 PINN 실시간 기상 예측 시스템
+- [`pleos-voicepin`](https://github.com/tejo1990/pleos-voicepin) — 현대자동차그룹 Pleos Connect SDV 물리 거동 기반 5초 보이스 핀 & 1-Tap 캐빈 실드
+
+### B. Rust Systems · WebAssembly · Agent Infrastructure
+- [`agent-dual-SSOT`](https://github.com/tejo1990/agent-dual-SSOT) — SQLite WAL MVCC 세션 격리 및 `SHY × PF-IB` 라그랑주 L1 컨텍스트 컴파일러 MCP 서버
+- [`rust-ai-rules-template`](https://github.com/tejo1990/rust-ai-rules-template) — `embedded` / `systems-cli` / `web-axum` Rust 도메인 규칙, AI-TDD 서브에이전트 & Docker/Cargo MCP 스택
+- [`naver-news-cleaner-pro`](https://github.com/tejo1990/naver-news-cleaner-pro) — Rust `aho-corasick` WebAssembly 엔진 & Gemini AI 프록시 기반 네이버 뉴스 필터링 확장 프로그램
+- [`rustylibrary`](https://github.com/tejo1990/rustylibrary) — 외부 의존성 Zero 순수 Rust(Edition 2024) 대수적 상태 모델링 & CSV 영속화 라이브러리
+- [`NewRustean`](https://github.com/tejo1990/NewRustean) — Rust 시스템 프로그래밍 소유권·수명·메모리 모델 레퍼런스 아카이브
+
+### C. TCP Socket Networking & Server Daemon Suite
+- [`RunServer`](https://github.com/tejo1990/RunServer) — C# .NET 8 비동기 멀티클라이언트 TCP 소켓(`:7775`, NDJSON 프레이밍) & MySQL 세션 서버
+- [`RunServer_DB_socketAPI`](https://github.com/tejo1990/RunServer_DB_socketAPI) — C# TCP-MySQL 소켓 브릿지 및 `<EOP>` 패킷 프레이밍 클라이언트 모듈
+- [`servermanager`](https://github.com/tejo1990/servermanager) — 2000ms 주기 TCP 헬스 워치독 및 `<EOP>` 패킷 매니저 데몬
+- [`SClient`](https://github.com/tejo1990/SClient) / [`SocketClient`](https://github.com/tejo1990/SocketClient) — C# 비동기 CLI 소켓 클라이언트 및 Python 표준 라이브러리 무의존성 TCP 진단 클라이언트
+
+### D. Full-Stack Web · Blazor WASM · Interactive Applications
+- [`NETWasm`](https://github.com/tejo1990/NETWasm) / [`MultiStepInputPage`](https://github.com/tejo1990/MultiStepInputPage) — .NET 8 Blazor WebAssembly(CSR) 정적 SPA 및 4단계 부스 등록 위저드
+- [`nextjs-ai-chatbot_tejo`](https://github.com/tejo1990/nextjs-ai-chatbot_tejo) / [`admin-dashboard`](https://github.com/tejo1990/admin-dashboard) — Next.js 15 + TypeScript 기반 AI 챗봇 캔버스 및 RSC 백오피스 대시보드
+
+### 본 저장소(`tejo1990.github.io`) 디렉토리 구조
+
+```text
+tejo1990.github.io/
+├── index.html      # 단일 파일 무의존성 인터랙티브 포트폴리오 웹앱 (🌱 쉽게 읽기 ↔ ⚙️ 엔지니어 원문 토글)
+├── posts/          # Stage 01 ~ Stage 12 본편 및 별첨 A·B 기술 아티클 마크다운 원문 (14편)
+├── .nojekyll       # GitHub Pages 정적 에셋 직출 서빙 설정
+└── README.md       # 마스터 엔지니어링 포트폴리오 인덱스 & 로컬 실행 가이드
+```
+
+---
+
+## 5. Quick Start — 포트폴리오 웹사이트 로컬 실행 방법
+
+외부 빌드 도구나 프레임워크 설치 없이 정적 HTTP 서버 한 줄로 즉시 로컬 브라우저에서 전체 인터랙티브 사이트(`index.html` 및 `posts/*.md` 뷰어)를 실행할 수 있습니다.
+
+```bash
+git clone https://github.com/tejo1990/tejo1990.github.io.git
+cd tejo1990.github.io
+
+# Python 3 내장 웹 서버로 즉시 실행
+python -m http.server 8080
+# 브라우저 접속: http://localhost:8080
+```
