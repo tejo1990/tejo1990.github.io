@@ -1948,7 +1948,7 @@ if is_zero_shift:
         <span>전체 마크다운 리포트: <a href="posts/12-stage12-pure-python-hwp-hwpx-fts5-indexer.md">12-stage12-pure-python-hwp-hwpx-fts5-indexer.md</a></span>
       </div>
       <div class="easy-story-box mode-easy">
-        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 12 — 한글 프로그램조차 없는 인터넷 단절 PC에서 관공서 `.hwp` 표 읽고 숫자 함정 잡기)</span>
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 12 — 한글 프로그램조차 없는 인터넷 단절 PC에서 관공서 <code>.hwp</code> 표 읽고 숫자 함정 잡기)</span>
         <ul>
           <li><strong>어떤 문제가 있었나요?</strong> 한국에서 일하다 보면 관공서 공고문, 장비 시방서, 표준하도급계약서가 거의 다 <strong>아래아한글(<code>.hwp</code>, <code>.hwpx</code>)</strong>로 옵니다. 그런데 인터넷이 끊긴 폐쇄망 PC에는 유료 한글 프로그램도 없고 외부 변환 도구를 새로 내려받아 깔 수도 없습니다. 특히 옛날 방식인 <code>.hwp</code> 파일은 글자 사이사이에 눈에 안 보이는 '16바이트 표·그림 제어 기호'가 숨어 있어서, 그냥 글자로 읽으면 외계어처럼 깨진 문자가 쏟아졌습니다.</li>
           <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> 외부 프로그램 설치 <strong>0개</strong>, 파이썬에 원래부터 들어 있는 기본 내장 공구만으로 <span class="term-tip" tabindex="0" data-term="hwp_cfb">신형 .hwpx와 구형 .hwp 자체 해독기</span>를 직접 조립했습니다! 숨어 있는 16바이트 제어 기호는 정확히 8칸씩 건너뛰어 깨진 글자를 <strong>0건</strong>으로 만들고, 문서 안의 단가표도 <code>품목코드: HWP5-TR-229 | 계약단가: 4,850만원</code>처럼 행·열 짝을 맞춰 도서관에 넣어 줍니다. 덕분에 누군가 한글 표 속 금액을 틀리게 물어도 즉시 경보등이 켜집니다!</li>
