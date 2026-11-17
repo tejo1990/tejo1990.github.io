@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sovereign Offline AI Fortress v3.0 | 로컬 LLM 12단계 고도화 기록 (입문자·엔지니어 겸용)</title>
+  <title>Sovereign Offline AI Fortress v3.0 | 로컬 LLM 13단계 고도화 기록 (입문자·엔지니어 겸용)</title>
   <style>
     :root {
       --bg: #0b0f19;
@@ -671,31 +671,31 @@
   <div class="container">
     <div class="badge-row">
       <span class="badge green">Sovereign Offline AI Fortress v3.0</span>
-      <span class="badge purple">Stage 1~12 === 1부~12부 (1:1 직렬 진화 기록)</span>
+      <span class="badge purple">Stage 1~13 === 1부~13부 (1:1 직렬 진화 기록)</span>
       <span class="badge">Computer Science &amp; Engineering B.S. (KOREATECH)</span>
       <span class="badge">Engineer Information Processing (정보처리기사)</span>
       <span class="badge">HRD-Net NCS Approved Instructor (8 Categories)</span>
       <span class="badge">Linux Infra &amp; C# Industrial Control</span>
     </div>
 
-    <h1 class="mode-easy">보급형 그래픽카드 1장(<code>RTX 3060 12GB</code>)으로 '거짓말·계산 실수 없는 나만의 로컬 AI'를 만들기까지: 12단계 성장 기록</h1>
-    <h1 class="mode-expert">소비자용 GPU(<code>RTX 3060 12GB</code>) 로컬 LLM은 어디까지 진화할 수 있는가: 12단계 아키텍처 고도화 전 기록</h1>
+    <h1 class="mode-easy">보급형 그래픽카드 1장(<code>RTX 3060 12GB</code>)으로 '거짓말·계산 실수 없는 나만의 로컬 AI'를 만들기까지: 13단계 성장 기록</h1>
+    <h1 class="mode-expert">소비자용 GPU(<code>RTX 3060 12GB</code>) 로컬 LLM은 어디까지 진화할 수 있는가: 13단계 아키텍처 고도화 전 기록</h1>
 
     <p class="subtitle mode-easy">
-      인터넷 연결 없이 내 컴퓨터 안에서 돌아가는 AI를 만들려고 유명 프로그램(<code>Ollama</code> 등)만 설치해 보면, 곧바로 <strong>메모리 부족 멈춤, 틀린 돈·이자 암산, 없는 법 조문 지어내기, 20초씩 걸리는 답답한 대기 시간, 한글(<code>.hwp</code>) 계약서 판독 불가</strong>라는 벽에 부딪힙니다.
-      이 페이지는 처음 방문하신 분도 쉽게 따라오실 수 있도록 <strong>우리가 어떤 로컬 AI를 만들려 했고, 왜 기존 방식은 안 되었으며, 12단계에 걸쳐 어떻게 하나씩 해결했는지</strong> 차근차근 풀어쓴 기록입니다. <em>(상단 스위치로 언제든 엔지니어 원문·코드 모드로 전환할 수 있습니다.)</em>
+      인터넷 연결 없이 내 컴퓨터 안에서 돌아가는 AI를 만들려고 유명 프로그램(<code>Ollama</code> 등)만 설치해 보면, 곧바로 <strong>메모리 부족 멈춤, 틀린 돈·이자 암산, 없는 법 조문 지어내기, 20초씩 걸리는 답답한 대기 시간, 한글(<code>.hwp</code>)·파워포인트(<code>.pptx</code>) 표 판독 불가</strong>라는 벽에 부딪힙니다.
+      이 페이지는 처음 방문하신 분도 쉽게 따라오실 수 있도록 <strong>우리가 어떤 로컬 AI를 만들려 했고, 왜 기존 방식은 안 되었으며, 13단계에 걸쳐 어떻게 하나씩 해결했는지</strong> 차근차근 풀어쓴 기록입니다. <em>(상단 스위치로 언제든 엔지니어 원문·코드 모드로 전환할 수 있습니다.)</em>
     </p>
     <p class="subtitle mode-expert">
-      단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 첫 글자 20초 대기, 폐쇄망 한글(<code>.hwpx</code>/<code>.hwp</code>) 파싱 장벽 앞에서 곧바로 무너집니다.
-      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 Zero-VRAM 추론·시맨틱 가속, 사후 역검증기, 50문항 골든 벤치마크, 순수 파이썬 한글 이진 파서(Stage 12)까지 1:1로 대응하는 12편의 엔지니어링 리포트</strong>로 정리했습니다.
+      단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 첫 글자 20초 대기, 폐쇄망 한글(<code>.hwpx</code>/<code>.hwp</code>)·파워포인트(<code>.pptx</code> 병합 표) 파싱 장벽 앞에서 곧바로 무너집니다.
+      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 Zero-VRAM 추론·시맨틱 가속, 사후 역검증기, 50문항 골든 벤치마크, 순수 파이썬 한글·파워포인트 구조 보존 파서(Stage 12·13)까지 1:1로 대응하는 13편의 엔지니어링 리포트</strong>로 정리했습니다.
     </p>
 
     <!-- KPI Cards: Easy Mode -->
     <div class="kpi-grid mode-easy">
       <div class="kpi-card">
         <div class="kpi-label">인터넷 없이 찾는 내 PC 속 도서관</div>
-        <div class="kpi-val">458,278건 · 추가 VRAM 0MB</div>
-        <div class="kpi-sub">백과사전·법령·공학규격·스캔 도면·한글(.hwp/.hwpx)까지 즉시 검색</div>
+        <div class="kpi-val">458,278건+ · 추가 VRAM 0MB</div>
+        <div class="kpi-sub">백과사전·법령·공학규격·도면·한글(.hwp/.hwpx)·파워포인트(.pptx) 즉시 검색</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">AI 암산 대신 직접 돌리는 파이썬 계산기</div>
@@ -717,9 +717,9 @@
     <!-- KPI Cards: Expert Mode -->
     <div class="kpi-grid mode-expert">
       <div class="kpi-card">
-        <div class="kpi-label">45.8만 건 FTS5 + CPU BGE-M3 + HWP/HWPX</div>
-        <div class="kpi-val">458,278건 · 0 MB</div>
-        <div class="kpi-sub">추가 VRAM 0 MiB 시맨틱(:8082) + 도면 OCR + 순수 파이썬 한글 파서</div>
+        <div class="kpi-label">45.8만 건 FTS5 + BGE-M3 + HWP/PPTX</div>
+        <div class="kpi-val">458,278건+ · 0 MB</div>
+        <div class="kpi-sub">추가 VRAM 0 MiB 시맨틱(:8082) + 도면 OCR + 순수 파이썬 한글·PPTX 파서</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">다중 L3 외골격 &amp; 사후 역검증기</div>
@@ -816,10 +816,10 @@
           <div class="pipe-step" onclick="jumpToStageCard(4)">
             <div>
               <div class="pipe-badge">STEP 2 · 오픈북 도서관</div>
-              <div class="pipe-name">📚 45.8만 권 + 뜻 검색 + 한글</div>
-              <div class="pipe-desc">일상 말투·비유 질문은 물론 관공서 한글(<code>.hwp</code>·<code>.hwpx</code>)·스캔 도면 표까지 정확한 원문을 찾아옵니다.</div>
+              <div class="pipe-name">📚 45.8만 권 + 뜻 검색 + 한글·PPT</div>
+              <div class="pipe-desc">일상 말투·비유 질문은 물론 관공서 한글(<code>.hwp</code>·<code>.hwpx</code>)·제안서(<code>.pptx</code>)·도면 표까지 정확한 원문을 찾아옵니다.</div>
             </div>
-            <div class="pipe-link">→ Stage 4 · 5 · 9 · 12 보기</div>
+            <div class="pipe-link">→ Stage 4 · 5 · 9 · 12 · 13 보기</div>
           </div>
 
           <div class="pipe-step" onclick="jumpToStageCard(6)">
@@ -866,16 +866,17 @@
           <div class="glossary-item"><strong>TTFT · SSE · KV 프리픽스 캐시</strong>질문 후 첫 글자가 뜰 때까지의 대기 시간(TTFT)을 줄이기 위해, 글자를 실시간 생중계(SSE)하고 앞서 읽은 안내문 기억(KV)을 재활용하는 가속 기법입니다.</div>
           <div class="glossary-item"><strong>사후 역검증기 &amp; ZERO_DIGIT_SHIFT_10X</strong>AI가 마지막에 9억(900,000,000)을 90,000,000으로 적는 '0 누락 실수'나 없는 조문 번호를 잡아내어 자동으로 다시 쓰게 하는 빨간펜 검사기입니다.</div>
           <div class="glossary-item"><strong>OWPML(.hwpx) &amp; MS-CFB(.hwp v5.0) 순수 파이썬 파서</strong>한컴 오피스나 외부 패키지 설치 없이 파이썬 기본 내장 기능만으로 신형·구형 아래아한글 문서와 내장 단가표를 0.01~0.03초 만에 읽어내는 자체 해독기입니다.</div>
+          <div class="glossary-item"><strong>OOXML(.pptx) 병합 표(gridSpan/vMerge) &amp; 발표자 노트 파서</strong>파워포인트 없이 슬라이드 실제 발표 순서, 가로·세로 병합 단가표(열 밀림 왜곡 0건), 숨겨진 발표자 노트·SmartArt까지 0.02초 만에 복원해 숫자·품목 경보기와 연결하는 해독기입니다.</div>
         </div>
       </details>
     </div>
   </section>
 
-  <!-- SECTION 1: 12-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..12) -->
+  <!-- SECTION 1: 13-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..13) -->
   <section id="evolution-timeline">
-    <h2>1. 로컬 LLM 12단계 고도화 타임라인 (`STAGE 1 ~ 12` ↔ 본문 `1부 ~ 12부` 1:1 대응)</h2>
+    <h2>1. 로컬 LLM 13단계 고도화 타임라인 (`STAGE 1 ~ 13` ↔ 본문 `1부 ~ 13부` 1:1 대응)</h2>
     <p class="section-lead mode-easy">
-      처음 기초를 잡은 <strong>1단계</strong>부터 50문제 만점과 한글(<code>.hwp</code>·<code>.hwpx</code>) 공문서 직결 색인을 완성한 <strong>12단계</strong>까지 순서대로 이어집니다. 어떤 불편함 때문에 다음 단계를 만들었는지 읽어보시고, 궁금한 단계는 우측 <strong>[본문 보기 →]</strong> 버튼을 눌러 자세히 살펴보세요.
+      처음 기초를 잡은 <strong>1단계</strong>부터 50문제 만점과 한글(<code>.hwp</code>·<code>.hwpx</code>)·파워포인트(<code>.pptx</code> 병합 표·노트) 직결 색인을 완성한 <strong>13단계</strong>까지 순서대로 이어집니다. 어떤 불편함 때문에 다음 단계를 만들었는지 읽어보시고, 궁금한 단계는 우측 <strong>[본문 보기 →]</strong> 버튼을 눌러 자세히 살펴보세요.
     </p>
     <p class="section-lead mode-expert">
       각 진화 단계(`STAGE k`)는 하단 본문(`k부`)과 번호·순서가 정확히 1:1로 일치합니다. 우측 버튼을 클릭하면 해당 단계의 설계 원리와 실행 가능한 순수 파이썬 검증 코드로 바로 이동합니다.
@@ -1334,7 +1335,7 @@
       </div>
 
       <!-- STAGE 12 -> POST 12 -->
-      <div id="stage-card-12" class="stage-card latest">
+      <div id="stage-card-12" class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
@@ -1370,6 +1371,47 @@
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
             실문서 <code>.hwpx</code> <strong>30.07ms</strong> · 이진 <code>HWP v5.0</code> <strong>9.63ms</strong> 파싱(깨짐 <code>0건</code>) · 실전 카트리지(<code>458,278건</code>) 직결 및 <strong>50/50(100%)</strong> 유지.
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 13 -> POST 13 -->
+      <div id="stage-card-13" class="stage-card latest">
+        <div class="stage-dot"></div>
+        <div class="stage-head">
+          <div class="stage-title-wrap">
+            <span class="stage-num">STAGE 13 === 13부</span>
+            <span class="stage-title mode-easy">파워포인트 없이도 제안서·교안(<code>.pptx</code>) 속 '합쳐진 단가표'와 숨은 '발표자 노트'를 칸 밀림 없이 읽는 해독기</span>
+            <span class="stage-title mode-expert">외부 패키지 0개 '순수 파이썬 <code>.pptx</code> OOXML 슬라이드·병합 표(<code>gridSpan</code>/<code>vMerge</code>)·발표자 노트 색인기 &amp; 행 교차 왜곡 방어'</span>
+          </div>
+          <button class="stage-jump-btn" onclick="jumpToPost(13)">13부 본문 보기 →</button>
+        </div>
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            회사 제안서나 강의교안은 대부분 <strong>파워포인트(<code>.pptx</code>)</strong>로 되어 있는데, 슬라이드 속 합쳐진 표(병합 셀)를 대충 읽으면 옆 칸 숫자가 한 칸씩 밀려 엉뚱한 장비 가격으로 바뀌고, 슬라이드 아래 숨겨진 '발표자 노트' 특약도 통째로 빠졌습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            외부 프로그램 설치 0개로 파이썬 기본 내장 기능만 써서 <strong>실제 발표 순서대로 슬라이드·병합 단가표·발표자 노트·다이어그램을 칸 밀림 없이 복원하는 <span class="term-tip" tabindex="0" data-term="pptx_ooxml">순수 파이썬 파워포인트 해독기</span></strong>를 만들어 숫자·품목 경보기와 직결했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            복잡한 <code>10슬라이드 .pptx</code> <strong>0.023초</strong> 즉시 해독 · 표 단가 부풀리기 및 옆 행 품목 바꿔치기 함정 <strong>100% 자동 적발</strong>!
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
+            단순 ZIP/XML 텍스트 추출 시 <code>slide10</code> 순서 역전, <code>AlternateContent</code> 2중 중복, <code>&lt;a:tbl&gt;</code> 병합 셀(<code>gridSpan</code>·<code>hMerge</code>·<code>vMerge</code>) 열 인덱스 밀림 왜곡, <code>notesSlide</code>·<code>SmartArt</code> 누락이 발생했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
+            표준 라이브러리(<code>zipfile</code>, <code>ET</code>, <code>posixpath</code>)만으로 <span class="term-tip" tabindex="0" data-term="pptx_ooxml">presentation.xml 순서 복원 & 병합 셀 행 카드 직렬화기</span>, <code>notesSlide</code>·<code>SmartArt</code> 결합기, <code>EncryptedPackage</code> 가드를 구현했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
+            <code>10슬라이드</code> 파싱 <strong>23.44ms</strong> · 순서 역전·중복 <code>0건</code> · <code>NUMERIC_VALUE_CONTRADICTION</code> &amp; <code>ENTITY_ATTRIBUTE_ROW_SWAP</code> <strong>14/14 테스트 PASS</strong>.
           </div>
         </div>
       </div>
@@ -1481,9 +1523,9 @@
     </div>
   </section>
 
-  <!-- SECTION 4: 12-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..12) -->
+  <!-- SECTION 4: 13-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..13) -->
   <section id="series-articles">
-    <h2>4. 로컬 LLM 고도화 본편 12부작 상세 보기 (`STAGE 1 ~ 12` === `1부 ~ 12부` 1:1 직렬 구성)</h2>
+    <h2>4. 로컬 LLM 고도화 본편 13부작 상세 보기 (`STAGE 1 ~ 13` === `1부 ~ 13부` 1:1 직렬 구성)</h2>
     <p class="section-lead mode-easy">
       아래 탭을 누르면 각 단계를 <strong>초보자 눈높이 비유 해설</strong>로 편하게 읽을 수 있습니다. 각 글 아래의 <em>[💻 엔지니어 원문 &amp; 파이썬 코드 펼쳐보기]</em>를 누르거나 상단 스위치를 바꾸면 실제 코드도 바로 확인됩니다.
     </p>
@@ -1500,6 +1542,7 @@
       <button class="tab-btn" onclick="showPost(10)">10부 (Stage 10): 복합 계산 &amp; 빨간펜 검문</button>
       <button class="tab-btn" onclick="showPost(11)">11부 (Stage 11): 50문항 100점 성적표</button>
       <button class="tab-btn" onclick="showPost(12)">12부 (Stage 12): 한글(.hwp/.hwpx) 직결 색인</button>
+      <button class="tab-btn" onclick="showPost(13)">13부 (Stage 13): PPTX 슬라이드·병합표·노트</button>
     </div>
 
     <!-- POST 1 === STAGE 1 -->
@@ -2014,13 +2057,84 @@ def decode_hwp5_para_text_stdlib(payload: bytes) -> str:
       </details>
     </article>
 
+    <!-- POST 13 === STAGE 13 -->
+    <article id="post-13" class="post-card">
+      <h3>[13부 · Stage 13] 외부 패키지·MS 오피스 없이 파워포인트 제안서·강의교안(<code>.pptx</code>) 슬라이드·병합 단가표·발표자 노트를 0.02초 만에 뚫다: 순수 파이썬 OOXML 파서와 행 교차 왜곡 방어</h3>
+      <div class="post-meta">
+        <span>진화 단계: <strong>STAGE 13 (무의존성 <code>.pptx</code> 슬라이드·병합 표·발표자 노트 색인 및 행 교차 방어 완결)</strong></span> ·
+        <span>전체 마크다운 리포트: <a href="posts/13-stage13-pure-python-pptx-slides-tables-notes-indexer.md">13-stage13-pure-python-pptx-slides-tables-notes-indexer.md</a></span>
+      </div>
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 13 — 파워포인트 <code>.pptx</code> 속 '합쳐진 단가표 칸 밀림'과 숨은 '발표자 노트'까지 놓치지 않고 읽기)</span>
+        <ul>
+          <li><strong>어떤 문제가 있었나요?</strong> 회사 구축 사업 제안서나 강의교안은 대부분 <strong>파워포인트(<code>.pptx</code>)</strong>로 되어 있습니다. 그런데 인터넷이 끊긴 PC에서 추가 패키지 없이 슬라이드 파일 안의 글자만 단순하게 긁어오면 3가지 큰 사고가 터집니다: ① 파일 이름순으로 읽다가 <strong>2번 슬라이드보다 10번 슬라이드를 먼저 읽어 순서가 뒤죽박죽</strong>이 되고, ② 표에서 가로·세로로 합쳐진 칸(병합 셀)을 무시해 <strong>옆 칸 숫자가 한 칸씩 밀려 엉뚱한 장비 가격으로 둔갑</strong>하며, ③ 슬라이드 화면 아래 숨겨 둔 <strong>'발표자 노트' 속 중요 특약이 통째로 증발</strong>했습니다.</li>
+          <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> 외부 프로그램 설치 <strong>0개</strong>, 파이썬 기본 내장 기능만으로 <span class="term-tip" tabindex="0" data-term="pptx_ooxml">순수 파이썬 파워포인트(.pptx) 구조 보존 해독기</span>를 만들었습니다! 실제 발표 대본 순서대로 슬라이드를 정렬하고, 합쳐진 표 칸도 원래 자리를 복원해 <code>구분: 무정전전원 | 모델코드: PPTX-UPS-500 | 납품단가: 5,500만원</code>처럼 정확히 짝지어 도서관에 넣습니다. 덕분에 질문자가 표 속 장비 단가를 부풀리거나 아랫줄 다른 장비 가격과 섞어서 물어도 즉시 경보등이 켜집니다!</li>
+        </ul>
+      </div>
+      <div class="table-wrap" style="margin:16px 0;">
+        <table>
+          <thead>
+            <tr>
+              <th>파워포인트 요소</th>
+              <th>단순 텍스트 추출 시 터지는 문제</th>
+              <th>순수 파이썬(<code>Stdlib</code>) 해결 방식</th>
+              <th>실측 속도 및 무결성</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>슬라이드 순서 &amp; 그룹 도형</strong></td>
+              <td><code>slide10.xml</code>이 <code>slide2.xml</code>보다 먼저 읽히고 호환 분기 글자가 2번 중복됨</td>
+              <td><code>presentation.xml</code> 발표 순서 매핑 + <code>&lt;p:grpSp&gt;</code> 재귀 &amp; <code>Choice</code> 단일 채택</td>
+              <td class="col-good"><code>10슬라이드</code> <strong>23.44 ms</strong> 해독 · 중복·역전 <strong>0건</strong></td>
+            </tr>
+            <tr>
+              <td><strong>내장 병합 단가표 (<code>&lt;a:tbl&gt;</code>)</strong></td>
+              <td>가로·세로 합쳐진 칸(<code>gridSpan</code>/<code>vMerge</code>) 때문에 열 번호가 밀려 품목↔가격 오매칭</td>
+              <td>가로 스팬 확장 및 세로 상단 행 값 자동 전파로 무왜곡 <code>헤더: 값</code> 행 카드 생성</td>
+              <td class="col-good">단가 왜곡 및 <strong>행 바꿔치기(<code>ROW_SWAP</code>)</strong> 즉시 적발</td>
+            </tr>
+            <tr>
+              <td><strong>발표자 노트 &amp; 암호 파일</strong></td>
+              <td><code>notesSlide</code>·<code>SmartArt</code> 누락 및 비밀번호 <code>.pptx</code>에서 <code>BadZipFile</code> 크래시</td>
+              <td>슬라이드별 <code>.rels</code> 노트·다이어그램 결합 + <code>EncryptedPackage</code>/구형 <code>.ppt</code> 정확 안내</td>
+              <td class="col-good">단위·E2E 검증 <strong>14/14 PASS</strong> · 크래시 <strong>0건</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <details class="expert-code-fold">
+        <summary>💻 엔지니어 원문 요약 &amp; PPTX 병합 표(gridSpan · hMerge · vMerge) 행 카드 직렬화 코드 펼쳐보기</summary>
+        <blockquote>
+          <strong>발전 이유와 해법:</strong> 폐쇄망 환경에서 <code>python-pptx</code>·<code>lxml</code> 의존성 없이 <code>ECMA-376</code> <code>.pptx</code> 제안서·교안을 색인하기 위해, 표준 라이브러리(<code>zipfile</code>, <code>xml.etree.ElementTree</code>, <code>posixpath</code>)만으로 <code>ppt/presentation.xml</code> 시각 순서 해석기, <code>&lt;p:cSld&gt;/&lt;p:spTree&gt;/&lt;p:grpSp&gt;</code> 재귀 파서, <code>gridSpan</code>·<code>hMerge</code>·<code>vMerge</code> 병합 셀 좌표 복원기, <code>notesSlide</code>·<code>SmartArt</code> 결합기를 구현해 <code>SQLite FTS5</code> 및 4계층 모순 감지기(<code>NUMERIC_VALUE_CONTRADICTION</code>, <code>ENTITY_ATTRIBUTE_ROW_SWAP</code>)에 통합했습니다.
+        </blockquote>
+        <pre><code># PPTX &lt;a:tbl&gt; 가로(gridSpan/hMerge)·세로(vMerge) 병합 셀 무왜곡 행 카드 복원 핵심 루프
+for r_i, row in enumerate(raw_rows):
+    expanded = list(row) + [("", 1, False, False)] * (max_cols - len(row))
+    resolved_row, col_cursor = [""] * max_cols, 0
+    while col_cursor &lt; max_cols:
+        text, grid_span, h_merge, v_merge = expanded[col_cursor]
+        if h_merge and col_cursor &gt; 0:
+            resolved_row[col_cursor] = resolved_row[col_cursor - 1]
+            col_cursor += 1
+            continue
+        cell_val = (text if text else grid[r_i - 1][col_cursor]) if (v_merge and r_i &gt; 0) else text
+        span = max(1, int(grid_span))
+        for k in range(span):
+            if col_cursor + k &lt; max_cols:
+                resolved_row[col_cursor + k] = cell_val
+        col_cursor += span
+    grid.append(resolved_row)</code></pre>
+      </details>
+    </article>
+
   </section>
 
   <!-- SECTION 5: APPENDIX / SIDE-TRACK AGENT RESEARCH NOTES -->
   <section id="appendix-research">
     <h2>5. 별첨 연구 노트: 에이전트 하네스 &amp; 벤치마크 실험 (로컬 LLM 외전 2편)</h2>
     <p class="section-lead">
-      위 로컬 LLM 본체의 1~12단계 직렬 진화와 별도로, 여러 AI를 경쟁시켜 프롬프트 방어력을 높이거나 작업 기억이 섞이지 않게 관리하기 위해 수행한 연구 기록입니다.
+      위 로컬 LLM 본체의 1~13단계 직렬 진화와 별도로, 여러 AI를 경쟁시켜 프롬프트 방어력을 높이거나 작업 기억이 섞이지 않게 관리하기 위해 수행한 연구 기록입니다.
     </p>
 
     <div class="tabs">
@@ -2156,6 +2270,10 @@ def decode_hwp5_para_text_stdlib(payload: bytes) -> str:
     hwp_cfb: {
       title: "순수 파이썬 한글(.hwpx / .hwp v5.0) 해독기",
       desc: "유료 한컴 오피스나 외부 패키지 설치 없이 파이썬 기본 내장 기능(zipfile, struct, zlib)만으로 관공서·기업의 신형(.hwpx)·구형(.hwp) 한글 문서와 내장 단가표를 0.01~0.03초 만에 깨짐 없이 읽어 도서관에 넣어주는 자체 파서입니다."
+    },
+    pptx_ooxml: {
+      title: "순수 파이썬 파워포인트(.pptx OOXML) 병합 표·노트 해독기",
+      desc: "MS 파워포인트나 python-pptx 설치 없이 파이썬 기본 내장 기능(zipfile, ET)만으로 실제 슬라이드 발표 순서, 가로·세로 병합 단가표(열 밀림 왜곡 0건), 숨겨진 발표자 노트·SmartArt까지 0.023초 만에 복원해 숫자·품목 경보기와 연결하는 파서입니다."
     }
   };
 
