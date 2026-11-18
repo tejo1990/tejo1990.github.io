@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sovereign Offline AI Fortress v3.0 | 로컬 LLM 18단계 고도화 기록 (입문자·엔지니어 겸용)</title>
+  <title>Sovereign Offline AI Fortress v3.0 | 로컬 LLM 19단계 고도화 기록 (입문자·엔지니어 겸용)</title>
   <style>
     :root {
       --bg: #0b0f19;
@@ -721,23 +721,23 @@
   <div class="container">
     <div class="badge-row">
       <span class="badge green">Sovereign Offline AI Fortress v3.0</span>
-      <span class="badge purple">Stage 1~18 === 1부~18부 (1:1 직렬 진화 기록)</span>
+      <span class="badge purple">Stage 1~19 === 1부~19부 (1:1 직렬 진화 기록)</span>
       <span class="badge">Computer Science &amp; Engineering B.S. (KOREATECH)</span>
       <span class="badge">Engineer Information Processing (정보처리기사)</span>
       <span class="badge">HRD-Net NCS Approved Instructor (8 Categories)</span>
       <span class="badge">Linux Infra &amp; C# Industrial Control</span>
     </div>
 
-    <h1 class="mode-easy">보급형 그래픽카드 1장(<code>RTX 3060 12GB</code>)으로 '거짓말·계산 실수 없는 나만의 로컬 AI'를 만들기까지: 18단계 성장 기록</h1>
-    <h1 class="mode-expert">소비자용 GPU(<code>RTX 3060 12GB</code>) 로컬 LLM은 어디까지 진화할 수 있는가: 18단계 아키텍처 고도화 전 기록</h1>
+    <h1 class="mode-easy">보급형 그래픽카드 1장(<code>RTX 3060 12GB</code>)으로 '거짓말·계산 실수 없는 나만의 로컬 AI'를 만들기까지: 19단계 성장 기록</h1>
+    <h1 class="mode-expert">소비자용 GPU(<code>RTX 3060 12GB</code>) 로컬 LLM은 어디까지 진화할 수 있는가: 19단계 아키텍처 고도화 전 기록</h1>
 
     <p class="subtitle mode-easy">
-      인터넷 연결 없이 내 컴퓨터 안에서 돌아가는 AI를 만들려고 유명 프로그램(<code>Ollama</code> 등)만 설치해 보면, 곧바로 <strong>메모리 부족 멈춤, 틀린 돈·이자 암산, 없는 법 조문 지어내기, 20초씩 걸리는 답답한 대기 시간, 한글(<code>.hwp</code>)·제안서(<code>.pptx</code>)·견적서(<code>.xlsx</code>)·워드 계약서(<code>.docx</code>) 판독, 신·구 문서 비교 및 결재용 보고서 작성 불편</strong>이라는 벽에 부딪힙니다.
-      이 페이지는 처음 방문하신 분도 쉽게 따라오실 수 있도록 <strong>우리가 어떤 로컬 AI를 만들려 했고, 왜 기존 방식은 안 되었으며, 18단계에 걸쳐 어떻게 하나씩 해결했는지</strong> 차근차근 풀어쓴 기록입니다. <em>(상단 스위치로 언제든 엔지니어 원문·코드 모드로 전환할 수 있습니다.)</em>
+      인터넷 연결 없이 내 컴퓨터 안에서 돌아가는 AI를 만들려고 유명 프로그램(<code>Ollama</code> 등)만 설치해 보면, 곧바로 <strong>메모리 부족 멈춤, 틀린 돈·이자 암산, 없는 법 조문 지어내기, 20초씩 걸리는 답답한 대기 시간, 한글(<code>.hwp</code>)·제안서(<code>.pptx</code>)·견적서(<code>.xlsx</code>)·워드 계약서(<code>.docx</code>) 판독, 신·구 문서 비교, 결재용 보고서 작성 및 다수 계약서 독소조항 전수 점검 불편</strong>이라는 벽에 부딪힙니다.
+      이 페이지는 처음 방문하신 분도 쉽게 따라오실 수 있도록 <strong>우리가 어떤 로컬 AI를 만들려 했고, 왜 기존 방식은 안 되었으며, 19단계에 걸쳐 어떻게 하나씩 해결했는지</strong> 차근차근 풀어쓴 기록입니다. <em>(상단 스위치로 언제든 엔지니어 원문·코드 모드로 전환할 수 있습니다.)</em>
     </p>
     <p class="subtitle mode-expert">
-      단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 첫 글자 20초 대기, 폐쇄망 실무 문서 4대장(한글 <code>.hwpx</code>/<code>.hwp</code> · 파워포인트 <code>.pptx</code> · 엑셀 <code>.xlsx</code> · 워드 <code>.docx</code>) 파싱, 실시간 색인·신구 비교 및 서식 보고서 익스포트 장벽 앞에서 곧바로 무너집니다.
-      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 Zero-VRAM 추론·시맨틱 가속, 사후 역검증기, 50문항 골든 벤치마크, 순수 파이썬 실무 문서 파서, 브라우저 Drag &amp; Drop 색인, 이종 문서 1:1 Delta 비교기 및 오프라인 OOXML 서식 보고서(<code>.docx</code>/<code>.xlsx</code>) 익스포터(Stage 12~18)까지 1:1로 대응하는 18편의 엔지니어링 리포트</strong>로 정리했습니다.
+      단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 첫 글자 20초 대기, 폐쇄망 실무 문서 4대장(한글 <code>.hwpx</code>/<code>.hwp</code> · 파워포인트 <code>.pptx</code> · 엑셀 <code>.xlsx</code> · 워드 <code>.docx</code>) 파싱, 실시간 색인·신구 비교·서식 보고서 익스포트 및 다중 문서 법령 위반 선별 장벽 앞에서 곧바로 무너집니다.
+      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 Zero-VRAM 추론·시맨틱 가속, 사후 역검증기, 50문항 골든 벤치마크, 순수 파이썬 실무 문서 파서, 브라우저 Drag &amp; Drop 색인, 이종 문서 1:1 Delta 비교기, 오프라인 OOXML 서식 보고서 익스포터 및 다중 문서 대한민국 법령·독소조항 리스크 레이더(Stage 12~19)까지 1:1로 대응하는 19편의 엔지니어링 리포트</strong>로 정리했습니다.
     </p>
 
     <!-- KPI Cards: Easy Mode -->
@@ -957,7 +957,7 @@
               <div class="pipe-name">📚 45.8만 권 + 드래그앤드롭 문서</div>
               <div class="pipe-desc">일상 말투·비유 질문은 물론 마우스로 끌어다 놓은 한글(<code>.hwp</code>·<code>.hwpx</code>)·PPT·엑셀·워드 계약서(<code>.docx</code>) 표·각주까지 0.14초 만에 찾아옵니다.</div>
             </div>
-            <div class="pipe-link">→ Stage 4 · 5 · 9 · 12 ~ 18 보기</div>
+            <div class="pipe-link">→ Stage 4 · 5 · 9 · 12 ~ 19 보기</div>
           </div>
 
           <div class="pipe-step" onclick="jumpToStageCard(6)">
@@ -966,7 +966,7 @@
               <div class="pipe-name">🧮 139개 파이썬 계산기</div>
               <div class="pipe-desc">돈·연체이자·보증금은 AI 암산 금지! 검증된 파이썬 프로그램이 직접 계산해 <strong>오차 0%</strong> 정답을 줍니다.</div>
             </div>
-            <div class="pipe-link">→ Stage 6 · 10 보기</div>
+            <div class="pipe-link">→ Stage 6 · 10 · 19 보기</div>
           </div>
 
           <div class="pipe-step" onclick="jumpToStageCard(8)">
@@ -1010,6 +1010,7 @@
           <div class="glossary-item"><strong>브라우저 Drag &amp; Drop 실시간 암호화 색인 (O(log N) FTS5)</strong>탐색기 폴더 열기나 .bat 실행 없이 웹 대시보드에 파일을 끌어다 놓으면, FTS5 category 역색인(0.2ms)으로 해당 문서 청크만 교체하고 ENC_HWID_V2로 암호화해 0.14초 만에 새로고침 없이 검색·경보기에 반영합니다.</div>
           <div class="glossary-item"><strong>이종 포맷 1:1 Delta 비교기 &amp; SQLite Freelist 제로필 소거</strong>엑셀 견적서(.xlsx)와 워드 수정 계약서(.docx)처럼 서식·단위가 달라도 품목코드별 가격·기한 차이를 0.005초 만에 1:1 비교표로 산출하고, 타 PC 배포 시 PRAGMA secure_delete=ON + FTS5 optimize로 삭제된 개인 문서의 보이지 않는 바이트 파편까지 0바이트로 지웁니다.</div>
           <div class="glossary-item"><strong>순수 파이썬 OOXML 서식 보고서(.docx/.xlsx) 익스포터</strong>python-docx·openpyxl 없이 표준 zipfile만으로 가로형 A4 리스크 음영 워드(.docx, 8.3ms)와 sharedStrings·SUM 수식이 내장된 3-시트 엑셀(.xlsx, 5.0ms) 감사 보고서를 SHA-256 무결성 해시와 함께 즉시 컴파일해 내려받습니다.</div>
+          <div class="glossary-item"><strong>다중 문서 대한민국 법령·독소조항 리스크 레이더</strong>등록된 모든 한글·워드·엑셀·PPT 계약서를 GPU 토큰 소모 0개로 0.006초 만에 전수 스캔하여 하도급법(60일/15.5%)·상임법(권역별 환산보증금)·민법(위약벌) 위반 위험도 순위표(0~100점)로 정렬합니다.</div>
           <div class="glossary-item"><strong>메모리 대역폭 병목 (Roofline Choke)</strong>로컬 AI가 글자를 찍어내는 속도는 연산력(FLOPS)이 아니라 '메모리에서 가중치를 읽어오는 통로 넓이(GB/s)'가 결정합니다. 1,000만 원대 전용 기기라도 통로(273 GB/s)가 좁으면 큰 모델 출력이 거북이처럼 느려집니다.</div>
           <div class="glossary-item"><strong>SLOT_2 물리 상한(≤9.8GB) &amp; L1 ⊥ L2·L3 직교성</strong>12GB 그래픽카드 본체에서는 스와핑 멈춤을 막기 위해 주력 두뇌 칸(SLOT_2)을 9.8GB 이하(14B·12B)로 엄격히 제한하고, 나중에 24GB+ 상위 장비로 옮길 때만 도서관(L2)·계산기(L3) 코드 수정 0줄로 26B·31B 두뇌로 갈아 끼우는 분리 설계입니다.</div>
         </div>
@@ -1017,11 +1018,11 @@
     </div>
   </section>
 
-  <!-- SECTION 1: 18-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..18) -->
+  <!-- SECTION 1: 19-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..19) -->
   <section id="evolution-timeline">
-    <h2>1. 로컬 LLM 18단계 고도화 타임라인 (`STAGE 1 ~ 18` ↔ 본문 `1부 ~ 18부` 1:1 대응)</h2>
+    <h2>1. 로컬 LLM 19단계 고도화 타임라인 (`STAGE 1 ~ 19` ↔ 본문 `1부 ~ 19부` 1:1 대응)</h2>
     <p class="section-lead mode-easy">
-      처음 기초를 잡은 <strong>1단계</strong>부터 50문제 만점, 한국 실무 문서 4대장 해독, 실시간 드래그 앤 드롭 색인, 신·구 문서 1:1 비교, 그리고 결재용 서식 워드(<code>.docx</code>)·자동 수식 엑셀(<code>.xlsx</code>) 감사 보고서를 0.008초 만에 내려받는 <strong>18단계</strong>까지 순서대로 이어집니다. 어떤 불편함 때문에 다음 단계를 만들었는지 읽어보시고, 궁금한 단계는 우측 <strong>[본문 보기 →]</strong> 버튼을 눌러 자세히 살펴보세요.
+      처음 기초를 잡은 <strong>1단계</strong>부터 50문제 만점, 한국 실무 문서 4대장 해독, 실시간 드래그 앤 드롭 색인, 신·구 문서 1:1 비교, 결재용 서식 워드·수식 엑셀 출력, 그리고 여러 계약서의 대한민국 법령 위반·독소조항을 0.006초 만에 순위표로 띄우는 <strong>19단계</strong>까지 순서대로 이어집니다. 어떤 불편함 때문에 다음 단계를 만들었는지 읽어보시고, 궁금한 단계는 우측 <strong>[본문 보기 →]</strong> 버튼을 눌러 자세히 살펴보세요.
     </p>
     <p class="section-lead mode-expert">
       각 진화 단계(`STAGE k`)는 하단 본문(`k부`)과 번호·순서가 정확히 1:1로 일치합니다. 우측 버튼을 클릭하면 해당 단계의 설계 원리와 실행 가능한 순수 파이썬 검증 코드로 바로 이동합니다.
@@ -1726,7 +1727,7 @@
       </div>
 
       <!-- STAGE 18 -> POST 18 -->
-      <div id="stage-card-18" class="stage-card latest">
+      <div id="stage-card-18" class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
@@ -1762,6 +1763,47 @@
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
             <code>.docx</code> <strong>8.30ms</strong> · <code>.xlsx</code> <strong>4.96ms</strong> · 전 파트 <code>ET.fromstring</code> &amp; Stage 14/15 역파싱 <strong>100% 일치</strong> · 테스트 <strong>33/33+ OK</strong>.
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 19 -> POST 19 -->
+      <div id="stage-card-19" class="stage-card latest">
+        <div class="stage-dot"></div>
+        <div class="stage-head">
+          <div class="stage-title-wrap">
+            <span class="stage-num">STAGE 19 === 19부</span>
+            <span class="stage-title mode-easy">쌓여 있는 계약서·견적서 수십 개를 일일이 열어볼 필요 없이, 버튼 한 번에 한국 법령 위반·독소조항 위험도 순위표로 줄 세워 주는 '0.006초 실정법 금속탐지기'</span>
+            <span class="stage-title mode-expert">외부 패키지·GPU 토큰 0개 '순수 파이썬 다중 문서 대한민국 핵심 법령(하도급법·상임법·민법·약관규제법) &amp; 독소조항 일괄 리스크 레이더(<code>POST /api/scan-custom-risks</code>)'</span>
+          </div>
+          <button class="stage-jump-btn" onclick="jumpToPost(19)">19부 본문 보기 →</button>
+        </div>
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            검토할 계약서·견적서 파일이 10~20개 쌓여 있을 때 어느 문서가 제일 위험한지 눈으로 다 읽기 힘들고, AI에게 한꺼번에 던져주면 중간 문서를 놓치거나 서울(<code>9억</code>)·부산(<code>6.9억</code>) 상가 보증금 기준과 하도급 <code>60일</code> 기한 계산을 틀렸습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            공항 보안검색대처럼 <strong>버튼 한 번만 누르면 등록된 모든 한글·워드·엑셀·PPT 문서를 한국 법령 기준으로 전수 검사해 <code>0~100점</code> 위험도 순위표와 위반 법 조문을 찍어주는 <span class="term-tip" tabindex="0" data-term="statutory_risk_radar">다중 문서 대한민국 법령 리스크 레이더</span></strong>를 탑재했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            실전 문서 <code>13개</code> 일괄 스캔 <strong>0.006초(6.48ms)</strong> 완료 · 워드 취소선 삭제 조항 허위 경보 <strong>0건</strong> · 전체 테스트 <strong>34/34 OK</strong> &amp; 종합 시험 <strong>50/50(100%)</strong> 유지!
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
+            다수 계약서를 단일 LLM 컨텍스트에 넣으면 <code>Lost-in-the-Middle</code>과 권역별 환산보증금(<code>D + 100R</code>) 암산 오차가 발생해 사전 트리아지 정확도가 붕괴했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
+            <code>POST /api/scan-custom-risks</code>에 <span class="term-tip" tabindex="0" data-term="statutory_risk_radar">하도급 60일/15.5% · 상임법 권역 캡 · 민법 위약벌 결정론 스코어러</span>를 구현하고 Stage 15 <code>&lt;w:del&gt;</code> 파서와 직결했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
+            실문서 <code>13건</code> 순위화 <strong>6.48ms</strong>(오프라인 JS 폴백 <code>1.1ms</code>) · <code>&lt;w:del&gt;</code> 오탐 <code>0건</code> · 전체 스위트 <strong>34/34 OK</strong> &amp; <strong>50/50(100%)</strong> 유지.
           </div>
         </div>
       </div>
@@ -1873,9 +1915,9 @@
     </div>
   </section>
 
-  <!-- SECTION 4: 18-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..18) -->
+  <!-- SECTION 4: 19-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..19) -->
   <section id="series-articles">
-    <h2>4. 로컬 LLM 고도화 본편 18부작 상세 보기 (`STAGE 1 ~ 18` === `1부 ~ 18부` 1:1 직렬 구성)</h2>
+    <h2>4. 로컬 LLM 고도화 본편 19부작 상세 보기 (`STAGE 1 ~ 19` === `1부 ~ 19부` 1:1 직렬 구성)</h2>
     <p class="section-lead mode-easy">
       아래 탭을 누르면 각 단계를 <strong>초보자 눈높이 비유 해설</strong>로 편하게 읽을 수 있습니다. 각 글 아래의 <em>[💻 엔지니어 원문 &amp; 파이썬 코드 펼쳐보기]</em>를 누르거나 상단 스위치를 바꾸면 실제 코드도 바로 확인됩니다.
     </p>
@@ -1898,6 +1940,7 @@
       <button class="tab-btn" onclick="showPost(16)">16부 (Stage 16): 드래그앤드롭 실시간 암호화 색인</button>
       <button class="tab-btn" onclick="showPost(17)">17부 (Stage 17): 신·구 문서 1:1 비교 &amp; 포렌식 소거</button>
       <button class="tab-btn" onclick="showPost(18)">18부 (Stage 18): 서식 워드·수식 엑셀 감사보고서 출력</button>
+      <button class="tab-btn" onclick="showPost(19)">19부 (Stage 19): 다중 계약서 법령·독소조항 레이더</button>
     </div>
 
     <!-- POST 1 === STAGE 1 -->
@@ -2810,13 +2853,75 @@ total_cell_xml = f'&lt;c r="F{r_sum}" s="6"&gt;&lt;f&gt;SUM(F3:F{r_sum - 1})&lt;
       </details>
     </article>
 
+    <!-- POST 19 === STAGE 19 -->
+    <article id="post-19" class="post-card">
+      <h3>[19부 · Stage 19] 쌓여 있는 여러 계약서·견적서(<code>.hwpx</code>·<code>.hwp</code>·<code>.docx</code>·<code>.xlsx</code>·<code>.pptx</code>)를 0.006초 만에 전수 검사해 위험도 순위표로 띄우기: 순수 파이썬 대한민국 법령·독소조항 일괄 리스크 레이더</h3>
+      <div class="post-meta">
+        <span>진화 단계: <strong>STAGE 19 (다중 문서 실정법·독소조항 리스크 레이더 · 최신 단계)</strong></span> ·
+        <span>전체 마크다운 리포트: <a href="posts/19-stage19-pure-python-statutory-toxic-clause-risk-radar.md">19-stage19-pure-python-statutory-toxic-clause-risk-radar.md</a></span>
+      </div>
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 19 — 질문하기 전에 먼저 '제일 위험한 계약서'부터 골라주는 0.006초 금속탐지기)</span>
+        <ul>
+          <li><strong>어떤 마지막 고민이 남아 있었나요?</strong> 드래그 앤 드롭으로 계약서·견적서 파일을 10~20개 등록해 두었을 때, 바쁜 실무자가 <em>"이 중에 당장 서명하면 큰일 나는 지뢰 계약서가 어느 파일이지?"</em>를 먼저 알고 싶었습니다. 하지만 20개 문서를 AI 대화창에 한꺼번에 집어넣으면 AI가 중간 문서를 까먹거나 서울(<code>9억</code>)·부산(<code>6.9억</code>) 상가 보증금 한도 계산을 틀렸습니다.</li>
+          <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> 공항 보안검색대 금속탐지기처럼, 버튼 한 번만 누르면 파이썬이 등록된 모든 문서를 <strong>한국 핵심 법령 기준(<span class="term-tip" tabindex="0" data-term="statutory_risk_radar">하도급 60일/15.5% · 상임법 환산보증금 · 민법 위약벌 레이더</span>)</strong>으로 <code>0.006초</code> 만에 싹 훑어 <strong><code>CRITICAL(치명적) → HIGH → CAUTION → SAFE</code> 위험도 순위표(1위~N위)</strong>와 위반한 법 조문 번호를 한눈에 띄워줍니다. 게다가 워드에서 취소선(<code>&lt;w:del&gt;</code>)으로 이미 지운 옛날 독소조항에는 절대 울리지 않습니다!</li>
+          <li><strong>무엇이 달라졌나요?</strong> 실전 등록 문서 <code>13개</code> 전체 스캔이 단 <strong>0.0065초(6.48ms)</strong> 만에 끝나며, 가장 위험한 1순위 계약서를 클릭해 곧바로 AI 정밀 질문이나 Stage 17·18 감사 보고서 출력으로 이어갈 수 있습니다!</li>
+        </ul>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>검문 법령 영역</th>
+              <th>자동 적발하는 대표 위반·독소조항</th>
+              <th>적용되는 대한민국 실정법 기준</th>
+              <th>실측 정밀도 · 속도</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>하도급 거래</strong></td>
+              <td>납품·수령 후 <code>60일 초과</code> 대금 지급, 지연이자 면제·<code>15.5% 미만</code>, 무기한 검수 유예</td>
+              <td><code>하도급법 제9조</code>(10일 간주검수) · <code>제13조</code>(60일 초과 연 15.5%)</td>
+              <td class="col-good">강행규정 위반 즉시 <strong>CRITICAL / HIGH</strong> 배정</td>
+            </tr>
+            <tr>
+              <td><strong>상가건물 임대차</strong></td>
+              <td><code>보증금 + 월세×100</code> 권역별 상한 초과, 권리금·10년 갱신 사전 포기, 백화점·전대차 사각지대</td>
+              <td><code>상임법 제2조·제10조·제10조의4·제15조</code> (서울 9억 / 과밀·부산 6.9억 / 광역시 5.4억 / 기타 3.7억)</td>
+              <td class="col-good"><code>5%</code> 인상 캡 해제 vs 10년 권리금 유지 <strong>오차 0% 분리</strong></td>
+            </tr>
+            <tr>
+              <td><strong>민법 · 약관 · 노무</strong></td>
+              <td>일 <code>0.25%+</code> 과다 지체상금·무제한 상한, 손해배상 별도 <code>위약벌</code>, 일방해지·원시코드 무상귀속·<code>3.3%</code> 위장 프리랜서</td>
+              <td><code>민법 제103조·제398조</code> · <code>약관규제법 제9조·제14조</code> · <code>근로기준법 제2조</code></td>
+              <td class="col-good"><code>13건</code> 스캔 <strong>6.48 ms</strong> · <code>&lt;w:del&gt;</code> 오탐 <strong>0건</strong> · <strong>34/34 OK</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <details class="expert-code-fold">
+        <summary>💻 엔지니어 원문 요약 &amp; 순수 파이썬 권역별 환산보증금 · 하도급 60일 · 위약벌 스코어러 코드 펼쳐보기</summary>
+        <blockquote>
+          <strong>발전 이유와 해법:</strong> 다수 계약서를 LLM 프롬프트에 일괄 투입할 때 발생하는 컨텍스트 희석과 산술 오차를 제거하기 위해, <code>POST /api/scan-custom-risks</code>에서 다중 청크(<code>CUSTOM-*-P01..Pk</code>)를 문서 단위로 재결합한 뒤 정규식 경계식과 원화 환산기(<code>D + 100R &gt; B_region*</code>)로 <code>0~100점</code> 위험도 리더보드를 <code>6.48 ms</code>에 산출합니다.
+        </blockquote>
+        <pre><code># 권역별 환산보증금(보증금 + 월세×100) 및 하도급법 60일·위약벌 결정론 스코어링 핵심 발췌
+conv_dep = dep_krw + (rent_krw * 100.0)
+cap_krw = 900_000_000.0 if "서울" in raw_text else (690_000_000.0 if "부산" in raw_text else 370_000_000.0)
+if conv_dep &gt; cap_krw:
+    add_finding("COMMERCIAL_LEASE_OVER_DEPOSIT_CAP", "HIGH", 26, "상임법 제2조·제11조")
+if pay_days &gt; 60:
+    add_finding("SUBCONTRACT_PAYMENT_OVER_60D", "CRITICAL", 32, "하도급법 제13조 제1항·제8항")</code></pre>
+      </details>
+    </article>
+
   </section>
 
   <!-- SECTION 5: APPENDIX / SIDE-TRACK AGENT RESEARCH NOTES -->
   <section id="appendix-research">
     <h2>5. 별첨 연구 노트: 에이전트 하네스 &amp; 벤치마크 실험 (로컬 LLM 외전 2편)</h2>
     <p class="section-lead">
-      위 로컬 LLM 본체의 1~18단계 직렬 진화와 별도로, 여러 AI를 경쟁시켜 프롬프트 방어력을 높이거나 작업 기억이 섞이지 않게 관리하기 위해 수행한 연구 기록입니다.
+      위 로컬 LLM 본체의 1~19단계 직렬 진화와 별도로, 여러 AI를 경쟁시켜 프롬프트 방어력을 높이거나 작업 기억이 섞이지 않게 관리하기 위해 수행한 연구 기록입니다.
     </p>
 
     <div class="tabs">
@@ -2976,6 +3081,10 @@ total_cell_xml = f'&lt;c r="F{r_sum}" s="6"&gt;&lt;f&gt;SUM(F3:F{r_sum - 1})&lt;
     audit_export_ooxml: {
       title: "순수 파이썬 OOXML 서식 보고서(.docx/.xlsx) 익스포터",
       desc: "python-docx나 openpyxl 같은 외부 패키지 설치 없이 파이썬 기본 내장 기능(zipfile)만으로 가로형 A4 리스크 색상 음영 워드(.docx, 0.008초)와 자동 합계 수식(=SUM)이 살아 있는 3-시트 엑셀(.xlsx, 0.005초) 감사 보고서를 위변조 방지 해시(SHA-256)와 함께 즉시 만들어 내 컴퓨터로 내려주는 기술입니다."
+    },
+    statutory_risk_radar: {
+      title: "다중 문서 대한민국 법령·독소조항 일괄 리스크 레이더",
+      desc: "등록된 모든 한글(.hwp/.hwpx)·워드(.docx)·엑셀(.xlsx)·PPT 계약서를 GPU 토큰 소모 0개로 0.006초 만에 전수 검사하여 하도급법(60일 초과/15.5% 미만)·상가임대차법(서울 9억·부산 6.9억 등 환산보증금 초과 및 권리금 포기 무효)·민법(과다 지체상금·별도 위약벌) 위반 점수를 0~100점 위험도 순위표로 정렬해 주는 사전 검문 엔진입니다."
     },
     roofline_bw: {
       title: "메모리 대역폭 루프라인 병목 (Memory-Bandwidth Roofline)",
