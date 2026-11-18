@@ -1491,7 +1491,7 @@
           </div>
           <div class="stage-col">
             <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
-            표준 라이브러리만으로 <span class="term-tip" tabindex="0" data-term="docx_wordml"><w:del>/<w:moveFrom> 서브트리 차단 & <w:tbl> 병합 격자 복원기</span>, <code>footnotes.xml</code>/<code>endnotes.xml</code> 결합기, <code>EncryptedPackage</code> 가드를 구현했습니다.
+            표준 라이브러리만으로 <span class="term-tip" tabindex="0" data-term="docx_wordml">&lt;w:del&gt;/&lt;w:moveFrom&gt; 서브트리 차단 &amp; &lt;w:tbl&gt; 병합 격자 복원기</span>, <code>footnotes.xml</code>/<code>endnotes.xml</code> 결합기, <code>EncryptedPackage</code> 가드를 구현했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
@@ -2501,11 +2501,11 @@ def _walk_docx_clean(node, parts):
     },
     xlsx_spreadsheetml: {
       title: "순수 파이썬 엑셀(.xlsx SpreadsheetML) 병합 시트·수식 해독기",
-      desc: "openpyxl이나 엑셀 프로그램 설치 없이 파이썬 기본 내장 기능(zipfile, ET, ast)만으로 다중 시트 순서, 전폭 배너 분리, 2단 복합 머리글, 세로 병합 분류, 수식 결과값(<v> 및 안전한 ast 계산 폴백)·퍼센트·날짜까지 0.031초 만에 복원해 품목코드 행 바꿔치기까지 잡아내는 파서입니다."
+      desc: "openpyxl이나 엑셀 프로그램 설치 없이 파이썬 기본 내장 기능(zipfile, ET, ast)만으로 다중 시트 순서, 전폭 배너 분리, 2단 복합 머리글, 세로 병합 분류, 수식 결과값(&lt;v&gt; 및 안전한 ast 계산 폴백)·퍼센트·날짜까지 0.031초 만에 복원해 품목코드 행 바꿔치기까지 잡아내는 파서입니다."
     },
     docx_wordml: {
       title: "순수 파이썬 워드(.docx WordprocessingML) 변경추적·각주 해독기",
-      desc: "python-docx나 MS 워드 설치 없이 파이썬 기본 내장 기능(zipfile, ET)만으로 협상 중 취소선으로 지운 옛날 조항(<w:del>) 오염을 100% 차단하고, 2단 병합 단가표(gridSpan·vMerge)와 맨 아래 각주·미주 특약(footnotes.xml)을 0.021초 만에 복원해 삭제된 구버전 수치 함정과 행 바꿔치기까지 잡아내는 파서입니다."
+      desc: "python-docx나 MS 워드 설치 없이 파이썬 기본 내장 기능(zipfile, ET)만으로 협상 중 취소선으로 지운 옛날 조항(&lt;w:del&gt;) 오염을 100% 차단하고, 2단 병합 단가표(gridSpan·vMerge)와 맨 아래 각주·미주 특약(footnotes.xml)을 0.021초 만에 복원해 삭제된 구버전 수치 함정과 행 바꿔치기까지 잡아내는 파서입니다."
     }
   };
 
@@ -2610,6 +2610,10 @@ def _walk_docx_clean(node, parts):
         el.addEventListener('mouseleave', hideGlossaryTooltip);
         el.addEventListener('focus', function() { showGlossaryTooltip(el); });
         el.addEventListener('blur', hideGlossaryTooltip);
+        el.addEventListener('touchstart', function(ev) {
+          ev.stopPropagation();
+          showGlossaryTooltip(el);
+        }, { passive: true });
         el.addEventListener('click', function(ev) {
           ev.stopPropagation();
           showGlossaryTooltip(el);
