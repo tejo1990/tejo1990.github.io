@@ -1491,7 +1491,7 @@
           </div>
           <div class="stage-col">
             <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
-            표준 라이브러리만으로 <span class="term-tip" tabindex="0" data-term="docx_wordml">&lt;w:del&gt;/&lt;w:moveFrom&gt; 서브트리 차단 &amp; &lt;w:tbl&gt; 병합 격자 복원기</span>, <code>footnotes.xml</code>/<code>endnotes.xml</code> 결합기, <code>EncryptedPackage</code> 가드를 구현했습니다.
+            표준 라이브러리만으로 <code>&lt;w:del&gt;/&lt;w:moveFrom&gt;</code> 서브트리 차단기, <span class="term-tip" tabindex="0" data-term="docx_wordml">WordprocessingML 병합 격자·각주 파서</span>(<code>&lt;w:tbl&gt;</code> + <code>footnotes.xml</code>), <code>EncryptedPackage</code> 가드를 구현했습니다.
           </div>
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
@@ -2566,16 +2566,20 @@ def _walk_docx_clean(node, parts):
     }
   }
 
+  var lastTipShowTs = 0;
+
   function showGlossaryTooltip(el) {
     var key = el.getAttribute('data-term');
     var info = GLOSSARY_TERMS[key];
     var tip = document.getElementById('glossary-tooltip');
     if (!info || !tip) return;
+    lastTipShowTs = Date.now();
     tip.innerHTML = '<span class="gt-title">💡 ' + info.title + '</span><span>' + info.desc + '</span>';
     tip.style.display = 'block';
     tip.setAttribute('aria-hidden', 'false');
 
-    var rect = el.getBoundingClientRect();
+    var clientRects = el.getClientRects ? el.getClientRects() : null;
+    var rect = (clientRects && clientRects.length > 0) ? clientRects[0] : el.getBoundingClientRect();
     var tipW = tip.offsetWidth || 300;
     var tipH = tip.offsetHeight || 110;
     var vw = window.innerWidth || document.documentElement.clientWidth;
@@ -2621,7 +2625,10 @@ def _walk_docx_clean(node, parts):
       })(terms[i]);
     }
     document.addEventListener('click', hideGlossaryTooltip);
-    window.addEventListener('scroll', hideGlossaryTooltip, { passive: true });
+    window.addEventListener('scroll', function() {
+      if (Date.now() - lastTipShowTs < 220) return;
+      hideGlossaryTooltip();
+    }, { passive: true });
     document.addEventListener('keydown', function(ev) {
       if (ev.key === 'Escape') hideGlossaryTooltip();
     });
