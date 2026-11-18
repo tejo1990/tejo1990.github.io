@@ -224,24 +224,66 @@
     }
     .why-3grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
-      margin-bottom: 22px;
+      margin-bottom: 16px;
     }
     .why-card {
       background: rgba(9, 13, 22, 0.65);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 16px 18px;
-      font-size: 13.8px;
+      font-size: 13.6px;
     }
     .why-card.cloud { border-top: 3px solid #94a3b8; }
     .why-card.ollama { border-top: 3px solid var(--bad); }
+    .why-card.premier { border-top: 3px solid var(--warn); }
     .why-card.ours {
       border-top: 3px solid var(--good);
       background: rgba(16, 185, 129, 0.06);
       border-color: rgba(52, 211, 153, 0.4);
     }
+    .premier-audit-fold {
+      margin: 0 0 18px !important;
+      border-color: rgba(251, 191, 36, 0.38) !important;
+    }
+    .premier-audit-fold > summary {
+      color: var(--warn) !important;
+    }
+    .premier-audit-head {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #f8fafc;
+      margin: 4px 0 10px;
+    }
+    .killer-case-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .killer-case-card {
+      background: rgba(19, 27, 46, 0.78);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 15px;
+      font-size: 13.2px;
+      min-width: 0;
+    }
+    .killer-case-card.bad { border-left: 3px solid var(--bad); }
+    .killer-case-card.good { border-left: 3px solid var(--good); }
+    .killer-case-title {
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+      font-size: 13.6px;
+    }
+    .killer-case-card ul {
+      margin: 6px 0 0;
+      padding-left: 18px;
+      color: #cbd5e1;
+    }
+    .killer-case-card li { margin-bottom: 4px; }
     .why-card-title {
       font-size: 15px;
       font-weight: 800;
@@ -541,6 +583,7 @@
       font-weight: 700;
     }
     .tag-pill.bad { background: rgba(248, 113, 113, 0.2); color: var(--bad); }
+    .tag-pill.warn { background: rgba(251, 191, 36, 0.2); color: var(--warn); }
     .tag-pill.good { background: rgba(52, 211, 153, 0.2); color: var(--good); }
 
     .tabs {
@@ -631,8 +674,12 @@
     }
     .table-wrap, pre { max-width: 100%; }
 
+    @media (max-width: 1040px) {
+      .why-3grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     @media (max-width: 920px) {
       .pipeline-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .killer-case-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
       .container { padding: 0 14px; }
@@ -640,7 +687,7 @@
       h1 { font-size: 21.5px; }
       h2 { font-size: 18px; }
       .post-card h3, .appendix-card h3 { font-size: 17.5px; }
-      .kpi-grid, .why-3grid, .pipeline-steps, .glossary-grid, .stage-body-grid, .compare-grid {
+      .kpi-grid, .why-3grid, .pipeline-steps, .glossary-grid, .stage-body-grid, .compare-grid, .killer-case-grid {
         grid-template-columns: 1fr;
       }
       .mode-bar { flex-direction: column; align-items: stretch; gap: 8px; }
@@ -782,7 +829,7 @@
 
         <div class="why-card ollama">
           <div class="why-card-title">
-            <span>📦 2. 기본 원터치 로컬 LLM (순정 Ollama)</span>
+            <span>📦 2. 순정 보급형 로컬 LLM (Ollama)</span>
             <span class="tag-pill bad">실무 투입 실패</span>
           </div>
           <ul>
@@ -791,17 +838,105 @@
           </ul>
         </div>
 
-        <div class="why-card ours">
+        <div class="why-card premier">
           <div class="why-card-title">
-            <span>🏰 3. 우리가 만든 로컬 LLM (본 프로젝트)</span>
-            <span class="tag-pill good">분업형 팀플레이</span>
+            <span>💎 3. 1,000만 원대 최신 AI PC 단독 구동</span>
+            <span class="tag-pill warn">체급 만능주의 한계</span>
           </div>
           <ul>
-            <li><strong>발상의 전환:</strong> <em>"작은 두뇌 하나에게 암기·계산·검사를 다 시키지 말자!"</em></li>
-            <li>AI 두뇌는 오직 <strong>'글을 읽고 쉽게 설명하는 역할'</strong>만 맡기고, 그 옆에 <strong>초고속 도서관 + 파이썬 전자계산기 + 빨간펜 교정 선생님</strong>을 붙여 똑같은 <code>RTX 3060 12GB</code>에서 <strong>50문제 시험 100점(50/50)</strong>을 달성했습니다.</li>
+            <li><em>"그럼 <code>DGX Spark($6,950)</code> 같은 128GB 전용 기기에 최신 대형 모델(<code>Gemma 4 31B</code>·<code>gpt-oss 120B</code>)만 깔면 해결될까?"</em></li>
+            <li>일반 코딩·상식 추론은 올라가지만, <strong>도서관(<code>L2</code>)·계산기(<code>L3</code>) 없이 두뇌만 돌리면 ① 내 PC 한글(<code>.hwp</code>)·PPT·엑셀·워드 표 판독 <code>0%</code>, ② 법령 단서 함정에 동조, ③ 원(₩) 단위 이자 암산과 <code>0</code> 누락 오타를 스스로 잡지 못합니다.</strong></li>
+            <li>게다가 <span class="term-tip" tabindex="0" data-term="roofline_bw">메모리 대역폭(273 GB/s) 병목</span>으로 <code>31B Dense</code> 출력(<code>11.1 TPS</code>)은 오히려 답답하고 3년 비용(<code>$7,088</code>)은 <strong>15.8배</strong>나 듭니다.</li>
+          </ul>
+        </div>
+
+        <div class="why-card ours">
+          <div class="why-card-title">
+            <span>🏰 4. 우리가 만든 로컬 LLM (본 프로젝트)</span>
+            <span class="tag-pill good">분업형 외골격</span>
+          </div>
+          <ul>
+            <li><strong>발상의 전환:</strong> <em>"두뇌(<code>L1</code>) 하나에게 암기·계산·검사를 다 떠넘기지 말자!"</em></li>
+            <li><code>12GB VRAM</code> 본체에서는 <span class="term-tip" tabindex="0" data-term="slot2_orthogonality">SLOT_2 물리 상한(≤9.8GB)</span> 내 정예 두뇌(<code>Qwen3-14B</code> / <code>Gemma 4 12B</code>)를 스와핑 없이 <code>100% VRAM(33.4 TPS)</code>에 가두고 <strong>초고속 도서관(<code>L2</code>) + 139개 파이썬 계산기(<code>L3</code>) + 사후 빨간펜 교정</strong>을 결합해 <strong>50문항 시험 100점(50/50)</strong>을 달성했습니다.</li>
+            <li>상위 장비(<code>24GB+ VRAM / 32GB+</code>)로 옮길 땐 <code>L2·L3</code> 재개발 <code>0줄</code>로 주력 두뇌만 <code>26B/31B</code>로 직교 교체합니다.</li>
           </ul>
         </div>
       </div>
+
+      <!-- Premier Naked-L1 vs Sovereign Fortress v3.0 Quantitative Audit (Collapsed in Easy Mode, Auto-Expanded in Expert Mode) -->
+      <details class="expert-code-fold premier-audit-fold">
+        <summary>📊 [정량 비교표 &amp; 1문제 실증] 왜 1,000만 원대 최신 AI PC(<code>DGX Spark</code> + <code>Gemma 4 31B</code> 단독 구동)도 <code>L2·L3</code> 없이는 실무에서 실패하는가? (클릭해 펼치기)</summary>
+        <div class="premier-audit-head">🔬 하드웨어·체급 확장(<code>Naked L1</code>) vs 분업형 외골격(<code>L1 ⊥ L2·L3</code>) 6대 축 정밀 대조</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>비교 차원 및 세부 평가 지표</th>
+                <th>💎 프리미어 기기 + 최신 모델 단독 (<code>Naked L1</code>)<br/><code>DGX Spark 128GB ($6,950)</code> + <code>Gemma 4 31B</code> / <code>gpt-oss 120B</code></th>
+                <th>🏰 본 프로젝트 (<code>Sovereign Fortress v3.0</code>)<br/><code>RTX 3060 12GB ($280)</code> + <code>14B</code> + <code>L2(FTS5·HWP)</code> + <code>L3(Python)</code></th>
+                <th>물리·전산학적 원인 및 하드웨어 경계 조건</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>① 비공개 실무 문서(<code>.hwp</code>·<code>.hwpx</code>·<code>.pptx</code>·<code>.xlsx</code>·<code>.docx</code>) 실시간 드래그앤드롭 판독</strong></td>
+                <td class="col-bad"><strong>0.0% (판독 불가)</strong></td>
+                <td class="col-good"><strong>100.0%</strong> (<code>9.6 ~ 31.5 ms</code> 파싱 · <code>138.9 ms</code> 암호화 색인)</td>
+                <td>파라미터가 <code>1,000B</code>여도 <code>MS-CFB</code>·<code>OOXML</code> 병합 표·변경추적(<code>&lt;w:del&gt;</code>) 파서와 로컬 <code>L2</code> 색인기가 없으면 디스크 문서를 읽지 못함</td>
+              </tr>
+              <tr>
+                <td><strong>② 적대적 거짓 법령·숫자 유도 질문 방어 (<code>Golden Axis 2</code>)</strong></td>
+                <td class="col-bad"><strong>취약</strong> (<code>RLHF</code> 동조 및 단서조항 환각)</td>
+                <td class="col-good"><strong>10 / 10 (100.0%) 사전 차단</strong> (4-Layer 모순 감지기)</td>
+                <td>가중치 내부 지식은 파라미터당 <code>2 bits</code> 손실 압축 상태라 세부 예외 조항(<code>상임법 제2조 제3항</code> 등)에서 질문자 편향에 동조함</td>
+              </tr>
+              <tr>
+                <td><strong>③ 복합 실정법·재무 원(₩) 단위 정밀 산출 (<code>Golden Axis 3</code>)</strong></td>
+                <td class="col-bad"><strong>0% 무결성 보증 불가</strong> (확률 토큰 암산 → 원 단위·일수 오차)</td>
+                <td class="col-good"><strong>10 / 10 (100.0%) · 오차 0.0%</strong> (<code>5.94 ms</code> 다중 <code>L3</code> 배치)</td>
+                <td>트랜스포머는 산술 논리 장치(<code>ALU</code>)가 아님. 분기 조건이 겹치는 일할 지연이자·호프만 상한(<code>240</code>) 암산은 필연적으로 틀림</td>
+              </tr>
+              <tr>
+                <td><strong>④ 생성 문장 내 <code>0</code> 누락(<code>9억→9천만</code>)·가짜 조문 검문 (<code>Axis 5</code>)</strong></td>
+                <td class="col-bad"><strong>0.0% (자가 검문 루프 없음)</strong></td>
+                <td class="col-good"><strong>10 / 10 (100.0%) 적발·자동 교정</strong> (<code>ZERO_DIGIT_SHIFT_10X</code>)</td>
+                <td>순정 <code>L1</code>은 스스로 출력한 한글 만·억 단위와 천 단위 쉼표 간 <code>10배</code> 자릿수 오타나 없는 조문(<code>제999조</code>)을 역검증하지 못함</td>
+              </tr>
+              <tr>
+                <td><strong>⑤ 3년 총소유비용(<code>TCO</code>) 및 실시간 출력 속도</strong></td>
+                <td class="col-bad"><strong>$7,088</strong> · <code>31B Dense</code> <strong>11.1 tok/s</strong> (<code>273 GB/s</code> 대역폭 질식)</td>
+                <td class="col-good"><strong>$448 (비용 1/15.8)</strong> · <strong>33.4 tok/s</strong> · <code>TTFT 0.037~0.049s</code></td>
+                <td><code>DGX Spark</code>는 <code>256-bit LPDDR5x(273 GB/s)</code> 대역폭 한계로 <code>Dense</code> 생성이 느리며, <code>&lt;think&gt;</code>로만 수식을 풀면 수십 초 지연됨</td>
+              </tr>
+              <tr>
+                <td><strong>⑥ [정직한 역비교] 미수록 범용 코딩·대학원 추론 (<code>LiveCodeBench</code> / <code>GPQA</code>)</strong></td>
+                <td><strong>🏆 대형 체급 우위</strong> (<code>80.0~87.8%</code> / <code>78.5~84.3%</code>)</td>
+                <td><code>62.5~72.0%</code> / <code>70.4%</code><br/>(<code>12GB VRAM</code> 내 <code>SLOT_2 ≤ 9.8GB</code> 물리 한계)</td>
+                <td><strong>물리 경계 &amp; 직교성(<code>L1 ⊥ L2·L3</code>):</strong> <code>12GB VRAM + 16GB RAM</code> 본체에 <code>Gemma 4 26B MoE(15.9GB)</code>를 억지로 넣으면 DDR4 스와핑(<code>6.2 TPS</code>)·가상메모리 <code>OOM</code>이 발생하므로 <code>≤9.8GB</code> 모델(<code>Qwen3-14B 8.4GB</code> / <code>Gemma 4 12B 7.4GB</code>)만 <code>100% VRAM</code>에 적재함. 대신 상위 장비(<code>24GB+ VRAM / 32GB+ UMA</code>) 배포 시 <code>L2·L3</code> 수정 <code>0줄</code>로 <code>SLOT_2</code>만 <code>26B/31B</code>로 격상해 범용 체급까지 흡수함</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="killer-case-grid">
+          <div class="killer-case-card bad">
+            <div class="killer-case-title">❌ 동일 질문 실증 — <code>$6,950</code> 최신 모델 단독 구동 (<code>L2·L3</code> 없음)</div>
+            <div><em>질문: "하도급 수령 후 120일 미지급 대금 1억 원 청구 총액과, 서울 상가(보증금 1억·월세 850만) 5% 인상 상한·10년 권리금 보호 여부를 동시 계산해 줘."</em></div>
+            <ul>
+              <li><strong>법령 경계 착각:</strong> 하도급법 제13조의 <strong>60일 유예 공제(<code>120-60=60일</code>)</strong>를 놓치고 120일 전체에 이자를 곱하거나, 서울 환산보증금(<code>9.5억 &gt; 9억</code>) 초과만 보고 <em>"10년 갱신과 권리금 보호도 전부 제외된다"</em>고 오답 생성.</li>
+              <li><strong>토큰 암산 오차:</strong> <code>1억 × 15.5% × 60/365</code>를 확률 토큰으로 어림짐작하며 원 단위 숫자를 틀리고 <code>&lt;think&gt;</code> 토큰 수천 개를 소모하며 수십 초 지연.</li>
+            </ul>
+          </div>
+          <div class="killer-case-card good">
+            <div class="killer-case-title">✅ 동일 질문 실증 — <code>$280 RTX 3060</code> 본 프로젝트 (<code>L1 + L2 + L3</code>)</div>
+            <div><em>동일 질문을 오프라인 로컬 서버(<code>127.0.0.1:8080</code>)에 그대로 투입했을 때:</em></div>
+            <ul>
+              <li><strong><code>L2</code> 원문 직결 (<code>~5 ms</code>):</strong> 하도급법 제9조(<code>10일 간주검수</code>)·제13조(<code>60일 초과 연 15.5%</code>) 및 상임법 제2조 제3항(<code>9억 초과 시 5% 캡만 해제, 10년 갱신·권리금은 유지</code>) 정확히 인출.</li>
+              <li><strong><code>L3</code> 파이썬 확정 산출 (<code>5.94 ms</code>, 오차 <code>0원</code>):</strong> 청구 총액 <strong><code>102,547,945원</code></strong>(<code>원금 1억 + 60일분 2,547,945원</code>)과 환산보증금 <strong><code>950,000,000원</code></strong>을 <code>1원</code> 오차 없이 계산 후 <strong><code>0.049초</code></strong> 만에 출력·역검증 완료.</li>
+            </ul>
+          </div>
+        </div>
+      </details>
 
       <!-- 5-Step Interactive Team-Play Architecture Pipeline -->
       <div class="pipeline-box">
@@ -819,10 +954,10 @@
           <div class="pipe-step" onclick="jumpToStageCard(4)">
             <div>
               <div class="pipe-badge">STEP 2 · 오픈북 도서관</div>
-              <div class="pipe-name">📚 45.8만 권 + 한글·PPT·엑셀·워드</div>
-              <div class="pipe-desc">일상 말투·비유 질문은 물론 관공서 한글(<code>.hwp</code>·<code>.hwpx</code>)·제안서(<code>.pptx</code>)·견적서(<code>.xlsx</code>)·워드 계약서(<code>.docx</code>) 표·각주까지 정확히 찾아옵니다.</div>
+              <div class="pipe-name">📚 45.8만 권 + 드래그앤드롭 문서</div>
+              <div class="pipe-desc">일상 말투·비유 질문은 물론 마우스로 끌어다 놓은 한글(<code>.hwp</code>·<code>.hwpx</code>)·PPT·엑셀·워드 계약서(<code>.docx</code>) 표·각주까지 0.14초 만에 찾아옵니다.</div>
             </div>
-            <div class="pipe-link">→ Stage 4 · 5 · 9 · 12 ~ 15 보기</div>
+            <div class="pipe-link">→ Stage 4 · 5 · 9 · 12 ~ 16 보기</div>
           </div>
 
           <div class="pipe-step" onclick="jumpToStageCard(6)">
@@ -872,6 +1007,9 @@
           <div class="glossary-item"><strong>OOXML(.pptx) 병합 표(gridSpan/vMerge) &amp; 발표자 노트 파서</strong>파워포인트 없이 슬라이드 실제 발표 순서, 가로·세로 병합 단가표(열 밀림 왜곡 0건), 숨겨진 발표자 노트·SmartArt까지 0.02초 만에 복원해 숫자·품목 경보기와 연결하는 해독기입니다.</div>
           <div class="glossary-item"><strong>SpreadsheetML(.xlsx) 병합 시트(mergeCells) &amp; 안전 AST 수식 파서</strong>openpyxl·엑셀 없이 다중 시트 순서, 2단 복합 머리글, 세로 병합 분류, 수식 결과값(&lt;v&gt; 및 eval 없는 순수 ast 계산 폴백)·퍼센트·날짜를 0.03초 만에 복원해 품목코드 행 바꿔치기까지 잡아내는 해독기입니다.</div>
           <div class="glossary-item"><strong>WordprocessingML(.docx) 변경추적(&lt;w:del&gt;) 차단 &amp; 병합 표·각주 파서</strong>python-docx·MS 워드 없이 협상 중 취소선으로 지운 옛날 문구(&lt;w:del&gt;) 오염을 100% 차단하고, 2단 병합 단가표(&lt;w:gridSpan&gt;·&lt;w:vMerge&gt;)와 맨 아래 각주·미주 특약(footnotes.xml)을 0.02초 만에 복원해 구버전 삭제 수치 함정까지 잡아내는 해독기입니다.</div>
+          <div class="glossary-item"><strong>브라우저 Drag &amp; Drop 실시간 암호화 색인 (O(log N) FTS5)</strong>탐색기 폴더 열기나 .bat 실행 없이 웹 대시보드에 파일을 끌어다 놓으면, FTS5 category 역색인(0.2ms)으로 해당 문서 청크만 교체하고 ENC_HWID_V2로 암호화해 0.14초 만에 새로고침 없이 검색·경보기에 반영합니다.</div>
+          <div class="glossary-item"><strong>메모리 대역폭 병목 (Roofline Choke)</strong>로컬 AI가 글자를 찍어내는 속도는 연산력(FLOPS)이 아니라 '메모리에서 가중치를 읽어오는 통로 넓이(GB/s)'가 결정합니다. 1,000만 원대 전용 기기라도 통로(273 GB/s)가 좁으면 큰 모델 출력이 거북이처럼 느려집니다.</div>
+          <div class="glossary-item"><strong>SLOT_2 물리 상한(≤9.8GB) &amp; L1 ⊥ L2·L3 직교성</strong>12GB 그래픽카드 본체에서는 스와핑 멈춤을 막기 위해 주력 두뇌 칸(SLOT_2)을 9.8GB 이하(14B·12B)로 엄격히 제한하고, 나중에 24GB+ 상위 장비로 옮길 때만 도서관(L2)·계산기(L3) 코드 수정 0줄로 26B·31B 두뇌로 갈아 끼우는 분리 설계입니다.</div>
         </div>
       </details>
     </div>
@@ -2623,6 +2761,14 @@ cur.executemany(
     drag_drop_fts5: {
       title: "실시간 드래그 앤 드롭 & O(log N) 암호화 색인기",
       desc: "탐색기 폴더 열기나 .bat 배치 실행(13.4초) 없이 웹 대시보드 화면에 파일을 끌어다 놓으면, FTS5 category 역색인(0.2ms)으로 해당 문서 칸만 콕 집어 교체하고 계약 수치를 컴퓨터 지문 암호(ENC_HWID_V2)로 잠근 뒤 새로고침(F5) 없이 0.139초 만에 검색 결과와 모순 경보기에 즉시 반영하는 기술입니다."
+    },
+    roofline_bw: {
+      title: "메모리 대역폭 루프라인 병목 (Memory-Bandwidth Roofline)",
+      desc: "단일 사용자 로컬 AI가 글자를 한 자씩 생성(Decode)할 때는 매 글자마다 수십 GB 가중치를 메모리에서 읽어야 하므로 연산력(PFLOPS)이 아니라 메모리 대역폭(GB/s)이 속도를 지배합니다. 대역폭이 273 GB/s에 묶인 고가 기기는 31B+ Dense 모델 구동 시 오히려 속도가 급락합니다."
+    },
+    slot2_orthogonality: {
+      title: "SLOT_2 물리 상한(≤9.8GB) &amp; L1 ⊥ L2·L3 직교 교체",
+      desc: "RTX 3060 12GB + 16GB RAM 환경에 26B MoE(15.9GB)를 억지로 넣으면 활성 연산(3.8B)과 무관하게 전체 가중치가 넘쳐 DDR4 스와핑과 가상메모리 강제 종료가 발생합니다. 따라서 12GB 기기는 SLOT_2를 9.8GB 이하(Qwen3-14B / Gemma 4 12B)로 고정해 100% VRAM 속도를 지키고, 24GB+ VRAM / 32GB+ 상위 장비 배포 시 L2·L3 수정 0줄로 26B/31B 가중치만 교체합니다."
     }
   };
 
