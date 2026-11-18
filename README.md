@@ -35,7 +35,7 @@
 
 ---
 
-## 3. How — 포트폴리오 아키텍처 맵 & 로컬 LLM 고도화 16부작
+## 3. How — 포트폴리오 아키텍처 맵 & 로컬 LLM 고도화 17부작
 
 ### 3.1 엔지니어링 도메인 연결 아키텍처
 
@@ -64,9 +64,9 @@ flowchart TB
     FORT <--> SSOT
 ```
 
-### 3.2 로컬 LLM 고도화 본편 16부작 (`Sovereign Offline AI Fortress v3.0`)
+### 3.2 로컬 LLM 고도화 본편 17부작 (`Sovereign Offline AI Fortress v3.0`)
 
-> **1분 요약**: 인터넷 연결 없이 일반 보급형 그래픽카드 1장(`RTX 3060 12GB`)이 장착된 로컬 PC 안에서 **거짓말 0% · 수식 계산 오차 0% · 외부 유출 0%**를 달성하기 위해 `Stage 1`부터 `Stage 16`까지 실제 병목을 하나씩 격파하며 구축한 엔지니어링 기록입니다.
+> **1분 요약**: 인터넷 연결 없이 일반 보급형 그래픽카드 1장(`RTX 3060 12GB`)이 장착된 로컬 PC 안에서 **거짓말 0% · 수식 계산 오차 0% · 외부 유출 0%**를 달성하기 위해 `Stage 1`부터 `Stage 17`까지 실제 병목을 하나씩 격파하며 구축한 엔지니어링 기록입니다.
 
 #### 왜 `$6,950` 전용 로컬 기기(`DGX Spark 128GB` + 최신 `Gemma 4 31B` / `gpt-oss 120B` 단독 구동)로도 `L2·L3` 외골격을 대체할 수 없는가?
 
@@ -97,6 +97,7 @@ flowchart TB
 | **Stage 14** | **[14부: 순수 파이썬 엑셀(`.xlsx`) 다중 시트·병합 셀·수식 색인기](posts/14-stage14-pure-python-xlsx-sheets-merges-formulas-indexer.md)** | 폐쇄망에서 `.xlsx` 2단 병합 헤더·세로 병합·수식 값 누락 | 표준 라이브러리 100% `SpreadsheetML` + `ast` 수식 폴백 · **`10시트 31.5ms` · 품목코드 행 교차 방어** |
 | **Stage 15** | **[15부: 순수 파이썬 워드(`.docx`) 변경추적 차단·병합 표·각주 색인기](posts/15-stage15-pure-python-docx-redline-merges-footnotes-indexer.md)** | `.docx` 변경추적 삭제 조항(`<w:del>`) 오염·병합 표 열 밀림·각주 특약 누락 | 표준 라이브러리 100% `WordprocessingML` · **`21.7ms` 파싱 · 구버전 삭제 수치 & 행 교차 방어** |
 | **Stage 16** | **[16부: 브라우저 Drag & Drop 실시간 암호화(`ENC_HWID_V2`)·`O(log N)` FTS5 증분 색인기](posts/16-stage16-browser-drag-drop-live-ingest-and-enc-hwid-fts5.md)** | 폴더 열기·`.bat` 실행(`13.4s`) 마찰 및 `2.24 GB` FTS5 `LIKE` 풀스캔 병목 | `POST /api/ingest-file` + `category` 역색인 핀셋 교체 · **`138.9ms` 완결(`96x` 단축) · 무새로고침 반영** |
+| **Stage 17** | **[17부: 이종 포맷 다중 문서 1:1 Delta·조항 비교기 & 원시 바이너리 포렌식 무유출 하드닝](posts/17-stage17-multidoc-delta-comparator-and-forensic-hygiene.md)** | `.xlsx` 초안 vs `.docx` 수정본 단위·서식 불일치 & SQLite Freelist 잔류 바이트 | `POST /api/compare-docs` **`4.68ms` 1:1 대조** + `secure_delete` **6대 표면·Raw 바이트 유출 `0건`** |
 
 #### 📎 별첨 연구 노트 (외전 2편)
 * **[별첨 A: 단일 프롬프트의 한계를 넘는 '3-Way 서브에이전트 토너먼트' — 250문항 안전·편향 벤치마크 실증](posts/appendix-a-subagent-tournament-250-benchmark.md)**
@@ -132,7 +133,7 @@ flowchart TB
 ```text
 tejo1990.github.io/
 ├── index.html      # 단일 파일 무의존성 인터랙티브 포트폴리오 웹앱 (🌱 쉽게 읽기 ↔ ⚙️ 엔지니어 원문 토글)
-├── posts/          # Stage 01 ~ Stage 16 본편 및 별첨 A·B 기술 아티클 마크다운 원문 (18편)
+├── posts/          # Stage 01 ~ Stage 17 본편 및 별첨 A·B 기술 아티클 마크다운 원문 (19편)
 ├── .nojekyll       # GitHub Pages 정적 에셋 직출 서빙 설정
 └── README.md       # 마스터 엔지니어링 포트폴리오 인덱스 & 로컬 실행 가이드
 ```

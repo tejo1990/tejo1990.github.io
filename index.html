@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sovereign Offline AI Fortress v3.0 | 로컬 LLM 16단계 고도화 기록 (입문자·엔지니어 겸용)</title>
+  <title>Sovereign Offline AI Fortress v3.0 | 로컬 LLM 17단계 고도화 기록 (입문자·엔지니어 겸용)</title>
   <style>
     :root {
       --bg: #0b0f19;
@@ -721,23 +721,23 @@
   <div class="container">
     <div class="badge-row">
       <span class="badge green">Sovereign Offline AI Fortress v3.0</span>
-      <span class="badge purple">Stage 1~16 === 1부~16부 (1:1 직렬 진화 기록)</span>
+      <span class="badge purple">Stage 1~17 === 1부~17부 (1:1 직렬 진화 기록)</span>
       <span class="badge">Computer Science &amp; Engineering B.S. (KOREATECH)</span>
       <span class="badge">Engineer Information Processing (정보처리기사)</span>
       <span class="badge">HRD-Net NCS Approved Instructor (8 Categories)</span>
       <span class="badge">Linux Infra &amp; C# Industrial Control</span>
     </div>
 
-    <h1 class="mode-easy">보급형 그래픽카드 1장(<code>RTX 3060 12GB</code>)으로 '거짓말·계산 실수 없는 나만의 로컬 AI'를 만들기까지: 16단계 성장 기록</h1>
-    <h1 class="mode-expert">소비자용 GPU(<code>RTX 3060 12GB</code>) 로컬 LLM은 어디까지 진화할 수 있는가: 16단계 아키텍처 고도화 전 기록</h1>
+    <h1 class="mode-easy">보급형 그래픽카드 1장(<code>RTX 3060 12GB</code>)으로 '거짓말·계산 실수 없는 나만의 로컬 AI'를 만들기까지: 17단계 성장 기록</h1>
+    <h1 class="mode-expert">소비자용 GPU(<code>RTX 3060 12GB</code>) 로컬 LLM은 어디까지 진화할 수 있는가: 17단계 아키텍처 고도화 전 기록</h1>
 
     <p class="subtitle mode-easy">
-      인터넷 연결 없이 내 컴퓨터 안에서 돌아가는 AI를 만들려고 유명 프로그램(<code>Ollama</code> 등)만 설치해 보면, 곧바로 <strong>메모리 부족 멈춤, 틀린 돈·이자 암산, 없는 법 조문 지어내기, 20초씩 걸리는 답답한 대기 시간, 한글(<code>.hwp</code>)·제안서(<code>.pptx</code>)·견적서(<code>.xlsx</code>)·워드 계약서(<code>.docx</code> 변경추적·각주) 판독 및 실시간 등록 불편</strong>이라는 벽에 부딪힙니다.
-      이 페이지는 처음 방문하신 분도 쉽게 따라오실 수 있도록 <strong>우리가 어떤 로컬 AI를 만들려 했고, 왜 기존 방식은 안 되었으며, 16단계에 걸쳐 어떻게 하나씩 해결했는지</strong> 차근차근 풀어쓴 기록입니다. <em>(상단 스위치로 언제든 엔지니어 원문·코드 모드로 전환할 수 있습니다.)</em>
+      인터넷 연결 없이 내 컴퓨터 안에서 돌아가는 AI를 만들려고 유명 프로그램(<code>Ollama</code> 등)만 설치해 보면, 곧바로 <strong>메모리 부족 멈춤, 틀린 돈·이자 암산, 없는 법 조문 지어내기, 20초씩 걸리는 답답한 대기 시간, 한글(<code>.hwp</code>)·제안서(<code>.pptx</code>)·견적서(<code>.xlsx</code>)·워드 계약서(<code>.docx</code> 변경추적·각주) 판독 및 신·구 문서 1:1 비교 불편</strong>이라는 벽에 부딪힙니다.
+      이 페이지는 처음 방문하신 분도 쉽게 따라오실 수 있도록 <strong>우리가 어떤 로컬 AI를 만들려 했고, 왜 기존 방식은 안 되었으며, 17단계에 걸쳐 어떻게 하나씩 해결했는지</strong> 차근차근 풀어쓴 기록입니다. <em>(상단 스위치로 언제든 엔지니어 원문·코드 모드로 전환할 수 있습니다.)</em>
     </p>
     <p class="subtitle mode-expert">
-      단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 첫 글자 20초 대기, 폐쇄망 실무 문서 4대장(한글 <code>.hwpx</code>/<code>.hwp</code> · 파워포인트 <code>.pptx</code> · 엑셀 <code>.xlsx</code> · 워드 <code>.docx</code> 변경추적·병합 표·각주) 파싱 및 실시간 증분 색인 장벽 앞에서 곧바로 무너집니다.
-      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 Zero-VRAM 추론·시맨틱 가속, 사후 역검증기, 50문항 골든 벤치마크, 순수 파이썬 실무 문서 4대장 파서 및 브라우저 Drag &amp; Drop 실시간 암호화 색인(Stage 12~16)까지 1:1로 대응하는 16편의 엔지니어링 리포트</strong>로 정리했습니다.
+      단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 첫 글자 20초 대기, 폐쇄망 실무 문서 4대장(한글 <code>.hwpx</code>/<code>.hwp</code> · 파워포인트 <code>.pptx</code> · 엑셀 <code>.xlsx</code> · 워드 <code>.docx</code> 변경추적·병합 표·각주) 파싱 및 실시간 색인·신구 비교 장벽 앞에서 곧바로 무너집니다.
+      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 Zero-VRAM 추론·시맨틱 가속, 사후 역검증기, 50문항 골든 벤치마크, 순수 파이썬 실무 문서 4대장 파서, 브라우저 Drag &amp; Drop 암호화 색인 및 이종 포맷 다중 문서 1:1 Delta 비교·원시 바이너리 무유출 하드닝(Stage 12~17)까지 1:1로 대응하는 17편의 엔지니어링 리포트</strong>로 정리했습니다.
     </p>
 
     <!-- KPI Cards: Easy Mode -->
@@ -957,7 +957,7 @@
               <div class="pipe-name">📚 45.8만 권 + 드래그앤드롭 문서</div>
               <div class="pipe-desc">일상 말투·비유 질문은 물론 마우스로 끌어다 놓은 한글(<code>.hwp</code>·<code>.hwpx</code>)·PPT·엑셀·워드 계약서(<code>.docx</code>) 표·각주까지 0.14초 만에 찾아옵니다.</div>
             </div>
-            <div class="pipe-link">→ Stage 4 · 5 · 9 · 12 ~ 16 보기</div>
+            <div class="pipe-link">→ Stage 4 · 5 · 9 · 12 ~ 17 보기</div>
           </div>
 
           <div class="pipe-step" onclick="jumpToStageCard(6)">
@@ -1008,6 +1008,7 @@
           <div class="glossary-item"><strong>SpreadsheetML(.xlsx) 병합 시트(mergeCells) &amp; 안전 AST 수식 파서</strong>openpyxl·엑셀 없이 다중 시트 순서, 2단 복합 머리글, 세로 병합 분류, 수식 결과값(&lt;v&gt; 및 eval 없는 순수 ast 계산 폴백)·퍼센트·날짜를 0.03초 만에 복원해 품목코드 행 바꿔치기까지 잡아내는 해독기입니다.</div>
           <div class="glossary-item"><strong>WordprocessingML(.docx) 변경추적(&lt;w:del&gt;) 차단 &amp; 병합 표·각주 파서</strong>python-docx·MS 워드 없이 협상 중 취소선으로 지운 옛날 문구(&lt;w:del&gt;) 오염을 100% 차단하고, 2단 병합 단가표(&lt;w:gridSpan&gt;·&lt;w:vMerge&gt;)와 맨 아래 각주·미주 특약(footnotes.xml)을 0.02초 만에 복원해 구버전 삭제 수치 함정까지 잡아내는 해독기입니다.</div>
           <div class="glossary-item"><strong>브라우저 Drag &amp; Drop 실시간 암호화 색인 (O(log N) FTS5)</strong>탐색기 폴더 열기나 .bat 실행 없이 웹 대시보드에 파일을 끌어다 놓으면, FTS5 category 역색인(0.2ms)으로 해당 문서 청크만 교체하고 ENC_HWID_V2로 암호화해 0.14초 만에 새로고침 없이 검색·경보기에 반영합니다.</div>
+          <div class="glossary-item"><strong>이종 포맷 1:1 Delta 비교기 &amp; SQLite Freelist 제로필 소거</strong>엑셀 견적서(.xlsx)와 워드 수정 계약서(.docx)처럼 서식·단위가 달라도 품목코드별 가격·기한 차이를 0.005초 만에 1:1 비교표로 산출하고, 타 PC 배포 시 PRAGMA secure_delete=ON + FTS5 optimize로 삭제된 개인 문서의 보이지 않는 바이트 파편까지 0바이트로 지웁니다.</div>
           <div class="glossary-item"><strong>메모리 대역폭 병목 (Roofline Choke)</strong>로컬 AI가 글자를 찍어내는 속도는 연산력(FLOPS)이 아니라 '메모리에서 가중치를 읽어오는 통로 넓이(GB/s)'가 결정합니다. 1,000만 원대 전용 기기라도 통로(273 GB/s)가 좁으면 큰 모델 출력이 거북이처럼 느려집니다.</div>
           <div class="glossary-item"><strong>SLOT_2 물리 상한(≤9.8GB) &amp; L1 ⊥ L2·L3 직교성</strong>12GB 그래픽카드 본체에서는 스와핑 멈춤을 막기 위해 주력 두뇌 칸(SLOT_2)을 9.8GB 이하(14B·12B)로 엄격히 제한하고, 나중에 24GB+ 상위 장비로 옮길 때만 도서관(L2)·계산기(L3) 코드 수정 0줄로 26B·31B 두뇌로 갈아 끼우는 분리 설계입니다.</div>
         </div>
@@ -1015,11 +1016,11 @@
     </div>
   </section>
 
-  <!-- SECTION 1: 16-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..16) -->
+  <!-- SECTION 1: 17-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..17) -->
   <section id="evolution-timeline">
-    <h2>1. 로컬 LLM 16단계 고도화 타임라인 (`STAGE 1 ~ 16` ↔ 본문 `1부 ~ 16부` 1:1 대응)</h2>
+    <h2>1. 로컬 LLM 17단계 고도화 타임라인 (`STAGE 1 ~ 17` ↔ 본문 `1부 ~ 17부` 1:1 대응)</h2>
     <p class="section-lead mode-easy">
-      처음 기초를 잡은 <strong>1단계</strong>부터 50문제 만점, 한국 실무 문서 4대장 — 한글(<code>.hwp</code>·<code>.hwpx</code>)·파워포인트(<code>.pptx</code>)·엑셀(<code>.xlsx</code>)·워드 계약서(<code>.docx</code>) 해독, 그리고 폴더를 열 필요 없이 웹 화면에 마우스로 끌어다 놓기만 하면 0.14초 만에 암호화·검색되는 <strong>16단계</strong>까지 순서대로 이어집니다. 어떤 불편함 때문에 다음 단계를 만들었는지 읽어보시고, 궁금한 단계는 우측 <strong>[본문 보기 →]</strong> 버튼을 눌러 자세히 살펴보세요.
+      처음 기초를 잡은 <strong>1단계</strong>부터 50문제 만점, 한국 실무 문서 4대장 — 한글(<code>.hwp</code>·<code>.hwpx</code>)·파워포인트(<code>.pptx</code>)·엑셀(<code>.xlsx</code>)·워드 계약서(<code>.docx</code>) 해독, 웹 화면 실시간 드래그 앤 드롭 색인, 그리고 파일 종류가 다른 구버전·수정본 문서를 0.005초 만에 1:1 대조하고 배포본 속 잔류 바이트까지 완전 소거하는 <strong>17단계</strong>까지 순서대로 이어집니다. 어떤 불편함 때문에 다음 단계를 만들었는지 읽어보시고, 궁금한 단계는 우측 <strong>[본문 보기 →]</strong> 버튼을 눌러 자세히 살펴보세요.
     </p>
     <p class="section-lead mode-expert">
       각 진화 단계(`STAGE k`)는 하단 본문(`k부`)과 번호·순서가 정확히 1:1로 일치합니다. 우측 버튼을 클릭하면 해당 단계의 설계 원리와 실행 가능한 순수 파이썬 검증 코드로 바로 이동합니다.
@@ -1642,7 +1643,7 @@
       </div>
 
       <!-- STAGE 16 -> POST 16 -->
-      <div id="stage-card-16" class="stage-card latest">
+      <div id="stage-card-16" class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
@@ -1678,6 +1679,47 @@
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
             단일 파일 저장·파싱·<code>ENC_HWID_V2</code> 암호화·FTS5 교체·64KB 재잠금 <strong>138.93ms</strong> · 전체 테스트 <strong>31/31 OK</strong> &amp; 벤치마크 <strong>50/50(100%)</strong> 유지.
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 17 -> POST 17 -->
+      <div id="stage-card-17" class="stage-card latest">
+        <div class="stage-dot"></div>
+        <div class="stage-head">
+          <div class="stage-title-wrap">
+            <span class="stage-num">STAGE 17 === 17부</span>
+            <span class="stage-title mode-easy">파일 종류가 다른 구버전 견적서(<code>.xlsx</code>)와 수정 계약서(<code>.docx</code>)를 고르면 0.005초 만에 품목별 가격·기한 차이를 비교표로 찍어주고, 배포본 속 보이지 않는 개인 흔적까지 0바이트로 지우는 '신·구 1:1 비교기'</span>
+            <span class="stage-title mode-expert">이종 포맷(<code>.xlsx</code>·<code>.docx</code>·<code>.hwpx</code>) 다중 문서 <code>1:1</code> Delta·조항 비교기(<code>POST /api/compare-docs</code>) &amp; <code>personal_client</code> SQLite Freelist 포렌식 무유출 하드닝</span>
+          </div>
+          <button class="stage-jump-btn" onclick="jumpToPost(17)">17부 본문 보기 →</button>
+        </div>
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            협상 때 처음 견적서는 <strong>엑셀(<code>42000000</code>)</strong>로 받고 최종 합의본은 <strong>워드(<code>4,800만원</code>)</strong>로 받으면 파일 종류와 숫자 단위가 달라 눈으로 비교하다가 몰래 오른 가격이나 미뤄진 납품일, 추가·삭제된 품목을 놓치기 쉬웠습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            두 문서를 선택해 버튼 한 번만 누르면 <strong>파일 확장자나 열 이름이 달라도 품목별 단가 증감(<code>+600만원, +14.29%</code>)·납품 기한 변화(<code>+15일 연기</code>)·바뀐 조항을 정확히 1:1 표로 만들어 주는 <span class="term-tip" tabindex="0" data-term="multidoc_delta">순수 파이썬 다중 문서 1:1 비교기</span></strong>와 삭제 파일 잔류 자국까지 <code>0</code>으로 덮어쓰는 배포 세척기를 완성했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            신·구 문서 1:1 비교 <strong>0.0047초(4.68ms)</strong> 즉시 렌더링 · 워드 취소선 삭제 금액 오염 <strong>0건</strong> · 타 PC 배포본 6대 표면 + 파일 내부 잔류 흔적 유출 <strong>0건</strong>!
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
+            두 문서를 통째로 LLM에 넣으면 중간 행 누락(<code>Lost-in-the-Middle</code>)과 만·억 단위 환산 오류가 발생하며, 고객 배포 시 일반 SQLite <code>DELETE</code>만 쓰면 Freelist 페이지에 삭제 바이트 파편이 잔류할 수 있었습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
+            <code>POST /api/compare-docs</code>에 <span class="term-tip" tabindex="0" data-term="multidoc_delta">열 축·원화·일자 스칼라 정규화 1:1 조인기</span>를 구현하고, <code>personal_client</code> 빌드에 YAML <code>asset_layer</code> 소거 + <code>PRAGMA secure_delete=ON</code> + <code>FTS5 optimize</code> + 벡터 <code>VACUUM</code>을 강제했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
+            이종 포맷 1:1 대조 <strong>4.68ms</strong> · 6대 표면 + Raw <code>.sqlite</code> 바이트 스캔 유출 <strong>0 Byte</strong>(<code>38건</code> Layer-B + <code>20청크</code> 커스텀 완전 소거) · 테스트 <strong>32/32+ OK</strong>.
           </div>
         </div>
       </div>
@@ -1789,9 +1831,9 @@
     </div>
   </section>
 
-  <!-- SECTION 4: 16-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..16) -->
+  <!-- SECTION 4: 17-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..17) -->
   <section id="series-articles">
-    <h2>4. 로컬 LLM 고도화 본편 16부작 상세 보기 (`STAGE 1 ~ 16` === `1부 ~ 16부` 1:1 직렬 구성)</h2>
+    <h2>4. 로컬 LLM 고도화 본편 17부작 상세 보기 (`STAGE 1 ~ 17` === `1부 ~ 17부` 1:1 직렬 구성)</h2>
     <p class="section-lead mode-easy">
       아래 탭을 누르면 각 단계를 <strong>초보자 눈높이 비유 해설</strong>로 편하게 읽을 수 있습니다. 각 글 아래의 <em>[💻 엔지니어 원문 &amp; 파이썬 코드 펼쳐보기]</em>를 누르거나 상단 스위치를 바꾸면 실제 코드도 바로 확인됩니다.
     </p>
@@ -1812,6 +1854,7 @@
       <button class="tab-btn" onclick="showPost(14)">14부 (Stage 14): 엑셀(.xlsx) 병합시트·수식</button>
       <button class="tab-btn" onclick="showPost(15)">15부 (Stage 15): 워드(.docx) 변경추적·병합표·각주</button>
       <button class="tab-btn" onclick="showPost(16)">16부 (Stage 16): 드래그앤드롭 실시간 암호화 색인</button>
+      <button class="tab-btn" onclick="showPost(17)">17부 (Stage 17): 신·구 문서 1:1 비교 &amp; 포렌식 소거</button>
     </div>
 
     <!-- POST 1 === STAGE 1 -->
@@ -2603,13 +2646,75 @@ cur.executemany(
       </details>
     </article>
 
+    <!-- POST 17 === STAGE 17 -->
+    <article id="post-17" class="post-card">
+      <h3>[17부 · Stage 17] 파일 형식(<code>.xlsx</code> 견적서 vs <code>.docx</code> 수정 계약서)이 달라도 0.005초 만에 품목 단가·기한 증감(Delta)을 1:1 대조하고, 고객 배포본 원시 바이너리 잔류 흔적을 0바이트로 소거하기</h3>
+      <div class="post-meta">
+        <span>진화 단계: <strong>STAGE 17 (이종 포맷 다중 문서 <code>1:1</code> Delta·조항 비교기 &amp; <code>personal_client</code> Freelist 포렌식 무유출 완성)</strong></span> ·
+        <span>전체 마크다운 리포트: <a href="posts/17-stage17-multidoc-delta-comparator-and-forensic-hygiene.md">17-stage17-multidoc-delta-comparator-and-forensic-hygiene.md</a></span>
+      </div>
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 17 — 엑셀 견적서와 워드 계약서처럼 모양이 달라도 0.005초 만에 바뀐 금액·날짜를 1:1 비교표로 찍어주고, 배포할 땐 삭제 흔적까지 0바이트로 닦아낸다)</span>
+        <ul>
+          <li><strong>어떤 문제가 있었나요?</strong> 실제 업무에서는 처음 받은 초안은 <strong>엑셀 견적서(<code>.xlsx</code>, 예: <code>공급가액: 42000000</code>, <code>납품예정일: 2026-11-17</code>)</strong>인데 협상 후 최종 수정본은 <strong>워드·한글 계약서(<code>.docx</code>·<code>.hwpx</code>, 예: <code>확정공급단가: 4,800만원</code>, <code>2026년 12월 2일</code>)</strong>로 오는 경우가 많습니다. 문서 두 개를 통째로 일반 AI에게 주고 비교해 달라고 하면 중간 품목을 빼먹거나 만·억 단위 계산을 틀렸고, 남에게 프로그램을 건네줄 때 일반 삭제만 하면 데이터베이스 빈 공간에 옛날 글자 조각이 남을 위험도 있었습니다.</li>
+          <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> 대시보드에서 기준 문서(A)와 비교 문서(B)를 고르기만 하면 작동하는 <span class="term-tip" tabindex="0" data-term="multidoc_delta">순수 파이썬 다중 문서 1:1 비교기</span>를 달았습니다! 열 이름과 숫자 표기가 달라도 품목코드를 기준으로 <strong>단가 인상(<code>+600만원, +14.29%</code>)·기한 연기(<code>+15일</code>)·신설/삭제 품목·바뀐 조항을 0.0047초 만에 비교표로 렌더링</strong>하고, 고객 배포본 빌드 시에는 <strong>빈 공간까지 전부 <code>0</code>으로 덮어써서(<code>secure_delete</code>) 개인 문서 흔적이 단 1바이트도 남지 않음을 검증</strong>했습니다!</li>
+        </ul>
+      </div>
+      <div class="table-wrap" style="margin:16px 0;">
+        <table>
+          <thead>
+            <tr>
+              <th>검증 항목</th>
+              <th>일반 LLM 통째 프롬프트 비교 &amp; 단순 <code>DELETE</code></th>
+              <th><code>Stage 17</code> 순수 파이썬 1:1 교차 비교기 &amp; 포렌식 소거</th>
+              <th>실측 속도 및 무결성 효과</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>이종 서식(<code>.xlsx</code> ↔ <code>.docx</code>) 정렬</strong></td>
+              <td><code>공급가액</code> vs <code>확정공급단가</code> 매칭 실패 및 중간 품목 누락</td>
+              <td>표준 속성 축 정규화 + 품목코드·조항 번호 <code>1:1</code> 결정론 조인</td>
+              <td class="col-good">응답 <strong>4.68 ms (0.0047초)</strong> · 누락·취소선(<code>&lt;w:del&gt;</code>) 오염 <strong>0건</strong></td>
+            </tr>
+            <tr>
+              <td><strong>복합 원화·날짜 증감(Delta)</strong></td>
+              <td><code>42000000</code> ↔ <code>4,800만원</code> 확률 토큰 암산 오류</td>
+              <td>단위 스케일 정규화 (<code>+600만원 (+14.29%)</code>, <code>+15일 연기</code>)</td>
+              <td class="col-good">수치·비율·일수 계산 오차 <strong>0.0%</strong> · 리스크 배지 자동 승격</td>
+            </tr>
+            <tr>
+              <td><strong>고객 배포본(<code>personal_client</code>) 위생</strong></td>
+              <td>SQLite Freelist 미할당 영역에 삭제 바이트 잔류 가능</td>
+              <td>YAML <code>asset_layer</code> 소거 + <code>PRAGMA secure_delete=ON</code> + <code>FTS5 optimize</code></td>
+              <td class="col-good">6대 표면 + Raw <code>.sqlite</code> 바이트 스캔 유출 <strong>0 Byte</strong> (<code>38+20건</code> 완결 소거)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <details class="expert-code-fold">
+        <summary>💻 엔지니어 원문 요약 &amp; 이종 문서 원화·일자 스칼라 정규화 · <code>PRAGMA secure_delete=ON</code> 포렌식 소거 코드 펼쳐보기</summary>
+        <blockquote>
+          <strong>발전 이유와 해법:</strong> 서로 다른 문서 포맷의 열 헤더와 한국어 복합 수치를 단일 스칼라 축으로 투영해 <code>O(R)</code> 해시 조인으로 <code>table_deltas</code>·<code>clause_deltas</code>를 산출하고, <code>personal_client</code> 빌드 시 프론트매터 <code>asset_layer: LAYER_B_*</code> 파싱 및 SQLite B-Tree 셀 제로필(<code>secure_delete=ON</code> + <code>FTS5 optimize</code>)과 벡터 DB <code>VACUUM</code>으로 포렌식 잔류 바이트를 원천 제거합니다.
+        </blockquote>
+        <pre><code># 1) 이종 포맷(.xlsx 42000000 vs .docx '4,800만원') 원화·일자 정규화 Delta 산출
+krw_delta = parse_krw_scalar("4,800만원") - parse_krw_scalar("42000000")  # +6,000,000.0 (+14.29%)
+days_delta = (parse_iso_or_kr_date("2026년 12월 2일") - parse_iso_or_kr_date("2026-11-17")).days  # +15일 연기
+
+# 2) 고객 배포본(--edition personal_client) SQLite Freelist 제로필 &amp; FTS5 툼스톤 병합
+conn.execute("PRAGMA secure_delete = ON;")
+conn.executemany("DELETE FROM domain_docs_fts WHERE rowid = ?;", layer_b_and_custom_rowids)
+conn.execute("INSERT INTO domain_docs_fts(domain_docs_fts) VALUES('optimize');")</code></pre>
+      </details>
+    </article>
+
   </section>
 
   <!-- SECTION 5: APPENDIX / SIDE-TRACK AGENT RESEARCH NOTES -->
   <section id="appendix-research">
     <h2>5. 별첨 연구 노트: 에이전트 하네스 &amp; 벤치마크 실험 (로컬 LLM 외전 2편)</h2>
     <p class="section-lead">
-      위 로컬 LLM 본체의 1~16단계 직렬 진화와 별도로, 여러 AI를 경쟁시켜 프롬프트 방어력을 높이거나 작업 기억이 섞이지 않게 관리하기 위해 수행한 연구 기록입니다.
+      위 로컬 LLM 본체의 1~17단계 직렬 진화와 별도로, 여러 AI를 경쟁시켜 프롬프트 방어력을 높이거나 작업 기억이 섞이지 않게 관리하기 위해 수행한 연구 기록입니다.
     </p>
 
     <div class="tabs">
@@ -2761,6 +2866,10 @@ cur.executemany(
     drag_drop_fts5: {
       title: "실시간 드래그 앤 드롭 & O(log N) 암호화 색인기",
       desc: "탐색기 폴더 열기나 .bat 배치 실행(13.4초) 없이 웹 대시보드 화면에 파일을 끌어다 놓으면, FTS5 category 역색인(0.2ms)으로 해당 문서 칸만 콕 집어 교체하고 계약 수치를 컴퓨터 지문 암호(ENC_HWID_V2)로 잠근 뒤 새로고침(F5) 없이 0.139초 만에 검색 결과와 모순 경보기에 즉시 반영하는 기술입니다."
+    },
+    multidoc_delta: {
+      title: "이종 포맷 다중 문서 1:1 Delta 비교기 & 포렌식 소거",
+      desc: "구버전 엑셀 견적서(.xlsx, 42000000)와 수정 워드 계약서(.docx, 4,800만원)처럼 파일 종류와 숫자 단위가 달라도 품목코드·조항 번호를 기준으로 단가 증감(+600만원, +14.29%)·기한 연기(+15일)를 0.005초 만에 1:1 비교표로 만들고, 고객 배포본 빌드 시 SQLite 빈 공간의 잔류 바이트까지 0으로 덮어쓰는 기술입니다."
     },
     roofline_bw: {
       title: "메모리 대역폭 루프라인 병목 (Memory-Bandwidth Roofline)",
