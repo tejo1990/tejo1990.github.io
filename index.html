@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sovereign Offline AI Fortress v3.0 | 로컬 LLM 17단계 고도화 기록 (입문자·엔지니어 겸용)</title>
+  <title>Sovereign Offline AI Fortress v3.0 | 로컬 LLM 18단계 고도화 기록 (입문자·엔지니어 겸용)</title>
   <style>
     :root {
       --bg: #0b0f19;
@@ -721,23 +721,23 @@
   <div class="container">
     <div class="badge-row">
       <span class="badge green">Sovereign Offline AI Fortress v3.0</span>
-      <span class="badge purple">Stage 1~17 === 1부~17부 (1:1 직렬 진화 기록)</span>
+      <span class="badge purple">Stage 1~18 === 1부~18부 (1:1 직렬 진화 기록)</span>
       <span class="badge">Computer Science &amp; Engineering B.S. (KOREATECH)</span>
       <span class="badge">Engineer Information Processing (정보처리기사)</span>
       <span class="badge">HRD-Net NCS Approved Instructor (8 Categories)</span>
       <span class="badge">Linux Infra &amp; C# Industrial Control</span>
     </div>
 
-    <h1 class="mode-easy">보급형 그래픽카드 1장(<code>RTX 3060 12GB</code>)으로 '거짓말·계산 실수 없는 나만의 로컬 AI'를 만들기까지: 17단계 성장 기록</h1>
-    <h1 class="mode-expert">소비자용 GPU(<code>RTX 3060 12GB</code>) 로컬 LLM은 어디까지 진화할 수 있는가: 17단계 아키텍처 고도화 전 기록</h1>
+    <h1 class="mode-easy">보급형 그래픽카드 1장(<code>RTX 3060 12GB</code>)으로 '거짓말·계산 실수 없는 나만의 로컬 AI'를 만들기까지: 18단계 성장 기록</h1>
+    <h1 class="mode-expert">소비자용 GPU(<code>RTX 3060 12GB</code>) 로컬 LLM은 어디까지 진화할 수 있는가: 18단계 아키텍처 고도화 전 기록</h1>
 
     <p class="subtitle mode-easy">
-      인터넷 연결 없이 내 컴퓨터 안에서 돌아가는 AI를 만들려고 유명 프로그램(<code>Ollama</code> 등)만 설치해 보면, 곧바로 <strong>메모리 부족 멈춤, 틀린 돈·이자 암산, 없는 법 조문 지어내기, 20초씩 걸리는 답답한 대기 시간, 한글(<code>.hwp</code>)·제안서(<code>.pptx</code>)·견적서(<code>.xlsx</code>)·워드 계약서(<code>.docx</code> 변경추적·각주) 판독 및 신·구 문서 1:1 비교 불편</strong>이라는 벽에 부딪힙니다.
-      이 페이지는 처음 방문하신 분도 쉽게 따라오실 수 있도록 <strong>우리가 어떤 로컬 AI를 만들려 했고, 왜 기존 방식은 안 되었으며, 17단계에 걸쳐 어떻게 하나씩 해결했는지</strong> 차근차근 풀어쓴 기록입니다. <em>(상단 스위치로 언제든 엔지니어 원문·코드 모드로 전환할 수 있습니다.)</em>
+      인터넷 연결 없이 내 컴퓨터 안에서 돌아가는 AI를 만들려고 유명 프로그램(<code>Ollama</code> 등)만 설치해 보면, 곧바로 <strong>메모리 부족 멈춤, 틀린 돈·이자 암산, 없는 법 조문 지어내기, 20초씩 걸리는 답답한 대기 시간, 한글(<code>.hwp</code>)·제안서(<code>.pptx</code>)·견적서(<code>.xlsx</code>)·워드 계약서(<code>.docx</code>) 판독, 신·구 문서 비교 및 결재용 보고서 작성 불편</strong>이라는 벽에 부딪힙니다.
+      이 페이지는 처음 방문하신 분도 쉽게 따라오실 수 있도록 <strong>우리가 어떤 로컬 AI를 만들려 했고, 왜 기존 방식은 안 되었으며, 18단계에 걸쳐 어떻게 하나씩 해결했는지</strong> 차근차근 풀어쓴 기록입니다. <em>(상단 스위치로 언제든 엔지니어 원문·코드 모드로 전환할 수 있습니다.)</em>
     </p>
     <p class="subtitle mode-expert">
-      단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 첫 글자 20초 대기, 폐쇄망 실무 문서 4대장(한글 <code>.hwpx</code>/<code>.hwp</code> · 파워포인트 <code>.pptx</code> · 엑셀 <code>.xlsx</code> · 워드 <code>.docx</code> 변경추적·병합 표·각주) 파싱 및 실시간 색인·신구 비교 장벽 앞에서 곧바로 무너집니다.
-      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 Zero-VRAM 추론·시맨틱 가속, 사후 역검증기, 50문항 골든 벤치마크, 순수 파이썬 실무 문서 4대장 파서, 브라우저 Drag &amp; Drop 암호화 색인 및 이종 포맷 다중 문서 1:1 Delta 비교·원시 바이너리 무유출 하드닝(Stage 12~17)까지 1:1로 대응하는 17편의 엔지니어링 리포트</strong>로 정리했습니다.
+      단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 첫 글자 20초 대기, 폐쇄망 실무 문서 4대장(한글 <code>.hwpx</code>/<code>.hwp</code> · 파워포인트 <code>.pptx</code> · 엑셀 <code>.xlsx</code> · 워드 <code>.docx</code>) 파싱, 실시간 색인·신구 비교 및 서식 보고서 익스포트 장벽 앞에서 곧바로 무너집니다.
+      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 Zero-VRAM 추론·시맨틱 가속, 사후 역검증기, 50문항 골든 벤치마크, 순수 파이썬 실무 문서 파서, 브라우저 Drag &amp; Drop 색인, 이종 문서 1:1 Delta 비교기 및 오프라인 OOXML 서식 보고서(<code>.docx</code>/<code>.xlsx</code>) 익스포터(Stage 12~18)까지 1:1로 대응하는 18편의 엔지니어링 리포트</strong>로 정리했습니다.
     </p>
 
     <!-- KPI Cards: Easy Mode -->
@@ -957,7 +957,7 @@
               <div class="pipe-name">📚 45.8만 권 + 드래그앤드롭 문서</div>
               <div class="pipe-desc">일상 말투·비유 질문은 물론 마우스로 끌어다 놓은 한글(<code>.hwp</code>·<code>.hwpx</code>)·PPT·엑셀·워드 계약서(<code>.docx</code>) 표·각주까지 0.14초 만에 찾아옵니다.</div>
             </div>
-            <div class="pipe-link">→ Stage 4 · 5 · 9 · 12 ~ 17 보기</div>
+            <div class="pipe-link">→ Stage 4 · 5 · 9 · 12 ~ 18 보기</div>
           </div>
 
           <div class="pipe-step" onclick="jumpToStageCard(6)">
@@ -1009,6 +1009,7 @@
           <div class="glossary-item"><strong>WordprocessingML(.docx) 변경추적(&lt;w:del&gt;) 차단 &amp; 병합 표·각주 파서</strong>python-docx·MS 워드 없이 협상 중 취소선으로 지운 옛날 문구(&lt;w:del&gt;) 오염을 100% 차단하고, 2단 병합 단가표(&lt;w:gridSpan&gt;·&lt;w:vMerge&gt;)와 맨 아래 각주·미주 특약(footnotes.xml)을 0.02초 만에 복원해 구버전 삭제 수치 함정까지 잡아내는 해독기입니다.</div>
           <div class="glossary-item"><strong>브라우저 Drag &amp; Drop 실시간 암호화 색인 (O(log N) FTS5)</strong>탐색기 폴더 열기나 .bat 실행 없이 웹 대시보드에 파일을 끌어다 놓으면, FTS5 category 역색인(0.2ms)으로 해당 문서 청크만 교체하고 ENC_HWID_V2로 암호화해 0.14초 만에 새로고침 없이 검색·경보기에 반영합니다.</div>
           <div class="glossary-item"><strong>이종 포맷 1:1 Delta 비교기 &amp; SQLite Freelist 제로필 소거</strong>엑셀 견적서(.xlsx)와 워드 수정 계약서(.docx)처럼 서식·단위가 달라도 품목코드별 가격·기한 차이를 0.005초 만에 1:1 비교표로 산출하고, 타 PC 배포 시 PRAGMA secure_delete=ON + FTS5 optimize로 삭제된 개인 문서의 보이지 않는 바이트 파편까지 0바이트로 지웁니다.</div>
+          <div class="glossary-item"><strong>순수 파이썬 OOXML 서식 보고서(.docx/.xlsx) 익스포터</strong>python-docx·openpyxl 없이 표준 zipfile만으로 가로형 A4 리스크 음영 워드(.docx, 8.3ms)와 sharedStrings·SUM 수식이 내장된 3-시트 엑셀(.xlsx, 5.0ms) 감사 보고서를 SHA-256 무결성 해시와 함께 즉시 컴파일해 내려받습니다.</div>
           <div class="glossary-item"><strong>메모리 대역폭 병목 (Roofline Choke)</strong>로컬 AI가 글자를 찍어내는 속도는 연산력(FLOPS)이 아니라 '메모리에서 가중치를 읽어오는 통로 넓이(GB/s)'가 결정합니다. 1,000만 원대 전용 기기라도 통로(273 GB/s)가 좁으면 큰 모델 출력이 거북이처럼 느려집니다.</div>
           <div class="glossary-item"><strong>SLOT_2 물리 상한(≤9.8GB) &amp; L1 ⊥ L2·L3 직교성</strong>12GB 그래픽카드 본체에서는 스와핑 멈춤을 막기 위해 주력 두뇌 칸(SLOT_2)을 9.8GB 이하(14B·12B)로 엄격히 제한하고, 나중에 24GB+ 상위 장비로 옮길 때만 도서관(L2)·계산기(L3) 코드 수정 0줄로 26B·31B 두뇌로 갈아 끼우는 분리 설계입니다.</div>
         </div>
@@ -1016,11 +1017,11 @@
     </div>
   </section>
 
-  <!-- SECTION 1: 17-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..17) -->
+  <!-- SECTION 1: 18-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..18) -->
   <section id="evolution-timeline">
-    <h2>1. 로컬 LLM 17단계 고도화 타임라인 (`STAGE 1 ~ 17` ↔ 본문 `1부 ~ 17부` 1:1 대응)</h2>
+    <h2>1. 로컬 LLM 18단계 고도화 타임라인 (`STAGE 1 ~ 18` ↔ 본문 `1부 ~ 18부` 1:1 대응)</h2>
     <p class="section-lead mode-easy">
-      처음 기초를 잡은 <strong>1단계</strong>부터 50문제 만점, 한국 실무 문서 4대장 — 한글(<code>.hwp</code>·<code>.hwpx</code>)·파워포인트(<code>.pptx</code>)·엑셀(<code>.xlsx</code>)·워드 계약서(<code>.docx</code>) 해독, 웹 화면 실시간 드래그 앤 드롭 색인, 그리고 파일 종류가 다른 구버전·수정본 문서를 0.005초 만에 1:1 대조하고 배포본 속 잔류 바이트까지 완전 소거하는 <strong>17단계</strong>까지 순서대로 이어집니다. 어떤 불편함 때문에 다음 단계를 만들었는지 읽어보시고, 궁금한 단계는 우측 <strong>[본문 보기 →]</strong> 버튼을 눌러 자세히 살펴보세요.
+      처음 기초를 잡은 <strong>1단계</strong>부터 50문제 만점, 한국 실무 문서 4대장 해독, 실시간 드래그 앤 드롭 색인, 신·구 문서 1:1 비교, 그리고 결재용 서식 워드(<code>.docx</code>)·자동 수식 엑셀(<code>.xlsx</code>) 감사 보고서를 0.008초 만에 내려받는 <strong>18단계</strong>까지 순서대로 이어집니다. 어떤 불편함 때문에 다음 단계를 만들었는지 읽어보시고, 궁금한 단계는 우측 <strong>[본문 보기 →]</strong> 버튼을 눌러 자세히 살펴보세요.
     </p>
     <p class="section-lead mode-expert">
       각 진화 단계(`STAGE k`)는 하단 본문(`k부`)과 번호·순서가 정확히 1:1로 일치합니다. 우측 버튼을 클릭하면 해당 단계의 설계 원리와 실행 가능한 순수 파이썬 검증 코드로 바로 이동합니다.
@@ -1684,7 +1685,7 @@
       </div>
 
       <!-- STAGE 17 -> POST 17 -->
-      <div id="stage-card-17" class="stage-card latest">
+      <div id="stage-card-17" class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
@@ -1720,6 +1721,47 @@
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
             이종 포맷 1:1 대조 <strong>4.68ms</strong> · 6대 표면 + Raw <code>.sqlite</code> 바이트 스캔 유출 <strong>0 Byte</strong>(<code>38건</code> Layer-B + <code>20청크</code> 커스텀 완전 소거) · 테스트 <strong>32/32+ OK</strong>.
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 18 -> POST 18 -->
+      <div id="stage-card-18" class="stage-card latest">
+        <div class="stage-dot"></div>
+        <div class="stage-head">
+          <div class="stage-title-wrap">
+            <span class="stage-num">STAGE 18 === 18부</span>
+            <span class="stage-title mode-easy">별도 오피스 패키지 설치 0개로 버튼 한 번만 누르면 '결재용 서식 워드(<code>.docx</code>)와 자동 합계 수식이 들어간 3-시트 엑셀(<code>.xlsx</code>)' 감사 보고서가 0.008초 만에 내려받아지는 컴파일러</span>
+            <span class="stage-title mode-expert">외부 패키지 0개 '순수 파이썬 OOXML(<code>ECMA-376</code>) 가로형 A4 워드(<code>.docx</code>) &amp; 3-시트 <code>SUM</code> 수식 엑셀(<code>.xlsx</code>) 오프라인 감사 보고서 익스포터(<code>POST /api/export-audit-report</code>)'</span>
+          </div>
+          <button class="stage-jump-btn" onclick="jumpToPost(18)">18부 본문 보기 →</button>
+        </div>
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            대시보드 화면에서 비교표와 경보를 확인한 뒤에도, 상사 결재를 올리거나 거래처에 수정 요청 문서를 보내려면 화면을 캡처하거나 워드·엑셀 표를 손으로 다시 그려야 하는 불편함이 있었습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            외부 라이브러리 없이 파이썬 기본 압축 도구만으로 <strong>품목 증감표·위험 색상 음영·근거 문서 번호·위변조 방지 지문(<code>SHA-256</code>)을 깔끔한 워드와 자동 수식 엑셀 파일로 직접 조립하는 <span class="term-tip" tabindex="0" data-term="audit_export_ooxml">순수 파이썬 OOXML 감사 보고서 익스포터</span></strong>를 완성했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            클릭 즉시 <strong>워드 0.008초(8.3ms) · 3-시트 수식 엑셀 0.005초(4.96ms)</strong> 다운로드 완료 · 오피스 복구 경고 <strong>0건</strong> · 종합 시험 <strong>50/50(100%)</strong> 만점 유지!
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
+            폐쇄망 배포 환경에서는 <code>python-docx</code>·<code>openpyxl</code> 설치가 불가능하며, 단순 CSV/HTML 저장은 다중 시트·통화 서식·합계 수식(<code>SUM</code>) 및 인쇄 레이아웃을 보존하지 못했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
+            표준 <code>zipfile</code> + XML 1.0 제어문자 세척기로 <span class="term-tip" tabindex="0" data-term="audit_export_ooxml">Landscape .docx & sharedStrings/SUM 3-Sheet .xlsx 컴파일러</span>와 <code>SHA-256</code> 정규화 해시 서명기를 구현했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
+            <code>.docx</code> <strong>8.30ms</strong> · <code>.xlsx</code> <strong>4.96ms</strong> · 전 파트 <code>ET.fromstring</code> &amp; Stage 14/15 역파싱 <strong>100% 일치</strong> · 테스트 <strong>33/33+ OK</strong>.
           </div>
         </div>
       </div>
@@ -1831,9 +1873,9 @@
     </div>
   </section>
 
-  <!-- SECTION 4: 17-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..17) -->
+  <!-- SECTION 4: 18-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..18) -->
   <section id="series-articles">
-    <h2>4. 로컬 LLM 고도화 본편 17부작 상세 보기 (`STAGE 1 ~ 17` === `1부 ~ 17부` 1:1 직렬 구성)</h2>
+    <h2>4. 로컬 LLM 고도화 본편 18부작 상세 보기 (`STAGE 1 ~ 18` === `1부 ~ 18부` 1:1 직렬 구성)</h2>
     <p class="section-lead mode-easy">
       아래 탭을 누르면 각 단계를 <strong>초보자 눈높이 비유 해설</strong>로 편하게 읽을 수 있습니다. 각 글 아래의 <em>[💻 엔지니어 원문 &amp; 파이썬 코드 펼쳐보기]</em>를 누르거나 상단 스위치를 바꾸면 실제 코드도 바로 확인됩니다.
     </p>
@@ -1855,6 +1897,7 @@
       <button class="tab-btn" onclick="showPost(15)">15부 (Stage 15): 워드(.docx) 변경추적·병합표·각주</button>
       <button class="tab-btn" onclick="showPost(16)">16부 (Stage 16): 드래그앤드롭 실시간 암호화 색인</button>
       <button class="tab-btn" onclick="showPost(17)">17부 (Stage 17): 신·구 문서 1:1 비교 &amp; 포렌식 소거</button>
+      <button class="tab-btn" onclick="showPost(18)">18부 (Stage 18): 서식 워드·수식 엑셀 감사보고서 출력</button>
     </div>
 
     <!-- POST 1 === STAGE 1 -->
@@ -2708,13 +2751,72 @@ conn.execute("INSERT INTO domain_docs_fts(domain_docs_fts) VALUES('optimize');")
       </details>
     </article>
 
+    <!-- POST 18 === STAGE 18 -->
+    <article id="post-18" class="post-card">
+      <h3>[18부 · Stage 18] 외부 패키지 설치 0개로 결재용 서식 워드(<code>.docx</code>)와 3-시트 수식 엑셀(<code>.xlsx</code>) 감사 보고서를 0.008초 만에 즉시 다운로드하기: 순수 파이썬 OOXML 컴파일러</h3>
+      <div class="post-meta">
+        <span>진화 단계: <strong>STAGE 18 (순수 파이썬 OOXML 서식 <code>.docx</code> &amp; 3-시트 <code>SUM</code> 수식 <code>.xlsx</code> 오프라인 감사 보고서 익스포터 완성)</strong></span> ·
+        <span>전체 마크다운 리포트: <a href="posts/18-stage18-pure-python-ooxml-audit-report-exporter.md">18-stage18-pure-python-ooxml-audit-report-exporter.md</a></span>
+      </div>
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 18 — 화면 캡처나 표 다시 그리기 없이 클릭 한 번이면 결재용 워드·자동 합계 엑셀 보고서가 0.008초 만에 뚝딱 나온다)</span>
+        <ul>
+          <li><strong>어떤 문제가 있었나요?</strong> 대시보드 화면에서 구버전 견적서와 수정 계약서의 단가·기한 차이를 한눈에 보게 되었지만, 막상 팀장·대표에게 결재를 올리거나 거래처에 수정 요청 공문을 보내려면 <strong>화면을 캡처해 붙이거나 워드·엑셀을 열어 표를 손으로 다시 그려야 하는 마지막 수작업</strong>이 남아 있었습니다. 더군다나 인터넷이 안 되는 폐쇄망 PC에는 외부 문서 생성 프로그램을 추가 설치할 수도 없었습니다.</li>
+          <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> 별도 프로그램 설치 0개로 파이썬 기본 압축 기능만 써서 깔끔한 오피스 문서를 직접 조립하는 <span class="term-tip" tabindex="0" data-term="audit_export_ooxml">순수 파이썬 OOXML 감사 보고서 익스포터</span>를 달았습니다! 버튼 한 번만 누르면 <strong>가로형 A4 인쇄 서식·위험 항목 빨간 음영·근거 문서 번호·위변조 방지 지문(<code>SHA-256</code>)이 들어간 워드 보고서(<code>0.008초</code>)</strong>와 <strong>자동 합계 수식(<code>=SUM(...)</code>)이 살아 있는 3-시트 엑셀 내역서(<code>0.005초</code>)</strong>가 내 컴퓨터로 즉시 내려받아집니다!</li>
+        </ul>
+      </div>
+      <div class="table-wrap" style="margin:16px 0;">
+        <table>
+          <thead>
+            <tr>
+              <th>검증 항목</th>
+              <th>화면 캡처·수동 재작성 / 외부 패키지 의존</th>
+              <th><code>Stage 18</code> 순수 파이썬 OOXML 익스포터 (<code>POST /api/export-audit-report</code>)</th>
+              <th>실측 속도 및 실무 효과</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>오프라인·폐쇄망 호환성</strong></td>
+              <td><code>pip install python-docx openpyxl</code> 불가 시 생성 실패</td>
+              <td>100% 파이썬 표준 라이브러리 (<code>zipfile</code> + OOXML 직접 어셈블리)</td>
+              <td class="col-good">외부 의존성 <strong>0개</strong> · XML 제어문자 세척으로 복구 경고 <strong>0건</strong></td>
+            </tr>
+            <tr>
+              <td><strong>결재용 워드(<code>.docx</code>)</strong></td>
+              <td>단순 텍스트 복사 또는 표 칸 찌그러짐</td>
+              <td>가로형 A4 레이아웃 + 네이비 머리글 + 리스크 색상 음영 표 4종</td>
+              <td class="col-good">생성 <strong>8.30 ms (0.0083초)</strong> · Stage 15 파서 역파싱 <strong>100% 일치</strong></td>
+            </tr>
+            <tr>
+              <td><strong>수식 내장 엑셀(<code>.xlsx</code>)</strong></td>
+              <td>단순 CSV 저장 시 다중 시트·통화 서식·합계 수식 소실</td>
+              <td>3개 시트 분리 + <code>sharedStrings.xml</code> + <code>&lt;f&gt;SUM(...)&lt;/f&gt;&lt;v&gt;</code> 이중 기록</td>
+              <td class="col-good">생성 <strong>4.96 ms (0.0050초)</strong> · <code>SHA-256</code> 무결성 해시 &amp; <strong>50/50(100%)</strong> 유지</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <details class="expert-code-fold">
+        <summary>💻 엔지니어 원문 요약 &amp; 순수 파이썬 OOXML 제어문자 세척 · <code>&lt;f&gt;SUM(...)&lt;/f&gt;&lt;v&gt;</code> 이중 기록 코드 펼쳐보기</summary>
+        <blockquote>
+          <strong>발전 이유와 해법:</strong> 외부 패키지 없이 MS Word·한컴·엑셀에서 복구 경고 없이 열리는 정식 ECMA-376 문서를 생성하기 위해, XML 1.0 금지 제어문자(<code>0x00~0x1F</code>)를 제거하고 <code>sharedStrings.xml</code> 문자열 인터닝 테이블과 <code>&lt;f&gt;SUM(F3:F...)&lt;/f&gt;&lt;v&gt;3200000&lt;/v&gt;</code> 수식·캐시 이중 노드를 조립해 <code>SHA-256</code> 서명과 함께 반환합니다.
+        </blockquote>
+        <pre><code># XML 1.0 금지 제어문자 제거 + SpreadsheetML 실시간 합산 수식(&lt;f&gt;) 및 캐시 결과(&lt;v&gt;) 동시 기록
+def xml_safe_text(val: object) -&gt; str:
+    return html.escape(re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f]", "", str(val or "")), quote=True)
+
+total_cell_xml = f'&lt;c r="F{r_sum}" s="6"&gt;&lt;f&gt;SUM(F3:F{r_sum - 1})&lt;/f&gt;&lt;v&gt;{int(round(krw_sum))}&lt;/v&gt;&lt;/c&gt;'</code></pre>
+      </details>
+    </article>
+
   </section>
 
   <!-- SECTION 5: APPENDIX / SIDE-TRACK AGENT RESEARCH NOTES -->
   <section id="appendix-research">
     <h2>5. 별첨 연구 노트: 에이전트 하네스 &amp; 벤치마크 실험 (로컬 LLM 외전 2편)</h2>
     <p class="section-lead">
-      위 로컬 LLM 본체의 1~17단계 직렬 진화와 별도로, 여러 AI를 경쟁시켜 프롬프트 방어력을 높이거나 작업 기억이 섞이지 않게 관리하기 위해 수행한 연구 기록입니다.
+      위 로컬 LLM 본체의 1~18단계 직렬 진화와 별도로, 여러 AI를 경쟁시켜 프롬프트 방어력을 높이거나 작업 기억이 섞이지 않게 관리하기 위해 수행한 연구 기록입니다.
     </p>
 
     <div class="tabs">
@@ -2870,6 +2972,10 @@ conn.execute("INSERT INTO domain_docs_fts(domain_docs_fts) VALUES('optimize');")
     multidoc_delta: {
       title: "이종 포맷 다중 문서 1:1 Delta 비교기 & 포렌식 소거",
       desc: "구버전 엑셀 견적서(.xlsx, 42000000)와 수정 워드 계약서(.docx, 4,800만원)처럼 파일 종류와 숫자 단위가 달라도 품목코드·조항 번호를 기준으로 단가 증감(+600만원, +14.29%)·기한 연기(+15일)를 0.005초 만에 1:1 비교표로 만들고, 고객 배포본 빌드 시 SQLite 빈 공간의 잔류 바이트까지 0으로 덮어쓰는 기술입니다."
+    },
+    audit_export_ooxml: {
+      title: "순수 파이썬 OOXML 서식 보고서(.docx/.xlsx) 익스포터",
+      desc: "python-docx나 openpyxl 같은 외부 패키지 설치 없이 파이썬 기본 내장 기능(zipfile)만으로 가로형 A4 리스크 색상 음영 워드(.docx, 0.008초)와 자동 합계 수식(=SUM)이 살아 있는 3-시트 엑셀(.xlsx, 0.005초) 감사 보고서를 위변조 방지 해시(SHA-256)와 함께 즉시 만들어 내 컴퓨터로 내려주는 기술입니다."
     },
     roofline_bw: {
       title: "메모리 대역폭 루프라인 병목 (Memory-Bandwidth Roofline)",
