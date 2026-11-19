@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sovereign Offline AI Fortress v3.0 | 로컬 LLM 20단계 고도화 기록 (입문자·엔지니어 겸용)</title>
+  <title>Sovereign Offline AI Fortress v3.0 | 로컬 LLM 21단계 고도화 기록 (입문자·엔지니어 겸용)</title>
   <style>
     :root {
       --bg: #0b0f19;
@@ -721,23 +721,23 @@
   <div class="container">
     <div class="badge-row">
       <span class="badge green">Sovereign Offline AI Fortress v3.0</span>
-      <span class="badge purple">Stage 1~20 === 1부~20부 (1:1 직렬 진화 기록)</span>
+      <span class="badge purple">Stage 1~21 === 1부~21부 (1:1 직렬 진화 기록)</span>
       <span class="badge">Computer Science &amp; Engineering B.S. (KOREATECH)</span>
       <span class="badge">Engineer Information Processing (정보처리기사)</span>
       <span class="badge">HRD-Net NCS Approved Instructor (8 Categories)</span>
       <span class="badge">Linux Infra &amp; C# Industrial Control</span>
     </div>
 
-    <h1 class="mode-easy">보급형 그래픽카드 1장(<code>RTX 3060 12GB</code>)으로 '거짓말·계산 실수 없는 나만의 로컬 AI'를 만들기까지: 20단계 성장 기록</h1>
-    <h1 class="mode-expert">소비자용 GPU(<code>RTX 3060 12GB</code>) 로컬 LLM은 어디까지 진화할 수 있는가: 20단계 아키텍처 고도화 전 기록</h1>
+    <h1 class="mode-easy">보급형 그래픽카드 1장(<code>RTX 3060 12GB</code>)으로 '거짓말·계산 실수 없는 나만의 로컬 AI'를 만들기까지: 21단계 성장 기록</h1>
+    <h1 class="mode-expert">소비자용 GPU(<code>RTX 3060 12GB</code>) 로컬 LLM은 어디까지 진화할 수 있는가: 21단계 아키텍처 고도화 전 기록</h1>
 
     <p class="subtitle mode-easy">
-      인터넷 연결 없이 내 컴퓨터 안에서 돌아가는 AI를 만들려고 유명 프로그램(<code>Ollama</code> 등)만 설치해 보면, 곧바로 <strong>메모리 부족 멈춤, 틀린 돈·이자 암산, 없는 법 조문 지어내기, 20초씩 걸리는 답답한 대기 시간, 한글(<code>.hwp</code>)·제안서(<code>.pptx</code>)·견적서(<code>.xlsx</code>)·워드 계약서(<code>.docx</code>) 판독, 신·구 문서 비교, 다수 계약서 독소조항 전수 점검 및 통합 결재 보고서 작성 불편</strong>이라는 벽에 부딪힙니다.
-      이 페이지는 처음 방문하신 분도 쉽게 따라오실 수 있도록 <strong>우리가 어떤 로컬 AI를 만들려 했고, 왜 기존 방식은 안 되었으며, 20단계에 걸쳐 어떻게 하나씩 해결했는지</strong> 차근차근 풀어쓴 기록입니다. <em>(상단 스위치로 언제든 엔지니어 원문·코드 모드로 전환할 수 있습니다.)</em>
+      인터넷 연결 없이 내 컴퓨터 안에서 돌아가는 AI를 만들려고 유명 프로그램(<code>Ollama</code> 등)만 설치해 보면, 곧바로 <strong>메모리 부족 멈춤, 틀린 돈·이자 암산, 없는 법 조문 지어내기, 20초씩 걸리는 답답한 대기 시간, 한글(<code>.hwp</code>)·제안서(<code>.pptx</code>)·견적서(<code>.xlsx</code>)·워드 계약서(<code>.docx</code>) 판독, 신·구 문서 비교, 다수 계약서 독소조항 점검, 통합 결재 보고서 작성 및 법정 마감일(<code>D-Day</code>) 관리 불편</strong>이라는 벽에 부딪힙니다.
+      이 페이지는 처음 방문하신 분도 쉽게 따라오실 수 있도록 <strong>우리가 어떤 로컬 AI를 만들려 했고, 왜 기존 방식은 안 되었으며, 21단계에 걸쳐 어떻게 하나씩 해결했는지</strong> 차근차근 풀어쓴 기록입니다. <em>(상단 스위치로 언제든 엔지니어 원문·코드 모드로 전환할 수 있습니다.)</em>
     </p>
     <p class="subtitle mode-expert">
-      단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 첫 글자 20초 대기, 폐쇄망 실무 문서 4대장(한글 <code>.hwpx</code>/<code>.hwp</code> · 파워포인트 <code>.pptx</code> · 엑셀 <code>.xlsx</code> · 워드 <code>.docx</code>) 파싱, 실시간 색인·신구 비교·다중 문서 법령 위반 선별 및 전수 점검표 통합 보고서 익스포트 장벽 앞에서 곧바로 무너집니다.
-      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 Zero-VRAM 추론·시맨틱 가속, 사후 역검증기, 50문항 골든 벤치마크, 순수 파이썬 실무 문서 파서, 브라우저 Drag &amp; Drop 색인, 이종 문서 1:1 Delta 비교기, 다중 문서 법령 리스크 레이더 및 전수 점검표 통합 OOXML 보고서·프리리스트 자가 복구(Stage 12~20)까지 1:1로 대응하는 20편의 엔지니어링 리포트</strong>로 정리했습니다.
+      단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 첫 글자 20초 대기, 폐쇄망 실무 문서 4대장(한글 <code>.hwpx</code>/<code>.hwp</code> · 파워포인트 <code>.pptx</code> · 엑셀 <code>.xlsx</code> · 워드 <code>.docx</code>) 파싱, 실시간 색인·신구 비교·다중 문서 법령 위반 선별·전수 점검표 통합 보고서 및 계약 마감기한 캘린더 익스포트 장벽 앞에서 곧바로 무너집니다.
+      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 Zero-VRAM 추론·시맨틱 가속, 사후 역검증기, 50문항 골든 벤치마크, 순수 파이썬 실무 문서 파서, 브라우저 Drag &amp; Drop 색인, 이종 문서 1:1 Delta 비교기, 다중 문서 법령 리스크 레이더, 전수 점검표 통합 OOXML 보고서·무-<code>VACUUM</code> 슬랙 소거 및 법정·계약 기한 D-Day 레이더·RFC 5545 <code>.ics</code> 익스포터(Stage 12~21)까지 1:1로 대응하는 21편의 엔지니어링 리포트</strong>로 정리했습니다.
     </p>
 
     <!-- KPI Cards: Easy Mode -->
@@ -957,7 +957,7 @@
               <div class="pipe-name">📚 45.8만 권 + 드래그앤드롭 문서</div>
               <div class="pipe-desc">일상 말투·비유 질문은 물론 마우스로 끌어다 놓은 한글(<code>.hwp</code>·<code>.hwpx</code>)·PPT·엑셀·워드 계약서(<code>.docx</code>) 표·각주까지 0.14초 만에 찾아옵니다.</div>
             </div>
-            <div class="pipe-link">→ Stage 4 · 5 · 9 · 12 ~ 20 보기</div>
+            <div class="pipe-link">→ Stage 4 · 5 · 9 · 12 ~ 21 보기</div>
           </div>
 
           <div class="pipe-step" onclick="jumpToStageCard(6)">
@@ -966,7 +966,7 @@
               <div class="pipe-name">🧮 139개 파이썬 계산기</div>
               <div class="pipe-desc">돈·연체이자·보증금은 AI 암산 금지! 검증된 파이썬 프로그램이 직접 계산해 <strong>오차 0%</strong> 정답을 줍니다.</div>
             </div>
-            <div class="pipe-link">→ Stage 6 · 10 · 19 · 20 보기</div>
+            <div class="pipe-link">→ Stage 6 · 10 · 19 ~ 21 보기</div>
           </div>
 
           <div class="pipe-step" onclick="jumpToStageCard(8)">
@@ -1019,11 +1019,11 @@
     </div>
   </section>
 
-  <!-- SECTION 1: 20-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..20) -->
+  <!-- SECTION 1: 21-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..21) -->
   <section id="evolution-timeline">
-    <h2>1. 로컬 LLM 20단계 고도화 타임라인 (`STAGE 1 ~ 20` ↔ 본문 `1부 ~ 20부` 1:1 대응)</h2>
+    <h2>1. 로컬 LLM 21단계 고도화 타임라인 (`STAGE 1 ~ 21` ↔ 본문 `1부 ~ 21부` 1:1 대응)</h2>
     <p class="section-lead mode-easy">
-      처음 기초를 잡은 <strong>1단계</strong>부터 50문제 만점, 한국 실무 문서 4대장 해독, 실시간 드래그 앤 드롭 색인, 신·구 문서 1:1 비교, 다중 계약서 법령 리스크 레이더, 그리고 전수 점검표가 통합된 서식 워드·4-시트 수식 엑셀 출력 및 도서관 목차 자가 복구를 완성한 <strong>20단계</strong>까지 순서대로 이어집니다. 어떤 불편함 때문에 다음 단계를 만들었는지 읽어보시고, 궁금한 단계는 우측 <strong>[본문 보기 →]</strong> 버튼을 눌러 자세히 살펴보세요.
+      처음 기초를 잡은 <strong>1단계</strong>부터 50문제 만점, 한국 실무 문서 4대장 해독, 실시간 드래그 앤 드롭 색인, 신·구 문서 1:1 비교, 다중 계약서 법령 리스크 레이더, 전수 점검표 통합 보고서·무-<code>VACUUM</code> 슬랙 정화, 그리고 법정·계약 마감일(<code>D-Day</code>) 자동 역산 및 표준 캘린더(<code>.ics</code>) 내보내기를 완성한 <strong>21단계</strong>까지 순서대로 이어집니다. 어떤 불편함 때문에 다음 단계를 만들었는지 읽어보시고, 궁금한 단계는 우측 <strong>[본문 보기 →]</strong> 버튼을 눌러 자세히 살펴보세요.
     </p>
     <p class="section-lead mode-expert">
       각 진화 단계(`STAGE k`)는 하단 본문(`k부`)과 번호·순서가 정확히 1:1로 일치합니다. 우측 버튼을 클릭하면 해당 단계의 설계 원리와 실행 가능한 순수 파이썬 검증 코드로 바로 이동합니다.
@@ -1810,7 +1810,7 @@
       </div>
 
       <!-- STAGE 20 -> POST 20 -->
-      <div id="stage-card-20" class="stage-card latest">
+      <div id="stage-card-20" class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
@@ -1846,6 +1846,47 @@
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
             <code>.docx</code> <strong>18.34ms</strong> · <code>.xlsx</code> <strong>8.19ms</strong> · 추가 디스크 <code>0MB</code>로 <code>458,134</code> 페이지 슬랙 소거 · <code>2,640,523,264B</code> 스캔 히트 <strong>0/72</strong> · 골든 벤치마크 <strong>50/50(100%, 48.22ms)</strong>.
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 21 -> POST 21 -->
+      <div id="stage-card-21" class="stage-card latest">
+        <div class="stage-dot"></div>
+        <div class="stage-head">
+          <div class="stage-title-wrap">
+            <span class="stage-num">STAGE 21 === 21부</span>
+            <span class="stage-title mode-easy">계약서에 안 적힌 '하도급 10일 검수·60일 지급상한·상가 만료 1달 전 통보 마감일(D-Day)'까지 0.011초 만에 자동 계산해 띄워주고, 휴대폰·아웃룩 달력 알람 파일(.ics)로 바로 넣어주는 완결편</span>
+            <span class="stage-title mode-expert">외부 패키지 0개 '순수 파이썬 다중 문서 법정·계약 기한 D-Day 레이더(<code>POST /api/scan-contract-deadlines</code>) &amp; RFC 5545 한글 <code>75-octet</code> 바이트 경계 안전 폴딩 <code>.ics</code> 익스포터'</span>
+          </div>
+          <button class="stage-jump-btn" onclick="jumpToPost(21)">21부 본문 보기 →</button>
+        </div>
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            계약 전 독소조항을 다 고쳤더라도 바쁘게 일하다가 납품 후 <code>10일</code> 검수기한, <code>60일</code> 대금지급일, 상가 만료 <code>1개월 전</code> 갱신 통보 날짜를 깜빡 놓치면 연체이자를 물거나 원치 않는 계약이 자동 연장되는 큰 손해를 입습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            등록된 계약서·견적서들에서 날짜만 읽는 것을 넘어 <strong>계약서에 안 적힌 법정 필수 마감일(<code>+10일</code> · <code>+60일</code> · <code>만료 1개월 전</code>)을 자동 역산해 급한 순서(<code>D-Day</code>)로 보여주고, 3일 전·1일 전 알람이 내장된 <span class="term-tip" tabindex="0" data-term="contract_deadline_ics">한글 무깨짐 표준 캘린더(.ics) 파일</span></strong>로 원클릭 내보내도록 완성했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            실전 문서 <code>13개(18개 일정)</code> 일괄 스캔·캘린더 생성 <strong>0.011초(11.35ms)</strong> · 워드 취소선 삭제 날짜·시작일 허위 경보 <strong>0건</strong> · 전체 테스트 <strong>51/51 OK</strong>!
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
+            단순 정규식 날짜 수집은 체결일·시작일·<code>&lt;w:del&gt;</code> 삭제 날짜를 가짜 기한경과로 오탐하면서 정작 법정 파생 기한(<code>+10d/+60d/E-1m</code>)은 놓치고, 단순 75자/75바이트 절단은 3바이트 한글 UTF-8 문자를 쪼개 <code>.ics</code> 파서를 깨뜨렸습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
+            <code>POST /api/scan-contract-deadlines</code>에 하도급법(제9조·제13조)·상임법(제10조 말일 클램핑) 역산기와 <span class="term-tip" tabindex="0" data-term="contract_deadline_ics">_fold_rfc5545_line_utf8(<=75 octets)</span> 코드포인트 경계 폴더·<code>VALARM(-P3D/-P1D)</code> 컴파일러를 탑재했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
+            실문서 <code>13건(18일정)</code> 스캔·<code>.ics</code> 컴파일 <strong>11.35ms</strong> · 전 물리 라인 <code>&lt;=75B</code> UTF-8 무결성 <code>100%</code> · 저장소 전체 스위트 <strong>51/51 OK</strong>.
           </div>
         </div>
       </div>
@@ -1957,9 +1998,9 @@
     </div>
   </section>
 
-  <!-- SECTION 4: 20-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..20) -->
+  <!-- SECTION 4: 21-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..21) -->
   <section id="series-articles">
-    <h2>4. 로컬 LLM 고도화 본편 20부작 상세 보기 (`STAGE 1 ~ 20` === `1부 ~ 20부` 1:1 직렬 구성)</h2>
+    <h2>4. 로컬 LLM 고도화 본편 21부작 상세 보기 (`STAGE 1 ~ 21` === `1부 ~ 21부` 1:1 직렬 구성)</h2>
     <p class="section-lead mode-easy">
       아래 탭을 누르면 각 단계를 <strong>초보자 눈높이 비유 해설</strong>로 편하게 읽을 수 있습니다. 각 글 아래의 <em>[💻 엔지니어 원문 &amp; 파이썬 코드 펼쳐보기]</em>를 누르거나 상단 스위치를 바꾸면 실제 코드도 바로 확인됩니다.
     </p>
@@ -1983,7 +2024,8 @@
       <button class="tab-btn" onclick="showPost(17)">17부 (Stage 17): 신·구 문서 1:1 비교 &amp; 포렌식 소거</button>
       <button class="tab-btn" onclick="showPost(18)">18부 (Stage 18): 서식 워드·수식 엑셀 감사보고서 출력</button>
       <button class="tab-btn" onclick="showPost(19)">19부 (Stage 19): 다중 계약서 법령·독소조항 레이더</button>
-      <button class="tab-btn" onclick="showPost(20)">20부 (Stage 20): 전수 점검표 통합 보고서 &amp; DB 자가 치유</button>
+      <button class="tab-btn" onclick="showPost(20)">20부 (Stage 20): 전수 점검표 통합 보고서 &amp; 슬랙 소거</button>
+      <button class="tab-btn" onclick="showPost(21)">21부 (Stage 21): 법정 기한 D-Day 레이더 &amp; .ics 캘린더</button>
     </div>
 
     <!-- POST 1 === STAGE 1 -->
@@ -2962,7 +3004,7 @@ if pay_days &gt; 60:
     <article id="post-20" class="post-card">
       <h3>[20부 · Stage 20] 다중 문서 법령·독소조항 전수 점검표를 워드(<code>.docx</code> 제4절)·4-시트 수식 엑셀(<code>.xlsx</code>) 감사 보고서에 원클릭 합본하고, <code>2.64 GB</code> SQLite 프리리스트 치유 및 무-<code>VACUUM</code> 제자리 슬랙·캐시 무유출 소거 완성하기</h3>
       <div class="post-meta">
-        <span>진화 단계: <strong>STAGE 20 (전수 점검표 통합 보고서 · 프리리스트 치유 &amp; 2.64GB 제자리 슬랙 무유출 소거 · 최신 단계)</strong></span> ·
+        <span>진화 단계: <strong>STAGE 20 (전수 점검표 통합 보고서 · 프리리스트 치유 &amp; 2.64GB 제자리 슬랙 무유출 소거)</strong></span> ·
         <span>전체 마크다운 리포트: <a href="posts/20-stage20-unified-statutory-checklist-export-and-freelist-heal.md">20-stage20-unified-statutory-checklist-export-and-freelist-heal.md</a></span>
       </div>
       <div class="easy-story-box mode-easy">
@@ -3030,13 +3072,81 @@ summary_row_xml = f'&lt;c r="E{r4}" s="6"&gt;&lt;f&gt;MAX(E3:E{last_r4})&lt;/f&g
       </details>
     </article>
 
+    <!-- POST 21 === STAGE 21 -->
+    <article id="post-21" class="post-card">
+      <h3>[21부 · Stage 21] 등록된 계약서·견적서에서 하도급 10일 검수·60일 지급상한·상가 만료 1개월 전 갱신통지 기한(<code>D-Day</code>)을 순수 파이썬으로 자동 역산하고, 한글 안 깨지는 RFC 5545 <code>75-octet</code> 표준 캘린더(<code>.ics</code>)로 즉시 내보내기</h3>
+      <div class="post-meta">
+        <span>진화 단계: <strong>STAGE 21 (다중 문서 법정·계약 기한 D-Day 레이더 &amp; RFC 5545 .ics 캘린더 익스포터 · 최신 단계)</strong></span> ·
+        <span>전체 마크다운 리포트: <a href="posts/21-stage21-contract-deadline-radar-and-rfc5545-ics-exporter.md">21-stage21-contract-deadline-radar-and-rfc5545-ics-exporter.md</a></span>
+      </div>
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 21 — 계약서에 안 적힌 '법정 마감일'까지 놓치지 않고 휴대폰·아웃룩 달력 알람으로 받아보기)</span>
+        <ul>
+          <li><strong>왜 계약 후 일정 관리가 꼭 필요했나요?</strong> 계약서 독소조항을 다 고쳐서 도장을 찍었더라도, 막상 바쁘게 일하다가 <strong>납품 후 <code>10일</code> 검수기한, <code>60일</code> 대금지급 상한일, 상가 만료 <code>6개월~1개월 전</code> 갱신 통지 마감일</strong>을 하루라도 넘기면 연 <code>15.5%</code> 지연이자를 물거나 원치 않는 계약이 묵시적 갱신되는 큰 손실이 생깁니다.</li>
+          <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> 등록된 계약서·견적서들에서 체결일·옛날 취소선 날짜는 똑똑하게 걸러내고 <strong>계약서에 날짜가 안 적혀 있는 대한민국 법정 필수 마감일(<code>+10일</code>·<code>+60일</code>·<code>만료 1달 전</code>)까지 파이썬이 자동 계산해 <code>D-Day</code> 긴급 순서표로 띄워주며, 3일 전·1일 전 사전 알람이 내장된 <span class="term-tip" tabindex="0" data-term="contract_deadline_ics">한글 무깨짐 표준 캘린더(.ics) 파일</span></strong>로 원클릭 내보내도록 완성했습니다.</li>
+          <li><strong>무엇이 달라졌나요?</strong> 실전 문서 <code>13개(18개 일정)</code>를 단 <strong>0.011초(11.35ms)</strong> 만에 스캔해 아웃룩·구글·애플·윈도우 기본 달력에 한글 깨짐 <code>0%</code>로 바로 넣을 수 있고, 전체 테스트 <strong>51/51 OK</strong> 만점을 달성했습니다!</li>
+        </ul>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>일정 · 규격 계층</th>
+              <th>단순 날짜 수집 · 문자 슬라이싱의 한계</th>
+              <th>Stage 21 결정론적 법정 기한 · RFC 5545 엔지니어링</th>
+              <th>실측 성능 · 검증 지표</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>비마감 노이즈 차단</strong></td>
+              <td>체결일·기간 시작일·<code>&lt;w:del&gt;</code> 삭제 날짜가 기한경과로 오탐</td>
+              <td>범위 구문(<code>D1~D2</code>) 시작일 소비 · 체결일 필터 · <code>&lt;w:del&gt;</code> 배제</td>
+              <td class="col-good">가짜 <code>OVERDUE</code> 허위 경보 <strong>0건</strong> · 엑셀 1900 일련번호 복원</td>
+            </tr>
+            <tr>
+              <td><strong>하도급 · 상임법 역산</strong></td>
+              <td>계약서에 숫자로 안 적힌 법정 강행 마감일 누락</td>
+              <td><code>D_deliv+10d</code>(제9조) · <code>+60d</code>(제13조) · <code>add_months(E,-6..-1)</code>(상임법 제10조)</td>
+              <td class="col-good">실문서 <code>13건(18일정)</code> 스캔 <strong>11.35 ms</strong> · 말일 윤년 오차 <strong>0일</strong></td>
+            </tr>
+            <tr>
+              <td><strong>RFC 5545 <code>75-octet</code> 폴딩</strong></td>
+              <td>75글자(<code>225B</code> 초과) 또는 <code>b[:75]</code> 절단 시 한글 3바이트 깨짐</td>
+              <td><code>_fold_rfc5545_line_utf8</code> 코드포인트 경계 바이트 누산 + <code>DTEND=DTSTART+1d</code></td>
+              <td class="col-good">전 물리 라인 <strong>&lt;= 75B</strong> · UTF-8 디코딩 <strong>100%</strong> · <code>VALARM(-P3D/-P1D)</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <details class="expert-code-fold">
+        <summary>💻 엔지니어 원문 요약 &amp; 하도급·상임법 파생 기한 역산 · RFC 5545 한글 <code>75-octet</code> 무절단 폴딩 코드 펼쳐보기</summary>
+        <blockquote>
+          <strong>발전 이유와 해법:</strong> <code>POST /api/scan-contract-deadlines</code> 및 <code>POST /api/export-contract-ics</code>는 명시 기한에서 하도급법(<code>+10d</code> 간주검수 · <code>+60d</code> 지급상한) 및 상가임대차법(<code>calendar.monthrange</code> 말일 클램핑 기반 <code>E-6m..E-1m</code>) 마감일을 결정론적으로 파생하고, 코드포인트 단위 UTF-8 바이트 누산기(<code>첫 줄 &lt;=75B</code>, <code>연속 줄 공백포함 &lt;=75B</code>)로 3바이트 한글 절단 없이 표준 <code>.ics</code> 바이너리를 컴파일합니다.
+        </blockquote>
+        <pre><code># 1) 상임법 말일 안전 월 역산(2027-03-31 - 1m -&gt; 2027-02-28) &amp; 하도급 +10d/+60d 파생 기한
+ny, nm0 = divmod((exp_dt.year * 12 + exp_dt.month - 1) - 1, 12); nm = nm0 + 1
+lease_cutoff = datetime.date(ny, nm, min(exp_dt.day, calendar.monthrange(ny, nm)[1]))
+insp_10_dt, pay_60_dt = deliv_dt + datetime.timedelta(days=10), deliv_dt + datetime.timedelta(days=60)
+
+# 2) RFC 5545 Section 3.1 한글 UTF-8 멀티바이트 무절단 &lt;=75 octets 라인 폴더
+for ch in line:
+    ch_len = len(ch.encode("utf-8"))
+    if cur_chars and (cur_bytes + ch_len &gt; budget):
+        segments.append("".join(cur_chars)); cur_chars, cur_bytes, budget = [ch], ch_len, 74
+    else:
+        cur_chars.append(ch); cur_bytes += ch_len
+folded_line = "\r\n ".join(segments)</code></pre>
+      </details>
+    </article>
+
   </section>
 
   <!-- SECTION 5: APPENDIX / SIDE-TRACK AGENT RESEARCH NOTES -->
   <section id="appendix-research">
     <h2>5. 별첨 연구 노트: 에이전트 하네스 &amp; 벤치마크 실험 (로컬 LLM 외전 2편)</h2>
     <p class="section-lead">
-      위 로컬 LLM 본체의 1~20단계 직렬 진화와 별도로, 여러 AI를 경쟁시켜 프롬프트 방어력을 높이거나 작업 기억이 섞이지 않게 관리하기 위해 수행한 연구 기록입니다.
+      위 로컬 LLM 본체의 1~21단계 직렬 진화와 별도로, 여러 AI를 경쟁시켜 프롬프트 방어력을 높이거나 작업 기억이 섞이지 않게 관리하기 위해 수행한 연구 기록입니다.
     </p>
 
     <div class="tabs">
@@ -3204,6 +3314,10 @@ summary_row_xml = f'&lt;c r="E{r4}" s="6"&gt;&lt;f&gt;MAX(E3:E{last_r4})&lt;/f&g
     unified_audit_heal: {
       title: "통합 OOXML 점검표 · 프리리스트 치유 & 2.64GB 무-VACUUM 슬랙 소거",
       desc: "다중 문서 법령 위반·독소조항 점검표를 결재용 워드(.docx 제4절, 18.3ms)·4-시트 엑셀(.xlsx 4번 시트 =MAX/=SUM, 8.2ms)에 합본하고, SQLite 헤더(36..40B) 프리리스트 오차 자가 복구(<0.5ms)와 B-tree 미할당 갭·프리블록 제자리 0x00 소거(_scrub_sqlite_unallocated_and_freelist_slack, 추가 디스크 0MB) 및 neural_rewrite_cache.json 보편 40시드 정화로 2.64GB 원시 파일 유출 0건을 달성한 기술입니다."
+    },
+    contract_deadline_ics: {
+      title: "법정·계약 기한 D-Day 레이더 & RFC 5545 한글 75-octet .ics 익스포터",
+      desc: "등록된 계약서·견적서들에서 체결일·취소선 삭제 날짜 노이즈는 걸러내고 하도급법(납품+10일 간주검수·+60일 지급상한)·상가임대차법(만료 6~1개월 전 갱신통지 마감) 파생 기한까지 11.35ms 만에 자동 역산한 뒤, 한글 3바이트 UTF-8 문자가 절대 안 깨지는 <=75바이트 안전 폴딩과 3일 전·1일 전 오프라인 알람(VALARM)이 내장된 표준 달력 파일(.ics)로 즉시 내려주는 기술입니다."
     },
     roofline_bw: {
       title: "메모리 대역폭 루프라인 병목 (Memory-Bandwidth Roofline)",
