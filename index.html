@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sovereign Offline AI Fortress v3.0 | 로컬 LLM 19단계 고도화 기록 (입문자·엔지니어 겸용)</title>
+  <title>Sovereign Offline AI Fortress v3.0 | 로컬 LLM 20단계 고도화 기록 (입문자·엔지니어 겸용)</title>
   <style>
     :root {
       --bg: #0b0f19;
@@ -721,23 +721,23 @@
   <div class="container">
     <div class="badge-row">
       <span class="badge green">Sovereign Offline AI Fortress v3.0</span>
-      <span class="badge purple">Stage 1~19 === 1부~19부 (1:1 직렬 진화 기록)</span>
+      <span class="badge purple">Stage 1~20 === 1부~20부 (1:1 직렬 진화 기록)</span>
       <span class="badge">Computer Science &amp; Engineering B.S. (KOREATECH)</span>
       <span class="badge">Engineer Information Processing (정보처리기사)</span>
       <span class="badge">HRD-Net NCS Approved Instructor (8 Categories)</span>
       <span class="badge">Linux Infra &amp; C# Industrial Control</span>
     </div>
 
-    <h1 class="mode-easy">보급형 그래픽카드 1장(<code>RTX 3060 12GB</code>)으로 '거짓말·계산 실수 없는 나만의 로컬 AI'를 만들기까지: 19단계 성장 기록</h1>
-    <h1 class="mode-expert">소비자용 GPU(<code>RTX 3060 12GB</code>) 로컬 LLM은 어디까지 진화할 수 있는가: 19단계 아키텍처 고도화 전 기록</h1>
+    <h1 class="mode-easy">보급형 그래픽카드 1장(<code>RTX 3060 12GB</code>)으로 '거짓말·계산 실수 없는 나만의 로컬 AI'를 만들기까지: 20단계 성장 기록</h1>
+    <h1 class="mode-expert">소비자용 GPU(<code>RTX 3060 12GB</code>) 로컬 LLM은 어디까지 진화할 수 있는가: 20단계 아키텍처 고도화 전 기록</h1>
 
     <p class="subtitle mode-easy">
-      인터넷 연결 없이 내 컴퓨터 안에서 돌아가는 AI를 만들려고 유명 프로그램(<code>Ollama</code> 등)만 설치해 보면, 곧바로 <strong>메모리 부족 멈춤, 틀린 돈·이자 암산, 없는 법 조문 지어내기, 20초씩 걸리는 답답한 대기 시간, 한글(<code>.hwp</code>)·제안서(<code>.pptx</code>)·견적서(<code>.xlsx</code>)·워드 계약서(<code>.docx</code>) 판독, 신·구 문서 비교, 결재용 보고서 작성 및 다수 계약서 독소조항 전수 점검 불편</strong>이라는 벽에 부딪힙니다.
-      이 페이지는 처음 방문하신 분도 쉽게 따라오실 수 있도록 <strong>우리가 어떤 로컬 AI를 만들려 했고, 왜 기존 방식은 안 되었으며, 19단계에 걸쳐 어떻게 하나씩 해결했는지</strong> 차근차근 풀어쓴 기록입니다. <em>(상단 스위치로 언제든 엔지니어 원문·코드 모드로 전환할 수 있습니다.)</em>
+      인터넷 연결 없이 내 컴퓨터 안에서 돌아가는 AI를 만들려고 유명 프로그램(<code>Ollama</code> 등)만 설치해 보면, 곧바로 <strong>메모리 부족 멈춤, 틀린 돈·이자 암산, 없는 법 조문 지어내기, 20초씩 걸리는 답답한 대기 시간, 한글(<code>.hwp</code>)·제안서(<code>.pptx</code>)·견적서(<code>.xlsx</code>)·워드 계약서(<code>.docx</code>) 판독, 신·구 문서 비교, 다수 계약서 독소조항 전수 점검 및 통합 결재 보고서 작성 불편</strong>이라는 벽에 부딪힙니다.
+      이 페이지는 처음 방문하신 분도 쉽게 따라오실 수 있도록 <strong>우리가 어떤 로컬 AI를 만들려 했고, 왜 기존 방식은 안 되었으며, 20단계에 걸쳐 어떻게 하나씩 해결했는지</strong> 차근차근 풀어쓴 기록입니다. <em>(상단 스위치로 언제든 엔지니어 원문·코드 모드로 전환할 수 있습니다.)</em>
     </p>
     <p class="subtitle mode-expert">
-      단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 첫 글자 20초 대기, 폐쇄망 실무 문서 4대장(한글 <code>.hwpx</code>/<code>.hwp</code> · 파워포인트 <code>.pptx</code> · 엑셀 <code>.xlsx</code> · 워드 <code>.docx</code>) 파싱, 실시간 색인·신구 비교·서식 보고서 익스포트 및 다중 문서 법령 위반 선별 장벽 앞에서 곧바로 무너집니다.
-      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 Zero-VRAM 추론·시맨틱 가속, 사후 역검증기, 50문항 골든 벤치마크, 순수 파이썬 실무 문서 파서, 브라우저 Drag &amp; Drop 색인, 이종 문서 1:1 Delta 비교기, 오프라인 OOXML 서식 보고서 익스포터 및 다중 문서 대한민국 법령·독소조항 리스크 레이더(Stage 12~19)까지 1:1로 대응하는 19편의 엔지니어링 리포트</strong>로 정리했습니다.
+      단순히 <em>"유튜브를 보고 내 PC에 Ollama를 깔았다"</em>는 수준에서 출발하면 메모리 초과(OOM), 법령·숫자 환각, 구어체 검색 실패, 첫 글자 20초 대기, 폐쇄망 실무 문서 4대장(한글 <code>.hwpx</code>/<code>.hwp</code> · 파워포인트 <code>.pptx</code> · 엑셀 <code>.xlsx</code> · 워드 <code>.docx</code>) 파싱, 실시간 색인·신구 비교·다중 문서 법령 위반 선별 및 전수 점검표 통합 보고서 익스포트 장벽 앞에서 곧바로 무너집니다.
+      하나의 한계에 부딪힐 때마다 <strong>왜 그 문제가 생겼는지 물리·전산학적으로 역추적하고, 기초 검증 골격(Stage 1)부터 Zero-VRAM 추론·시맨틱 가속, 사후 역검증기, 50문항 골든 벤치마크, 순수 파이썬 실무 문서 파서, 브라우저 Drag &amp; Drop 색인, 이종 문서 1:1 Delta 비교기, 다중 문서 법령 리스크 레이더 및 전수 점검표 통합 OOXML 보고서·프리리스트 자가 복구(Stage 12~20)까지 1:1로 대응하는 20편의 엔지니어링 리포트</strong>로 정리했습니다.
     </p>
 
     <!-- KPI Cards: Easy Mode -->
@@ -957,7 +957,7 @@
               <div class="pipe-name">📚 45.8만 권 + 드래그앤드롭 문서</div>
               <div class="pipe-desc">일상 말투·비유 질문은 물론 마우스로 끌어다 놓은 한글(<code>.hwp</code>·<code>.hwpx</code>)·PPT·엑셀·워드 계약서(<code>.docx</code>) 표·각주까지 0.14초 만에 찾아옵니다.</div>
             </div>
-            <div class="pipe-link">→ Stage 4 · 5 · 9 · 12 ~ 19 보기</div>
+            <div class="pipe-link">→ Stage 4 · 5 · 9 · 12 ~ 20 보기</div>
           </div>
 
           <div class="pipe-step" onclick="jumpToStageCard(6)">
@@ -966,7 +966,7 @@
               <div class="pipe-name">🧮 139개 파이썬 계산기</div>
               <div class="pipe-desc">돈·연체이자·보증금은 AI 암산 금지! 검증된 파이썬 프로그램이 직접 계산해 <strong>오차 0%</strong> 정답을 줍니다.</div>
             </div>
-            <div class="pipe-link">→ Stage 6 · 10 · 19 보기</div>
+            <div class="pipe-link">→ Stage 6 · 10 · 19 · 20 보기</div>
           </div>
 
           <div class="pipe-step" onclick="jumpToStageCard(8)">
@@ -1011,6 +1011,7 @@
           <div class="glossary-item"><strong>이종 포맷 1:1 Delta 비교기 &amp; SQLite Freelist 제로필 소거</strong>엑셀 견적서(.xlsx)와 워드 수정 계약서(.docx)처럼 서식·단위가 달라도 품목코드별 가격·기한 차이를 0.005초 만에 1:1 비교표로 산출하고, 타 PC 배포 시 PRAGMA secure_delete=ON + FTS5 optimize로 삭제된 개인 문서의 보이지 않는 바이트 파편까지 0바이트로 지웁니다.</div>
           <div class="glossary-item"><strong>순수 파이썬 OOXML 서식 보고서(.docx/.xlsx) 익스포터</strong>python-docx·openpyxl 없이 표준 zipfile만으로 가로형 A4 리스크 음영 워드(.docx, 8.3ms)와 sharedStrings·SUM 수식이 내장된 3-시트 엑셀(.xlsx, 5.0ms) 감사 보고서를 SHA-256 무결성 해시와 함께 즉시 컴파일해 내려받습니다.</div>
           <div class="glossary-item"><strong>다중 문서 대한민국 법령·독소조항 리스크 레이더</strong>등록된 모든 한글·워드·엑셀·PPT 계약서를 GPU 토큰 소모 0개로 0.006초 만에 전수 스캔하여 하도급법(60일/15.5%)·상임법(권역별 환산보증금)·민법(위약벌) 위반 위험도 순위표(0~100점)로 정렬합니다.</div>
+          <div class="glossary-item"><strong>전수 점검표 통합 OOXML 보고서 &amp; SQLite 프리리스트 자가 치유</strong>다중 문서 법령 위반 점검표를 워드 제4절(18.3ms)과 4-시트 엑셀 4번 시트(MAX/SUM 수식, 8.2ms)에 원클릭 합본하고, 2.6GB 카트리지 헤더(36..40B) 프리리스트 페이지 수 불일치를 트렁크 체인 순회(&lt;0.5ms)로 자가 복구합니다.</div>
           <div class="glossary-item"><strong>메모리 대역폭 병목 (Roofline Choke)</strong>로컬 AI가 글자를 찍어내는 속도는 연산력(FLOPS)이 아니라 '메모리에서 가중치를 읽어오는 통로 넓이(GB/s)'가 결정합니다. 1,000만 원대 전용 기기라도 통로(273 GB/s)가 좁으면 큰 모델 출력이 거북이처럼 느려집니다.</div>
           <div class="glossary-item"><strong>SLOT_2 물리 상한(≤9.8GB) &amp; L1 ⊥ L2·L3 직교성</strong>12GB 그래픽카드 본체에서는 스와핑 멈춤을 막기 위해 주력 두뇌 칸(SLOT_2)을 9.8GB 이하(14B·12B)로 엄격히 제한하고, 나중에 24GB+ 상위 장비로 옮길 때만 도서관(L2)·계산기(L3) 코드 수정 0줄로 26B·31B 두뇌로 갈아 끼우는 분리 설계입니다.</div>
         </div>
@@ -1018,11 +1019,11 @@
     </div>
   </section>
 
-  <!-- SECTION 1: 19-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..19) -->
+  <!-- SECTION 1: 20-STAGE EVOLUTION TIMELINE (STRICT 1:1 MAPPING WITH POSTS 1..20) -->
   <section id="evolution-timeline">
-    <h2>1. 로컬 LLM 19단계 고도화 타임라인 (`STAGE 1 ~ 19` ↔ 본문 `1부 ~ 19부` 1:1 대응)</h2>
+    <h2>1. 로컬 LLM 20단계 고도화 타임라인 (`STAGE 1 ~ 20` ↔ 본문 `1부 ~ 20부` 1:1 대응)</h2>
     <p class="section-lead mode-easy">
-      처음 기초를 잡은 <strong>1단계</strong>부터 50문제 만점, 한국 실무 문서 4대장 해독, 실시간 드래그 앤 드롭 색인, 신·구 문서 1:1 비교, 결재용 서식 워드·수식 엑셀 출력, 그리고 여러 계약서의 대한민국 법령 위반·독소조항을 0.006초 만에 순위표로 띄우는 <strong>19단계</strong>까지 순서대로 이어집니다. 어떤 불편함 때문에 다음 단계를 만들었는지 읽어보시고, 궁금한 단계는 우측 <strong>[본문 보기 →]</strong> 버튼을 눌러 자세히 살펴보세요.
+      처음 기초를 잡은 <strong>1단계</strong>부터 50문제 만점, 한국 실무 문서 4대장 해독, 실시간 드래그 앤 드롭 색인, 신·구 문서 1:1 비교, 다중 계약서 법령 리스크 레이더, 그리고 전수 점검표가 통합된 서식 워드·4-시트 수식 엑셀 출력 및 도서관 목차 자가 복구를 완성한 <strong>20단계</strong>까지 순서대로 이어집니다. 어떤 불편함 때문에 다음 단계를 만들었는지 읽어보시고, 궁금한 단계는 우측 <strong>[본문 보기 →]</strong> 버튼을 눌러 자세히 살펴보세요.
     </p>
     <p class="section-lead mode-expert">
       각 진화 단계(`STAGE k`)는 하단 본문(`k부`)과 번호·순서가 정확히 1:1로 일치합니다. 우측 버튼을 클릭하면 해당 단계의 설계 원리와 실행 가능한 순수 파이썬 검증 코드로 바로 이동합니다.
@@ -1768,7 +1769,7 @@
       </div>
 
       <!-- STAGE 19 -> POST 19 -->
-      <div id="stage-card-19" class="stage-card latest">
+      <div id="stage-card-19" class="stage-card">
         <div class="stage-dot"></div>
         <div class="stage-head">
           <div class="stage-title-wrap">
@@ -1804,6 +1805,47 @@
           <div class="stage-col">
             <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
             실문서 <code>13건</code> 순위화 <strong>6.48ms</strong>(오프라인 JS 폴백 <code>1.1ms</code>) · <code>&lt;w:del&gt;</code> 오탐 <code>0건</code> · 전체 스위트 <strong>34/34 OK</strong> &amp; <strong>50/50(100%)</strong> 유지.
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 20 -> POST 20 -->
+      <div id="stage-card-20" class="stage-card latest">
+        <div class="stage-dot"></div>
+        <div class="stage-head">
+          <div class="stage-title-wrap">
+            <span class="stage-num">STAGE 20 === 20부</span>
+            <span class="stage-title mode-easy">다중 계약서 법령·독소조항 전수 점검표를 '결재용 워드(제4절)와 4-시트 자동 수식 엑셀' 한 파일에 합쳐 내려받고, 2.6GB 도서관 목차 어긋남까지 0.0005초 만에 스스로 고치는 완결편</span>
+            <span class="stage-title mode-expert">법령·독소조항 전수 점검표 통합 OOXML 익스포터(<code>.docx</code> 제4절 · <code>.xlsx</code> 4번 전용 시트 <code>MAX</code>/<code>SUM</code>) &amp; SQLite 헤더 <code>36..40B</code> 프리리스트 트렁크 체인 <code>&lt;0.5ms</code> 자가 복구</span>
+          </div>
+          <button class="stage-jump-btn" onclick="jumpToPost(20)">20부 본문 보기 →</button>
+        </div>
+        <div class="stage-body-grid mode-easy">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 고쳤나요? (불편했던 점)</span>
+            화면에서 위험 계약서 순위표를 확인한 뒤 상사 결재를 올리려면 신·구 가격 비교표와 법령 위반 점검표가 하나의 워드·엑셀 파일에 함께 들어가야 했고, 여러 프로그램이 45.8만 건 도서관을 동시에 열 때 빈칸 페이지 숫자가 1~2칸 어긋나면 업데이트가 멈출 수 있었습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">💡 어떻게 해결했나요? (쉬운 원리)</span>
+            원클릭 다운로드 시 <strong>워드 제4절 점검표와 엑셀 4번 전용 시트(최고 위험점수 <code>=MAX</code> · 총 배점 <code>=SUM</code>)를 자동 합본하고, 도서관 빈칸 숫자가 어긋나도 <code>0.0005초</code> 만에 스스로 맞춰 복구하는 <span class="term-tip" tabindex="0" data-term="unified_audit_heal">전수 점검표 통합 보고서 & 프리리스트 자가 치유기</span></strong>를 완성했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">✨ 얼마나 좋아졌나요? (실제 결과)</span>
+            통합 워드 <strong>0.018초(18.3ms)</strong> · 4-시트 엑셀 <strong>0.008초(8.2ms)</strong> 즉시 생성 · <code>458,286건</code> 도서관 무결성 <code>100%</code> 복구 · 전체 테스트 <strong>35/35 OK</strong>!
+          </div>
+        </div>
+        <div class="stage-body-grid mode-expert">
+          <div class="stage-col">
+            <span class="stage-col-label why">🚧 왜 바꿨는가 (마주친 한계)</span>
+            Stage 19 리스크 레이더 결과와 Stage 18 OOXML 보고서가 분리되어 있었고, 다중 프로세스 <code>64KB</code> 헤더 잠금 경합 시 SQLite 오프셋 <code>36..40B</code> 프리리스트 카운트 드리프트로 <code>DELETE</code> 예외가 발생할 수 있었습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label how">🛠️ 어떻게 해결했는가 (설계 전환)</span>
+            <code>_normalize_audit_export_payload</code>에 자동 레이더 병합·<code>SHA-256</code> 봉인·4번 시트(<code>MAX</code>/<code>SUM</code>)를 결합하고 <span class="term-tip" tabindex="0" data-term="unified_audit_heal">_sync_sqlite_freelist_header_count(<0.5ms)</span> 트렁크 체인 동기화기를 탑재했습니다.
+          </div>
+          <div class="stage-col">
+            <span class="stage-col-label metric">📈 무엇이 달라졌는가 (실증 지표)</span>
+            <code>.docx</code> <strong>18.34ms</strong> · 4-시트 <code>.xlsx</code> <strong>8.19ms</strong> · <code>PRAGMA quick_check='ok'</code> 자가 치유 · 전체 스위트 <strong>35/35 OK</strong> &amp; 골든 벤치마크 <strong>50/50(100%)</strong> 유지.
           </div>
         </div>
       </div>
@@ -1915,9 +1957,9 @@
     </div>
   </section>
 
-  <!-- SECTION 4: 19-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..19) -->
+  <!-- SECTION 4: 20-PART MAIN SERIES TABS (STRICT 1:1 WITH STAGES 1..20) -->
   <section id="series-articles">
-    <h2>4. 로컬 LLM 고도화 본편 19부작 상세 보기 (`STAGE 1 ~ 19` === `1부 ~ 19부` 1:1 직렬 구성)</h2>
+    <h2>4. 로컬 LLM 고도화 본편 20부작 상세 보기 (`STAGE 1 ~ 20` === `1부 ~ 20부` 1:1 직렬 구성)</h2>
     <p class="section-lead mode-easy">
       아래 탭을 누르면 각 단계를 <strong>초보자 눈높이 비유 해설</strong>로 편하게 읽을 수 있습니다. 각 글 아래의 <em>[💻 엔지니어 원문 &amp; 파이썬 코드 펼쳐보기]</em>를 누르거나 상단 스위치를 바꾸면 실제 코드도 바로 확인됩니다.
     </p>
@@ -1941,6 +1983,7 @@
       <button class="tab-btn" onclick="showPost(17)">17부 (Stage 17): 신·구 문서 1:1 비교 &amp; 포렌식 소거</button>
       <button class="tab-btn" onclick="showPost(18)">18부 (Stage 18): 서식 워드·수식 엑셀 감사보고서 출력</button>
       <button class="tab-btn" onclick="showPost(19)">19부 (Stage 19): 다중 계약서 법령·독소조항 레이더</button>
+      <button class="tab-btn" onclick="showPost(20)">20부 (Stage 20): 전수 점검표 통합 보고서 &amp; DB 자가 치유</button>
     </div>
 
     <!-- POST 1 === STAGE 1 -->
@@ -2857,7 +2900,7 @@ total_cell_xml = f'&lt;c r="F{r_sum}" s="6"&gt;&lt;f&gt;SUM(F3:F{r_sum - 1})&lt;
     <article id="post-19" class="post-card">
       <h3>[19부 · Stage 19] 쌓여 있는 여러 계약서·견적서(<code>.hwpx</code>·<code>.hwp</code>·<code>.docx</code>·<code>.xlsx</code>·<code>.pptx</code>)를 0.006초 만에 전수 검사해 위험도 순위표로 띄우기: 순수 파이썬 대한민국 법령·독소조항 일괄 리스크 레이더</h3>
       <div class="post-meta">
-        <span>진화 단계: <strong>STAGE 19 (다중 문서 실정법·독소조항 리스크 레이더 · 최신 단계)</strong></span> ·
+        <span>진화 단계: <strong>STAGE 19 (다중 문서 실정법·독소조항 리스크 레이더)</strong></span> ·
         <span>전체 마크다운 리포트: <a href="posts/19-stage19-pure-python-statutory-toxic-clause-risk-radar.md">19-stage19-pure-python-statutory-toxic-clause-risk-radar.md</a></span>
       </div>
       <div class="easy-story-box mode-easy">
@@ -2915,13 +2958,77 @@ if pay_days &gt; 60:
       </details>
     </article>
 
+    <!-- POST 20 === STAGE 20 -->
+    <article id="post-20" class="post-card">
+      <h3>[20부 · Stage 20] 다중 문서 법령·독소조항 전수 점검표를 워드(<code>.docx</code> 제4절)·4-시트 수식 엑셀(<code>.xlsx</code>) 감사 보고서에 원클릭 합본하고, <code>2.6 GB</code> SQLite 프리리스트 헤더를 <code>&lt;0.5 ms</code>에 자가 복구하기</h3>
+      <div class="post-meta">
+        <span>진화 단계: <strong>STAGE 20 (전수 점검표 통합 보고서 &amp; SQLite 프리리스트 자가 치유 · 최신 단계)</strong></span> ·
+        <span>전체 마크다운 리포트: <a href="posts/20-stage20-unified-statutory-checklist-export-and-freelist-heal.md">20-stage20-unified-statutory-checklist-export-and-freelist-heal.md</a></span>
+      </div>
+      <div class="easy-story-box mode-easy">
+        <span class="easy-story-head">🌱 입문자 눈높이 해설 (Stage 20 — 계약 검토 전 과정을 '한 파일 다운로드'로 끝내고, 도서관 목차 어긋남까지 0.0005초 만에 스스로 고치기)</span>
+        <ul>
+          <li><strong>어떤 마지막 연결고리가 필요했나요?</strong> 19단계에서 위험한 계약서 순위표를 화면에 띄웠지만, 실무자가 최종 결재를 받으려면 <strong>신·구 단가 비교표(17·18단계)와 다중 계약서 법령 위반 점검표(19단계)가 하나의 워드·엑셀 보고서 안에 깔끔하게 합쳐져야</strong> 했습니다. 또한 45.8만 건(<code>2.6GB</code>)짜리 도서관 파일을 백그라운드 서버와 관리 도구가 동시에 열고 닫을 때 빈칸 페이지 숫자가 1~2칸 어긋나면 업데이트가 멈출 수 있었습니다.</li>
+          <li><strong>쉬운 비유로 어떻게 해결했나요?</strong> 원클릭 다운로드 시 <strong>워드 보고서에는 <code>제4절 법령 위반·독소조항 전수 점검표</code>(5열 리스크 색상 음영 표)를, 엑셀 내역서에는 <code>4_법령위반_독소조항점검표</code> 전용 시트(최고 위험점수 <code>=MAX</code> · 위반 배점 합계 <code>=SUM</code> 수식 내장)</strong>를 자동 합본하고, <span class="term-tip" tabindex="0" data-term="unified_audit_heal">SQLite 프리리스트 헤더 자가 치유기</span>가 무거운 전체 정리(<code>VACUUM</code>) 없이 <code>0.0005초</code> 만에 빈칸 목차 숫자를 정확히 맞춰 놓도록 완성했습니다.</li>
+          <li><strong>무엇이 달라졌나요?</strong> 리스크 레이더 패널에서 곧바로 점검표 단독 보고서(<code>Statutory_Risk_Radar_Audit.*</code>)를 내려받거나 1:1 비교 통합 보고서를 <strong>워드 0.018초(18.34ms) · 엑셀 0.008초(8.19ms)</strong> 만에 받을 수 있고, 전체 테스트 <strong>35/35 OK</strong> 및 50문항 종합 시험 <strong>50/50(100%)</strong> 만점이 유지됩니다!</li>
+        </ul>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>통합 계층</th>
+              <th>기존 분리 구조의 한계</th>
+              <th>Stage 20 결정론적 통합 엔지니어링</th>
+              <th>실측 성능 · 검증 지표</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>워드(<code>.docx</code>) 제4절</strong></td>
+              <td>단가 비교표와 다중 계약 독소조항 순위표를 손으로 다시 합침</td>
+              <td><code>제4절 법령 위반·독소조항 전수 점검표</code> 5열 리스크 색상 음영 표 자동 합본</td>
+              <td class="col-good">생성 <strong>18.34 ms</strong> · Stage 15 파서 역파싱 <strong>100% 일치</strong></td>
+            </tr>
+            <tr>
+              <td><strong>엑셀(<code>.xlsx</code>) 4번 시트</strong></td>
+              <td>위험도 최고치·배점 합계 수식 부재 및 시트 혼재</td>
+              <td><code>4_법령위반_독소조항점검표</code>(<code>sheet4.xml</code>) + <code>&lt;f&gt;MAX(E3:E...)&lt;/f&gt;</code> · <code>&lt;f&gt;SUM(F3:F...)&lt;/f&gt;</code></td>
+              <td class="col-good">생성 <strong>8.19 ms</strong> · <code>SHA-256</code> 무결성 봉인 &amp; <code>scopeMode='radar'</code> 분리</td>
+            </tr>
+            <tr>
+              <td><strong>SQLite 프리리스트 치유</strong></td>
+              <td>헤더 <code>36..40B</code> 카운트 오차 시 <code>2.6 GB VACUUM</code>(수십 초) 필요</td>
+              <td><code>_sync_sqlite_freelist_header_count</code> 트렁크 체인 <code>8B</code> 순회 보정</td>
+              <td class="col-good"><strong>&lt; 0.5 ms</strong> 복구 · <code>quick_check='ok'</code> · 전체 테스트 <strong>35/35 OK</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <details class="expert-code-fold">
+        <summary>💻 엔지니어 원문 요약 &amp; SQLite 프리리스트 트렁크 체인 <code>&lt;0.5 ms</code> 자가 치유 · 4번 시트 <code>MAX</code>/<code>SUM</code> 코드 펼쳐보기</summary>
+        <blockquote>
+          <strong>발전 이유와 해법:</strong> 다중 프로세스가 <code>64KB</code> 헤더 잠금을 교차 수행할 때 오프셋 <code>36..40B</code> 프리리스트 페이지 카운트가 실제 트렁크 체인과 어긋나 발생하는 <code>database disk image is malformed</code>를 원천 차단하기 위해, 업서트 직전 트렁크 체인(<code>first_trunk = u32_be[32..36]</code>)의 <code>(next_trunk, leaf_cnt)</code>만 순회해 <code>actual_cnt</code>를 즉시 기록하고 4-시트 OOXML 보고서를 컴파일합니다.
+        </blockquote>
+        <pre><code># SQLite 헤더(36..40B) 프리리스트 카운트 &lt;0.5ms 자가 치유 + 4번 시트 MAX/SUM 수식·캐시 이중 기록
+while trunk != 0 and trunk not in seen:
+    seen.add(trunk); f.seek((trunk - 1) * page_size)
+    next_trunk, leaf_cnt = struct.unpack("&gt;II", f.read(8))
+    actual_cnt += 1 + leaf_cnt; trunk = next_trunk
+if hdr_free_cnt != actual_cnt:
+    f.seek(36); f.write(struct.pack("&gt;I", actual_cnt))
+
+summary_row_xml = f'&lt;c r="E{r4}" s="6"&gt;&lt;f&gt;MAX(E3:E{last_r4})&lt;/f&gt;&lt;v&gt;{max_doc_score}&lt;/v&gt;&lt;/c&gt;&lt;c r="F{r4}" s="6"&gt;&lt;f&gt;SUM(F3:F{last_r4})&lt;/f&gt;&lt;v&gt;{sum_finding_pts}&lt;/v&gt;&lt;/c&gt;'</code></pre>
+      </details>
+    </article>
+
   </section>
 
   <!-- SECTION 5: APPENDIX / SIDE-TRACK AGENT RESEARCH NOTES -->
   <section id="appendix-research">
     <h2>5. 별첨 연구 노트: 에이전트 하네스 &amp; 벤치마크 실험 (로컬 LLM 외전 2편)</h2>
     <p class="section-lead">
-      위 로컬 LLM 본체의 1~19단계 직렬 진화와 별도로, 여러 AI를 경쟁시켜 프롬프트 방어력을 높이거나 작업 기억이 섞이지 않게 관리하기 위해 수행한 연구 기록입니다.
+      위 로컬 LLM 본체의 1~20단계 직렬 진화와 별도로, 여러 AI를 경쟁시켜 프롬프트 방어력을 높이거나 작업 기억이 섞이지 않게 관리하기 위해 수행한 연구 기록입니다.
     </p>
 
     <div class="tabs">
@@ -3085,6 +3192,10 @@ if pay_days &gt; 60:
     statutory_risk_radar: {
       title: "다중 문서 대한민국 법령·독소조항 일괄 리스크 레이더",
       desc: "등록된 모든 한글(.hwp/.hwpx)·워드(.docx)·엑셀(.xlsx)·PPT 계약서를 GPU 토큰 소모 0개로 0.006초 만에 전수 검사하여 하도급법(60일 초과/15.5% 미만)·상가임대차법(서울 9억·부산 6.9억 등 환산보증금 초과 및 권리금 포기 무효)·민법(과다 지체상금·별도 위약벌) 위반 점수를 0~100점 위험도 순위표로 정렬해 주는 사전 검문 엔진입니다."
+    },
+    unified_audit_heal: {
+      title: "전수 점검표 통합 OOXML 보고서 & SQLite 프리리스트 자가 치유",
+      desc: "다중 문서 법령 위반·독소조항 점검표를 결재용 워드(.docx 제4절, 18.3ms)와 4-시트 엑셀(.xlsx 4번 시트, =MAX 최고 위험점수 및 =SUM 배점 합계 수식, 8.2ms)에 원클릭 합본하고, 2.6GB SQLite 카트리지 헤더(36..40B) 프리리스트 페이지 수 어긋남을 전체 VACUUM 없이 트렁크 체인 순회(<0.5ms)로 즉시 복구하는 기술입니다."
     },
     roofline_bw: {
       title: "메모리 대역폭 루프라인 병목 (Memory-Bandwidth Roofline)",
