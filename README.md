@@ -35,7 +35,7 @@
 
 ---
 
-## 3. How — 포트폴리오 아키텍처 맵 & 로컬 LLM 고도화 21부작
+## 3. How — 포트폴리오 아키텍처 맵 & 로컬 LLM 고도화 22부작
 
 ### 3.1 엔지니어링 도메인 연결 아키텍처
 
@@ -64,9 +64,9 @@ flowchart TB
     FORT <--> SSOT
 ```
 
-### 3.2 로컬 LLM 고도화 본편 21부작 (`Sovereign Offline AI Fortress v3.0`)
+### 3.2 로컬 LLM 고도화 본편 22부작 (`Sovereign Offline AI Fortress v3.0`)
 
-> **1분 요약**: 인터넷 연결 없이 일반 보급형 그래픽카드 1장(`RTX 3060 12GB`)이 장착된 로컬 PC 안에서 **거짓말 0% · 수식 계산 오차 0% · 외부 유출 0%**를 달성하기 위해 `Stage 1`부터 `Stage 21`까지 실제 병목을 하나씩 격파하며 구축한 엔지니어링 기록입니다.
+> **1분 요약**: 인터넷 연결 없이 일반 보급형 그래픽카드 1장(`RTX 3060 12GB`)이 장착된 로컬 PC 안에서 **거짓말 0% · 수식 계산 오차 0% · 외부 유출 0%**를 달성하기 위해 `Stage 1`부터 `Stage 22`까지 실제 병목을 하나씩 격파하며 구축한 엔지니어링 기록입니다.
 
 #### 왜 `$6,950` 전용 로컬 기기(`DGX Spark 128GB` + 최신 `Gemma 4 31B` / `gpt-oss 120B` 단독 구동)로도 `L2·L3` 외골격을 대체할 수 없는가?
 
@@ -102,6 +102,7 @@ flowchart TB
 | **Stage 19** | **[19부: 순수 파이썬 다중 문서 대한민국 법령·독소조항 일괄 리스크 레이더](posts/19-stage19-pure-python-statutory-toxic-clause-risk-radar.md)** | 다수 계약서 중 치명적 법령 위반·독소조항 문서를 선별하는 사전 트리아지 병목 | `POST /api/scan-custom-risks` **`13건 6.48ms` 위험도 순위표** + 하도급·상임법·민법 정량 스코어(`0~100점`) |
 | **Stage 20** | **[20부: 법령·독소조항 전수 점검표 통합 `.docx`/`.xlsx` 익스포터 & SQLite 프리리스트·슬랙 무유출 소거](posts/20-stage20-unified-statutory-checklist-export-and-freelist-heal.md)** | 리스크 레이더와 감사 보고서 분리, 프리리스트 드리프트 및 과거 삭제 슬랙 바이트 | `.docx` 제4절(`18.3ms`) · `.xlsx` 4번 시트(`8.2ms`) + **`<0.5ms` 치유 & `2.64GB` 제자리 슬랙 유출 `0건`** |
 | **Stage 21** | **[21부: 다중 문서 법정·계약 기한 `D-Day` 레이더 & RFC 5545 한글 `75-octet` 안전 폴딩 `.ics` 익스포터](posts/21-stage21-contract-deadline-radar-and-rfc5545-ics-exporter.md)** | 체결 후 하도급 `10일`/`60일`·상임법 `6~1개월 전` 마감 실기 및 한글 `.ics` 바이트 절단 깨짐 | `POST /api/scan-contract-deadlines` **`13건 11.35ms`** + **`<=75B` UTF-8 안전 폴딩 & `D-3`/`D-1` `VALARM`** |
+| **Stage 22** | **[22부: 계약·법정 마감일정표 통합 `.docx` 제5절 & 5-시트 수식 `.xlsx` 제5시트 감사 보고서 익스포터](posts/22-stage22-unified-deadline-schedule-audit-report-exporter.md)** | `.ics` 달력 외 결재 품의서·정산 대장 내 마감일정 분리 및 5시트 `sharedStrings` 정합성 | `.docx` 제5절(`~19.4ms`) · 5-시트 `.xlsx` 제5시트(`MIN`/`SUM`, `~9.1ms`) + **`2.64GB` 0/82 유출 · `50/50`** |
 
 #### 📎 별첨 연구 노트 (외전 2편)
 * **[별첨 A: 단일 프롬프트의 한계를 넘는 '3-Way 서브에이전트 토너먼트' — 250문항 안전·편향 벤치마크 실증](posts/appendix-a-subagent-tournament-250-benchmark.md)**
@@ -137,7 +138,7 @@ flowchart TB
 ```text
 tejo1990.github.io/
 ├── index.html      # 단일 파일 무의존성 인터랙티브 포트폴리오 웹앱 (🌱 쉽게 읽기 ↔ ⚙️ 엔지니어 원문 토글)
-├── posts/          # Stage 01 ~ Stage 21 본편 및 별첨 A·B 기술 아티클 마크다운 원문 (23편)
+├── posts/          # Stage 01 ~ Stage 22 본편 및 별첨 A·B 기술 아티클 마크다운 원문 (24편)
 ├── .nojekyll       # GitHub Pages 정적 에셋 직출 서빙 설정
 └── README.md       # 마스터 엔지니어링 포트폴리오 인덱스 & 로컬 실행 가이드
 ```
